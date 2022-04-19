@@ -255,7 +255,7 @@ export default function Dashboard() {
             <BarChart chartData={barChartData} chartOptions={barChartOptions} />
           </Box>
         </Card>
-        <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
+        {/* <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
           <Flex direction='column'>
             <Flex align='center' justify='space-between' p='22px'>
               <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -323,8 +323,8 @@ export default function Dashboard() {
               </Table>
             </Box>
           </Flex>
-        </Card>
-        <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
+        </Card> */}
+        {/* <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
           <Flex direction='column'>
             <Flex align='center' justify='space-between' p='22px'>
               <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -392,7 +392,7 @@ export default function Dashboard() {
               </Tbody>
             </Table>
           </Box>
-        </Card>
+        </Card> */}
       </Grid>
     </Flex>
   );

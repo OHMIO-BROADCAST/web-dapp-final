@@ -49,16 +49,16 @@ var dashRoutes = [
   },
   {
     name: "ROBOT LICENSE",
-    category: "account",
+    category: "robot",
     rtlName: "صفحات",
     state: "pageCollapse",
     views: [
       {
-        path: "/purchase-license",
+        path: "/contract",
         name: "Purchase",
         rtlName: "لوحة القيادة",
-        icon: <HomeIcon color='inherit' />,
-        component: QuickStart,
+        icon: <RocketIcon color='inherit' />,
+        component: Contract,
         layout: "/admin",
       },
       {
@@ -121,14 +121,6 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
-    path: "/rtl-support-page",
-    name: "RTL",
-    rtlName: "آرتيإل",
-    icon: <SupportIcon color='inherit' />,
-    component: RTLPage,
-    layout: "/rtl",
-  },
-  {
     name: "ACCOUNT",
     category: "account",
     rtlName: "صفحات",
@@ -144,6 +136,14 @@ var dashRoutes = [
         layout: "/admin",
       }
     ],
+  },
+  {
+    path: "/rtl-support-page",
+    name: "RTL",
+    rtlName: "آرتيإل",
+    icon: <SupportIcon color='inherit' />,
+    component: RTLPage,
+    layout: "/rtl",
   },
 ];
 export default dashRoutes;

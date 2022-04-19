@@ -35,7 +35,7 @@ export default function Dashboard(props) {
   // ref for main panel div
   const mainPanel = React.createRef();
   const getRoute = () => {
-    return window.location.pathname !== "/admin/full-screen-maps";
+    return window.location.pathname !== "/full-screen-maps";
   };
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";

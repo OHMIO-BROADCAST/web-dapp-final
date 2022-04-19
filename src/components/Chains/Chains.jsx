@@ -91,6 +91,7 @@ function Chains() {
   console.log("chain", chain);
 
   useEffect(() => {
+    console.log('chains')
     if (!chainId) return null;
     const newSelected = menuItems.find((item) => item.key === chainId);
     setSelected(newSelected);

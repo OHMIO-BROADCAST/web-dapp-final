@@ -75,7 +75,7 @@ export default function AdminNavbar(props) {
       setScrolled(false);
     }
   };
-  
+
   return (
     <Flex
       position={navbarPosition}

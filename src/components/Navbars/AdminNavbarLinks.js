@@ -24,6 +24,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import routes from "routes.js";
 import Account from "components/Account/Account";
+import Chains from "components/Chains";
+import TokenPrice from "components/TokenPrice";
+import NativeBalance from "components/NativeBalance";
 
 export default function HeaderLinks(props) {
   const {
@@ -57,7 +60,25 @@ export default function HeaderLinks(props) {
       alignItems='center'
       flexDirection='row'>
       {/* <SearchBar me='18px' /> */}
-      <Account />
+      <SettingsIcon
+        cursor='pointer'
+        ms={{ base: "16px", xl: "0px" }}
+        me='16px'
+        onClick={props.onOpen}
+        color={navbarIcon}
+        w='18px'
+        h='18px'
+      />
+      <Chains />
+      <TokenPrice
+        address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+        chain="polygon"
+        image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
+        size="40px"
+      />
+      <NativeBalance />
+
+      <Account me='16px' />
       {/* <NavLink to='/auth/signin'>
         <Button
           ms='0px'
@@ -109,16 +130,8 @@ export default function HeaderLinks(props) {
         routes={routes}
         {...rest}
       />
-      <SettingsIcon
-        cursor='pointer'
-        ms={{ base: "16px", xl: "0px" }}
-        me='16px'
-        onClick={props.onOpen}
-        color={navbarIcon}
-        w='18px'
-        h='18px'
-      />
-      <Menu>
+
+      {/* <Menu>
         <MenuButton>
           <BellIcon color={navbarIcon} w='18px' h='18px' />
         </MenuButton>
@@ -153,7 +166,7 @@ export default function HeaderLinks(props) {
             </MenuItem>
           </Flex>
         </MenuList>
-      </Menu>
+      </Menu> */}
     </Flex>
   );
 }

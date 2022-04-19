@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useTokenPrice } from "react-moralis";
 
@@ -29,8 +30,9 @@ function TokenPrice(props) {
         alt="logo"
         style={{ height: props?.size || "35px" }}
       />
-      <span
+      <Text
         style={{ cursor: "pointer" }}
+        fontSize="md"
         onClick={toggleDisplayStyle}
         title={`Show in ${isUSDMode ? "ETH" : "USD"}`}
       >
@@ -38,7 +40,7 @@ function TokenPrice(props) {
           (isUSDMode
             ? formattedData.formattedUsd
             : formattedData.formattedNative)}
-      </span>
+      </Text>
     </div>
   );
 }

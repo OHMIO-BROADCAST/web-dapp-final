@@ -31,8 +31,10 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/jsx-key": "off",
+    "react/no-children-prop": "off",
     "react/jsx-no-duplicate-props": "off",
     "react/no-unescaped-entities": "off",
+    "react-hooks/rules-of-hooks": "off",
     "linebreak-style": 0,
     "no-dupe-keys": "off",
     "no-unused-vars": "off"

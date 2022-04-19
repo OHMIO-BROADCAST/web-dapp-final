@@ -8,10 +8,7 @@ import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
 import Text from "antd/lib/typography/Text";
 import { connectors } from "./config";
-import {
-  Button as ButtonChakra
-} from "@chakra-ui/react";
-
+import { Button as ChakraButton } from "@chakra-ui/react"
 const styles = {
   account: {
     height: "42px",
@@ -48,7 +45,7 @@ const styles = {
 };
 
 function Account() {
-  const { authenticate, isAuthenticated, account, chainId, logout } =
+  const { authenticate, isAuthenticated, account, chainId, logout, web3 } =
     useMoralis();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
@@ -56,9 +53,9 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <ButtonChakra onClick={() => setIsAuthModalVisible(true)} variant="solid"  >
-          Connect Wallet
-        </ButtonChakra>
+        <ChakraButton onClick={() => setIsAuthModalVisible(true)}>
+          <p style={styles.text}>Authenticate</p>
+        </ChakraButton>
         <Modal
           visible={isAuthModalVisible}
           footer={null}
@@ -109,7 +106,7 @@ function Account() {
 
   return (
     <>
-      {/* <button
+      <button
         onClick={async () => {
           try {
             console.log("change")
@@ -124,7 +121,7 @@ function Account() {
         }}
       >
         Hi
-      </button> */}
+      </button>
       <div style={styles.account} onClick={() => setIsModalVisible(true)}>
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}

@@ -97,7 +97,7 @@ const App = ({ isServerInfo, user, signOut, signInWithGoogle }) => {
                 <Chains />
                 <TokenPrice
                   address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-                  chain="eth"
+                  chain="polygon"
                   image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
                   size="40px"
                 />
@@ -117,7 +117,7 @@ const App = ({ isServerInfo, user, signOut, signInWithGoogle }) => {
                 <Route path="/1inch">
                   <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
                     <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                      <DEX chain="eth" />
+                      <DEX chain="polygon" />
                     </Tabs.TabPane>
                     <Tabs.TabPane
                       tab={<span>Binance Smart Chain</span>}

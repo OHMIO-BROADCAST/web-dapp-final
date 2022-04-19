@@ -35,7 +35,7 @@ export default function Dashboard(props) {
   const { colorMode } = useColorMode();
   // functions for changing the states from components
   const getRoute = () => {
-    return window.location.pathname !== "/admin/full-screen-maps";
+    return window.location.pathname !== "/full-screen-maps";
   };
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";
@@ -159,7 +159,7 @@ export default function Dashboard(props) {
             <PanelContainer>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from='/admin' to='/admin/dashboard' />
+                <Redirect from='/admin' to='/dashboard' />
               </Switch>
             </PanelContainer>
           </PanelContent>

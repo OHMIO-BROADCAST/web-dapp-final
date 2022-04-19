@@ -23,6 +23,7 @@ import { SidebarResponsive } from "components/Sidebar/Sidebar";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import routes from "routes.js";
+import Account from "components/Account/Account";
 
 export default function HeaderLinks(props) {
   const {
@@ -38,10 +39,13 @@ export default function HeaderLinks(props) {
   const { colorMode } = useColorMode();
 
   // Chakra Color Mode
-  let navbarIcon =
-    fixed && scrolled
-      ? useColorModeValue("gray.700", "gray.200")
-      : useColorModeValue("white", "gray.200");
+  /*  let navbarIcon =
+     (fixed && scrolled)
+       ? useColorModeValue("gray.700", "gray.200")
+       : useColorModeValue("white", "gray.200"); */
+
+  let navbarIcon = useColorModeValue("white", "gray.200");
+
   let menuBg = useColorModeValue("white", "navy.800");
   if (secondary) {
     navbarIcon = "white";
@@ -52,8 +56,9 @@ export default function HeaderLinks(props) {
       w={{ sm: "100%", md: "auto" }}
       alignItems='center'
       flexDirection='row'>
-      <SearchBar me='18px' />
-      <NavLink to='/auth/signin'>
+      {/* <SearchBar me='18px' /> */}
+      <Account />
+      {/* <NavLink to='/auth/signin'>
         <Button
           ms='0px'
           px='0px'
@@ -76,7 +81,8 @@ export default function HeaderLinks(props) {
           }>
           <Text display={{ sm: "none", md: "flex" }}>Sign In</Text>
         </Button>
-      </NavLink>
+      </NavLink> */}
+
       <SidebarResponsive
         hamburgerColor={"white"}
         logo={

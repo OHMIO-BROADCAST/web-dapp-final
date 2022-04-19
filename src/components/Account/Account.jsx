@@ -8,6 +8,10 @@ import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
 import Text from "antd/lib/typography/Text";
 import { connectors } from "./config";
+import {
+  Button as ButtonChakra
+} from "@chakra-ui/react";
+
 const styles = {
   account: {
     height: "42px",
@@ -52,9 +56,9 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
-        </div>
+        <ButtonChakra onClick={() => setIsAuthModalVisible(true)} variant="solid"  >
+          Connect Wallet
+        </ButtonChakra>
         <Modal
           visible={isAuthModalVisible}
           footer={null}

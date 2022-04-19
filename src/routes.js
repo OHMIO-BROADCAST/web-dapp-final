@@ -8,6 +8,26 @@ import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 
+
+import Account from "components/Account/Account";
+import Chains from "components/Chains";
+import TokenPrice from "components/TokenPrice";
+import ERC20Balance from "components/ERC20Balance";
+import ERC20Transfers from "components/ERC20Transfers";
+import DEX from "components/DEX";
+import NFTBalance from "components/NFTBalance";
+import Wallet from "components/Wallet";
+import { Layout, Tabs } from "antd";
+import "antd/dist/antd.css";
+import NativeBalance from "components/NativeBalance";
+import "./style.css";
+import QuickStart from "components/QuickStart";
+import Contract from "components/Contract/Contract";
+import Text from "antd/lib/typography/Text";
+import Ramper from "components/Ramper";
+import MenuItems from "./components/MenuItems";
+import Login from "views/Pages/SignIn";
+
 import {
   HomeIcon,
   StatsIcon,
@@ -21,12 +41,69 @@ import {
 var dashRoutes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Home",
     rtlName: "لوحة القيادة",
     icon: <HomeIcon color='inherit' />,
     component: Dashboard,
     layout: "/admin",
   },
+  {
+    name: "ROBOT LICENSE",
+    category: "account",
+    rtlName: "صفحات",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/purchase-license",
+        name: "Purchase",
+        rtlName: "لوحة القيادة",
+        icon: <HomeIcon color='inherit' />,
+        component: QuickStart,
+        layout: "/admin",
+      },
+      {
+        path: "/purchase-license",
+        name: "Refeers",
+        rtlName: "لوحة القيادة",
+        icon: <HomeIcon color='inherit' />,
+        component: QuickStart,
+        layout: "/admin",
+      },
+    ]
+  },
+
+  {
+    name: "CRYPTO FUNCTIONS",
+    category: "account",
+    rtlName: "صفحات",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/wallet",
+        name: "Wallet",
+        rtlName: "لوحة القيادة",
+        icon: <HomeIcon color='inherit' />,
+        component: Wallet,
+        layout: "/admin",
+      },
+      {
+        path: "/dex",
+        name: "Exchange",
+        rtlName: "لوحة القيادة",
+        icon: <HomeIcon color='inherit' />,
+        component: DEX,
+        layout: "/admin",
+      },
+      {
+        path: "/balances",
+        name: "Balances",
+        rtlName: "لوحة القيادة",
+        icon: <HomeIcon color='inherit' />,
+        component: ERC20Balance,
+        layout: "/admin",
+      }]
+  },
+
   {
     path: "/tables",
     name: "Tables",
@@ -52,7 +129,7 @@ var dashRoutes = [
     layout: "/rtl",
   },
   {
-    name: "ACCOUNT PAGES",
+    name: "ACCOUNT",
     category: "account",
     rtlName: "صفحات",
     state: "pageCollapse",
@@ -65,23 +142,7 @@ var dashRoutes = [
         secondaryNavbar: true,
         component: Profile,
         layout: "/admin",
-      },
-      {
-        path: "/signin",
-        name: "Sign In",
-        rtlName: "لوحة القيادة",
-        icon: <DocumentIcon color='inherit' />,
-        component: SignIn,
-        layout: "/auth",
-      },
-      {
-        path: "/signup",
-        name: "Sign Up",
-        rtlName: "لوحة القيادة",
-        icon: <RocketIcon color='inherit' />,
-        component: SignUp,
-        layout: "/auth",
-      },
+      }
     ],
   },
 ];

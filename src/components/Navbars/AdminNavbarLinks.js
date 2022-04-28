@@ -72,7 +72,7 @@ export default function HeaderLinks(props) {
       <Chains />
       <TokenPrice
         address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-        chain="polygon"
+        chain="eth"
         image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
         size="40px"
       />

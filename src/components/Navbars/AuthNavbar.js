@@ -164,6 +164,21 @@ export default function AuthNavbar(props) {
                 ) : (
                   <ArgonLogoDark w="74px" h="27px" />
                 )}
+
+              </Stack>
+            }
+            /* logo={
+              <Stack
+                direction="row"
+                spacing="12px"
+                align="center"
+                justify="center"
+              >
+                {colorMode === "dark" ? (
+                  <ArgonLogoLight w="74px" h="27px" />
+                ) : (
+                  <ArgonLogoDark w="74px" h="27px" />
+                )}
                 <Box
                   w="1px"
                   h="20px"
@@ -175,7 +190,7 @@ export default function AuthNavbar(props) {
                   <ChakraLogoDark w="82px" h="21px" />
                 )}
               </Stack>
-            }
+            } */
             {...rest}
           />
         </Box>

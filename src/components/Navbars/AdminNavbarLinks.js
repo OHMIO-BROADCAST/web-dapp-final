@@ -56,7 +56,7 @@ export default function HeaderLinks(props) {
   return (
     <Flex
       pe={{ sm: "0px", md: "16px" }}
-      w={{ sm: "100%", md: "auto" }}
+      w={{ sm: "100%", md: "auto", }}
       alignItems='center'
       flexDirection='row'>
       {/* <SearchBar me='18px' /> */}
@@ -70,13 +70,13 @@ export default function HeaderLinks(props) {
         h='18px'
       />
       <Chains />
-      <TokenPrice
+      {/*  <TokenPrice
         address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
         chain="eth"
         image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
         size="40px"
-      />
-      <NativeBalance />
+      /> */}
+      {/* <NativeBalance /> */}
 
       <Account me='16px' />
       {/* <NavLink to='/auth/signin'>
@@ -113,6 +113,15 @@ export default function HeaderLinks(props) {
             ) : (
               <ArgonLogoDark w='74px' h='27px' />
             )}
+          </Stack>
+        }
+        /* logo={
+          <Stack direction='row' spacing='12px' align='center' justify='center'>
+            {colorMode === "dark" ? (
+              <ArgonLogoLight w='74px' h='27px' />
+            ) : (
+              <ArgonLogoDark w='74px' h='27px' />
+            )}
             <Box
               w='1px'
               h='20px'
@@ -124,7 +133,7 @@ export default function HeaderLinks(props) {
               <ChakraLogoDark w='82px' h='21px' />
             )}
           </Stack>
-        }
+        } */
         colorMode={colorMode}
         secondary={props.secondary}
         routes={routes}

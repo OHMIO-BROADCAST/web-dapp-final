@@ -5,6 +5,7 @@ import {
   Stack,
   Box,
   useColorMode,
+  Image,
 } from "@chakra-ui/react";
 import Configurator from "components/Configurator/Configurator";
 import Footer from "components/Footer/Footer.js";
@@ -126,6 +127,17 @@ export default function Dashboard(props) {
             {colorMode === "dark" ? (
               <ArgonLogoLight w='74px' h='27px' />
             ) : (
+
+              <Image src="logoGrande.png" style={{ width: '120px', height: 'auto' }} />
+            )}
+
+          </Stack>
+        }
+        /* logo={
+          <Stack direction='row' spacing='12px' align='center' justify='center'>
+            {colorMode === "dark" ? (
+              <ArgonLogoLight w='74px' h='27px' />
+            ) : (
               <ArgonLogoDark w='74px' h='27px' />
             )}
             <Box
@@ -139,7 +151,7 @@ export default function Dashboard(props) {
               <ChakraLogoDark w='82px' h='21px' />
             )}
           </Stack>
-        }
+        } */
         display='none'
         {...rest}
       />

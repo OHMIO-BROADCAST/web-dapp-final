@@ -106,7 +106,7 @@ function Account() {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={async () => {
           try {
             console.log("change")
@@ -121,7 +121,7 @@ function Account() {
         }}
       >
         Hi
-      </button>
+      </button> */}
       <div style={styles.account} onClick={() => setIsModalVisible(true)}>
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}

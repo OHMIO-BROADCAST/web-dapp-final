@@ -21,10 +21,10 @@ import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
 function SignIn() {
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
-  const bgForm = useColorModeValue("white", "navy.800");
-  const titleColor = useColorModeValue("gray.700", "blue.500");
+  const bgForm = useColorModeValue("white", "purple.800");
+  const titleColor = useColorModeValue("gray.700", "purple.500");
   const colorIcons = useColorModeValue("gray.700", "white");
-  const bgIcons = useColorModeValue("trasnparent", "navy.700");
+  const bgIcons = useColorModeValue("trasnparent", "purple.700");
   const bgIconsHover = useColorModeValue("gray.50", "whiteAlpha.100");
   return (
     <Flex position='relative' mb='40px'>
@@ -162,7 +162,7 @@ function SignIn() {
                 size='lg'
               />
               <FormControl display='flex' alignItems='center' mb='24px'>
-                <Switch id='remember-login' colorScheme='blue' me='10px' />
+                <Switch id='remember-login' colorScheme='purple' me='10px' />
                 <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal'>
                   Remember me
                 </FormLabel>
@@ -208,7 +208,7 @@ function SignIn() {
             w='100%'
             h='100%'
             bgSize='cover'
-            bg='blue.500'
+            bg='purple.500'
             opacity='0.8'></Box>
         </Box>
       </Flex>

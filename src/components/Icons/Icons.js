@@ -507,7 +507,7 @@ export const VisaIcon = createIcon({
 });
 
 export const ArgonLogoDark = () => {
-  return <img src="../../assets/img/logoGrande.png" />
+  return <img src="../../assets/img/150ppi/Recurso4.png" />
 }
 
 export const ArgonLogoLight = createIcon({

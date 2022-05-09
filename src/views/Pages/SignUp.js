@@ -20,11 +20,11 @@ import React from "react";
 import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
 
 function SignUp() {
-  const bgForm = useColorModeValue("white", "navy.800");
-  const titleColor = useColorModeValue("gray.700", "blue.500");
+  const bgForm = useColorModeValue("white", "purple.800");
+  const titleColor = useColorModeValue("gray.700", "purple.500");
   const textColor = useColorModeValue("gray.700", "white");
   const colorIcons = useColorModeValue("gray.700", "white");
-  const bgIcons = useColorModeValue("trasnparent", "navy.700");
+  const bgIcons = useColorModeValue("trasnparent", "purple.700");
   const bgIconsHover = useColorModeValue("gray.50", "whiteAlpha.100");
   return (
     <Flex
@@ -49,7 +49,7 @@ function SignUp() {
         mx={{ md: "auto" }}
         mt={{ md: "14px" }}
         borderRadius={{ base: "0px", md: "20px" }}>
-        <Box w='100vw' h='100vh' bg='blue.500' opacity='0.8'></Box>
+        <Box w='100vw' h='100vh' bg='purple.500' opacity='0.8'></Box>
       </Box>
       <Flex
         direction='column'
@@ -201,7 +201,7 @@ function SignUp() {
               size='lg'
             />
             <FormControl display='flex' alignItems='center' mb='24px'>
-              <Switch id='remember-login' colorScheme='blue' me='10px' />
+              <Switch id='remember-login' colorScheme='purple' me='10px' />
               <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal'>
                 Remember me
               </FormLabel>

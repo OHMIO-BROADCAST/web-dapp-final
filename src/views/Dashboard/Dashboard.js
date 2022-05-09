@@ -43,10 +43,10 @@ import { pageVisits, socialTraffic } from "variables/general";
 
 export default function Dashboard() {
   // Chakra Color Mode
-  const iconBlue = useColorModeValue("blue.500", "blue.500");
+  const iconBlue = useColorModeValue("purple.500", "purple.500");
   const iconBoxInside = useColorModeValue("white", "white");
   const textColor = useColorModeValue("gray.700", "white");
-  const tableRowColor = useColorModeValue("#F7FAFC", "navy.900");
+  const tableRowColor = useColorModeValue("#F7FAFC", "purple.900");
   const borderColor = useColorModeValue("gray.200", "gray.600");
   const textTableColor = useColorModeValue("gray.500", "white");
 
@@ -219,7 +219,7 @@ export default function Dashboard() {
         <Card
           bg={
             colorMode === "dark"
-              ? "navy.800"
+              ? "purple.800"
               : "linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%)"
           }
           p='0px'

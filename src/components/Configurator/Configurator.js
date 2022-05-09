@@ -40,7 +40,7 @@ export default function Configurator(props) {
   const secondaryButtonBg = useColorModeValue("white", "transparent");
   const secondaryButtonBorder = useColorModeValue("gray.700", "white");
   const secondaryButtonColor = useColorModeValue("gray.700", "white");
-  const bgDrawer = useColorModeValue("white", "navy.800");
+  const bgDrawer = useColorModeValue("white", "purple.800");
   const settingsRef = React.useRef();
   return (
     <>
@@ -69,7 +69,7 @@ export default function Configurator(props) {
                   Navbar Fixed
                 </Text>
                 <Switch
-                  colorScheme="blue"
+                  colorScheme="purple"
                   isChecked={switched}
                   onChange={() => {
                     if (switched === true) {

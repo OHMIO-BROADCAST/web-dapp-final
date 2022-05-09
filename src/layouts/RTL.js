@@ -113,7 +113,7 @@ export default function Dashboard(props) {
         w='100%'
         position='absolute'
         bgImage={colorMode === "light" ? bgAdmin : "none"}
-        bg={colorMode === "light" ? bgAdmin : "navy.900"}
+        bg={colorMode === "light" ? bgAdmin : "purple.900"}
         bgSize='cover'
         top='0'
       />

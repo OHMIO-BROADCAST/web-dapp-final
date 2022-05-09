@@ -27,7 +27,9 @@ import FixedPlugin from "../components/FixedPlugin/FixedPlugin";
 import MainPanel from "../components/Layout/MainPanel";
 import PanelContainer from "../components/Layout/PanelContainer";
 import PanelContent from "../components/Layout/PanelContent";
-import bgAdmin from "assets/img/admin-background.png";
+import bgAdmin from "../assets/img/admin-background-violeta.png";
+
+import Logo from '../assets/img/150ppi/Logo1.png';
 
 export default function Dashboard(props) {
   const { ...rest } = props;
@@ -116,7 +118,7 @@ export default function Dashboard(props) {
         w='100%'
         position='absolute'
         bgImage={colorMode === "light" ? bgAdmin : "none"}
-        bg={colorMode === "light" ? bgAdmin : "navy.900"}
+        bg={colorMode === "light" ? bgAdmin : "purple.900"}
         bgSize='cover'
         top='0'
       />
@@ -127,8 +129,7 @@ export default function Dashboard(props) {
             {colorMode === "dark" ? (
               <ArgonLogoLight w='74px' h='27px' />
             ) : (
-
-              <Image src="logoGrande.png" style={{ width: '120px', height: 'auto' }} />
+              <Image src={Logo} style={{ width: '120px', height: 'auto' }} />
             )}
 
           </Stack>

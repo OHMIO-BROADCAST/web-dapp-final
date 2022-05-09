@@ -91,7 +91,7 @@ export const timelineData = [
     logo: FaShoppingCart,
     title: "Server Payments for April",
     date: "21 DEC 9:28 PM",
-    color: "blue.400",
+    color: "purple.400",
   },
   {
     logo: FaCreditCard,
@@ -173,7 +173,7 @@ export const rtlTimelineData = [
     logo: FaShoppingCart,
     title: "مدفوعات الخادم لشهر أبريل",
     date: "21 DEC 9:28 PM",
-    color: "blue.400",
+    color: "purple.400",
   },
   {
     logo: FaCreditCard,

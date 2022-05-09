@@ -43,8 +43,8 @@ function Profile() {
 
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
-  const iconColor = useColorModeValue("blue.500", "white");
-  const bgProfile = useColorModeValue("hsla(0,0%,100%,.8)", "navy.800");
+  const iconColor = useColorModeValue("purple.500", "white");
+  const bgProfile = useColorModeValue("hsla(0,0%,100%,.8)", "purple.800");
   const borderProfileColor = useColorModeValue("white", "transparent");
   const emailColor = useColorModeValue("gray.400", "gray.300");
 
@@ -99,7 +99,7 @@ function Profile() {
             <Flex
               align='center'
               w={{ sm: "100%", lg: "135px" }}
-              bg={colorMode === "dark" ? "navy.900" : "#fff"}
+              bg={colorMode === "dark" ? "purple.900" : "#fff"}
               borderRadius='8px'
               justifyContent='center'
               py='10px'
@@ -156,7 +156,7 @@ function Profile() {
                 ACCOUNT
               </Text>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -166,7 +166,7 @@ function Profile() {
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -176,7 +176,7 @@ function Profile() {
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -193,7 +193,7 @@ function Profile() {
                 APPLICATION
               </Text>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -203,7 +203,7 @@ function Profile() {
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -213,7 +213,7 @@ function Profile() {
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
-                <Switch colorScheme='blue' me='10px' />
+                <Switch colorScheme='purple' me='10px' />
                 <Text
                   noOfLines={1}
                   fontSize='md'
@@ -301,7 +301,7 @@ function Profile() {
                     color={iconColor}
                     fontSize='lg'
                     me='10px'
-                    _hover={{ color: "blue.500" }}>
+                    _hover={{ color: "purple.500" }}>
                     <Icon as={FaFacebook} />
                   </Link>
                   <Link
@@ -309,7 +309,7 @@ function Profile() {
                     color={iconColor}
                     fontSize='lg'
                     me='10px'
-                    _hover={{ color: "blue.500" }}>
+                    _hover={{ color: "purple.500" }}>
                     <Icon as={FaInstagram} />
                   </Link>
                   <Link
@@ -317,7 +317,7 @@ function Profile() {
                     color={iconColor}
                     fontSize='lg'
                     me='10px'
-                    _hover={{ color: "blue.500" }}>
+                    _hover={{ color: "purple.500" }}>
                     <Icon as={FaTwitter} />
                   </Link>
                 </Flex>

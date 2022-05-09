@@ -49,7 +49,7 @@ export default function HeaderLinks(props) {
 
   let navbarIcon = useColorModeValue("white", "gray.200");
 
-  let menuBg = useColorModeValue("white", "navy.800");
+  let menuBg = useColorModeValue("white", "purple.800");
   if (secondary) {
     navbarIcon = "white";
   }

@@ -2,7 +2,13 @@ import Transfer from "./components/Transfer";
 import NativeBalance from "../NativeBalance";
 import Address from "../Address/Address";
 import Blockie from "../Blockie";
-import { Card } from "antd";
+
+// Chakra imports
+import {
+  Flex
+} from "@chakra-ui/react";
+// Custom components
+import Card from "../../components/Card/Card.js";
 
 const styles = {
   title: {
@@ -27,18 +33,25 @@ const styles = {
 
 function Wallet() {
   return (
-    <Card
-      style={styles.card}
-      title={
-        <div style={styles.header}>
-          <Blockie scale={5} avatar currentWallet style />
-          <Address size="6" copyable />
-          <NativeBalance />
-        </div>
-      }
+    <Flex
+      direction="column"
+      pt={{ base: "120px", md: "75px" }}
+      alignContent="center"
+      alignItems="center"
     >
-      <Transfer />
-    </Card>
+      <Card
+        style={styles.card}
+        title={
+          <div style={styles.header}>
+            <Blockie scale={5} avatar currentWallet style />
+            <Address size="6" copyable />
+            <NativeBalance />
+          </div>
+        }
+      >
+        <Transfer />
+      </Card>
+    </Flex>
   );
 }
 

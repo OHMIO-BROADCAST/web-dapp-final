@@ -3,7 +3,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import Dragger from "antd/lib/upload/Dragger";
 import React, { useEffect, useMemo } from "react";
-import contractInfo from "contracts/contractInfo.json";
+import contractInfo from "../../contracts/LicenseToken.json";
 
 export default function ContractResolver({ contract, setContract }) {
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function ContractResolver({ contract, setContract }) {
   const uploadProps = useMemo(() => {
     return {
       name: "file",
-      accept: ".JSON",
+      accept: ".json",
       multiple: false,
       maxCount: 1,
       fileList: contract?.contractName

@@ -29,7 +29,9 @@ import PanelContainer from "../components/Layout/PanelContainer";
 import PanelContent from "../components/Layout/PanelContent";
 import bgAdmin from "../assets/img/admin-background-violeta.png";
 
-import Logo from '../assets/img/150ppi/Logo1.png';
+import LogoDark from '../assets/img/LogoTIPSparaDark.png';
+import LogoLight from '../assets/img/LogoTIPSparaLight.png';
+
 
 export default function Dashboard(props) {
   const { ...rest } = props;
@@ -127,9 +129,9 @@ export default function Dashboard(props) {
         logo={
           <Stack direction='row' spacing='12px' align='center' justify='center'>
             {colorMode === "dark" ? (
-              <ArgonLogoLight w='74px' h='27px' />
+              <Image src={LogoDark} style={{ width: '120px', height: 'auto' }} />
             ) : (
-              <Image src={Logo} style={{ width: '120px', height: 'auto' }} />
+              <Image src={LogoLight} style={{ width: '120px', height: 'auto' }} />
             )}
 
           </Stack>

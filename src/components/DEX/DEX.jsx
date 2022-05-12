@@ -2,13 +2,16 @@ import { useState, useEffect, useMemo } from "react";
 import { useMoralis } from "react-moralis";
 import InchModal from "./components/InchModal";
 import useInchDex from "hooks/useInchDex";
-import { Button, Card, Image, Input, InputNumber, Modal } from "antd";
 import Text from "antd/lib/typography/Text";
 import { ArrowDownOutlined } from "@ant-design/icons";
 import { useTokenPrice } from "react-moralis";
 import { tokenValue } from "helpers/formatters";
 import { getWrappedNative } from "helpers/networks";
+import { Flex, Button } from "@chakra-ui/react";
+import { Card, Image, Input, InputNumber, Modal } from "antd";
+
 // import { useOneInchQuote } from "react-moralis";
+
 
 const styles = {
   card: {
@@ -183,7 +186,13 @@ function DEX({ chain, customTokens = {} }) {
   };
 
   return (
-    <>
+    <Flex
+      direction="column"
+      pt={{ base: "120px", md: "75px" }}
+      alignContent="center"
+      alignItems="center"
+    >
+
       <Card style={styles.card} bodyStyle={{ padding: "18px" }}>
         <Card
           style={{ borderRadius: "1rem" }}
@@ -384,7 +393,7 @@ function DEX({ chain, customTokens = {} }) {
           tokenList={tokens}
         />
       </Modal>
-    </>
+    </Flex>
   );
 }
 

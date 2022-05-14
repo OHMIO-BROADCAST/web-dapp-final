@@ -51,7 +51,12 @@ export default function Contract() {
   };
 
   return (
-    <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
+    <Flex
+      direction="column"
+      pt={{ base: "120px", md: "75px" }}
+      alignContent="center"
+      alignItems="center"
+    >
       <div
         style={{
           margin: "auto",

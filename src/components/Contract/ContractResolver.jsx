@@ -23,7 +23,7 @@ export default function ContractResolver({ contract, setContract }) {
   const uploadProps = useMemo(() => {
     return {
       name: "file",
-      accept: ".json",
+      accept: ".JSON",
       multiple: false,
       maxCount: 1,
       fileList: contract?.contractName

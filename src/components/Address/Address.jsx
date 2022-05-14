@@ -5,7 +5,6 @@ import Blockie from "../Blockie";
 import "./identicon.css";
 import { useMoralis } from "react-moralis";
 import { Skeleton } from "antd";
-import { Box } from "@chakra-ui/react";
 
 const styles = {
   address: {
@@ -58,12 +57,12 @@ function Address(props) {
   );
 
   return (
-    <Box style={{ ...styles.address, ...props.style }}>
+    <div style={{ ...styles.address, ...props.style }}>
       {props.avatar === "left" && <Blockie address={address} size={7} />}
       <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
       {props.avatar === "right" && <Blockie address={address} size={7} />}
       {props.copyable && (isClicked ? <Check /> : <Copy />)}
-    </Box>
+    </div>
   );
 }
 

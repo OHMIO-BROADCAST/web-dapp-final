@@ -28,6 +28,8 @@ import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
 import Login from "views/Pages/SignIn";
 
+import { createIcon, StarIcon } from "@chakra-ui/icons";
+
 import {
   HomeIcon,
   StatsIcon,
@@ -36,6 +38,9 @@ import {
   DocumentIcon,
   RocketIcon,
   SupportIcon,
+  ExchangeIcon,
+  BalanceIcon,
+  BillIcon
 } from "components/Icons/Icons";
 
 var dashRoutes = [
@@ -65,7 +70,7 @@ var dashRoutes = [
         path: "/purchase-license",
         name: "Refeers",
         rtlName: "لوحة القيادة",
-        icon: <HomeIcon color='inherit' />,
+        icon: <StarIcon color='inherit' />,
         component: QuickStart,
         layout: "/admin",
       },
@@ -82,7 +87,7 @@ var dashRoutes = [
         path: "/wallet",
         name: "Wallet",
         rtlName: "لوحة القيادة",
-        icon: <HomeIcon color='inherit' />,
+        icon: <CreditIcon color='inherit' />,
         component: Wallet,
         layout: "/admin",
       },
@@ -90,7 +95,7 @@ var dashRoutes = [
         path: "/dex",
         name: "Exchange",
         rtlName: "لوحة القيادة",
-        icon: <HomeIcon color='inherit' />,
+        icon: <ExchangeIcon color='inherit' />,
         component: DEX,
         layout: "/admin",
       },
@@ -98,7 +103,7 @@ var dashRoutes = [
         path: "/balances",
         name: "Balances",
         rtlName: "لوحة القيادة",
-        icon: <HomeIcon color='inherit' />,
+        icon: <BalanceIcon color='inherit' />,
         component: ERC20Balance,
         layout: "/admin",
       }]
@@ -116,7 +121,7 @@ var dashRoutes = [
     path: "/billing",
     name: "Billing",
     rtlName: "لوحة القيادة",
-    icon: <CreditIcon color='inherit' />,
+    icon: <BillIcon color='inherit' />,
     component: Billing,
     layout: "/admin",
   },

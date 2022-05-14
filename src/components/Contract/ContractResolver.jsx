@@ -9,6 +9,7 @@ export default function ContractResolver({ contract, setContract }) {
   useEffect(() => {
     /** Tries to load local contract JSON file or get
      * it from browser localStorage(works only if file was uploaded previosly by drag&drop component) */
+    console.log({ ...contractInfo })
     if (contractInfo?.name) {
       setContract(contractInfo);
     } else if (window.localStorage.getItem("contract"))

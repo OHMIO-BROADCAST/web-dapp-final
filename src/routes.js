@@ -142,13 +142,29 @@ var dashRoutes = [
       }
     ],
   },
-  {
+  /* {
     path: "/rtl-support-page",
     name: "RTL",
     rtlName: "آرتيإل",
     icon: <SupportIcon color='inherit' />,
     component: RTLPage,
     layout: "/rtl",
+  }, */
+  {
+    path: "/signin",
+    name: "Sign In",
+    rtlName: "لوحة القيادة",
+    icon: <DocumentIcon color='inherit' />,
+    component: SignIn,
+    layout: "/auth",
+  },
+  {
+    path: "/signup",
+    name: "Sign Up",
+    rtlName: "لوحة القيادة",
+    icon: <RocketIcon color='inherit' />,
+    component: SignUp,
+    layout: "/auth",
   },
 ];
 export default dashRoutes;

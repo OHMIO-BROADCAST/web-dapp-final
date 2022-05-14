@@ -159,7 +159,7 @@ export default function Configurator(props) {
                   <Flex justifyContent="center" alignContent="center">
                     <Link
                       isExternal="true"
-                      href="https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/argon-dashboard-chakra/&text=Check%20Argon%20Dashboard%20Chakra%20made%20by%20@simmmple_web%20and%20@CreativeTim"
+                      href="https://twitter.com/tipscorporativo"
                     >
                       <Button
                         colorScheme="twitter"

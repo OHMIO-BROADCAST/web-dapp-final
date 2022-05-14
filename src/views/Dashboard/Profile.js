@@ -313,10 +313,11 @@ function Profile() {
                     <Icon as={FaInstagram} />
                   </Link>
                   <Link
-                    href='#'
+                    href='https://twitter.com/tipscorporativo'
                     color={iconColor}
                     fontSize='lg'
                     me='10px'
+                    target="_blank"
                     _hover={{ color: "purple.500" }}>
                     <Icon as={FaTwitter} />
                   </Link>

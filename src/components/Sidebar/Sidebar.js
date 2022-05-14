@@ -51,8 +51,8 @@ function Sidebar(props) {
   const { sidebarVariant } = props;
   const createLinks = (routes) => {
     // Chakra Color Mode
-    let activeBg = useColorModeValue("white", "purple.700");
-    let inactiveBg = useColorModeValue("white", "purple.700");
+    let activeBg = useColorModeValue("white", "navy.700");
+    let inactiveBg = useColorModeValue("white", "navy.700");
     let activeColor = useColorModeValue("gray.700", "white");
     let inactiveColor = useColorModeValue("gray.400", "gray.400");
     let sidebarActiveShadow = "0px 7px 11px rgba(0, 0, 0, 0.04)";
@@ -124,7 +124,7 @@ function Sidebar(props) {
                   <Icon>{prop.icon}</Icon>
                 ) : (
                   <IconBox
-                    bg="purple.500"
+                    bg="navy.500"
                     color="white"
                     h="30px"
                     w="30px"
@@ -176,7 +176,7 @@ function Sidebar(props) {
                 ) : (
                   <IconBox
                     bg={inactiveBg}
-                    color="purple.500"
+                    color="navy.500"
                     h="30px"
                     w="30px"
                     me="12px"
@@ -202,7 +202,7 @@ function Sidebar(props) {
   var links = <>{createLinks(routes)}</>;
   //  BRAND
   //  Chakra Color Mode
-  let sidebarBg = useColorModeValue("white", "purple.800");
+  let sidebarBg = useColorModeValue("white", "navy.800");
   let sidebarRadius = "20px";
   let sidebarMargins = "0px";
   var brand = (
@@ -278,15 +278,15 @@ export function SidebarResponsive(props) {
     return location.pathname === routeName ? "active" : "";
   };
   // Chakra Color Mode
-  let activeBg = useColorModeValue("white", "purple.700");
-  let inactiveBg = useColorModeValue("white", "purple.700");
+  let activeBg = useColorModeValue("white", "navy.700");
+  let inactiveBg = useColorModeValue("white", "navy.700");
   let activeColor = useColorModeValue("gray.700", "white");
   let inactiveColor = useColorModeValue("gray.400", "white");
   let sidebarActiveShadow = useColorModeValue(
     "0px 7px 11px rgba(0, 0, 0, 0.04)",
     "none"
   );
-  let sidebarBackgroundColor = useColorModeValue("white", "purple.800");
+  let sidebarBackgroundColor = useColorModeValue("white", "navy.800");
 
   // this function creates the links and collapses that appear in the sidebar (left menu)
   const createLinks = (routes) => {
@@ -357,7 +357,7 @@ export function SidebarResponsive(props) {
                   <Icon>{prop.icon}</Icon>
                 ) : (
                   <IconBox
-                    bg="purple.500"
+                    bg="navy.500"
                     color="white"
                     h="30px"
                     w="30px"
@@ -408,7 +408,7 @@ export function SidebarResponsive(props) {
                 ) : (
                   <IconBox
                     bg={inactiveBg}
-                    color="purple.500"
+                    color="navy.500"
                     h="30px"
                     w="30px"
                     me="12px"

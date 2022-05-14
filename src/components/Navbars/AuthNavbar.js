@@ -30,7 +30,7 @@ export default function AuthNavbar(props) {
   let navbarShadow = "initial";
   let navbarFilter = "initial";
   let navbarBackdrop = "none";
-  let bgButton = useColorModeValue("white", "purple.900");
+  let bgButton = useColorModeValue("white", "navy.900");
   let colorButton = useColorModeValue("gray.700", "white");
   let navbarPosition = "absolute";
   let hamburgerColor = {

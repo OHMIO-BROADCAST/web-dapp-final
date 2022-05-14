@@ -30,7 +30,7 @@ export default function Footer(props) {
             : "Robot trading licenses on "}
         </Text>
         <Link
-          color='purple.400'
+          color='navy.400'
           href='https://www.fxwinning.pro/'
           target='_blank'>
           {document.documentElement.dir === "rtl"

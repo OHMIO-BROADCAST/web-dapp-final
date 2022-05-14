@@ -39,7 +39,7 @@ import {
 
 function Billing() {
   // Chakra color mode
-  const iconBlue = useColorModeValue("purple.500", "purple.500");
+  const iconBlue = useColorModeValue("navy.500", "navy.500");
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("#dee2e6", "transparent");
   const { colorMode } = useColorMode();
@@ -208,7 +208,7 @@ function Billing() {
                 py='1rem'>
                 <Flex
                   p='1rem'
-                  bg={colorMode === "dark" ? "purple.900" : "transparent"}
+                  bg={colorMode === "dark" ? "navy.900" : "transparent"}
                   borderRadius='15px'
                   width='100%'
                   border='1px solid'
@@ -232,7 +232,7 @@ function Billing() {
                 </Flex>
                 <Flex
                   p='16px'
-                  bg={colorMode === "dark" ? "purple.900" : "transparent"}
+                  bg={colorMode === "dark" ? "navy.900" : "transparent"}
                   borderRadius='15px'
                   width='100%'
                   border='1px solid'

@@ -11,7 +11,7 @@ export const inputStyles = {
       variants: {
         auth: (props) => ({
           field: {
-            bg: mode("white", "purple.700")(props),
+            bg: mode("white", "navy.700")(props),
             border: "1px solid",
             borderColor: mode("gray.200", "transparent")(props),
             _placeholder: { color: mode("gray.300", "gray.400")(props) },

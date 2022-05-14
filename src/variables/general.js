@@ -91,7 +91,7 @@ export const timelineData = [
     logo: FaShoppingCart,
     title: "Server Payments for April",
     date: "21 DEC 9:28 PM",
-    color: "purple.400",
+    color: "navy.400",
   },
   {
     logo: FaCreditCard,
@@ -103,7 +103,7 @@ export const timelineData = [
     logo: SiDropbox,
     title: "Unlock packages for Development",
     date: "19 DEC 11:35 PM",
-    color: "purple",
+    color: "navy",
   },
   {
     logo: AdobexdLogo,
@@ -173,7 +173,7 @@ export const rtlTimelineData = [
     logo: FaShoppingCart,
     title: "مدفوعات الخادم لشهر أبريل",
     date: "21 DEC 9:28 PM",
-    color: "purple.400",
+    color: "navy.400",
   },
   {
     logo: FaCreditCard,
@@ -185,7 +185,7 @@ export const rtlTimelineData = [
     logo: SiDropbox,
     title: "فتح الحزم من أجل التنمية",
     date: "19 DEC 11:35 PM",
-    color: "purple",
+    color: "navy",
   },
   {
     logo: AdobexdLogo,

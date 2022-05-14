@@ -42,7 +42,7 @@ export function SidebarHelp(props) {
       <Link href='https://www.creative-tim.com/product/argon-dashboard-chakra-pro' minW='100%'>
 
         <Button
-          variant={colorMode === "light" ? 'dark' : "purple"}
+          variant={colorMode === "light" ? 'dark' : "navy"}
           minW='100%'
           mb={window.innerWidth <= 1024 && "12px"}>
           UPGRADE TO PRO

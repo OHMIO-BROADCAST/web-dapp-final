@@ -14,7 +14,7 @@ export const connectors = [
     priority: 1,
   },
   {
-    title: "WalletConnect",
+    title: "BOUS Wallet",
     icon: WalletConnect,
     connectorId: "walletconnect",
     priority: 2,

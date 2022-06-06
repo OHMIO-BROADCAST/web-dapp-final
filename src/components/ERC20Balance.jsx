@@ -5,6 +5,7 @@ import { getEllipsisTxt } from "../helpers/formatters";
 import {
   Flex,
 } from "@chakra-ui/react";
+import Card from "../components/Card/Card.js";
 
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
@@ -51,6 +52,27 @@ function ERC20Balance(props) {
     },
   ];
 
+  const styles = {
+    title: {
+      fontSize: "30px",
+      fontWeight: "600",
+    },
+    header: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "5px",
+    },
+    card: {
+      boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+      border: "1px solid #e7eaf3",
+      borderRadius: "1rem",
+      width: "auto",
+      fontSize: "16px",
+      fontWeight: "500",
+    },
+  };
+
   return (
     <Flex
       direction="column"
@@ -58,18 +80,27 @@ function ERC20Balance(props) {
       alignContent="center"
       alignItems="center"
     >
-      <div style={{ width: "65vw", padding: "15px" }}>
-        <h1>💰Token Balances</h1>
-        <Skeleton loading={!assets}>
-          <Table
-            dataSource={assets}
-            columns={columns}
-            rowKey={(record) => {
-              return record.token_address;
-            }}
-          />
-        </Skeleton>
-      </div>
+      <Card
+        style={styles.card}
+        title={
+          <div style={styles.header}>
+            <h1>💰Token Balances</h1>
+
+          </div>
+        }
+      >
+        <div style={{ width: "65vw", padding: "15px" }}>
+          <Skeleton loading={!assets}>
+            <Table
+              dataSource={assets}
+              columns={columns}
+              rowKey={(record) => {
+                return record.token_address;
+              }}
+            />
+          </Skeleton>
+        </div>
+      </Card>
     </Flex>
   );
 }

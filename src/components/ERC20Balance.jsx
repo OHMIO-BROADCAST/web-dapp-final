@@ -6,6 +6,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import Card from "../components/Card/Card.js";
+import Address from "./Address/Address";
 
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
@@ -48,7 +49,10 @@ function ERC20Balance(props) {
       title: "Address",
       dataIndex: "token_address",
       key: "token_address",
-      render: (address) => getEllipsisTxt(address, 5),
+      render: (address) => {
+        // getEllipsisTxt(address, 5);
+        return <Address address={getEllipsisTxt(address, 5)} copyable={true} />
+      },
     },
   ];
 

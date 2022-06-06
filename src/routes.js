@@ -38,10 +38,12 @@ import {
   DocumentIcon,
   RocketIcon,
   SupportIcon,
+  BuyIcon,
   ExchangeIcon,
   BalanceIcon,
   BillIcon
 } from "components/Icons/Icons";
+import Buy from 'components/Buy';
 
 var dashRoutes = [
   {
@@ -84,11 +86,11 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/wallet",
-        name: "Wallet",
+        path: "/buy-crypto",
+        name: "Buy Crypto",
         rtlName: "لوحة القيادة",
         icon: <CreditIcon color='inherit' />,
-        component: Wallet,
+        component: Buy,
         layout: "/admin",
       },
       {

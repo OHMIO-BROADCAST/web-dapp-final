@@ -14,7 +14,13 @@ export const connectors = [
     priority: 1,
   },
   {
-    title: "BOUS Wallet",
+    title: "TIPS Wallet",
+    icon: WalletConnect,
+    connectorId: "walletconnect",
+    priority: 2,
+  },
+  {
+    title: "WalletConnect",
     icon: WalletConnect,
     connectorId: "walletconnect",
     priority: 2,
@@ -24,7 +30,7 @@ export const connectors = [
     icon: TrustWallet,
     connectorId: "injected",
     priority: 3,
-  },
+  },/* 
   {
     title: "MathWallet",
     icon: MathWallet,
@@ -48,5 +54,5 @@ export const connectors = [
     icon: Coin98,
     connectorId: "injected",
     priority: 999,
-  },
+  }, */
 ];

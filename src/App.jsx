@@ -116,18 +116,10 @@ const App = ({ isServerInfo, user, signOut, signInWithGoogle }) => {
                 </Route>
                 <Route path="/1inch">
                   <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                    <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
+                    <Tabs.TabPane tab={<span>Polygon</span>} key="1">
                       <DEX chain="polygon" />
                     </Tabs.TabPane>
-                    <Tabs.TabPane
-                      tab={<span>Binance Smart Chain</span>}
-                      key="2"
-                    >
-                      <DEX chain="bsc" />
-                    </Tabs.TabPane>
-                    <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                      <DEX chain="polygon" />
-                    </Tabs.TabPane>
+
                   </Tabs>
                 </Route>
                 <Route path="/erc20balance">

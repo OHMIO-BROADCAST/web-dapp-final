@@ -1,5 +1,6 @@
 import Metamask from "./WalletIcons/metamaskWallet.png";
 import Coin98 from "./WalletIcons/Coin98.png";
+import TIPSConnect from "../../assets/img/LogoTIPSparaLight.png";
 import WalletConnect from "./WalletIcons/wallet-connect.svg";
 import MathWallet from "./WalletIcons/MathWallet.svg";
 import TokenPocket from "!file-loader!./WalletIcons/TokenPocket.svg";
@@ -15,7 +16,7 @@ export const connectors = [
   },
   {
     title: "TIPS Wallet",
-    icon: WalletConnect,
+    icon: TIPSConnect,
     connectorId: "walletconnect",
     priority: 2,
   },

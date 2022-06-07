@@ -95,8 +95,8 @@ function Buy() {
         style={styles.card}
         title={
           <div style={styles.header}>
-            <Blockie scale={5} avatar currentWallet style />
-            <Address size="6" copyable />
+            {/*             <Blockie scale={5} avatar currentWallet style />
+            <Address size="6" copyable /> */}
           </div>
         }
       >

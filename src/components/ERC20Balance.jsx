@@ -1,16 +1,25 @@
+import { useState, useEffect } from 'react';
+import Blockie from "../components/Blockie";
+
 import { useMoralis, useERC20Balances } from "react-moralis";
 import { Skeleton, Table } from "antd";
 import { getEllipsisTxt } from "../helpers/formatters";
 // Chakra imports
 import {
-  Flex,
+  Flex, Text
 } from "@chakra-ui/react";
 import Card from "../components/Card/Card.js";
 import Address from "./Address/Address";
 
 function ERC20Balance(props) {
   const { data: assets } = useERC20Balances(props);
-  const { Moralis } = useMoralis();
+  const { Moralis, account, isAuthenticated, } = useMoralis();
+
+  const [address, setAddress] = useState();
+
+  useEffect(() => {
+    setAddress((isAuthenticated && account));
+  }, [account, isAuthenticated]);
 
   const columns = [
     {
@@ -46,7 +55,7 @@ function ERC20Balance(props) {
         parseFloat(Moralis?.Units?.FromWei(value, item.decimals)).toFixed(6),
     },
     {
-      title: "Address",
+      title: "Token Address (not Wallet Token)",
       dataIndex: "token_address",
       key: "token_address",
       render: (address) => {
@@ -71,11 +80,44 @@ function ERC20Balance(props) {
       boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
       border: "1px solid #e7eaf3",
       borderRadius: "1rem",
-      width: "auto",
+      width: "450px",
       fontSize: "16px",
       fontWeight: "500",
     },
   };
+
+  if (!address) {
+    return (
+      <Flex
+        direction="column"
+        pt={{ base: "120px", md: "75px" }}
+        alignContent="center"
+        alignItems="center"
+      ><Card
+        style={styles.card}
+        title={
+          <div style={styles.header}>
+            <Blockie scale={5} avatar currentWallet style />
+            <Address size="6" copyable />
+          </div>
+        }
+      >
+          <div
+            style={{
+              width: "auto",
+              height: "300px",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <Text>Please connect Wallet</Text>
+          </div>
+
+        </Card>
+      </Flex>
+    );
+  }
 
   return (
     <Flex

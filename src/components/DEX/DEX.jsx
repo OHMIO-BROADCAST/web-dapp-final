@@ -9,13 +9,14 @@ import { tokenValue } from "helpers/formatters";
 import { getWrappedNative } from "helpers/networks";
 import { Flex, Button } from "@chakra-ui/react";
 import { Card, Image, Input, InputNumber, Modal } from "antd";
-
+import Address from "../Address/Address";
+import Blockie from "../Blockie";
 // import { useOneInchQuote } from "react-moralis";
 
 
 const styles = {
   card: {
-    width: "430px",
+    width: "450px",
     boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
     border: "1px solid #e7eaf3",
     borderRadius: "1rem",
@@ -42,8 +43,6 @@ const styles = {
 const nativeAddress = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 
 const chainIds = {
-  "0x1": "eth",
-  "0x38": "bsc",
   "0x89": "polygon",
 };
 
@@ -57,9 +56,9 @@ const IsNative = (address) =>
   address === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 
 function DEX({ chain, customTokens = {} }) {
-  const { trySwap, tokenList, getQuote } = useInchDex(chain);
+  const { trySwap, tokenList, getQuote } = useInchDex('polygon');
 
-  const { Moralis, isInitialized, chainId } = useMoralis();
+  const { Moralis, isInitialized, chainId, account, isAuthenticated } = useMoralis();
   const [isFromModalActive, setFromModalActive] = useState(false);
   const [isToModalActive, setToModalActive] = useState(false);
   const [fromToken, setFromToken] = useState();
@@ -69,6 +68,15 @@ function DEX({ chain, customTokens = {} }) {
   const [currentTrade, setCurrentTrade] = useState();
   const { fetchTokenPrice } = useTokenPrice();
   const [tokenPricesUSD, setTokenPricesUSD] = useState({});
+
+  Moralis.initPlugins();
+
+  const [address, setAddress] = useState();
+
+  useEffect(() => {
+    setAddress((isAuthenticated && account));
+  }, [account, isAuthenticated]);
+
 
   const tokens = useMemo(() => {
     return { ...customTokens, ...tokenList };
@@ -184,6 +192,39 @@ function DEX({ chain, customTokens = {} }) {
       </Text>
     );
   };
+
+  if (!address) {
+    return (
+      <Flex
+        direction="column"
+        pt={{ base: "120px", md: "75px" }}
+        alignContent="center"
+        alignItems="center"
+      ><Card
+        style={styles.card}
+      /* title={
+        <div style={styles.header}>
+          <Blockie scale={5} avatar currentWallet style />
+          <Address size="6" copyable />
+        </div> 
+      }*/
+      >
+          <div
+            style={{
+              width: "auto",
+              height: "300px",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <Text>Please connect Wallet</Text>
+          </div>
+
+        </Card>
+      </Flex>
+    );
+  }
 
   return (
     <Flex

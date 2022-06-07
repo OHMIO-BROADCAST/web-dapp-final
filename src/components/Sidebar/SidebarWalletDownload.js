@@ -21,22 +21,22 @@ export function SidebarHelp(props) {
       justify='center'
       direction='column'
       align='center'
-      spacing='10px'
+      spacing='20px'
       mb="22px"
       mt="auto"
       mx='20px'>
-      <Image src={SidebarHelpImage} w='250px' h="auto" />
+      <Image src={SidebarHelpImage} />
       <Flex direction='column' textAlign='center'>
         <Text fontSize='14px' color={textColor} fontWeight='bold'>
-          TIPS Wallet
+          Need help?
         </Text>
         <Text fontSize='12px' color='gray.500'>
-          Please check our app.
+          Please check our docs.
         </Text>
       </Flex>
       <Link href='https://demos.creative-tim.com/docs-argon-dashboard-chakra' minW='100%'>
         <Button variant='primary' minW='100%'>
-          Download Android
+          DOCUMENTATION
         </Button>
       </Link>
       <Link href='https://www.creative-tim.com/product/argon-dashboard-chakra-pro' minW='100%'>
@@ -45,7 +45,7 @@ export function SidebarHelp(props) {
           variant={colorMode === "light" ? 'dark' : "navy"}
           minW='100%'
           mb={window.innerWidth <= 1024 && "12px"}>
-          Download iOS
+          UPGRADE TO PRO
         </Button>
 
       </Link>

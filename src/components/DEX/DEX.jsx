@@ -79,6 +79,7 @@ function DEX({ chain, customTokens = {} }) {
 
 
   const tokens = useMemo(() => {
+    console.log(customTokens, tokenList);
     return { ...customTokens, ...tokenList };
   }, [customTokens, tokenList]);
 

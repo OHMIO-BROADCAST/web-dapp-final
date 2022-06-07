@@ -76,11 +76,19 @@ function ERC20Balance(props) {
       alignItems: "center",
       gap: "5px",
     },
-    card: {
+    cardOffline: {
       boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
       border: "1px solid #e7eaf3",
       borderRadius: "1rem",
       width: "450px",
+      fontSize: "16px",
+      fontWeight: "500",
+    },
+    card: {
+      boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+      border: "1px solid #e7eaf3",
+      borderRadius: "1rem",
+      width: "auto",
       fontSize: "16px",
       fontWeight: "500",
     },
@@ -94,7 +102,7 @@ function ERC20Balance(props) {
         alignContent="center"
         alignItems="center"
       ><Card
-        style={styles.card}
+        style={styles.cardOffline}
         title={
           <div style={styles.header}>
             <Blockie scale={5} avatar currentWallet style />

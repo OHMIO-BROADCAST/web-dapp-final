@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import SidebarHelpImage from "assets/img/SidebarHelpImage.png";
 import React from "react";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 export function SidebarHelp(props) {
@@ -42,7 +42,7 @@ export function SidebarHelp(props) {
         </Button>
       </Link>
       <Link onClick={() => {
-        swal({
+        Swal.fire({
           text: 'Stay tune, currently only supports iOS',
           title: 'Coming soon!',
           icon: 'success'

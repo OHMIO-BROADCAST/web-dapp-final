@@ -86,7 +86,7 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId, chainId: 80001 });
+                    await authenticate({ provider: connectorId, chainId: 137 });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {

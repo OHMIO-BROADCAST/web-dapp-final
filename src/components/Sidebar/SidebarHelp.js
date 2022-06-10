@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import SidebarHelpImage from "assets/img/SidebarHelpImage.png";
 import React from "react";
+import swal from 'sweetalert';
+
 
 export function SidebarHelp(props) {
   // Pass the computed styles into the `__css` prop
@@ -34,12 +36,19 @@ export function SidebarHelp(props) {
           Please check our app.
         </Text>
       </Flex>
-      <Link href='https://demos.creative-tim.com/docs-argon-dashboard-chakra' minW='100%'>
+      <Link href='https://play.google.com/' minW='100%'>
         <Button variant='primary' minW='100%'>
           Download Android
         </Button>
       </Link>
-      <Link href='https://www.creative-tim.com/product/argon-dashboard-chakra-pro' minW='100%'>
+      <Link onClick={() => {
+        swal({
+          text: 'Stay tune, currently only supports iOS',
+          title: 'Coming soon!',
+          icon: 'success'
+        })
+      }}
+        minW='100%'>
 
         <Button
           variant={colorMode === "light" ? 'dark' : "navy"}

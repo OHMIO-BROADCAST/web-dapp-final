@@ -36,7 +36,7 @@ export function SidebarHelp(props) {
           Please check our app.
         </Text>
       </Flex>
-      <Link href='https://play.google.com/' minW='100%'>
+      <Link href='https://play.google.com/' target={"_blank"} minW='100%'>
         <Button variant='primary' minW='100%'>
           Download Android
         </Button>

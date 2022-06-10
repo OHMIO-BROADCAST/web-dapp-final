@@ -20,6 +20,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 // Custom components
+import React, { useEffect, useState } from "react";
+
 import Card from "components/Card/Card.js";
 import BarChart from "components/Charts/BarChart";
 import LineChart from "components/Charts/LineChart";
@@ -31,7 +33,6 @@ import {
   GlobeIcon,
   WalletIcon,
 } from "components/Icons/Icons.js";
-import React from "react";
 // Variables
 import {
   barChartData,
@@ -40,6 +41,33 @@ import {
   lineChartOptions,
 } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
+import { useMoralis } from "react-moralis";
+
+const styles = {
+  title: {
+    fontSize: "20px",
+    fontWeight: "700",
+  },
+  text: {
+    fontSize: "16px",
+  },
+  card: {
+    boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+    border: "1px solid #e7eaf3",
+    borderRadius: "0.5rem",
+  },
+  timeline: {
+    marginBottom: "-45px",
+  },
+  cardoffline: {
+    boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+    border: "1px solid #e7eaf3",
+    borderRadius: "1rem",
+    width: "450px",
+    fontSize: "16px",
+    fontWeight: "500",
+  },
+};
 
 export default function Dashboard() {
   // Chakra Color Mode
@@ -51,6 +79,40 @@ export default function Dashboard() {
   const textTableColor = useColorModeValue("gray.500", "white");
 
   const { colorMode } = useColorMode();
+  const { Moralis, isAuthenticated, account } = useMoralis();
+  const [address, setAddress] = useState();
+
+  useEffect(() => {
+    setAddress((isAuthenticated && account));
+  }, [account, isAuthenticated]);
+
+  if (!address) {
+    return (
+      <Flex
+        direction="column"
+        pt={{ base: "120px", md: "75px" }}
+        alignContent="center"
+        alignItems="center"
+      ><Card
+        style={styles.cardoffline}
+
+      >
+          <div
+            style={{
+              width: "auto",
+              height: "300px",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <Text>Please connect Wallet</Text>
+          </div>
+
+        </Card>
+      </Flex>
+    );
+  }
 
   return (
     <Flex flexDirection='column' pt={{ base: "120px", md: "75px" }}>

@@ -82,7 +82,7 @@ var dashRoutes = [
   {
     name: "CRYPTO FUNCTIONS",
     category: "account",
-    rtlName: "صفحات",
+
     state: "pageCollapse",
     views: [
       {
@@ -119,7 +119,7 @@ var dashRoutes = [
       component: Tables,
       layout: "/admin",
     }, */
-  {
+  /*{
     path: "/billing",
     name: "Billing",
     rtlName: "لوحة القيادة",
@@ -143,7 +143,7 @@ var dashRoutes = [
         layout: "/admin",
       }
     ],
-  },
+  },*/
   /* {
     path: "/rtl-support-page",
     name: "RTL",
@@ -152,7 +152,7 @@ var dashRoutes = [
     component: RTLPage,
     layout: "/rtl",
   }, */
-  {
+  /*{
     path: "/signin",
     name: "Sign In",
     rtlName: "لوحة القيادة",
@@ -167,6 +167,6 @@ var dashRoutes = [
     icon: <RocketIcon color='inherit' />,
     component: SignUp,
     layout: "/auth",
-  },
+  },*/
 ];
 export default dashRoutes;

@@ -86,11 +86,34 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId, chainId: 137 });
+                    await authenticate({ provider: connectorId, chainId: '0x89' });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {
                     console.error(e);
+                    if (e.code === 4902) {
+                      try {
+                        await web3.currentProvider.request({
+                          method: "wallet_addEthereumChain",
+                          params: [
+                            {
+                              chainId: "0x89",
+                              chainName: "Polygon Mainnet",
+                              rpcUrls: ["https://rpc-mainnet.maticvigil.com/"],
+                              nativeCurrency: {
+                                name: "Matic",
+                                symbol: "Matic",
+                                decimals: 18,
+                              },
+                              blockExplorerUrls: ["https://explorer-mainnet.maticvigil.com/"],
+                              // blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com"],
+                            },
+                          ],
+                        });
+                      } catch (error) {
+                        alert(error.message);
+                      }
+                    }
                   }
                 }}
               >

@@ -92,6 +92,7 @@ function Account() {
                   } catch (e) {
                     console.error(e);
                     if (e.code === 4902) {
+
                       try {
                         await web3.currentProvider.request({
                           method: "wallet_addEthereumChain",

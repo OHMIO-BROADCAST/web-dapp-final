@@ -1,6 +1,7 @@
 {
   "name": "tips",
   "version": "0.1.0",
+  "homepage": "https://app.tips.digital/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@chakra-ui/icons": "^1.0.14",

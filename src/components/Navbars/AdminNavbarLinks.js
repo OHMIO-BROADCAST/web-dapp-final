@@ -60,7 +60,7 @@ export default function HeaderLinks(props) {
       alignItems='center'
       flexDirection='row'>
       {/* <SearchBar me='18px' /> */}
-      <SettingsIcon
+      {/* <SettingsIcon
         cursor='pointer'
         ms={{ base: "16px", xl: "0px" }}
         me='16px'
@@ -68,7 +68,7 @@ export default function HeaderLinks(props) {
         color={navbarIcon}
         w='18px'
         h='18px'
-      />
+      /> */}
       <Chains />
       {/*  <TokenPrice
         address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"

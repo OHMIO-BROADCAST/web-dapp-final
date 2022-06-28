@@ -56,7 +56,7 @@ export const networkConfigs = {
     chainName: "Polygon Mainnet",
     currencyName: "MATIC",
     currencySymbol: "MATIC",
-    rpcUrl: "https://rpc-mainnet.maticvigil.com/",
+    rpcUrl: "https://rpc-mainnet.maticvigil.com",
     blockExplorerUrl: "https://explorer-mainnet.maticvigil.com/",
     wrapped: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
   },

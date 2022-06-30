@@ -3,7 +3,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import Dragger from "antd/lib/upload/Dragger";
 import React, { useEffect, useMemo } from "react";
-import contractInfo from "../../contracts/LicenseToken.json";
+import contractInfo from "contracts/LicencseToken.json";
 
 export default function ContractResolver({ contract, setContract }) {
   useEffect(() => {
@@ -15,10 +15,16 @@ export default function ContractResolver({ contract, setContract }) {
     } else if (window.localStorage.getItem("contract"))
       setContract(JSON.parse(window.localStorage.getItem("contract")));
     else
-      message.error(
-        "No contract found. Upload it manually or deploy the contract again",
+      message.success(
+        "Successfully connected to the contract",
       );
   }, [contractInfo]);
+
+  useEffect(() => {
+    setContract(contractInfo);
+
+  }, [])
+
 
   // Props for drag and drop uploader
   const uploadProps = useMemo(() => {

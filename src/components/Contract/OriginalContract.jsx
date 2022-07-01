@@ -147,7 +147,7 @@ export default function OriginalContract() {
                     </Form.Provider>
                 )}
                 {isDeployedToActiveChain === false && (
-                    <>{`The contract is not deployed to the active ${chainId} chain. Switch your active chain or try agan later.`}</>
+                    <>{`The contract is not deployed to the active ${chainId} chain. Switch your chain to Polygon or try agan later.`}</>
                 )}
             </Card>
             <Card

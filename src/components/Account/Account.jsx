@@ -86,7 +86,7 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId, chainId: '0x89' });
+                    await authenticate({ provider: connectorId, chainId: 0x89 });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {
@@ -98,7 +98,7 @@ function Account() {
                           method: "wallet_addEthereumChain",
                           params: [
                             {
-                              chainId: "0x89",
+                              chainId: 0x89,
                               chainName: "Polygon Mainnet",
                               rpcUrls: ["https://rpc-mainnet.maticvigil.com/"],
                               nativeCurrency: {
@@ -107,7 +107,6 @@ function Account() {
                                 decimals: 18,
                               },
                               blockExplorerUrls: ["https://explorer-mainnet.maticvigil.com/"],
-                              // blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com"],
                             },
                           ],
                         });
@@ -130,22 +129,6 @@ function Account() {
 
   return (
     <>
-      {/* <button
-        onClick={async () => {
-          try {
-            console.log("change")
-            await web3._provider.request({
-              method: "wallet_switchEthereumChain",
-              params: [{ chainId: "0x38" }],
-            });
-            console.log("changed")
-          } catch (e) {
-            console.error(e);
-          }
-        }}
-      >
-        Hi
-      </button> */}
       <div style={styles.account} onClick={() => setIsModalVisible(true)}>
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}

@@ -1,8 +1,11 @@
 import { Button, Card, Form, Input } from "antd";
 import Text from "antd/lib/typography/Text";
+import { Button as ChakraButton } from "@chakra-ui/react"
+
 
 const ContractMethods = ({ displayedContractFunctions, responses }) => {
   return displayedContractFunctions.map((item, key) => (
+    console.log(item, key),
     <Card
       title={`${key + 1}. ${item?.name}`}
       size="small"
@@ -21,21 +24,22 @@ const ContractMethods = ({ displayedContractFunctions, responses }) => {
             <Input placeholder="input placeholder" />
           </Form.Item>
         ))}
-        <Form.Item style={{ marginBottom: "5px" }}>
+        <Form.Item style={{ marginBottom: "5px", display: 'flex' }}>
           <Text style={{ display: "block" }}>
             {responses[item.name]?.result &&
               `Response: ${JSON.stringify(responses[item.name]?.result)}`}
           </Text>
-          <Button
+          <ChakraButton
             type="primary"
             htmlType="submit"
             loading={responses[item?.name]?.isLoading}
+            style={{ alignContent: 'flex-end' }}
           >
             {item.stateMutability === "view" ? "Read🔎" : "Transact💸"}
-          </Button>
+          </ChakraButton>
         </Form.Item>
       </Form>
-    </Card>
+    </Card >
   ));
 };
 

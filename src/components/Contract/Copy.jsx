@@ -9,7 +9,7 @@ import ContractMethods from "./ContractMethods";
 import contractInfo from "contracts/LicencseToken.json";
 
 
-export default function OriginalContract() {
+export default function Copy() {
     const { Moralis, chainId } = useMoralis();
     const [responses, setResponses] = useState({});
     const [contract, setContract] = useState(contractInfo);
@@ -149,7 +149,7 @@ export default function OriginalContract() {
                 )}
             </Card>
             <Card
-                title={"Estado actual de la Licencia"}
+                title={"Contract Events"}
                 size="large"
                 style={{
                     width: "40%",
@@ -158,15 +158,16 @@ export default function OriginalContract() {
                     borderRadius: "0.5rem",
                 }}
             >
-
-                <Card
-                    title={"Tipo de Licencia:"}
-                    size="small"
-                    style={{ marginBottom: "20px" }}
-                >
-                    ACTIVO
-                </Card>
-
+                {data.map((event, key) => (
+                    <Card
+                        title={"Transfer event"}
+                        size="small"
+                        style={{ marginBottom: "20px" }}
+                        key={key}
+                    >
+                        {getEllipsisTxt(event.attributes.transaction_hash, 14)}
+                    </Card>
+                ))}
             </Card>
         </div>
     );

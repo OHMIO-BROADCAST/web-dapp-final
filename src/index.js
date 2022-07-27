@@ -25,11 +25,12 @@ ReactDOM.render(
   <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
 
     <ChakraProvider theme={theme} resetCss={false} position="relative">
+
       <HashRouter>
         <Switch>
           <Route path={`/auth`} component={AuthLayout} />
           <Route path={`/admin`} component={AdminLayout} />
-
+          <Redirect from={``} to="/admin/dashboard" />
           <Redirect from={`/`} to="/admin/dashboard" />
         </Switch>
       </HashRouter>

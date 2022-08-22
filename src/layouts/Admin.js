@@ -94,7 +94,7 @@ export default function Dashboard(props) {
       if (prop.category === "account") {
         return getRoutes(prop.views);
       }
-      if (prop.category === "robot") {
+      if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
       if (prop.layout === "/admin") {
@@ -127,11 +127,11 @@ export default function Dashboard(props) {
       <Sidebar
         routes={routes}
         logo={
-          <Stack direction='row' spacing='12px' align='center' justify='center'>
+          <Stack direction='row' spacing='10px' align='center' justify='center'>
             {colorMode === "dark" ? (
-              <Image src={LogoDark} style={{ width: '120px', height: 'auto' }} />
+              <Image src={LogoDark} style={{ width: '10rem', height: 'auto' }} />
             ) : (
-              <Image src={LogoLight} style={{ width: '120px', height: 'auto' }} />
+              <Image src={LogoLight} style={{ width: '10rem', height: 'auto' }} />
             )}
 
           </Stack>

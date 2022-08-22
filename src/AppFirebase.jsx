@@ -1,3 +1,6 @@
+/* eslint no-unused-vars : "off" */
+/* eslint prettier/prettier : "off" */
+
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import {
@@ -23,6 +26,21 @@ import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
+import Login from "views/Pages/SignIn";
+
+import withFirebaseAuth from "react-with-firebase-auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+import firebaseConfig from "./firebaseConfig";
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -55,7 +73,7 @@ const styles = {
     fontWeight: "600",
   },
 };
-const App = ({ isServerInfo }) => {
+const App = ({ isServerInfo, user, signOut, signInWithGoogle }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
@@ -68,101 +86,114 @@ const App = ({ isServerInfo }) => {
 
   return (
     <Layout style={{ height: "100vh", overflow: "auto" }}>
-      <Router>
-        <Header style={styles.header}>
-          <Logo />
-          <MenuItems />
-          <div style={styles.headerRight}>
-            <Chains />
-            <TokenPrice
-              address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-              chain="eth"
-              image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
-              size="40px"
-            />
-            <NativeBalance />
-            <Account />
-          </div>
-        </Header>
+      {user && <p>Hello, {user.displayName}</p>}
+      {user ? (
+        <>
+          <Router>
+            <Header style={styles.header}>
+              <Logo />
+              <MenuItems />
+              <div style={styles.headerRight}>
+                <Chains />
+                <TokenPrice
+                  address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+                  chain="polygon"
+                  image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
+                  size="40px"
+                />
+                <NativeBalance />
+                <Account />
+              </div>
+            </Header>
 
-        <div style={styles.content}>
-          <Switch>
-            <Route exact path="/quickstart">
-              <QuickStart isServerInfo={isServerInfo} />
-            </Route>
-            <Route path="/wallet">
-              <Wallet />
-            </Route>
-            <Route path="/1inch">
-              <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
+            <div style={styles.content}>
+              <Switch>
+                <Route exact path="/quickstart">
+                  <QuickStart isServerInfo={isServerInfo} />
+                </Route>
+                <Route path="/wallet">
+                  <Wallet />
+                </Route>
+                <Route path="/1inch">
+                  <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
+                    <Tabs.TabPane tab={<span>Polygon Mainet</span>} key="1">
+                      <DEX chain="polygon" />
+                    </Tabs.TabPane>
 
-                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                  <DEX chain="polygon" />
-                </Tabs.TabPane>
-              </Tabs>
-            </Route>
-            <Route path="/erc20balance">
-              <ERC20Balance />
-            </Route>
-            <Route path="/onramp">
-              <Ramper />
-            </Route>
-            <Route path="/erc20transfers">
-              <ERC20Transfers />
-            </Route>
-            <Route path="/nftBalance">
-              <NFTBalance />
-            </Route>
-            <Route path="/contract">
-              <Contract />
-            </Route>
-            <Route path="/">
-              <Redirect to="/quickstart" />
-            </Route>
-            <Route path="/ethereum-boilerplate">
-              <Redirect to="/quickstart" />
-            </Route>
-            <Route path="/nonauthenticated">
-              <>Please login using the "Authenticate" button</>
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-      <Footer style={{ textAlign: "center" }}>
-        <Text style={{ display: "block" }}>
-          ⭐️ Please star this{" "}
-          <a
-            href="https://github.com/ethereum-boilerplate/ethereum-boilerplate/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            boilerplate
-          </a>
-          , every star makes us very happy!
-        </Text>
+                  </Tabs>
+                </Route>
+                <Route path="/erc20balance">
+                  <ERC20Balance />
+                </Route>
+                <Route path="/onramp">
+                  <Ramper />
+                </Route>
+                <Route path="/erc20transfers">
+                  <ERC20Transfers />
+                </Route>
+                <Route path="/nftBalance">
+                  <NFTBalance />
+                </Route>
+                <Route path="/contract">
+                  <Contract />
+                </Route>
+                <Route path="/">
+                  <Redirect to="/quickstart" />
+                </Route>
+                <Route path="/ethereum-boilerplate">
+                  <Redirect to="/quickstart" />
+                </Route>
+                <Route path="/nonauthenticated">
+                  <>Please login using the "Authenticate" button</>
+                </Route>
+              </Switch>
+            </div>
+          </Router>
 
-        <Text style={{ display: "block" }}>
-          🙋 You have questions? Ask them on the {""}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://forum.moralis.io/t/ethereum-boilerplate-questions/3951/29"
-          >
-            Moralis forum
-          </a>
-        </Text>
+          <Footer style={{ textAlign: "center" }}>
+            <Text style={{ display: "block" }}>
+              ⭐️ Please star this{" "}
+              <a
+                href="https://github.com/ethereum-boilerplate/ethereum-boilerplate/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                boilerplate
+              </a>
+              , every star makes us very happy!
+            </Text>
 
-        <Text style={{ display: "block" }}>
-          📖 Read more about{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplat"
-          >
-            Moralis
-          </a>
-        </Text>
-      </Footer>
+            <Text style={{ display: "block" }}>
+              🙋 You have questions? Ask them on the {""}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://forum.moralis.io/t/ethereum-boilerplate-questions/3951/29"
+              >
+                Moralis forum
+              </a>
+            </Text>
+
+            <Text style={{ display: "block" }}>
+              📖 Read more about{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplat"
+              >
+                Moralis
+              </a>
+            </Text>
+            <button onClick={signOut}>logiut</button>
+          </Footer>
+        </>
+      ) : (
+        <Login
+          onClickGoogle={() => {
+            signInWithGoogle();
+          }}
+        />
+      )}
     </Layout>
   );
 };
@@ -192,4 +223,7 @@ export const Logo = () => (
   </div>
 );
 
-export default App;
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(App);

@@ -14,7 +14,7 @@ export default function Pages(props) {
   React.useEffect(() => {
     document.body.style.overflow = "unset";
     // Specify how to clean up after this effect:
-    return function cleanup() {};
+    return function cleanup() { };
   });
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";
@@ -91,7 +91,7 @@ export default function Pages(props) {
         <Box ref={wrapper} w='100%'>
           <Switch>
             {getRoutes(routes)}
-            <Redirect from='/auth' to='/auth/login-page' />
+            <Redirect from='/auth' to='/auth/signin' />
           </Switch>
         </Box>
       </Box>

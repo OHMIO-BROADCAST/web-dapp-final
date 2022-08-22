@@ -10,6 +10,7 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
+  Image,
   Stack,
   Text,
   useColorMode,
@@ -30,6 +31,9 @@ import { SidebarHelp } from "components/Sidebar/SidebarHelp";
 import React from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { NavLink, useLocation } from "react-router-dom";
+
+
+import LogoLight from '../../assets/img/LogoTIPSparaLight.png';
 
 
 
@@ -57,7 +61,7 @@ function Sidebar(props) {
     let inactiveColor = useColorModeValue("gray.400", "gray.400");
     let sidebarActiveShadow = "0px 7px 11px rgba(0, 0, 0, 0.04)";
     return routes.map((prop, key) => {
-      if (prop.redirect) {
+      if (prop.redirect || prop.path === '/signin' || prop.path === '/signup') {
         return null;
       }
       if (prop.category) {
@@ -434,8 +438,8 @@ export function SidebarResponsive(props) {
   //  BRAND
 
   var brand = (
-    <Box pt={"35px"} mb="8px">
-      {logo}
+    <Box pt={"35px"} mb="8px" pl={'1rem'}>
+      <Image src={LogoLight} style={{ width: '10rem', height: 'auto' }} />
       <HSeparator my="26px" />
     </Box>
   );
@@ -452,8 +456,9 @@ export function SidebarResponsive(props) {
     >
       <HamburgerIcon
         color={hamburgerColor}
-        w="18px"
-        h="18px"
+        w="2.5rem"
+        h="2.5rem"
+        ml={'1rem'}
         ref={btnRef}
         onClick={onOpen}
       />

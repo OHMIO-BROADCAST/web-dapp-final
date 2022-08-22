@@ -78,11 +78,9 @@ var dashRoutes = [
       },
     ]
   },
-
   {
     name: "CRYPTO FUNCTIONS",
     category: "account",
-
     state: "pageCollapse",
     views: [
       {
@@ -93,14 +91,6 @@ var dashRoutes = [
         component: Buy,
         layout: "/admin",
       },
-      /* {
-        path: "/dex",
-        name: "Exchange",
-        rtlName: "لوحة القيادة",
-        icon: <ExchangeIcon color='inherit' />,
-        component: DEX,
-        layout: "/admin",
-      }, */
       {
         path: "/balances",
         name: "Balances",
@@ -110,16 +100,15 @@ var dashRoutes = [
         layout: "/admin",
       }]
   },
-
-  /*   {
-      path: "/tables",
-      name: "Tables",
-      rtlName: "لوحة القيادة",
-      icon: <StatsIcon color='inherit' />,
-      component: Tables,
-      layout: "/admin",
-    }, */
-  /*{
+  {
+    path: "/tables",
+    name: "Tables",
+    rtlName: "لوحة القيادة",
+    icon: <StatsIcon color='inherit' />,
+    component: Tables,
+    layout: "/admin",
+  },
+  {
     path: "/billing",
     name: "Billing",
     rtlName: "لوحة القيادة",
@@ -143,16 +132,8 @@ var dashRoutes = [
         layout: "/admin",
       }
     ],
-  },*/
-  /* {
-    path: "/rtl-support-page",
-    name: "RTL",
-    rtlName: "آرتيإل",
-    icon: <SupportIcon color='inherit' />,
-    component: RTLPage,
-    layout: "/rtl",
-  }, */
-  /*{
+  },
+  {
     path: "/signin",
     name: "Sign In",
     rtlName: "لوحة القيادة",
@@ -167,6 +148,6 @@ var dashRoutes = [
     icon: <RocketIcon color='inherit' />,
     component: SignUp,
     layout: "/auth",
-  },*/
+  },
 ];
 export default dashRoutes;

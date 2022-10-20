@@ -201,8 +201,6 @@ function SignUp() {
               fullName: '',
               user: '',
               email: '',
-              country: '',
-              cellphone: '',
               password: '',
               passwordConfirmation: ''
             }}
@@ -394,7 +392,7 @@ function SignUp() {
                       <ErrorMessage name="email" style={{ paddingTop: '0' }} />
                     </div>
 
-                    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                    {/*    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
                       Country
                     </FormLabel>
                     <Input
@@ -428,7 +426,7 @@ function SignUp() {
                     />
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
                       <ErrorMessage name="country" style={{ paddingTop: '0' }} />
-                    </div>
+                    </div> */}
 
 
                     <FormControl display='flex' alignItems='center' mb={'1rem'} justifyContent='center'>

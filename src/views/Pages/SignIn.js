@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Chakra imports
 import {
   Box,
@@ -16,7 +16,21 @@ import {
 } from "@chakra-ui/react";
 // Assets
 import signInImage from "assets/img/signInImage.png";
+
 import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+import {
+  Backdrop,
+  CircularProgress,
+  Snackbar,
+} from '@material-ui/core';
+import { useMoralis } from "react-moralis";
+import Swal from "sweetalert2";
+import './SignInAnimation.css';
 
 function SignIn() {
   // Chakra color mode
@@ -26,6 +40,42 @@ function SignIn() {
   const colorIcons = useColorModeValue("gray.700", "white");
   const bgIcons = useColorModeValue("trasnparent", "navy.700");
   const bgIconsHover = useColorModeValue("gray.50", "whiteAlpha.100");
+
+  const [showSnackBar, setShowSnackBar] = useState(false)
+  const [typeSnackBar, setTypeSnackBar] = useState("success")
+  const [descriptionSnackBar, setDescriptionSnackBar] = useState("")
+
+  const { login } = useMoralis();
+
+
+  async function sendEmailVerification(userCredential, resetForm) {
+    userCredential.user.sendEmailVerification()
+      .then(() => {
+        setShowSnackBar(true);
+        setTypeSnackBar('success');
+        setDescriptionSnackBar('Email verification sended');
+        resetForm()
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        setShowSnackBar(true);
+        setTypeSnackBar('error');
+        setDescriptionSnackBar(errorMessage);
+      });
+  }
+
+
+  function toggleVisiblePassword() {
+    var x = document.getElementById("passwordInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
   return (
     <Flex position='relative' mb='40px'>
       <Flex
@@ -64,47 +114,11 @@ function SignIn() {
               fontWeight='bold'
               textAlign='center'
               mb='22px'>
-              Register With
+              Log In With
             </Text>
-            <HStack spacing='15px' justify='center' mb='22px'>
-              <Flex
-                justify='center'
-                align='center'
-                w='75px'
-                h='75px'
-                borderRadius='8px'
-                border={useColorModeValue("1px solid", "0px")}
-                borderColor='gray.200'
-                cursor='pointer'
-                transition='all .25s ease'
-                bg={bgIcons}
-                _hover={{ bg: bgIconsHover }}>
-                <Link href='#'>
-                  <Icon as={FaFacebook} color={colorIcons} w='30px' h='30px' />
-                </Link>
-              </Flex>
-              <Flex
-                justify='center'
-                align='center'
-                w='75px'
-                h='75px'
-                borderRadius='8px'
-                border={useColorModeValue("1px solid", "0px")}
-                borderColor='gray.200'
-                cursor='pointer'
-                transition='all .25s ease'
-                bg={bgIcons}
-                _hover={{ bg: bgIconsHover }}>
-                <Link href='#'>
-                  <Icon
-                    as={FaApple}
-                    color={colorIcons}
-                    w='30px'
-                    h='30px'
-                    _hover={{ filter: "brightness(120%)" }}
-                  />
-                </Link>
-              </Flex>
+            {/*  <HStack spacing='15px' justify='center' mb='22px'>
+
+
               <Flex
                 justify='center'
                 align='center'
@@ -127,7 +141,7 @@ function SignIn() {
                   />
                 </Link>
               </Flex>
-            </HStack>
+            </HStack> 
             <Text
               fontSize='lg'
               color='gray.400'
@@ -136,47 +150,237 @@ function SignIn() {
               mb='22px'>
               or
             </Text>
-            <FormControl>
-              <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
-                Name
-              </FormLabel>
-              <Input
-                variant='auth'
-                fontSize='sm'
-                ms='4px'
-                type='text'
-                placeholder='Your full name'
-                mb='24px'
-                size='lg'
-              />
-              <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
-                Password
-              </FormLabel>
-              <Input
-                variant='auth'
-                fontSize='sm'
-                ms='4px'
-                type='password'
-                placeholder='Your password'
-                mb='24px'
-                size='lg'
-              />
-              <FormControl display='flex' alignItems='center' mb='24px'>
-                <Switch id='remember-login' colorScheme='navy' me='10px' />
-                <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal'>
-                  Remember me
-                </FormLabel>
-              </FormControl>
-              <Button
-                fontSize='10px'
-                variant='dark'
-                fontWeight='bold'
-                w='100%'
-                h='45'
-                mb='24px'>
-                SIGN UP
-              </Button>
-            </FormControl>
+*/}
+
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={Yup.object({
+                email: Yup.string().email('Invalid email address')
+                  .required('Required'),
+                password: Yup.string()
+                  .required('Password is required')
+                  .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+                  )
+              })}
+              onChange={(e) => { console.log(e) }}
+              onSubmit={async (values, { setSubmitting, resetForm }) => {
+                console.log('SUBMIT', values)
+
+                /*  userToLogin.set("email", values.email);
+                 userToLogin.set("password", values.password);
+   
+                 console.log('SUBMIT USER FINAL:', userToLogin);
+   
+                 try {
+                   const response = await userToLogin.signUp();
+                   // Hooray! Let them use the app now.
+                   console.log("REGISTER SUCCESSFUL", response)
+                   setSubmitting(false);
+                   Swal.fire('Successful login', response, 'success')
+                 } catch (error) {
+                   // Show the error message somewhere and let the user try again.
+                   const errorCode = error.code;
+                   const errorMessage = error.message;
+                   // ..
+                   setSubmitting(false);
+                   setShowSnackBar(true);
+                   setTypeSnackBar('error');
+                   setDescriptionSnackBar(errorMessage);
+                   Swal.fire('Please check and try again', error.message, 'error')
+                 } */
+
+                login(
+                  values.email,
+                  values.password
+                )
+                  .then((response) => {
+                    console.log("Access Granted", response)
+                    setSubmitting(false);
+                    Swal.fire('Access Granted', '', 'success')
+                    /* if (response != null && response.user) {
+                      const isverified = response.user.emailVerified;
+                      if (isverified) {
+                        console.log('user', 'user is verified');
+                      } else {
+                        console.log('user', 'user is NOT verified');
+                        try {
+                          sendEmailVerification(response)
+
+                        } catch (error) {
+                          setShowSnackBar(true);
+                          setTypeSnackBar('error');
+                          setDescriptionSnackBar('Error sennding email verification')
+                        }
+                      }
+                    } */
+
+                    resetForm();
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                    // Show the error message somewhere and let the user try again.
+                    console.log(error)
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                    setSubmitting(false);
+                    setShowSnackBar(true);
+                    setTypeSnackBar('error');
+                    setDescriptionSnackBar(errorMessage);
+                    Swal.fire('Please check and try again', String(errorMessage), 'error')
+                  });
+
+                /* signup(
+                  values.email,
+                  values.password
+                ).then((userCredential) => {
+                  // Signed in
+                  const user = userCredential.user;
+            // ...
+            console.log(userCredential);
+  
+            setSubmitting(false);
+  
+            if (userCredential != null && userCredential.user) {
+                    const isverified = userCredential.user.emailVerified;
+            if (isverified) {
+              console.log('user', 'user is verified');
+                    } else {
+              console.log('user', 'user is NOT verified');
+            try {
+              sendEmailVerification(userCredential)
+  
+            } catch (error) {
+              setShowSnackBar(true);
+            setTypeSnackBar('error');
+            setDescriptionSnackBar('Error sennding email verification')
+                      }
+  
+                    }
+                  }
+                })
+                  .catch((error) => {
+                    const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            setSubmitting(false);
+            setShowSnackBar(true);
+            setTypeSnackBar('error');
+            alert(errorCode)
+            setDescriptionSnackBar(errorMessage);
+  
+                  })*/
+              }}
+            >
+              {({
+                errors,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                isSubmitting,
+                touched,
+                values
+              }) => (
+                <>
+                  <form onSubmit={handleSubmit}>
+                    <FormControl>
+                      <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
+                        Email
+                      </FormLabel>
+                      <Input
+                        variant='auth'
+                        fontSize='sm'
+                        ms='4px'
+                        type='email'
+                        placeholder='Your email address'
+                        size='lg'
+                        name="email"
+                        onChange={handleChange}
+                        value={values.email}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                        <ErrorMessage name="email" style={{ paddingTop: '0' }} />
+                      </div>
+                      <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
+                        Password
+                      </FormLabel>
+                      <Input
+                        variant='auth'
+                        fontSize='sm'
+                        ms='4px'
+                        type='password'
+                        placeholder='Your password'
+                        size='lg'
+                        name="password"
+                        id="passwordInput"
+                        onChange={handleChange}
+                        value={values.password}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginBottom: '1rem' }} >
+                        <ErrorMessage name="password" />
+                      </div>
+                      <FormControl
+                        display='flex'
+                        alignItems='center'
+                        mb='24px'>
+                        <Switch
+                          id='remember-login'
+                          colorScheme='navy'
+                          me='10px'
+                          name="togglePassword"
+                          type="checkbox"
+                          onChange={() => toggleVisiblePassword()} />
+                        <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal'>
+                          Show Password
+                        </FormLabel>
+                      </FormControl>
+                      <Flex
+                        flexDirection='column'
+                        justifyContent='center'
+                        alignItems='center'
+                        maxW='100%'
+                        mt='0px'>
+                        <Text color={textColor} fontWeight='medium'>
+                          Forgot Password?
+                          <NavLink
+                            color={titleColor}
+                            to="/auth/signup"
+                            as='span'
+                            ms='5px'
+                            href='#'
+                            fontWeight='bold'>
+                            <text style={{ textDecoration: 'underline', fontWeight: 'bold', marginLeft: '1rem' }}>Click Here</text>
+
+                          </NavLink>
+                        </Text>
+                      </Flex>
+                      <Button
+                        fontSize='10px'
+                        variant='dark'
+                        fontWeight='bold'
+                        w='100%'
+                        h='45'
+                        disabled={isSubmitting}
+                        onClick={handleSubmit}>
+                        SIGN IN
+                      </Button>
+                    </FormControl>
+                  </form>
+
+                  <Backdrop
+                    open={isSubmitting}
+                    style={{
+                      zIndex: 20,
+                      color: '#fff'
+                    }}
+                  >
+                    <CircularProgress color="inherit" style={{ color: '#03CFB3' }} />
+                  </Backdrop>
+                </>)}
+            </Formik>
+
+
             <Flex
               flexDirection='column'
               justifyContent='center'
@@ -184,15 +388,17 @@ function SignIn() {
               maxW='100%'
               mt='0px'>
               <Text color={textColor} fontWeight='medium'>
-                Already have an account?
-                <Link
+                Don't have an account?
+                <NavLink
                   color={titleColor}
+                  to="/auth/signup"
                   as='span'
                   ms='5px'
                   href='#'
                   fontWeight='bold'>
-                  Sign In
-                </Link>
+                  <text style={{ textDecoration: 'underline', fontWeight: 'bold', marginLeft: '1rem' }}>Register Here</text>
+
+                </NavLink>
               </Text>
             </Flex>
           </Flex>
@@ -203,13 +409,15 @@ function SignIn() {
           w='100%'
           left='0px'
           position='absolute'
-          bgImage={signInImage}>
+          className="bodyAnimation">
           <Box
             w='100%'
             h='100%'
             bgSize='cover'
             bg='navy.500'
-            opacity='0.8'></Box>
+            opacity='0'>
+
+          </Box>
         </Box>
       </Flex>
     </Flex>

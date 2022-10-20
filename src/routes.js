@@ -49,21 +49,18 @@ var dashRoutes = [
   {
     path: "/dashboard",
     name: "Home",
-    rtlName: "لوحة القيادة",
     icon: <HomeIcon color='inherit' />,
     component: Dashboard,
     layout: "/admin",
   },
   {
-    name: "ROBOT LICENSE",
+    name: "ROBOT LICENSES",
     category: "robot",
-    rtlName: "صفحات",
     state: "pageCollapse",
     views: [
       {
         path: "/contract",
         name: "Purchase",
-        rtlName: "لوحة القيادة",
         icon: <RocketIcon color='inherit' />,
         component: Contract,
         layout: "/admin",
@@ -71,7 +68,6 @@ var dashRoutes = [
       {
         path: "/my-refeers",
         name: "Refeers",
-        rtlName: "لوحة القيادة",
         icon: <StarIcon color='inherit' />,
         component: QuickStart,
         layout: "/admin",
@@ -86,7 +82,6 @@ var dashRoutes = [
       {
         path: "/buy-crypto",
         name: "Buy Crypto",
-        rtlName: "لوحة القيادة",
         icon: <CreditIcon color='inherit' />,
         component: Buy,
         layout: "/admin",
@@ -94,7 +89,6 @@ var dashRoutes = [
       {
         path: "/balances",
         name: "Balances",
-        rtlName: "لوحة القيادة",
         icon: <BalanceIcon color='inherit' />,
         component: ERC20Balance,
         layout: "/admin",
@@ -103,7 +97,6 @@ var dashRoutes = [
   {
     path: "/tables",
     name: "Tables",
-    rtlName: "لوحة القيادة",
     icon: <StatsIcon color='inherit' />,
     component: Tables,
     layout: "/admin",
@@ -111,7 +104,6 @@ var dashRoutes = [
   {
     path: "/billing",
     name: "Billing",
-    rtlName: "لوحة القيادة",
     icon: <BillIcon color='inherit' />,
     component: Billing,
     layout: "/admin",
@@ -119,7 +111,6 @@ var dashRoutes = [
   {
     name: "ACCOUNT",
     category: "account",
-    rtlName: "صفحات",
     state: "pageCollapse",
     views: [
       {
@@ -136,7 +127,13 @@ var dashRoutes = [
   {
     path: "/signin",
     name: "Sign In",
-    rtlName: "لوحة القيادة",
+    icon: <DocumentIcon color='inherit' />,
+    component: SignIn,
+    layout: "/auth",
+  },
+  {
+    path: "/forgot-password",
+    name: "Forgot Password",
     icon: <DocumentIcon color='inherit' />,
     component: SignIn,
     layout: "/auth",
@@ -144,7 +141,6 @@ var dashRoutes = [
   {
     path: "/signup",
     name: "Sign Up",
-    rtlName: "لوحة القيادة",
     icon: <RocketIcon color='inherit' />,
     component: SignUp,
     layout: "/auth",

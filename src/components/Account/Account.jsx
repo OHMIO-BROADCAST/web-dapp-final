@@ -54,7 +54,7 @@ function Account() {
     return (
       <>
         <ChakraButton onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
+          <p style={styles.text}>Connect Wallet</p>
         </ChakraButton>
         <Modal
           visible={isAuthModalVisible}
@@ -86,7 +86,7 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId, chainId: 0x89 });
+                    await authenticate({ provider: connectorId, chainId: 0x89, signingMessage: 'Log In into TIPS Descentralized Application' });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {

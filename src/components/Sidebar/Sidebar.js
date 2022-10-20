@@ -61,7 +61,7 @@ function Sidebar(props) {
     let inactiveColor = useColorModeValue("gray.400", "gray.400");
     let sidebarActiveShadow = "0px 7px 11px rgba(0, 0, 0, 0.04)";
     return routes.map((prop, key) => {
-      if (prop.redirect || prop.path === '/signin' || prop.path === '/signup') {
+      if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
         return null;
       }
       if (prop.category) {
@@ -453,6 +453,7 @@ export function SidebarResponsive(props) {
       display={{ sm: "flex", xl: "none" }}
       ref={mainPanel}
       alignItems="center"
+      justifyContent={'space-between'}
     >
       <HamburgerIcon
         color={hamburgerColor}

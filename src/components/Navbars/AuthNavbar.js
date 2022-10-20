@@ -195,7 +195,7 @@ export default function AuthNavbar(props) {
           />
         </Box>
         {linksAuth}
-        <NavLink to="/admin/dashboard">
+        {/* <NavLink to="/admin/dashboard">
           <Button
             bg={bgButton}
             color={colorButton}
@@ -209,7 +209,7 @@ export default function AuthNavbar(props) {
           >
             Take a Tour
           </Button>
-        </NavLink>
+        </NavLink> */}
       </Flex>
     </Flex>
   );

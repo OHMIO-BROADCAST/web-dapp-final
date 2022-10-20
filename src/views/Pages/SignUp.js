@@ -137,7 +137,7 @@ function SignUp() {
           mt='10px'
           mb='26px'
           w={{ base: "90%", sm: "60%", lg: "40%", xl: "333px" }}>
-          Create new TIPS account. Please use your <text style={{ textDecoration: 'underline' }}>Broker</text> email, this is very important in order to verify your identity.
+          Create new FREEDOM account. Please use your <text style={{ textDecoration: 'underline' }}>Broker</text> email, this is very important in order to verify your identity.
         </Text>
       </Flex>
       <Flex alignItems='center' justifyContent='center' mb='60px' mt='20px'>
@@ -375,7 +375,7 @@ function SignUp() {
                     </div>
 
                     <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                      Email
+                      Email <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Use the same in your FXWinning Account)</FormLabel>
                     </FormLabel>
                     <Input
                       variant='auth'

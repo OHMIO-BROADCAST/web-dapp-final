@@ -241,14 +241,14 @@ function SignUp() {
                 setSubmitting(false);
                 Swal.fire('Successful Register', 'Please verify your email', 'success')
 
-                try {
+                /* try {
                   Moralis.User.requestEmailVerification(values.email)
 
                 } catch (error) {
                   setShowSnackBar(true);
                   setTypeSnackBar('error');
                   setDescriptionSnackBar('Error sennding email verification')
-                }
+                } */
 
               } catch (error) {
                 // Show the error message somewhere and let the user try again.
@@ -262,6 +262,8 @@ function SignUp() {
                 Swal.fire('Please check and try again', error.message, 'error')
 
               }
+
+              resetForm();
 
               /*  signup(values.user, values.password, values.email)
                  .then((response) => {

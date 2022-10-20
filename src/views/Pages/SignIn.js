@@ -195,27 +195,36 @@ function SignIn() {
                   values.password
                 )
                   .then((response) => {
-                    console.log("Access Granted", response)
-                    setSubmitting(false);
-                    Swal.fire('Access Granted', '', 'success')
-                    /* if (response != null && response.user) {
-                      const isverified = response.user.emailVerified;
-                      if (isverified) {
-                        console.log('user', 'user is verified');
-                      } else {
-                        console.log('user', 'user is NOT verified');
-                        try {
-                          sendEmailVerification(response)
 
-                        } catch (error) {
-                          setShowSnackBar(true);
-                          setTypeSnackBar('error');
-                          setDescriptionSnackBar('Error sennding email verification')
+                    if (response) {
+                      console.log("Access Granted", response)
+                      setSubmitting(false);
+                      Swal.fire('Access Granted', '', 'success')
+                      /* if (response != null && response.user) {
+                        const isverified = response.user.emailVerified;
+                        if (isverified) {
+                          console.log('user', 'user is verified');
+                        } else {
+                          console.log('user', 'user is NOT verified');
+                          try {
+                            sendEmailVerification(response)
+  
+                          } catch (error) {
+                            setShowSnackBar(true);
+                            setTypeSnackBar('error');
+                            setDescriptionSnackBar('Error sennding email verification')
+                          }
                         }
-                      }
-                    } */
+                      } */
 
-                    resetForm();
+                      resetForm();
+                    } else {
+                      setSubmitting(false);
+                      setShowSnackBar(true);
+                      setTypeSnackBar('error');
+                      Swal.fire('Please check and try again', '', 'error')
+                    }
+
                   })
                   .catch((error) => {
                     console.log(error)

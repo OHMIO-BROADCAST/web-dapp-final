@@ -20,13 +20,25 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
     rel="stylesheet" />
-  <title>LIVE Freedom</title>
+  <title>LIVE | Freedom</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-
+  <script>
+    window.fwSettings = {
+      widget_id: 73000003076,
+    };
+    !(function () {
+      if ("function" != typeof window.FreshworksWidget) {
+        var n = function () {
+          n.q.push(arguments);
+        };
+        (n.q = []), (window.FreshworksWidget = n);
+      }
+    })();
+  </script>
 
 </body>
 

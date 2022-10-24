@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 // Chakra imports
 import {
   Box,
@@ -22,7 +22,11 @@ import { FaGoogle } from "react-icons/fa";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import IntlTelInput from 'react-intl-tel-input';
+import 'react-intl-tel-input/dist/main.css';
+
 import './SignInAnimation.css';
+import './PhoneStyle.css';
 
 import {
   Backdrop,
@@ -32,6 +36,7 @@ import {
 import { useMoralis, useMoralisCloudFunction } from "react-moralis";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import { width } from "@mui/system";
 
 
 function SignUp() {
@@ -45,6 +50,9 @@ function SignUp() {
   const [showSnackBar, setShowSnackBar] = useState(false)
   const [typeSnackBar, setTypeSnackBar] = useState("success")
   const [descriptionSnackBar, setDescriptionSnackBar] = useState("")
+
+  const [phone, setPhone] = useState('')
+  const formRef = useRef();
 
   const { login, isAuthenticated, authenticate, Moralis, signup } = useMoralis();
 
@@ -63,7 +71,7 @@ function SignUp() {
      },
      { autoFetch: false }
    );
-  */
+ 
   async function sendEmailVerification(userCredential, resetForm) {
     userCredential.user.sendEmailVerification()
       .then(() => {
@@ -80,7 +88,7 @@ function SignUp() {
         setTypeSnackBar('error');
         setDescriptionSnackBar(errorMessage);
       });
-  }
+  } */
 
   function toggleVisiblePassword() {
     var x = document.getElementById("passwordInput");
@@ -94,6 +102,13 @@ function SignUp() {
       x2.type = "password";
     }
   }
+
+  const handlePhoneChange = (status, phoneNumber, country) => {
+    setPhone(phoneNumber);
+    //    console.log('+' + '(' + country.dialCode + ')' + phoneNumber);
+    formRef.current.setFieldValue("phone", ("" + country.dialCode + phoneNumber));
+  };
+
 
   return (
     <Flex
@@ -197,24 +212,39 @@ function SignUp() {
 */}
 
           <Formik
+            id="formik"
+            innerRef={formRef}
             initialValues={{
               fullName: '',
               user: '',
               email: '',
+              country: '',
+              phone: '',
+              country: '',
               password: '',
               passwordConfirmation: ''
             }}
             validationSchema={Yup.object({
               user: Yup.string()
-                .min(6, 'Must be 6 characters or less')
+                .min(6, 'Must be 6 characters or more')
+                .max(12, 'Must be 12 characters or less')
                 .required('Required')
                 .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
               fullName: Yup.string()
-                .min(10, 'Must be 10 characters or less')
+                .min(10, 'Must be 10 characters or more')
+                .max(20, 'Must be 25 characters or less')
                 .required('Required')
                 .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
               email: Yup.string().email('Invalid email address')
                 .required('Required'),
+              phone: Yup.string()
+                .min(10, 'Must be 10 characters or more')
+                .max(15, 'Must be 15 characters or less')
+                .matches(/^[1-9]+[0-9]*$/, "Only valid phone numbers are allowed for this field")
+                .required('Required'),
+              country: Yup.string()
+                .required('Required')
+                .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
               password: Yup.string()
                 .required('Password is required')
                 .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
@@ -230,6 +260,8 @@ function SignUp() {
               userToRegister.set("username", values.user);
               userToRegister.set("password", values.password);
               userToRegister.set("email", values.email);
+              userToRegister.set("phone", values.phone);
+              userToRegister.set("country", values.country);
               userToRegister.set("fullName", values.fullName);
 
               console.log('SUBMIT USER FINAL:', userToRegister);
@@ -263,7 +295,7 @@ function SignUp() {
 
               }
 
-              resetForm();
+              //resetForm();
 
               /*  signup(values.user, values.password, values.email)
                  .then((response) => {
@@ -350,6 +382,7 @@ function SignUp() {
                       type='text'
                       placeholder='Your full name'
                       size='lg'
+                      id="form_fullname"
                       name="fullName"
                       onChange={handleChange}
                       value={values.fullName}
@@ -368,6 +401,7 @@ function SignUp() {
                       type='text'
                       placeholder='Your user nickname. Ej: Jack'
                       size='lg'
+                      id="form_user"
                       name="user"
                       onChange={handleChange}
                       value={values.user}
@@ -384,11 +418,50 @@ function SignUp() {
                       fontSize='sm'
                       ms='4px'
                       type='email'
+                      id="form_email"
                       placeholder='Your email address'
                       size='lg'
                       name="email"
                       onChange={handleChange}
                       value={values.email}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                      <ErrorMessage name="email" style={{ paddingTop: '0' }} />
+                    </div>
+
+                    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                      Phone
+                    </FormLabel>
+
+                    <IntlTelInput
+                      containerClassName="intl-tel-input phonecontainer"
+                      inputClassName="form-control phoneinput"
+                      type="tel"
+                      input={true}
+                      fieldId="form_phone"
+                      fieldName="phone"
+                      id="phone"
+                      onPhoneNumberChange={handlePhoneChange}
+                      value={phone}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                      <ErrorMessage name="phone" style={{ paddingTop: '0' }} />
+                    </div>
+
+                    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                      Country
+                    </FormLabel>
+                    <Input
+                      variant='auth'
+                      fontSize='sm'
+                      ms='4px'
+                      type='text'
+                      placeholder='Your Country name'
+                      size='lg'
+                      id="form_country"
+                      name="country"
+                      onChange={handleChange}
+                      value={values.country}
                     />
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
                       <ErrorMessage name="email" style={{ paddingTop: '0' }} />

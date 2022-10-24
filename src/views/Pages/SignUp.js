@@ -38,6 +38,7 @@ import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import { width } from "@mui/system";
 
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   const bgForm = useColorModeValue("white", "navy.800");
@@ -57,6 +58,9 @@ function SignUp() {
   const { login, isAuthenticated, authenticate, Moralis, signup } = useMoralis();
 
   const userToRegister = new Moralis.User();
+
+  const history = useHistory();
+
 
   /*  const {
      fetch: callEmailCloudFunction,
@@ -271,7 +275,15 @@ function SignUp() {
                 // Hooray! Let them use the app now.
                 console.log("REGISTER SUCCESSFUL", response)
                 setSubmitting(false);
-                Swal.fire('Successful Register', 'Please verify your email', 'success')
+                Swal.fire({
+                  title: 'Successful Register',
+                  text: 'Please verify your email',
+                  icon: 'success',
+                  willClose: () => {
+                    history.push('/signin')
+                  }
+                }
+                )
 
                 /* try {
                   Moralis.User.requestEmailVerification(values.email)
@@ -295,7 +307,8 @@ function SignUp() {
 
               }
 
-              //resetForm();
+              resetForm();
+
 
               /*  signup(values.user, values.password, values.email)
                  .then((response) => {

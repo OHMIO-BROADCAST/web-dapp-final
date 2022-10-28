@@ -6,6 +6,8 @@ import Billing from "views/Dashboard/Billing.js";
 import RTLPage from "views/RTL/RTLPage.js";
 import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
+import ForgotPassword from "views/Pages/ForgotPassword.js";
+
 import SignUp from "views/Pages/SignUp.js";
 
 
@@ -44,6 +46,7 @@ import {
   BillIcon
 } from "components/Icons/Icons";
 import Buy from 'components/Buy';
+import Distributor from 'components/Distributor/Distributor';
 
 var dashRoutes = [
   {
@@ -55,7 +58,7 @@ var dashRoutes = [
   },
   {
     name: "ROBOT LICENSES",
-    category: "robot",
+    category: "robots",
     state: "pageCollapse",
     views: [
       {
@@ -72,6 +75,20 @@ var dashRoutes = [
         component: QuickStart,
         layout: "/admin",
       },
+    ]
+  },
+  {
+    name: "INDEPENDET DISTRIBUTOR",
+    category: "distributor",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/distributors",
+        name: "My Refeer Link",
+        icon: <RocketIcon color='inherit' />,
+        component: Distributor,
+        layout: "/admin",
+      }
     ]
   },
   {
@@ -135,7 +152,7 @@ var dashRoutes = [
     path: "/forgot-password",
     name: "Forgot Password",
     icon: <DocumentIcon color='inherit' />,
-    component: SignIn,
+    component: ForgotPassword,
     layout: "/auth",
   },
   {

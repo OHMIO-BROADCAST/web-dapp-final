@@ -13,6 +13,7 @@ import {
   useColorMode,
   useColorModeValue
 } from "@chakra-ui/react";
+import ReferLink from "components/ReferLink/ReferLink";
 import { HSeparator } from "components/Separator/Separator";
 import React, { useState } from "react";
 import GitHubButton from "react-github-btn";
@@ -55,33 +56,16 @@ export default function Configurator(props) {
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
             <Text fontSize="xl" fontWeight="bold" mt="16px">
-              Argon Chakra Configurator
+              My Refer Links
             </Text>
             <Text fontSize="md" mb="16px">
-              See your dashboard options.
+              See your share options.
             </Text>
             <HSeparator />
           </DrawerHeader>
           <DrawerBody w="340px" ps="24px" pe="40px">
             <Flex flexDirection="column">
-              <Flex justifyContent="space-between " mb="16px">
-                <Text fontSize="md" fontWeight="600" mb="4px">
-                  Navbar Fixed
-                </Text>
-                <Switch
-                  colorScheme="navy"
-                  isChecked={switched}
-                  onChange={() => {
-                    if (switched === true) {
-                      props.onSwitch(false);
-                      setSwitched(false);
-                    } else {
-                      props.onSwitch(true);
-                      setSwitched(true);
-                    }
-                  }}
-                />
-              </Flex>
+
               <Flex
                 justifyContent="space-between"
                 alignItems="center"
@@ -101,23 +85,7 @@ export default function Configurator(props) {
               <HSeparator />
               <Box mt="24px">
                 <Box>
-                  <Link
-                    href="https://www.creative-tim.com/product/argon-dashboard-chakra?ref=creativetim-pud"
-                    w="100%"
-                    mb="16px"
-                  >
-                    <Button
-                      w="100%"
-                      mb="16px"
-                      bg={bgButton}
-                      color={colorButton}
-                      fontSize="xs"
-                      variant="no-effects"
-                      px="30px"
-                    >
-                      Free Download
-                    </Button>
-                  </Link>
+                  <ReferLink />
                   <Link
                     href="https://demos.creative-tim.com/docs-argon-dashboard-chakra/?ref=creativetim-pud"
                     w="100%"

@@ -1,0 +1,120 @@
+.link-button {
+    display: block;
+    background-color: #eee;
+    width: 500px;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    color: #444;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c3c3c3;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.link-button span,
+.link-button .icon {
+    display: block;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
+.link-button span {
+    width: 72%;
+    line-height: inherit;
+    font-size: 15px;
+    left: 0;
+    -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.link-button span:after {
+    content: '';
+    background-color: #a53125;
+    width: 2px;
+    height: 70%;
+    position: absolute;
+    top: 15%;
+    right: -1px;
+}
+
+.link-button .icon {
+    width: 30%;
+    right: 0;
+    -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.link-button .icon .copy-link {
+    background: #5d5d5d;
+    color: #fff;
+}
+
+.link-button .icon .fa {
+    font-size: 18px;
+    vertical-align: middle;
+    -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+}
+
+.link-button .icon .text {
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.link-button .icon .fa-check {
+    display: none;
+}
+
+.link-button.success span,
+.link-button:hover span {
+    left: -72%;
+    opacity: 0;
+}
+
+.link-button.success .icon,
+.link-button:hover .icon {
+    width: 100%;
+}
+
+.link-button.success .icon .fa,
+.link-button:hover .icon .fa {
+    font-size: 25px;
+}
+
+.link-button.success {
+    background-color: #0aa;
+}
+
+.link-button.success .icon .copy-link {
+    display: none;
+}
+
+.link-button.success .icon .fa-check {
+    display: inline-block;
+    color: #fff;
+}
+
+.link-button:hover {
+    opacity: .9;
+}
+
+.link-button:hover .icon .fa-link {
+    height: 25px;
+}
+
+.link-button:active {
+    opacity: 1;
+}

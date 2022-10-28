@@ -51,9 +51,11 @@ export default function Contract() {
 
   useEffect(() => {
     setAddress((isAuthenticated && account));
+    console.log("cargando contrato")
   }, [account, isAuthenticated]);
 
-  if (!address) {
+
+  if (address) {
     return (
       <Flex
         direction="column"

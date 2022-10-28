@@ -17,6 +17,8 @@ import avatar2 from "assets/img/avatars/avatar2.png";
 import avatar3 from "assets/img/avatars/avatar3.png";
 import { useMoralis } from "react-moralis";
 
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+
 
 // Custom Icons
 import { ArgonLogoDark, ArgonLogoLight, ChakraLogoDark, ChakraLogoLight, ProfileIcon, SettingsIcon } from "components/Icons/Icons";
@@ -88,6 +90,15 @@ export default function HeaderLinks(props) {
       {/* <NativeBalance /> */}
 
       <Account me='16px' />
+      <ExternalLinkIcon
+        cursor='pointer'
+        ms={{ base: "16px", xl: "1rem" }}
+        me='16px'
+        onClick={props.onOpen}
+        color={navbarIcon}
+        w='18px'
+        h='18px'
+      />
       <Menu>
         <MenuButton marginLeft={'1rem'}>
           <BellIcon color={navbarIcon} w='18px' h='18px' />

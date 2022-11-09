@@ -47,6 +47,7 @@ import {
 } from "components/Icons/Icons";
 import Buy from 'components/Buy';
 import Distributor from 'components/Distributor/Distributor';
+import Signals from 'components/Signals/Signals';
 
 var dashRoutes = [
   {
@@ -73,6 +74,13 @@ var dashRoutes = [
         name: "Refeers",
         icon: <StarIcon color='inherit' />,
         component: QuickStart,
+        layout: "/admin",
+      },
+      {
+        path: "/purchase-payzen",
+        name: "Purchase PayZen",
+        icon: <CreditIcon color='inherit' />,
+        component: Signals,
         layout: "/admin",
       },
     ]

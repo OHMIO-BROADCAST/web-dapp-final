@@ -17,7 +17,9 @@ import ReferLink from "components/ReferLink/ReferLink";
 import { HSeparator } from "components/Separator/Separator";
 import React, { useState } from "react";
 import GitHubButton from "react-github-btn";
-import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaWhatsapp, FaGoogle } from "react-icons/fa";
+
+import './SharedSocial.css';
 
 export default function Configurator(props) {
   const {
@@ -55,12 +57,10 @@ export default function Configurator(props) {
         <DrawerContent bg={bgDrawer}>
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
-            <Text fontSize="xl" fontWeight="bold" mt="16px">
-              My Refer Links
+            <Text fontSize="xl" fontWeight="bold" mt="16px" style={{ color: '#22589f' }}>
+              MY REFER LINKS
             </Text>
-            <Text fontSize="md" mb="16px">
-              See your share options.
-            </Text>
+
             <HSeparator />
           </DrawerHeader>
           <DrawerBody w="340px" ps="24px" pe="40px">
@@ -69,62 +69,38 @@ export default function Configurator(props) {
               <Flex
                 justifyContent="space-between"
                 alignItems="center"
-                mb="24px"
+                mb="1rem"
               >
-                <Text fontSize="md" fontWeight="600" mb="4px">
-                  Dark/Light
+                <Text fontSize="md" fontWeight="600" mb="4px" style={{ color: '#22589f' }}>
+                  GENERAL LINK
                 </Text>
-                <Button
-                  onClick={toggleColorMode}
-                  color={colorMode === "light" ? "Dark" : "Light"}
-                >
-                  Toggle {colorMode === "light" ? "Dark" : "Light"}
-                </Button>
               </Flex>
 
               <HSeparator />
-              <Box mt="24px">
-                <Box>
-                  <ReferLink />
-                  <Link
-                    href="https://demos.creative-tim.com/docs-argon-dashboard-chakra/?ref=creativetim-pud"
-                    w="100%"
-                  >
-                    <Button
-                      w="100%"
-                      bg={secondaryButtonBg}
-                      border="1px solid"
-                      borderColor={secondaryButtonBorder}
-                      color={secondaryButtonColor}
-                      fontSize="xs"
-                      variant="no-effects"
-                      px="20px"
-                      mb="16px"
-                    >
-                      <Text textDecorationColor="none">Documentation</Text>
-                    </Button>
-                  </Link>
-                </Box>
+
+              <Box mt="1rem">
                 <Flex
                   justifyContent="center"
                   alignItems="center"
                   w="100%"
-                  mb="16px"
                 >
-                  <GitHubButton
-                    href="https://github.com/creativetimofficial/argon-dashboard-chakra"
-                    data-icon="octicon-star"
-                    data-show-count="true"
-                    aria-label="Star creativetimofficial/argon-dashboard-chakra on GitHub"
-                  >
-                    Star
-                  </GitHubButton>
+                  <ReferLink />
                 </Flex>
+              </Box>
+
+              <HSeparator />
+
+              <Box mt="1rem">
                 <Box w="100%">
-                  <Text mb="6px" textAlign="center">
-                    Thank you for sharing!
+                  <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#22589f' }}>
+                    These are another social options
                   </Text>
-                  <Flex justifyContent="center" alignContent="center">
+                  <Flex
+                    justifyContent="center"
+                    alignContent="center"
+                    flexDirection="column"
+                    alignItems="center"
+                  >
                     <Link
                       isExternal="true"
                       href="https://twitter.com/tipscorporativo"
@@ -132,7 +108,7 @@ export default function Configurator(props) {
                       <Button
                         colorScheme="twitter"
                         leftIcon={<FaTwitter />}
-                        me="10px"
+                        mb="0.5rem"
                       >
                         <Text>Tweet</Text>
                       </Button>
@@ -141,7 +117,26 @@ export default function Configurator(props) {
                       isExternal="true"
                       href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
                     >
-                      <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
+                      <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
+                      >
+                        <Text>Share</Text>
+                      </Button>
+                    </Link>
+                    <Link
+                      isExternal="true"
+                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
+                    >
+                      <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
+                      >
+                        <Text>Share</Text>
+                      </Button>
+                    </Link>
+                    <Link
+                      isExternal="true"
+                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
+                    >
+                      <Button colorScheme="whatsapp" leftIcon={<FaWhatsapp />} mb="0.5rem"
+                      >
                         <Text>Share</Text>
                       </Button>
                     </Link>

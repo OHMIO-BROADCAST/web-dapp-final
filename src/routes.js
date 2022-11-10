@@ -72,8 +72,8 @@ var dashRoutes = [
       {
         path: "/my-refeers",
         name: "Refeers",
-        icon: <StarIcon color='inherit' />,
-        component: QuickStart,
+        icon: <StatsIcon color='inherit' />,
+        component: Tables,
         layout: "/admin",
       },
       {
@@ -84,7 +84,7 @@ var dashRoutes = [
         layout: "/admin",
       },
     ]
-  },
+  },/* 
   {
     name: "INDEPENDET DISTRIBUTOR",
     category: "distributor",
@@ -98,7 +98,7 @@ var dashRoutes = [
         layout: "/admin",
       }
     ]
-  },
+  }, */
   {
     name: "CRYPTO FUNCTIONS",
     category: "account",
@@ -111,20 +111,13 @@ var dashRoutes = [
         component: Buy,
         layout: "/admin",
       },
-      {
+      /* {
         path: "/balances",
         name: "Balances",
         icon: <BalanceIcon color='inherit' />,
         component: ERC20Balance,
         layout: "/admin",
-      }]
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    icon: <StatsIcon color='inherit' />,
-    component: Tables,
-    layout: "/admin",
+      } */]
   },
   {
     path: "/billing",

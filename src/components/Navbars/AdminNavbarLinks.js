@@ -12,9 +12,9 @@ import {
   useColorModeValue
 } from "@chakra-ui/react";
 // Assets
-import avatar1 from "assets/img/avatars/avatar1.png";
-import avatar2 from "assets/img/avatars/avatar2.png";
-import avatar3 from "assets/img/avatars/avatar3.png";
+import avatar1 from "assets/img/avatars/profile.png";
+import avatar2 from "assets/img/avatars/settings.png";
+import avatar3 from "assets/img/avatars/logout.png";
 import { useMoralis } from "react-moralis";
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
@@ -141,16 +141,18 @@ export default function HeaderLinks(props) {
         </MenuButton>
         <MenuList p='16px 8px' bg={menuBg}>
           <Flex flexDirection='column'>
-            <MenuItem borderRadius='8px' mb='10px'>
+            {/* <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Profile'
                 aSrc={avatar1}
+                aRoute={"/admin/profile"}
               />
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Settings'
                 aSrc={avatar2}
+                aRoute={"/admin/profile"}
               />
             </MenuItem>
             <MenuItem borderRadius='8px'

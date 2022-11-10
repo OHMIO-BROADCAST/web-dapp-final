@@ -41,12 +41,9 @@ import ReferLink from 'components/ReferLink/ReferLink';
 
 function Distributor() {
 
-
-
-
     return (
         <Box flexDirection={"column"}>
-            <ReferLink />
+
         </Box>
     )
 }

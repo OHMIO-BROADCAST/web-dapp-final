@@ -32,7 +32,7 @@ import {
   FaCube,
   FaFacebook,
   FaInstagram,
-  FaPenFancy,
+  FaFileAlt,
   FaPlus,
   FaTwitter,
 } from "react-icons/fa";
@@ -111,7 +111,7 @@ function Profile() {
               </Text>
             </Flex>
           </Button>
-          <Button p='0px' bg='transparent' variant='no-effects'>
+          {/* <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
               align='center'
               w={{ lg: "135px" }}
@@ -125,7 +125,7 @@ function Profile() {
                 TEAMS
               </Text>
             </Flex>
-          </Button>
+          </Button> */}
           <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
               align='center'
@@ -134,16 +134,16 @@ function Profile() {
               justifyContent='center'
               py='10px'
               cursor='pointer'>
-              <Icon color={textColor} as={FaPenFancy} me='6px' />
-              <Text fontSize='xs' color={textColor} fontWeight='bold'>
-                PROJECTS
+              <Icon color={textColor} as={FaFileAlt} me='6px' />
+              <Text fontSize='xs' color={textColor} fontWeight='bold' flexWrap={true}>
+                Document FXWinning
               </Text>
             </Flex>
           </Button>
         </Flex>
       </Flex>
 
-      <Grid templateColumns={{ sm: "1fr", xl: "repeat(3, 1fr)" }} gap='22px'>
+      <Grid templateColumns={{ sm: "1fr", xl: "repeat(2, 1fr)" }} gap='22px'>
         <Card p='16px'>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -326,7 +326,7 @@ function Profile() {
             </Flex>
           </CardBody>
         </Card>
-        <Card p='16px'>
+        {/* <Card p='16px'>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
               Conversations
@@ -476,9 +476,9 @@ function Profile() {
               </Flex>
             </Flex>
           </CardBody>
-        </Card>
+        </Card> */}
       </Grid>
-      <Card p='16px' my='24px'>
+      {/* <Card p='16px' my='24px'>
         <CardHeader p='12px 5px' mb='12px'>
           <Flex direction='column'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -626,7 +626,7 @@ function Profile() {
             </Button>
           </Grid>
         </CardBody>
-      </Card>
+      </Card> */}
     </Flex>
   );
 }

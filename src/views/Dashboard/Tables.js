@@ -15,6 +15,8 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import TablesProjectRow from "components/Tables/TablesProjectRow";
 import TablesTableRow from "components/Tables/TablesTableRow";
+import ThreeView from 'components/Spiral/Treeview.js'
+
 import React from "react";
 import { tablesProjectData, tablesTableData } from "variables/general";
 
@@ -27,11 +29,15 @@ function Tables() {
       <Card overflowX={{ sm: "scroll", xl: "hidden" }} pb="0px">
         <CardHeader p="6px 0px 22px 0px">
           <Text fontSize="xl" color={textColor} fontWeight="bold">
-            Authors Table
+            Refeers (License 600 USD)
           </Text>
         </CardHeader>
-        <CardBody>
-          <Table variant="simple" color={textColor}>
+        <CardBody style={{ height: '60rem' }}>
+
+          <ThreeView />
+
+
+          {/* <Table variant="simple" color={textColor}>
             <Thead>
               <Tr my=".8rem" pl="0px" color="gray.400" >
                 <Th pl="0px" borderColor={borderColor} color="gray.400" >
@@ -60,7 +66,10 @@ function Tables() {
                 );
               })}
             </Tbody>
-          </Table>
+          </Table> */}
+
+
+
         </CardBody>
       </Card>
       <Card

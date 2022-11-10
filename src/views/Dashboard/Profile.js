@@ -37,6 +37,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { IoDocumentsSharp } from "react-icons/io5";
+import { useMoralis } from "react-moralis";
 
 function Profile() {
   const { colorMode } = useColorMode();
@@ -47,6 +48,11 @@ function Profile() {
   const bgProfile = useColorModeValue("hsla(0,0%,100%,.8)", "navy.800");
   const borderProfileColor = useColorModeValue("white", "transparent");
   const emailColor = useColorModeValue("gray.400", "gray.300");
+
+  const { Moralis, account, isAuthenticated, } = useMoralis();
+
+  const currentUser = Moralis.User.current();
+  console.log({ currentUser })
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px", lg: "100px" }}>
@@ -82,18 +88,19 @@ function Profile() {
               color={textColor}
               fontWeight='bold'
               ms={{ sm: "8px", md: "0px" }}>
-              Alec Thompson
+              {currentUser.attributes.fullName}
+
             </Text>
             <Text
               fontSize={{ sm: "sm", md: "md" }}
               color={emailColor}
               fontWeight='semibold'>
-              alec@simmmple.com
+              {currentUser.attributes.email}
             </Text>
           </Flex>
         </Flex>
         <Flex
-          direction={{ sm: "column", lg: "row" }}
+          direction={{ sm: "column", lg: "column" }}
           w={{ sm: "100%", md: "50%", lg: "auto" }}>
           <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
@@ -103,11 +110,12 @@ function Profile() {
               borderRadius='8px'
               justifyContent='center'
               py='10px'
+              px='1rem'
               boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.06)'
               cursor='pointer'>
               <Icon color={textColor} as={FaCube} me='6px' />
               <Text fontSize='xs' color={textColor} fontWeight='bold'>
-                OVERVIEW
+                EDIT
               </Text>
             </Flex>
           </Button>
@@ -126,16 +134,20 @@ function Profile() {
               </Text>
             </Flex>
           </Button> */}
-          <Button p='0px' bg='transparent' variant='no-effects'>
+          <Button p='0px' bg='transparent' variant='no-effects' my={"1rem"}>
             <Flex
               align='center'
-              w={{ lg: "135px" }}
-              borderRadius='15px'
+              w={{ sm: "100%", lg: "auto" }}
+              bg={colorMode === "dark" ? "navy.900" : "navy.500"}
+              borderRadius='8px'
               justifyContent='center'
               py='10px'
+              px='1rem'
+
+              boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.06)'
               cursor='pointer'>
-              <Icon color={textColor} as={FaFileAlt} me='6px' />
-              <Text fontSize='xs' color={textColor} fontWeight='bold' flexWrap={true}>
+              <Icon color={"white"} as={FaFileAlt} me='6px' />
+              <Text fontSize='xs' color={"white"} fontWeight='bold' flexWrap={true}>
                 Document FXWinning
               </Text>
             </Flex>
@@ -153,7 +165,7 @@ function Profile() {
           <CardBody px='5px'>
             <Flex direction='column'>
               <Text fontSize='sm' color='gray.400' fontWeight='600' mb='20px'>
-                ACCOUNT
+                REFERRAL PROGRAM
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -162,7 +174,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Email me when someone follows me
+                  Email me when someone buys a license
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -172,25 +184,16 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Email me when someone answers on my post
+                  SMS me when someone buys a license
                 </Text>
               </Flex>
-              <Flex align='center' mb='20px'>
-                <Switch colorScheme='navy' me='10px' />
-                <Text
-                  noOfLines={1}
-                  fontSize='md'
-                  color='gray.400'
-                  fontWeight='400'>
-                  Email me when someone mentions me
-                </Text>
-              </Flex>
+
               <Text
                 fontSize='sm'
                 color='gray.400'
                 fontWeight='600'
                 m='6px 0px 20px 0px'>
-                APPLICATION
+                TRADING ROBOTS
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -233,12 +236,12 @@ function Profile() {
           </CardHeader>
           <CardBody px='5px'>
             <Flex direction='column'>
-              <Text fontSize='md' color='gray.400' fontWeight='400' mb='30px'>
+              {/* <Text fontSize='md' color='gray.400' fontWeight='400' mb='30px'>
                 Hi, I’m Esthera Jackson, Decisions: If you can’t decide, the
                 answer is no. If two equally difficult paths, choose the one
                 more painful in the short term (pain avoidance is creating an
                 illusion of equality).
-              </Text>
+              </Text> */}
               <Flex align='center' mb='18px'>
                 <Text
                   fontSize='md'
@@ -248,7 +251,8 @@ function Profile() {
                   Full Name:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  Esthera Jackson
+                  {currentUser.attributes.fullName}
+
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -260,7 +264,7 @@ function Profile() {
                   Mobile:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  (44) 123 1234 123
+                  +{currentUser.attributes.phone}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -272,7 +276,7 @@ function Profile() {
                   Email:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  esthera@simmmple.com
+                  {currentUser.attributes.email}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -284,7 +288,7 @@ function Profile() {
                   Location:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  United States
+                  {currentUser.attributes.country}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -293,35 +297,12 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Social Media:{" "}
+                  License Active:{" "}
                 </Text>
-                <Flex>
-                  <Link
-                    href='#'
-                    color={iconColor}
-                    fontSize='lg'
-                    me='10px'
-                    _hover={{ color: "navy.500" }}>
-                    <Icon as={FaFacebook} />
-                  </Link>
-                  <Link
-                    href='#'
-                    color={iconColor}
-                    fontSize='lg'
-                    me='10px'
-                    _hover={{ color: "navy.500" }}>
-                    <Icon as={FaInstagram} />
-                  </Link>
-                  <Link
-                    href='https://twitter.com/tipscorporativo'
-                    color={iconColor}
-                    fontSize='lg'
-                    me='10px'
-                    target="_blank"
-                    _hover={{ color: "navy.500" }}>
-                    <Icon as={FaTwitter} />
-                  </Link>
-                </Flex>
+                <Text fontSize='md' color='gray.400' fontWeight='400'>
+                  {currentUser.attributes.isActive.toString() == "true" && "True"}
+                  {currentUser.attributes.isActive.toString() == "false" && "False"}
+                </Text>
               </Flex>
             </Flex>
           </CardBody>

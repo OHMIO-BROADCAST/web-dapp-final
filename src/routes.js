@@ -58,7 +58,7 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
-    name: "ROBOT LICENSES",
+    name: "WITH CRYPTO",
     category: "robots",
     state: "pageCollapse",
     views: [
@@ -70,21 +70,36 @@ var dashRoutes = [
         layout: "/admin",
       },
       {
-        path: "/my-refeers",
+        path: "/my-refeers-crypto",
         name: "Refeers",
         icon: <StatsIcon color='inherit' />,
         component: Tables,
         layout: "/admin",
-      },
+      }
+    ]
+  },
+  {
+    name: "WITH FIAT",
+    category: "robots",
+    state: "pageCollapse",
+    views: [
       {
         path: "/purchase-payzen",
-        name: "Purchase PayZen",
+        name: "Purchase",
         icon: <CreditIcon color='inherit' />,
         component: Signals,
         layout: "/admin",
       },
+      {
+        path: "/my-refeers-fiat",
+        name: "Refeers",
+        icon: <StatsIcon color='inherit' />,
+        component: Tables,
+        layout: "/admin",
+      }
     ]
-  },/* 
+  },
+  /* 
   {
     name: "INDEPENDET DISTRIBUTOR",
     category: "distributor",
@@ -120,17 +135,17 @@ var dashRoutes = [
       } */]
   },
   {
-    path: "/billing",
-    name: "Billing",
-    icon: <BillIcon color='inherit' />,
-    component: Billing,
-    layout: "/admin",
-  },
-  {
     name: "ACCOUNT",
     category: "account",
     state: "pageCollapse",
     views: [
+      {
+        path: "/billing",
+        name: "Billing",
+        icon: <BillIcon color='inherit' />,
+        component: Billing,
+        layout: "/admin",
+      },
       {
         path: "/profile",
         name: "Profile",

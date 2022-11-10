@@ -126,6 +126,8 @@ export default function Dashboard(props) {
 
   const [address, setAddress] = useState();
 
+  const currentUser = Moralis.User.current();
+
   useEffect(() => {
     setAddress((isAuthenticated && account));
   }, [account, isAuthenticated]);

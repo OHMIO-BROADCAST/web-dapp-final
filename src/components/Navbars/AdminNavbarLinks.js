@@ -19,7 +19,6 @@ import { useMoralis } from "react-moralis";
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-
 // Custom Icons
 import { ArgonLogoDark, ArgonLogoLight, ChakraLogoDark, ChakraLogoLight, ProfileIcon, SettingsIcon } from "components/Icons/Icons";
 // Custom Components
@@ -27,7 +26,7 @@ import { ItemContent } from "components/Menu/ItemContent";
 import { SearchBar } from "components/Navbars/SearchBar/SearchBar";
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes.js";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
@@ -48,6 +47,8 @@ export default function HeaderLinks(props) {
   } = props;
 
   const { Moralis, isAuthenticated, account } = useMoralis();
+
+  const history = useHistory();
 
   const { colorMode } = useColorMode();
 
@@ -89,16 +90,30 @@ export default function HeaderLinks(props) {
       /> */}
       {/* <NativeBalance /> */}
 
-      <Account me='16px' />
-      <ExternalLinkIcon
-        cursor='pointer'
-        ms={{ base: "16px", xl: "1rem" }}
-        me='16px'
+      {/* <Account me='16px' /> */}
+      <Flex
+        flexDirection={"row"}
+        justify="center"
+        justifyContent={"center"}
+        alignItems="center"
+        bg={"white"}
+        px="1rem"
+        style={{ borderRadius: "50" }}
         onClick={props.onOpen}
-        color={navbarIcon}
-        w='18px'
-        h='18px'
-      />
+
+      >
+        <Text color={"#876db2"} fontWeight={"bold"}>
+          Refer and earn
+        </Text>
+        <ExternalLinkIcon
+          cursor='pointer'
+          ms={{ base: "0.5rem", xl: "0.5rem" }}
+          onClick={props.onOpen}
+          color={"#876db2"}
+          w='18px'
+          h='18px'
+        />
+      </Flex>
       <Menu>
         <MenuButton marginLeft={'1rem'}>
           <BellIcon color={navbarIcon} w='18px' h='18px' />
@@ -109,7 +124,7 @@ export default function HeaderLinks(props) {
               <ItemContent
                 time='13 minutes ago'
                 info='from Alicia'
-                boldInfo='New Message'
+                boldInfo='New Crypto Refeer'
                 aName='Alicia'
                 aSrc={avatar1}
               />
@@ -117,8 +132,8 @@ export default function HeaderLinks(props) {
             <MenuItem borderRadius='8px' mb='10px'>
               <ItemContent
                 time='2 days ago'
-                info='by Josh Henry'
-                boldInfo='New Album'
+                info='from Josh Henry'
+                boldInfo='New FIAT Refeer'
                 aName='Josh Henry'
                 aSrc={avatar2}
               />
@@ -128,7 +143,7 @@ export default function HeaderLinks(props) {
                 time='3 days ago'
                 info='Payment succesfully completed!'
                 boldInfo=''
-                aName='Kara'
+                aName='Freedom LIVE Team'
                 aSrc={avatar3}
               />
             </MenuItem>
@@ -159,7 +174,8 @@ export default function HeaderLinks(props) {
               onClick={async () => {
                 await Moralis.User.logOut()
                   .then(() => {
-                    Swal.fire("Log Out Success", '', 'info')
+                    Swal.fire("Log Out Success", '', 'info').then(() => history.push("/auth/signin"))
+
                   });
                 console.log('User Logout')
                 window.location.reload()

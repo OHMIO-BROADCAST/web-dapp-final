@@ -9,6 +9,7 @@ import ContractMethods from "./ContractMethods";
 import contractInfo from "contracts/LicencseToken.json";
 import { Button, Spinner } from "@chakra-ui/react";
 import Web3 from "web3";
+import Account from "components/Account/Account";
 
 
 export default function OriginalContract() {
@@ -178,6 +179,7 @@ export default function OriginalContract() {
                     width: "70vw",
                 }}
             >
+                <Account />
                 <Card
                     title={
                         <div

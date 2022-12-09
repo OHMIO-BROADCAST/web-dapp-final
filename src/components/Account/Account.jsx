@@ -86,7 +86,7 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId, chainId: 0x89, signingMessage: 'Log In into LIVE Freedom Descentralized Application' });
+                    await authenticate({ provider: connectorId, chainId: 0x89, signingMessage: 'Log In into BMaker Pro Descentralized Application' });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {

@@ -30,21 +30,21 @@ export function SidebarHelp(props) {
       <Image src={SidebarHelpImage} w='250px' h="auto" />
       <Flex direction='column' textAlign='center'>
         <Text fontSize='14px' color={textColor} fontWeight='bold'>
-          FREEDOM Wallet
+          BMaker Signals App
         </Text>
         <Text fontSize='12px' color='gray.500'>
-          Please check our app.
+          Tu nueva herramienta.
         </Text>
       </Flex>
       <Link href='https://play.google.com/' target={"_blank"} minW='100%'>
         <Button variant='primary' minW='100%'>
-          Download Android
+          Descargar Android
         </Button>
       </Link>
       <Link onClick={() => {
         Swal.fire({
-          text: 'Stay tune, currently only supports iOS',
-          title: 'Coming soon!',
+          text: 'Mantente al dia, por ahora solo soportamos Android',
+          title: 'Muy pronto!',
           icon: 'success'
         })
       }}
@@ -54,7 +54,7 @@ export function SidebarHelp(props) {
           variant={colorMode === "light" ? 'dark' : "navy"}
           minW='100%'
           mb={window.innerWidth <= 1024 && "12px"}>
-          Download iOS
+          Descargar iOS
         </Button>
 
       </Link>

@@ -27,15 +27,16 @@ export default function Footer(props) {
         <Text as='span'>
           {document.documentElement.dir === "rtl"
             ? " مصنوع من ❤️ بواسطة"
-            : "Robot trading licenses on "}
+            : "Best Market Signals | "}
         </Text>
         <Link
           color='navy.400'
-          href='https://www.fxwinning.pro/'
-          target='_blank'>
+          href='https://bmaker.pro/'
+          target='_blank'
+          style={{ textDecoration: 'underline' }}>
           {document.documentElement.dir === "rtl"
             ? " توقيت الإبداعية"
-            : "FX Winning | Professional Trading "}
+            : "We help you to get financial freedom."}
         </Link>
 
       </Text>

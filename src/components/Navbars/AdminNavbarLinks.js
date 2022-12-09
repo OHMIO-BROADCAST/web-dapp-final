@@ -19,6 +19,7 @@ import { useMoralis } from "react-moralis";
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
+
 // Custom Icons
 import { ArgonLogoDark, ArgonLogoLight, ChakraLogoDark, ChakraLogoLight, ProfileIcon, SettingsIcon } from "components/Icons/Icons";
 // Custom Components
@@ -34,6 +35,7 @@ import TokenPrice from "components/TokenPrice";
 import NativeBalance from "components/NativeBalance";
 import { ItemContentProfile } from "components/Menu/ItemContentProfile";
 import Swal from "sweetalert2";
+import { FaCoins } from "react-icons/fa";
 
 export default function HeaderLinks(props) {
   const {
@@ -91,6 +93,23 @@ export default function HeaderLinks(props) {
       {/* <NativeBalance /> */}
 
       {/* <Account me='16px' /> */}
+      {/* <Flex
+        flexDirection={"row"}
+        justify="center"
+        justifyContent={"center"}
+        alignItems="center"
+        bg={"transparent"}
+        px="1rem"
+        style={{ borderRadius: "50" }}
+        onClick={props.onOpen}
+
+      >
+        <Text color={"white"} fontWeight={"bold"}>
+          Total Accumulated: $350 USD
+        </Text>
+        <FaCoins size={14} color="#fff" style={{ marginLeft: '0.5rem' }} />
+
+      </Flex>
       <Flex
         flexDirection={"row"}
         justify="center"
@@ -113,8 +132,8 @@ export default function HeaderLinks(props) {
           w='18px'
           h='18px'
         />
-      </Flex>
-      <Menu>
+      </Flex> */}
+      {/* <Menu>
         <MenuButton marginLeft={'1rem'}>
           <BellIcon color={navbarIcon} w='18px' h='18px' />
         </MenuButton>
@@ -149,27 +168,27 @@ export default function HeaderLinks(props) {
             </MenuItem>
           </Flex>
         </MenuList>
-      </Menu>
+      </Menu> */}
       <Menu>
         <MenuButton marginLeft={'1rem'}>
           <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
         </MenuButton>
         <MenuList p='16px 8px' bg={menuBg}>
           <Flex flexDirection='column'>
-            {/* <MenuItem borderRadius='8px' mb='10px'>
+            <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Profile'
                 aSrc={avatar1}
                 aRoute={"/admin/profile"}
               />
-            </MenuItem> */}
-            <MenuItem borderRadius='8px' mb='10px'>
+            </MenuItem>
+            {/*  <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Settings'
                 aSrc={avatar2}
                 aRoute={"/admin/profile"}
               />
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem borderRadius='8px'
               onClick={async () => {
                 await Moralis.User.logOut()

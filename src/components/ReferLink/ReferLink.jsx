@@ -19,7 +19,7 @@ function ReferLink() {
         <a className="link-button" href="#" ref={buttonCopy} role="button" onClick={() => ClickCopyRefer()}>
             <span className="refer-link">
                 {" "}
-                https://app.livefreedom.org/#/distributor/{"{"}username{"}"}
+                https://app.bmaker.pro/#/invite/{"{"}username{"}"}
             </span>
             <div className="icon" ref={iconCopy} >
                 <div className="copy-link">

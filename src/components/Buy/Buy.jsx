@@ -112,7 +112,7 @@ function Buy() {
             defaultCrypto={"USDC"}
             isAddressEditable={true}
             defaultAmount={495}
-            redirectURL={"https://livefreedom.org"}
+            redirectURL={"https://bmaker.pro"}
           />
 
         </div>

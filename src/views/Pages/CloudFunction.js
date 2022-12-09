@@ -3,7 +3,7 @@ Moralis.Cloud.beforeSave("NewRefeer", async (request) => {
     const confirmed = request.object.get("confirmed");
     const amount = request.object.get("amount");
     const from = request.object.get("from");
-    let msg = `New Refeer of ${amount} USDT, from ${from}!, Thanks for being part of livefreedom.org!`;
+    let msg = `New Refeer of ${amount} USDT, from ${from}!, Thanks for being part of bmaker.pro!`;
 
     if (confirmed) {
 

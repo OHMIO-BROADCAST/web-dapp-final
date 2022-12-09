@@ -155,7 +155,7 @@ function SignUp() {
           mt='10px'
           mb='26px'
           w={{ base: "90%", sm: "60%", lg: "40%", xl: "333px" }}>
-          Create new FREEDOM account. Please use your <text style={{ textDecoration: 'underline' }}>Broker</text> email, this is very important in order to verify your identity.
+          Create new BMaker account. Please use your <text style={{ textDecoration: 'underline' }}>Broker</text> email, this is very important in order to verify your identity.
         </Text>
       </Flex>
       <Flex alignItems='center' justifyContent='center' mb='60px' mt='20px'>

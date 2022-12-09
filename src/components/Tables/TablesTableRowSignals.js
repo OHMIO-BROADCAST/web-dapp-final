@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { AiFillDelete } from 'react-icons/ai'
 
-function TablesTableRow(props) {
+function TablesTableRowSignals(props) {
   const { logo, name, email, phone_number, username, referredBy, forexSubscription, totalReward, totalReferred, hasPurchasedSomething, expoToken, date_register, isLast } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
@@ -44,7 +44,7 @@ function TablesTableRow(props) {
         </Flex>
       </Td>
 
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Flex direction="column">
           <Text fontSize="md" color={textColor} fontWeight="bold">
             {username}
@@ -54,17 +54,17 @@ function TablesTableRow(props) {
           </Text>
         </Flex>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {date_register}
         </Text>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {expoToken}
         </Text>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Badge
           bg={forexSubscription === true ? "green.400" : bgStatus}
           color={forexSubscription === true ? "white" : "white"}
@@ -75,7 +75,7 @@ function TablesTableRow(props) {
           {forexSubscription == true ? "Activo" : "Inactivo"}
         </Badge>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Badge
           bg={totalReward === true ? "green.400" : bgStatus}
           color={totalReward === true ? "white" : "white"}
@@ -86,7 +86,7 @@ function TablesTableRow(props) {
           {'$ ' + totalReward.toString()}
         </Badge>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Badge
           bg={forexSubscription === true ? "orange.400" : bgStatus}
           color={forexSubscription === true ? "white" : "white"}
@@ -97,18 +97,18 @@ function TablesTableRow(props) {
           {totalReferred}
         </Badge>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem" style={{ justifyContent: 'center', display: 'flex', height: '100%' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
+        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {hasPurchasedSomething == false ? "NO" : "SI"}
         </Text>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {referredBy}
         </Text>
       </Td>
 
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Button p="0px" bg="transparent" variant="no-effects">
           <AiFillDelete
             size={22}
@@ -120,4 +120,4 @@ function TablesTableRow(props) {
   );
 }
 
-export default TablesTableRow;
+export default TablesTableRowSignals;

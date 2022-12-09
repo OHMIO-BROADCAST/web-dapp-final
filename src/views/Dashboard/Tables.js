@@ -5,6 +5,7 @@ import {
   Tbody,
   Text,
   Th,
+  Button,
   Thead,
   Tr,
   useColorModeValue
@@ -19,6 +20,7 @@ import ThreeView from 'components/Spiral/Treeview.js'
 
 import React from "react";
 import { tablesProjectData, tablesTableData } from "variables/general";
+import { HiOutlineRefresh } from 'react-icons/hi'
 
 function Tables() {
   const textColor = useColorModeValue("gray.700", "white");
@@ -29,23 +31,28 @@ function Tables() {
       <Card overflowX={{ sm: "scroll", xl: "hidden" }} pb="0px">
         <CardHeader p="6px 0px 22px 0px">
           <Text fontSize="xl" color={textColor} fontWeight="bold">
-            Refeers (License 600 USD)
+            Todos los usuarios
           </Text>
         </CardHeader>
         <CardBody style={{ height: '60rem' }}>
 
-          <ThreeView />
-
-
-          {/* <Table variant="simple" color={textColor}>
+          <Table variant="simple" color={textColor}>
             <Thead>
+              <div style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
+                <Button leftIcon={<HiOutlineRefresh />}>Actualizar</Button>
+              </div>
               <Tr my=".8rem" pl="0px" color="gray.400" >
                 <Th pl="0px" borderColor={borderColor} color="gray.400" >
-                  Author
+                  Nombre / Email
                 </Th>
-                <Th borderColor={borderColor} color="gray.400" >Function</Th>
-                <Th borderColor={borderColor} color="gray.400" >Status</Th>
-                <Th borderColor={borderColor} color="gray.400" >Employed</Th>
+                <Th borderColor={borderColor} color="gray.400" >Usuario / Telefono</Th>
+                <Th borderColor={borderColor} color="gray.400" >Registrado</Th>
+                <Th borderColor={borderColor} color="gray.400" >Notificaciones</Th>
+                <Th borderColor={borderColor} color="gray.400" >Suscripción Forex</Th>
+                <Th borderColor={borderColor} color="gra y.400" >Total Ganado</Th>
+                <Th borderColor={borderColor} color="gray.400" >Total Referidos</Th>
+                <Th borderColor={borderColor} color="gray.400" >Ha comprado algo?</Th>
+                <Th borderColor={borderColor} color="gray.400" >Referido Por</Th>
                 <Th borderColor={borderColor}></Th>
               </Tr>
             </Thead>
@@ -56,56 +63,15 @@ function Tables() {
                     name={row.name}
                     logo={row.logo}
                     email={row.email}
-                    subdomain={row.subdomain}
-                    domain={row.domain}
-                    status={row.status}
-                    date={row.date}
-                    isLast={index === arr.length - 1 ? true : false}
-                    key={index}
-                  />
-                );
-              })}
-            </Tbody>
-          </Table> */}
-
-
-
-        </CardBody>
-      </Card>
-      <Card
-        my="22px"
-        overflowX={{ sm: "scroll", xl: "hidden" }}
-        pb="0px"
-      >
-        <CardHeader p="6px 0px 22px 0px">
-          <Flex direction="column">
-            <Text fontSize="lg" color={textColor} fontWeight="bold" pb=".5rem">
-              Projects Table
-            </Text>
-          </Flex>
-        </CardHeader>
-        <CardBody>
-          <Table variant="simple" color={textColor}>
-            <Thead>
-              <Tr my=".8rem" pl="0px">
-                <Th pl="0px" color="gray.400" borderColor={borderColor}>
-                  Companies
-                </Th>
-                <Th color="gray.400" borderColor={borderColor}>Budget</Th>
-                <Th color="gray.400" borderColor={borderColor}>Status</Th>
-                <Th color="gray.400" borderColor={borderColor}>Completion</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {tablesProjectData.map((row, index, arr) => {
-                return (
-                  <TablesProjectRow
-                    name={row.name}
-                    logo={row.logo}
-                    status={row.status}
-                    budget={row.budget}
-                    progression={row.progression}
+                    phone_number={row.phone_number}
+                    username={row.username}
+                    expoToken={row.expoToken}
+                    forexSubscription={row.forexSubscription}
+                    totalReward={row.totalReward}
+                    totalReferred={row.totalReferred}
+                    hasPurchasedSomething={row.hasPurchasedSomething}
+                    referredBy={row.referredBy}
+                    date_register={row.date_register}
                     isLast={index === arr.length - 1 ? true : false}
                     key={index}
                   />
@@ -113,8 +79,12 @@ function Tables() {
               })}
             </Tbody>
           </Table>
+
+
+
         </CardBody>
       </Card>
+
     </Flex>
   );
 }

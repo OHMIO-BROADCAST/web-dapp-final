@@ -15,12 +15,6 @@ export const connectors = [
     priority: 1,
   },
   {
-    title: "FREEDOM Wallet",
-    icon: TIPSConnect,
-    connectorId: "walletconnect",
-    priority: 2,
-  },
-  {
     title: "WalletConnect",
     icon: WalletConnect,
     connectorId: "walletconnect",

@@ -8,62 +8,145 @@ import {
   Icon,
   Button,
   useColorModeValue,
+  Badge,
+  Image,
 } from "@chakra-ui/react";
 import { FaEllipsisV } from "react-icons/fa";
+import { Tooltip } from '@chakra-ui/react'
 
 function DashboardTableRow(props) {
-  const { logo, name, status, budget, progression, isLast } = props;
+  const { logo, isLast, id,
+    title,
+    description,
+    timestamp,
+    type,
+    pair,
+    price,
+    time12h,
+    date,
+    position,
+    isManual } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
     <Tr>
-      <Td minWidth={{ sm: "250px" }} pl="0px" borderColor={borderColor} borderBottom={isLast ? "none" : null}>
+      <Td minWidth={{ sm: "100px" }} pl="0px" borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Flex alignItems="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Icon as={logo} h={"24px"} w={"24px"} me="18px" />
+
+          {
+            pair.toLowerCase() == 'audcad' &&
+            <Tooltip
+              hasArrow
+              label={"Identificador: " + id}
+              fontSize='sm'
+            >
+              <Image
+                src={
+                  require(`../../assets/img/pairs/audcad.png`)
+                }
+                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+              /></Tooltip>
+          }
+
+          {
+            pair.toLowerCase() == 'usdcad' &&
+            <Image
+              src={
+                require(`../../assets/img/pairs/usdcad.png`)
+              }
+              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+            />
+          }
+
+          {
+            pair.toLowerCase() == 'nzdcad' &&
+            <Image
+              src={
+                require(`../../assets/img/pairs/nzdcad.png`)
+              }
+              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+            />
+          }
+
+          {
+            pair.toLowerCase() == 'eurusd' &&
+            <Image
+              src={
+                require(`../../assets/img/pairs/eurusd.png`)
+              }
+              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+            />
+          }
+
+          {
+            pair.toLowerCase() == 'cadchf' &&
+            <Image
+              src={
+                require(`../../assets/img/pairs/cadchf.png`)
+              }
+              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+            />
+          }
           <Text
             fontSize="md"
             color={titleColor}
             fontWeight="bold"
             minWidth="100%"
           >
-            {name}
+            {pair.toUpperCase()}
           </Text>
         </Flex>
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {budget}
+          @{price}
         </Text>
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {status}
+          {time12h}
         </Text>
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
-        <Flex direction="column">
-          <Text
-            fontSize="md"
-            color="navy.500"
-            fontWeight="bold"
-            pb=".2rem"
-          >{`${progression}%`}</Text>
-          <Progress
-            colorScheme="navy"
-            size="xs"
-            value={progression}
-            borderRadius="15px"
-          />
-        </Flex>
-      </Td >
+        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
+          {date}
+        </Text>
+      </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
+        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
+          {type}
+        </Text>
+      </Td>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+        <Badge
+          bg={position == "Buy" ? "green.400" : "red.400"}
+          color={position == "Buy" ? "white" : "white"}
+          fontSize="16px"
+          p="3px 10px"
+          borderRadius="8px"
+        >
+          {position == "Buy" ? "Comprar" : "Vender"}
+        </Badge>
+      </Td>
+      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+        <Badge
+          bg={isManual === true ? "black.400" : "yellow.400"}
+          color={isManual === true ? "white" : "white"}
+          fontSize="16px"
+          p="3px 10px"
+          borderRadius="8px"
+        >
+          {isManual == true ? "Manual" : "Automática"}
+        </Badge>
+      </Td>
+      {/* <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
         <Button p="0px" bg="transparent" variant="no-effects">
           <Icon as={FaEllipsisV} color="gray.400" cursor="pointer" />
         </Button>
-      </Td>
-    </Tr>
+      </Td> */}
+    </Tr >
   );
 }
 

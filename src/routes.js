@@ -48,6 +48,10 @@ import {
 import Buy from 'components/Buy';
 import Distributor from 'components/Distributor/Distributor';
 import Signals from 'components/Signals/Signals';
+import TablesSignals from 'views/Dashboard/TablesSignals';
+import Manual from 'views/Dashboard/Manual';
+
+
 
 var dashRoutes = [
   {
@@ -58,97 +62,55 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
-    name: "WITH CRYPTO",
+    name: "USUARIOS",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/contract",
-        name: "Purchase",
+        name: "Todos",
         icon: <RocketIcon color='inherit' />,
-        component: Contract,
+        component: Tables,
         layout: "/admin",
       },
-      {
+      /* {
         path: "/my-refeers-crypto",
-        name: "Refeers",
+        name: "Referidos",
         icon: <StatsIcon color='inherit' />,
         component: Tables,
         layout: "/admin",
-      }
+      } */
     ]
   },
   {
-    name: "WITH FIAT",
+    name: "SEÑALES",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/purchase-payzen",
-        name: "Purchase",
+        name: "Todas",
         icon: <CreditIcon color='inherit' />,
-        component: Signals,
+        component: TablesSignals,
         layout: "/admin",
       },
       {
         path: "/my-refeers-fiat",
-        name: "Refeers",
+        name: "Modo Manual",
         icon: <StatsIcon color='inherit' />,
-        component: Tables,
+        component: Manual,
         layout: "/admin",
       }
     ]
   },
-  /* 
   {
-    name: "INDEPENDET DISTRIBUTOR",
-    category: "distributor",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/distributors",
-        name: "My Refeer Link",
-        icon: <RocketIcon color='inherit' />,
-        component: Distributor,
-        layout: "/admin",
-      }
-    ]
-  }, */
-  {
-    name: "CRYPTO FUNCTIONS",
+    name: "Cuenta",
     category: "account",
     state: "pageCollapse",
     views: [
-      {
-        path: "/buy-crypto",
-        name: "Buy Crypto",
-        icon: <CreditIcon color='inherit' />,
-        component: Buy,
-        layout: "/admin",
-      },
-      /* {
-        path: "/balances",
-        name: "Balances",
-        icon: <BalanceIcon color='inherit' />,
-        component: ERC20Balance,
-        layout: "/admin",
-      } */]
-  },
-  {
-    name: "ACCOUNT",
-    category: "account",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/billing",
-        name: "Billing",
-        icon: <BillIcon color='inherit' />,
-        component: Billing,
-        layout: "/admin",
-      },
       {
         path: "/profile",
-        name: "Profile",
+        name: "Perfil",
         rtlName: "لوحة القيادة",
         icon: <PersonIcon color='inherit' />,
         secondaryNavbar: true,

@@ -58,6 +58,15 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
+"@aws-amplify/cli@^10.5.2":
+  version "10.5.2"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cli/-/cli-10.5.2.tgz#824d17922ade714ad2e349613cb9ef5db25eb963"
+  integrity sha512-TXFifMFNowOQQ+boWWNZqMBh8oob/8sPJJANu2X0KK/FJPt2f864PeaR/NiivU47fv71FJkiNYbOX1ty60jvpQ==
+  dependencies:
+    axios "^0.26.0"
+    rimraf "^3.0.2"
+    tar-stream "^2.2.0"
+
 "@babel/code-frame@7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -5655,7 +5664,7 @@ axe-core@^4.4.3:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.3.tgz#11c74d23d5013c0fa5d183796729bc3482bd2f6f"
   integrity sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==
 
-axios@0.26.1:
+axios@0.26.1, axios@^0.26.0:
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
   integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==

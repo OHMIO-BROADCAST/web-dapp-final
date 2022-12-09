@@ -106,7 +106,7 @@ export default function Dashboard() {
               alignItems: 'center'
             }}
           >
-            <Text>Please connect Wallet</Text>
+            <Text>Home</Text>
           </div>
 
         </Card>

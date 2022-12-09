@@ -57,7 +57,7 @@ export default function Configurator(props) {
         <DrawerContent bg={bgDrawer}>
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
-            <Text fontSize="xl" fontWeight="bold" mt="16px" style={{ color: '#22589f' }}>
+            <Text fontSize="xl" fontWeight="bold" mt="16px" style={{ color: '#F9AE40' }}>
               MY REFER LINKS
             </Text>
 
@@ -71,7 +71,7 @@ export default function Configurator(props) {
                 alignItems="center"
                 mb="1rem"
               >
-                <Text fontSize="md" fontWeight="600" mb="4px" style={{ color: '#22589f' }}>
+                <Text fontSize="md" fontWeight="600" mb="4px" style={{ color: '#F9AE40' }}>
                   GENERAL LINK
                 </Text>
               </Flex>
@@ -92,7 +92,7 @@ export default function Configurator(props) {
 
               <Box mt="1rem">
                 <Box w="100%">
-                  <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#22589f' }}>
+                  <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#F9AE40' }}>
                     These are another social options
                   </Text>
                   <Flex

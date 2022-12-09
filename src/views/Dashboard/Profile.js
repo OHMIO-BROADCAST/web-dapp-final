@@ -2,6 +2,7 @@
 import {
   Avatar,
   AvatarGroup,
+  Badge,
   Box,
   Button,
   Flex,
@@ -18,7 +19,7 @@ import {
 import avatar2 from "assets/img/avatars/avatar2.png";
 import avatar3 from "assets/img/avatars/avatar3.png";
 import avatar4 from "assets/img/avatars/avatar4.png";
-import avatar5 from "assets/img/avatars/avatar5.png";
+import avatar5 from "assets/img/avatars/user.png";
 import avatar6 from "assets/img/avatars/avatar6.png";
 import ImageArchitect1 from "assets/img/ImageArchitect1.png";
 import ImageArchitect2 from "assets/img/ImageArchitect2.png";
@@ -62,7 +63,7 @@ function Profile() {
         maxH='330px'
         justifyContent={{ sm: "center", md: "space-between" }}
         align='center'
-        backdropFilter='blur(21px)'
+        backdropFilter='blur(1px)'
         boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.02)'
         border='1.5px solid'
         borderColor={borderProfileColor}
@@ -80,7 +81,7 @@ function Profile() {
             src={avatar5}
             w='80px'
             h='80px'
-            borderRadius='15px'
+            borderRadius='100px'
           />
           <Flex direction='column' maxWidth='100%' my={{ sm: "14px" }}>
             <Text
@@ -148,7 +149,7 @@ function Profile() {
               cursor='pointer'>
               <Icon color={"white"} as={FaFileAlt} me='6px' />
               <Text fontSize='xs' color={"white"} fontWeight='bold' flexWrap={true}>
-                Document FXWinning
+                Ver Tutoriales
               </Text>
             </Flex>
           </Button>
@@ -159,13 +160,13 @@ function Profile() {
         <Card p='16px'>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
-              Platform Settings
+              Configuración de Plataforma
             </Text>
           </CardHeader>
           <CardBody px='5px'>
             <Flex direction='column'>
               <Text fontSize='sm' color='gray.400' fontWeight='600' mb='20px'>
-                REFERRAL PROGRAM
+                NOTIFICACIONES & SEÑALES
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -174,7 +175,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Email me when someone buys a license
+                  Notificaciones en App
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -184,7 +185,17 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  SMS me when someone buys a license
+                  Email
+                </Text>
+              </Flex>
+              <Flex align='center' mb='20px'>
+                <Switch colorScheme='navy' me='10px' />
+                <Text
+                  noOfLines={1}
+                  fontSize='md'
+                  color='gray.400'
+                  fontWeight='400'>
+                  SMS
                 </Text>
               </Flex>
 
@@ -193,7 +204,7 @@ function Profile() {
                 color='gray.400'
                 fontWeight='600'
                 m='6px 0px 20px 0px'>
-                TRADING ROBOTS
+                PROGRAMA DE REFERIDOS
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -202,7 +213,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  New launches and projects
+                  Email cuando haya referido a alguien
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -212,7 +223,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Monthly product changes
+                  SMS cuando haya referido a alguien
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -222,7 +233,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Subscribe to newsletter
+                  Suscripción a noticias
                 </Text>
               </Flex>
             </Flex>
@@ -231,7 +242,7 @@ function Profile() {
         <Card p='16px' my={{ sm: "24px", xl: "0px" }}>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
-              Profile Information
+              Información de Perfil
             </Text>
           </CardHeader>
           <CardBody px='5px'>
@@ -248,7 +259,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Full Name:{" "}
+                  Nombre Completo:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
                   {currentUser.attributes.fullName}
@@ -273,7 +284,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Email:{" "}
+                  Telefono:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
                   {currentUser.attributes.email}
@@ -285,7 +296,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Location:{" "}
+                  Locacion:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
                   {currentUser.attributes.country}
@@ -297,12 +308,17 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  License Active:{" "}
+                  Estado de suscripción:{" "}
                 </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  {currentUser.attributes.isActive.toString() == "true" && "True"}
-                  {currentUser.attributes.isActive.toString() == "false" && "False"}
-                </Text>
+                <Badge
+                  bg={currentUser.attributes.country === true ? "green.400" : "green.400"}
+                  color={currentUser.attributes.country === true ? "white" : "white"}
+                  fontSize="16px"
+                  p="3px 10px"
+                  borderRadius="8px"
+                >
+                  {(currentUser.attributes.country) == true ? "Activo" : "Inactivo"}
+                </Badge>
               </Flex>
             </Flex>
           </CardBody>

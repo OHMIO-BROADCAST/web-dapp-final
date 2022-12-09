@@ -1,9 +1,10 @@
 {
-  "name": "livefreedom",
-  "version": "0.2.0",
-  "homepage": "https://app.livefreedom.org/",
+  "name": "bmakerpro",
+  "version": "0.1.0",
+  "homepage": "https://app.bmaker.pro/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@aws-amplify/cli": "^10.5.2",
     "@chakra-ui/icons": "^1.0.14",
     "@chakra-ui/react": "^1.7.4",
     "@chakra-ui/theme-tools": "^1.1.9",

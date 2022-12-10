@@ -15,6 +15,10 @@ type Notification @model {
   isManual: Boolean!
   pair:String!
 }
+type Modo @model{
+  automatic: Boolean!
+  lastUpdate: String!
+}
 type User @model {
   id: ID!
   name: String!

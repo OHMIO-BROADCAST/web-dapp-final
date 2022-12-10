@@ -10,6 +10,7 @@ import {
   Table,
   Tbody,
   Text,
+  Box,
   Input,
   Th,
   Thead,
@@ -52,351 +53,358 @@ function Manual() {
 
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }} style={{ justifyContent: 'center', alignItems: 'center' }} >
-      <Flex direction={"row"} >
-        <Card overflowX={{ sm: "scroll", xl: "hidden" }} style={{ width: '40rem' }} pb="0px">
-          <CardHeader p="0px 0px 0px 0px">
-            <Flex direction="column">
-              <Text fontSize="xl" color={textColor} fontWeight="bold" pb=".5rem">
-                Enviar señal en MODO MANUAL
-              </Text>
-            </Flex>
-          </CardHeader>
-          <CardBody>
-            <Table variant="simple" color={textColor}>
-              <Thead>
+      <Flex direction={{ lg: "row", xl: "row", sm: 'column', md: 'column' }} display="flex"  >
+        <Flex style={{ justifyContent: 'center', alignItems: 'center' }} >
+          <Card overflowX={{ sm: "scroll", xl: "hidden" }} style={{ width: '40rem' }} pb="0px" >
+            <CardHeader p="0px 0px 0px 0px">
+              <Flex direction="column" w={{ sm: '100%' }}>
+                <Text fontSize="xl" color={textColor} fontWeight="bold" pb=".5rem">
+                  Enviar señal en MODO MANUAL
+                </Text>
+              </Flex>
+            </CardHeader>
+            <CardBody>
+              <Table variant="simple" color={textColor}>
+                <Thead>
 
-              </Thead>
-              <Tbody>
-                <Flex style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
-                  <Formik
-                    id="formik"
-                    innerRef={formRef}
-                    initialValues={{
-                      pair: '',
-                      type: '',
-                      price: '',
-                      position: ''
-                    }}
-                    validationSchema={Yup.object({
-                      pair: Yup.string()
-                        .required('Required'),
+                </Thead>
+                <Tbody>
+                  <Flex style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
+                    <Formik
+                      id="formik"
+                      innerRef={formRef}
+                      initialValues={{
+                        pair: '',
+                        type: '',
+                        price: '',
+                        position: ''
+                      }}
+                      validationSchema={Yup.object({
+                        pair: Yup.string()
+                          .required('Required'),
 
-                      type: Yup.string()
-                        .required('Required'),
+                        type: Yup.string()
+                          .required('Required'),
 
-                      price: Yup.number()
-                        .required('Required'),
+                        price: Yup.number()
+                          .required('Required'),
 
-                      position: Yup.string()
-                        .required('Required')
-
-
-                    })}
-                    onChange={(e) => { console.log(e) }}
-                    onSubmit={async (values, { setSubmitting, resetForm }) => {
-                      console.log('SUBMIT', values)
-                      /*  id: ID!
-                       title: String!*
-                       description: String!*
-                       timestamp: String!*
-                       type: String!*
-                       price: Float!*
-                       time12h: String!*
-                       date: String!*
-                       position: String!*
-                       isManual: Boolean*
-                       pair:String! */
-                      const timestamp = new Date().getTime();
-
-                      const today = new Date();
-                      let hours = today.getHours();
-                      const minute = today.getMinutes();
-                      hours = (hours % 12) || 12;
-                      var suffix = hours >= 12 ? "PM" : "AM";
-                      const time12h = ((hours + 11) % 12 + 1) + suffix;
-
-                      const yyyy = today.getFullYear();
-                      let mm = today.getMonth() + 1; // Months start at 0!
-                      let dd = today.getDate();
-
-                      if (dd < 10) dd = '0' + dd;
-                      if (mm < 10) mm = '0' + mm;
-
-                      const formattedToday = dd + '/' + mm + '/' + yyyy;
+                        position: Yup.string()
+                          .required('Required')
 
 
-                      signalToSend.set("pair", values.pair);
-                      signalToSend.set("type", values.type);
-                      signalToSend.set("price", values.price);
-                      signalToSend.set("position", values.position);
+                      })}
+                      onChange={(e) => { console.log(e) }}
+                      onSubmit={async (values, { setSubmitting, resetForm }) => {
+                        console.log('SUBMIT', values)
+                        /*  id: ID!
+                         title: String!*
+                         description: String!*
+                         timestamp: String!*
+                         type: String!*
+                         price: Float!*
+                         time12h: String!*
+                         date: String!*
+                         position: String!*
+                         isManual: Boolean*
+                         pair:String! */
+                        const timestamp = new Date().getTime();
 
-                      signalToSend.set("isManual", true);
+                        const today = new Date();
+                        let hours = today.getHours();
+                        const minute = today.getMinutes();
+                        hours = (hours % 12) || 12;
+                        var suffix = hours >= 12 ? "PM" : "AM";
+                        const time12h = ((hours + 11) % 12 + 1) + suffix;
 
-                      signalToSend.set("title", "values.title");
-                      signalToSend.set("description", "values.description");
-                      signalToSend.set("timestamp", timestamp);
-                      signalToSend.set("time12h", time12h);
-                      signalToSend.set("date", formattedToday);
+                        const yyyy = today.getFullYear();
+                        let mm = today.getMonth() + 1; // Months start at 0!
+                        let dd = today.getDate();
+
+                        if (dd < 10) dd = '0' + dd;
+                        if (mm < 10) mm = '0' + mm;
+
+                        const formattedToday = dd + '/' + mm + '/' + yyyy;
 
 
-                      console.log('SUBMIT SIGNAL FINAL:', signalToSend);
-                      ////*************************************** */
-                      try {
-                        const response = await signalToSend.signUp();
-                        // Hooray! Let them use the app now.
-                        console.log("REGISTER SUCCESSFUL", response)
-                        setSubmitting(false);
-                        Swal.fire({
-                          title: 'Señal enviada',
-                          text: 'Por favor revisa la app',
-                          icon: 'success',
-                          willClose: () => {
-                            resetForm()
+                        signalToSend.set("pair", values.pair);
+                        signalToSend.set("type", values.type);
+                        signalToSend.set("price", values.price);
+                        signalToSend.set("position", values.position);
+
+                        signalToSend.set("isManual", true);
+
+                        signalToSend.set("title", "values.title");
+                        signalToSend.set("description", "values.description");
+                        signalToSend.set("timestamp", timestamp);
+                        signalToSend.set("time12h", time12h);
+                        signalToSend.set("date", formattedToday);
+
+
+                        console.log('SUBMIT SIGNAL FINAL:', signalToSend);
+                        ////*************************************** */
+                        try {
+                          const response = await signalToSend.signUp();
+                          // Hooray! Let them use the app now.
+                          console.log("REGISTER SUCCESSFUL", response)
+                          setSubmitting(false);
+                          Swal.fire({
+                            title: 'Señal enviada',
+                            text: 'Por favor revisa la app',
+                            icon: 'success',
+                            willClose: () => {
+                              resetForm()
+                            }
                           }
+                          )
+
+                        } catch (error) {
+                          // Show the error message somewhere and let the user try again.
+                          const errorCode = error.code;
+                          const errorMessage = error.message;
+                          // ..
+                          setSubmitting(false);
+                          setShowSnackBar(true);
+                          setTypeSnackBar('error');
+                          setDescriptionSnackBar(errorMessage);
+                          Swal.fire('Revisa e intenta de nuevo', error.message, 'error')
+
                         }
-                        )
 
-                      } catch (error) {
-                        // Show the error message somewhere and let the user try again.
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        // ..
-                        setSubmitting(false);
-                        setShowSnackBar(true);
-                        setTypeSnackBar('error');
-                        setDescriptionSnackBar(errorMessage);
-                        Swal.fire('Revisa e intenta de nuevo', error.message, 'error')
+                        resetForm();
 
-                      }
-
-                      resetForm();
-
-                    }}
-                  >
-                    {({
-                      errors,
-                      handleBlur,
-                      handleChange,
-                      handleSubmit,
-                      isSubmitting,
-                      resetForm,
-                      touched,
-                      values
-                    }) => (
-                      <>
-                        <form onSubmit={handleSubmit}>
-                          <FormControl>
-                            <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                              Par Operado
-                            </FormLabel>
-                            <Select
-                              variant='auth'
-                              fontSize='sm'
-                              ms='4px'
-                              type='text'
-                              placeholder='Seleccione un par'
-                              size='lg'
-                              id="form_pair"
-                              name="pair"
-                              onChange={handleChange}
-                              value={values.pair}
-                              border={true}
-                              borderWidth={1}
-                            >
-                              <option value='AUDCAD'>AUDCAD</option>
-                              <option value='CADCHF'>CADCHF</option>
-                              <option value='EURUSD'>EURUSD</option>
-                              <option value='NZDCAD'>NZDCAD</option>
-                              <option value='USDCAD'>USDCAD</option>
-                            </Select>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                              <ErrorMessage name="pair" style={{ color: 'red' }} />
-                            </div>
-
-                            <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                              Precio
-                            </FormLabel>
-                            <Input
-                              variant='auth'
-                              fontSize='sm'
-                              ms='4px'
-                              type='text'
-                              placeholder='@1.00420'
-                              size='lg'
-                              id="form_price"
-                              name="price"
-                              onChange={handleChange}
-                              value={values.price}
-                            />
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                              <ErrorMessage name="price" />
-                            </div>
-
-                            <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                              Tipo de Orden <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Abrir o Cerrar)</FormLabel>
-                            </FormLabel>
-                            <Select
-                              variant='auth'
-                              fontSize='sm'
-                              ms='4px'
-                              type='type'
-                              id="form_type"
-                              placeholder='Seleccione un tipo de orden'
-                              size='lg'
-                              name="type"
-                              onChange={handleChange}
-                              value={values.type}
-                              border={true}
-                              borderWidth={1}
-                            >
-                              <option value='New'>New</option>
-                              <option value='Close'>Close</option>
-                            </Select>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                              <ErrorMessage name="type" style={{ paddingTop: '0' }} />
-                            </div>
-
-
-                            <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                              Tipo de Posición <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Compra o Venta)</FormLabel>
-                            </FormLabel>
-                            <Select
-                              variant='auth'
-                              fontSize='sm'
-                              ms='4px'
-                              type='text'
-                              placeholder='Seleccione un tipo de posición'
-                              size='lg'
-                              id="form_position"
-                              name="position"
-                              onChange={handleChange}
-                              value={values.position}
-                              border={true}
-                              borderWidth={1}
-                            >
-                              <option value='Buy'>Buy</option>
-                              <option value='Sell'>Sell</option>
-                            </Select>
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                              <ErrorMessage name="email" style={{ paddingTop: '0' }} />
-                            </div>
-
-
-
-                            <Flex style={{ marginBottom: '2rem' }}>
-                              <Button
-                                fontSize='14px'
-                                variant='dark'
-                                fontWeight='bold'
-                                w='40%'
-                                h='45'
-                                leftIcon={<AiOutlineClear color="#FFFFFF" size={21} />}
-                                backgroundColor={"#ee5438"}
-                                color={"white"}
-                                onClick={() => {
-                                  resetForm()
-                                }}
-                              >
-                                RESET
-                              </Button>
-
-                              <Button
-                                fontSize='14px'
-                                variant='dark'
-                                fontWeight='bold'
-                                w='60%'
-                                h='45'
-                                disabled={isSubmitting}
-                                onClick={handleSubmit}
-                                leftIcon={<RiSendPlaneFill />} >
-                                ENVIAR SEÑAL
-                              </Button>
-                            </Flex>
-                          </FormControl>
-                        </form>
-
-                        <Backdrop
-                          open={isSubmitting}
-                          style={{
-                            zIndex: 20,
-                            color: '#fff'
-                          }}
-                        >
-                          <CircularProgress color="inherit" style={{ color: '#03CFB3' }} />
-                        </Backdrop>
-                      </>)}
-                  </Formik>
-                </Flex>
-              </Tbody>
-            </Table>
-          </CardBody>
-        </Card>
-
-
-
-
-        <Card overflowX={{ sm: "scroll", xl: "hidden" }} style={{ width: '24rem', height: '15rem', margin: '2rem', justifyContent: 'center', alignItems: 'center' }} >
-          <CardHeader p="6px 0px 22px 0px">
-            <Flex direction="column">
-              <Text fontSize="xl" color={textColor} fontWeight="bold" pb=".5rem">
-                Apagar MODO AUTOMATICO
-              </Text>
-            </Flex>
-          </CardHeader>
-          <CardBody>
-            <Table variant="simple" color={textColor}>
-              <Thead>
-
-              </Thead>
-              <Tbody>
-                <Flex style={{ width: '15rem', height: 'auto', justifyContent: 'center', alignItems: 'center', flexDirection: "column" }}>
-
-
-                  <Flex style={{ marginBottom: '2rem' }}>
-                    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                      Estado Actual
-                    </FormLabel>
-                    <Input
-                      variant='auth'
-                      fontSize='sm'
-                      ms='4px'
-                      type='text'
-                      placeholder='@1.00420'
-                      size='lg'
-                      id="form_price"
-                      name="price"
-                      value={"Activado"}
-                    />
-
-                  </Flex>
-                  <Flex >
-                    <Button
-                      fontSize='14px'
-                      variant='dark'
-                      fontWeight='bold'
-                      w='40%'
-                      h='45'
-                      leftIcon={<HiOutlineRefresh color="#FFFFFF" size={21} />}
-                      backgroundColor={"#ee5438"}
-                      color={"white"}
-
+                      }}
                     >
-                      ACTUALIZAR
-                    </Button>
+                      {({
+                        errors,
+                        handleBlur,
+                        handleChange,
+                        handleSubmit,
+                        isSubmitting,
+                        resetForm,
+                        touched,
+                        values
+                      }) => (
+                        <>
+                          <form onSubmit={handleSubmit}>
+                            <FormControl>
+                              <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                                Par Operado
+                              </FormLabel>
+                              <Select
+                                variant='auth'
+                                fontSize='sm'
+                                ms='4px'
+                                type='text'
+                                placeholder='Seleccione un par'
+                                size='lg'
+                                id="form_pair"
+                                name="pair"
+                                onChange={handleChange}
+                                value={values.pair}
+                                border={true}
+                                borderWidth={1}
+                              >
+                                <option value='AUDCAD'>AUDCAD</option>
+                                <option value='CADCHF'>CADCHF</option>
+                                <option value='EURUSD'>EURUSD</option>
+                                <option value='NZDCAD'>NZDCAD</option>
+                                <option value='USDCAD'>USDCAD</option>
+                              </Select>
+                              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                                <ErrorMessage name="pair" style={{ color: 'red' }} />
+                              </div>
 
-                    <Button
-                      fontSize='14px'
-                      variant='dark'
-                      fontWeight='bold'
-                      w='60%'
-                      h='45'
+                              <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                                Precio
+                              </FormLabel>
+                              <Input
+                                variant='auth'
+                                fontSize='sm'
+                                ms='4px'
+                                type='text'
+                                placeholder='@1.00420'
+                                size='lg'
+                                id="form_price"
+                                name="price"
+                                onChange={handleChange}
+                                value={values.price}
+                              />
+                              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                                <ErrorMessage name="price" />
+                              </div>
 
-                      leftIcon={<FaPowerOff />} >
-                      ENCENDER/APAGAR
-                    </Button>
+                              <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                                Tipo de Orden <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Abrir o Cerrar)</FormLabel>
+                              </FormLabel>
+                              <Select
+                                variant='auth'
+                                fontSize='sm'
+                                ms='4px'
+                                type='type'
+                                id="form_type"
+                                placeholder='Seleccione un tipo de orden'
+                                size='lg'
+                                name="type"
+                                onChange={handleChange}
+                                value={values.type}
+                                border={true}
+                                borderWidth={1}
+                              >
+                                <option value='New'>New</option>
+                                <option value='Close'>Close</option>
+                              </Select>
+                              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                                <ErrorMessage name="type" style={{ paddingTop: '0' }} />
+                              </div>
+
+
+                              <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                                Tipo de Posición <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Compra o Venta)</FormLabel>
+                              </FormLabel>
+                              <Select
+                                variant='auth'
+                                fontSize='sm'
+                                ms='4px'
+                                type='text'
+                                placeholder='Seleccione un tipo de posición'
+                                size='lg'
+                                id="form_position"
+                                name="position"
+                                onChange={handleChange}
+                                value={values.position}
+                                border={true}
+                                borderWidth={1}
+                              >
+                                <option value='Buy'>Buy</option>
+                                <option value='Sell'>Sell</option>
+                              </Select>
+                              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                                <ErrorMessage name="email" style={{ paddingTop: '0' }} />
+                              </div>
+
+
+
+                              <Flex style={{ marginBottom: '2rem' }}>
+                                <Button
+                                  fontSize='14px'
+                                  variant='dark'
+                                  fontWeight='bold'
+                                  w='40%'
+                                  h='45'
+                                  leftIcon={<AiOutlineClear color="#FFFFFF" size={21} />}
+                                  backgroundColor={"#ee5438"}
+                                  color={"white"}
+                                  onClick={() => {
+                                    resetForm()
+                                  }}
+                                >
+                                  RESET
+                                </Button>
+
+                                <Button
+                                  fontSize='14px'
+                                  variant='dark'
+                                  fontWeight='bold'
+                                  w='60%'
+                                  h='45'
+                                  disabled={isSubmitting}
+                                  onClick={handleSubmit}
+                                  leftIcon={<RiSendPlaneFill />} >
+                                  ENVIAR SEÑAL
+                                </Button>
+                              </Flex>
+                            </FormControl>
+                          </form>
+
+                          <Backdrop
+                            open={isSubmitting}
+                            style={{
+                              zIndex: 20,
+                              color: '#fff'
+                            }}
+                          >
+                            <CircularProgress color="inherit" style={{ color: '#03CFB3' }} />
+                          </Backdrop>
+                        </>)}
+                    </Formik>
                   </Flex>
+                </Tbody>
+              </Table>
+            </CardBody>
+          </Card>
+        </Flex>
 
-                  {/* <Backdrop
+
+
+        <Flex style={{ justifyContent: 'center', alignItems: 'center' }} >
+
+
+
+          <Card overflowX={{ sm: "scroll", xl: "hidden" }} style={{ width: '24rem', height: '15rem', margin: '2rem', justifyContent: 'center', alignItems: 'center' }} >
+            <CardHeader p="6px 0px 22px 0px">
+              <Flex direction="column">
+                <Text fontSize="xl" color={textColor} fontWeight="bold" pb=".5rem">
+                  Apagar MODO AUTOMATICO
+                </Text>
+              </Flex>
+            </CardHeader>
+            <CardBody>
+              <Table variant="simple" color={textColor}>
+                <Thead>
+
+                </Thead>
+                <Tbody>
+                  <Flex style={{ width: '15rem', height: 'auto', justifyContent: 'center', alignItems: 'center', flexDirection: "column" }}>
+
+
+                    <Flex style={{ marginBottom: '2rem' }}>
+                      <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
+                        Estado Actual
+                      </FormLabel>
+                      <Input
+                        variant='auth'
+                        fontSize='sm'
+                        ms='4px'
+                        type='text'
+                        placeholder='@1.00420'
+                        size='lg'
+                        id="form_price"
+                        name="price"
+                        textAlign={'center'}
+                        value={"Activado"}
+                        disabled={true}
+                      />
+
+                    </Flex>
+                    <Flex >
+                      <Button
+                        fontSize='14px'
+                        variant='dark'
+                        fontWeight='bold'
+                        w='40%'
+                        h='45'
+                        leftIcon={<HiOutlineRefresh color="#FFFFFF" size={21} />}
+                        backgroundColor={"#ee5438"}
+                        color={"white"}
+
+                      >
+                        ACTUALIZAR
+                      </Button>
+
+                      <Button
+                        fontSize='14px'
+                        variant='dark'
+                        fontWeight='bold'
+                        w='60%'
+                        h='45'
+
+                        leftIcon={<FaPowerOff />} >
+                        ENCENDER/APAGAR
+                      </Button>
+                    </Flex>
+
+                    {/* <Backdrop
                     open={isSubmitting}
                     style={{
                       zIndex: 20,
@@ -407,11 +415,13 @@ function Manual() {
                   </Backdrop> */}
 
 
-                </Flex>
-              </Tbody>
-            </Table >
-          </CardBody >
-        </Card >
+                  </Flex>
+                </Tbody>
+              </Table >
+            </CardBody >
+          </Card >
+        </Flex>
+
       </Flex >
 
       <Card overflowX={{ sm: "scroll", xl: "hidden" }} my={"2rem"}>

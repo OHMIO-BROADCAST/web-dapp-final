@@ -106,6 +106,56 @@ export const schema = {
                 }
             ]
         },
+        "Modo": {
+            "name": "Modo",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "automatic": {
+                    "name": "automatic",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lastUpdate": {
+                    "name": "lastUpdate",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Modos",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "User": {
             "name": "User",
             "fields": {
@@ -250,5 +300,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "2428939eb536515a5f370604c3a7cf18"
+    "version": "db63e73d73324e9189a4f8a8e8896b77"
 };

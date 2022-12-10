@@ -6,10 +6,11 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
+  Select,
   Table,
   Tbody,
   Text,
+  Input,
   Th,
   Thead,
   Tr,
@@ -174,33 +175,41 @@ function Manual() {
                       <form onSubmit={handleSubmit}>
                         <FormControl>
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Full Name
+                            Par Operado
                           </FormLabel>
-                          <Input
+                          <Select
                             variant='auth'
                             fontSize='sm'
                             ms='4px'
                             type='text'
-                            placeholder='Your full name'
+                            placeholder='Seleccione un par'
                             size='lg'
                             id="form_fullname"
                             name="fullName"
                             onChange={handleChange}
                             value={values.fullName}
-                          />
+                            border={true}
+                            borderWidth={1}
+                          >
+                            <option value='AUDCAD'>AUDCAD</option>
+                            <option value='CADCHF'>CADCHF</option>
+                            <option value='EURUSD'>EURUSD</option>
+                            <option value='NZDCAD'>NZDCAD</option>
+                            <option value='USDCAD'>USDCAD</option>
+                          </Select>
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
                             <ErrorMessage name="fullName" style={{ color: 'red' }} />
                           </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            User
+                            Precio
                           </FormLabel>
                           <Input
                             variant='auth'
                             fontSize='sm'
                             ms='4px'
                             type='text'
-                            placeholder='Your user nickname. Ej: Jack'
+                            placeholder='@1.00420'
                             size='lg'
                             id="form_user"
                             name="user"
@@ -212,28 +221,28 @@ function Manual() {
                           </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Email <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Use the same in your FXWinning Account)</FormLabel>
+                            Tipo de Orden <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Abrir o Cerrar)</FormLabel>
                           </FormLabel>
-                          <Input
+                          <Select
                             variant='auth'
                             fontSize='sm'
                             ms='4px'
                             type='email'
                             id="form_email"
-                            placeholder='Your email address'
+                            placeholder='Seleccione un tipo de orden'
                             size='lg'
                             name="email"
                             onChange={handleChange}
                             value={values.email}
-                          />
+                            border={true}
+                            borderWidth={1}
+                          >
+                            <option value='New'>New</option>
+                            <option value='Close'>Close</option>
+                          </Select>
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
                             <ErrorMessage name="email" style={{ paddingTop: '0' }} />
                           </div>
-
-                          <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Phone
-                          </FormLabel>
-
 
 
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
@@ -241,112 +250,31 @@ function Manual() {
                           </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Country
+                            Tipo de Posición <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Compra o Venta)</FormLabel>
                           </FormLabel>
-                          <Input
+                          <Select
                             variant='auth'
                             fontSize='sm'
                             ms='4px'
                             type='text'
-                            placeholder='Your Country name'
+                            placeholder='Seleccione un tipo de posición'
                             size='lg'
                             id="form_country"
                             name="country"
                             onChange={handleChange}
                             value={values.country}
-                          />
+                            border={true}
+                            borderWidth={1}
+                          >
+                            <option value='Buy'>Buy</option>
+                            <option value='Sell'>Sell</option>
+                          </Select>
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
                             <ErrorMessage name="email" style={{ paddingTop: '0' }} />
                           </div>
 
-                          {/*    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                      Country
-                    </FormLabel>
-                    <Input
-                      variant='auth'
-                      fontSize='sm'
-                      ms='4px'
-                      type='text'
-                      placeholder='Your country'
-                      size='lg'
-                      name="country"
-                      onChange={handleChange}
-                      value={values.country}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                      <ErrorMessage name="country" style={{ paddingTop: '0' }} />
-                    </div>
-
-                    <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                      Cellphone
-                    </FormLabel>
-                    <Input
-                      variant='auth'
-                      fontSize='sm'
-                      ms='4px'
-                      type='text'
-                      placeholder='Your '
-                      size='lg'
-                      name="country"
-                      onChange={handleChange}
-                      value={values.country}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                      <ErrorMessage name="country" style={{ paddingTop: '0' }} />
-                    </div> */}
 
 
-                          <FormControl display='flex' alignItems='center' mb={'1rem'} justifyContent='center'>
-                            <Switch
-                              id='remember-login'
-                              colorScheme='navy'
-                              me='10px'
-                              name="togglePassword"
-                              type="checkbox"
-                              onChange={() => console.log('asd')}
-                            />
-                            <FormLabel htmlFor='remember-login' fontWeight='bold' alignSelf='center' justifySelf={'center'}>
-                              Show Password
-                            </FormLabel>
-                          </FormControl>
-
-                          <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Password
-                          </FormLabel>
-                          <Input
-                            variant='auth'
-                            fontSize='sm'
-                            ms='4px'
-                            type='password'
-                            placeholder='Your password'
-                            size='lg'
-                            name="password"
-                            id="passwordInput"
-                            onChange={handleChange}
-                            value={values.password}
-                          />
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginBottom: '1rem' }} >
-                            <ErrorMessage name="password" />
-                          </div>
-
-                          <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
-                            Confirm Password
-                          </FormLabel>
-                          <Input
-                            variant='auth'
-                            fontSize='sm'
-                            ms='4px'
-                            type='password'
-                            placeholder='Your password'
-                            size='lg'
-                            name="passwordConfirmation"
-                            onChange={handleChange}
-                            id="passwordConfirmationInput"
-                            value={values.passwordConfirmation}
-                          />
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                            <ErrorMessage name="passwordConfirmation" />
-                          </div>
                           <Flex style={{ marginBottom: '2rem' }}>
                             <Button
                               fontSize='14px'

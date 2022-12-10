@@ -50,7 +50,9 @@ import Signals from 'components/Signals/Signals';
 import TablesSignals from 'views/Dashboard/TablesSignals';
 import Manual from 'views/Dashboard/Manual';
 
-
+import { HiUsers } from 'react-icons/hi';
+import { AiTwotoneNotification } from 'react-icons/ai';
+import { FaTools } from 'react-icons/fa'
 
 var dashRoutes = [
   {
@@ -68,7 +70,7 @@ var dashRoutes = [
       {
         path: "/users",
         name: "Todos",
-        icon: <RocketIcon color='inherit' />,
+        icon: <HiUsers color='inherit' />,
         component: Tables,
         layout: "/admin",
       },
@@ -82,14 +84,14 @@ var dashRoutes = [
       {
         path: "/all-signals",
         name: "Todas",
-        icon: <CreditIcon color='inherit' />,
+        icon: <AiTwotoneNotification color='inherit' />,
         component: TablesSignals,
         layout: "/admin",
       },
       {
         path: "/manual-mode",
         name: "Modo Manual",
-        icon: <StatsIcon color='inherit' />,
+        icon: <FaTools color='inherit' />,
         component: Manual,
         layout: "/admin",
       }

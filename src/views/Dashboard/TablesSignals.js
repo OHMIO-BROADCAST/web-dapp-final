@@ -40,7 +40,7 @@ function TablesSignals() {
           <Table variant="simple" color={textColor}>
             <Thead>
               <div style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
-                <Button leftIcon={<HiOutlineRefresh />}>Actualizar</Button>
+                <Button leftIcon={<HiOutlineRefresh />}>ACTUALIZAR</Button>
               </div>
               <Tr my=".8rem" pl="0px">
                 <Th pl="0px" color="gray.400" borderColor={borderColor}>

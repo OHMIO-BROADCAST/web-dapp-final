@@ -1,21 +1,18 @@
 {
-    "appName": "bmakeranalytics",
-    "roleName": "pinpointLambdaRolefdbc6c2c",
-    "cloudformationPolicyName": "cloudformationPolicyfdbc6c2c",
-    "cloudWatchPolicyName": "cloudWatchPolicyfdbc6c2c",
-    "pinpointPolicyName": "pinpointPolicyfdbc6c2c",
-    "authPolicyName": "pinpoint_amplify_fdbc6c2c",
-    "unauthPolicyName": "pinpoint_amplify_fdbc6c2c",
-    "authRoleName": {
-        "Ref": "AuthRoleName"
-    },
-    "unauthRoleName": {
-        "Ref": "UnauthRoleName"
-    },
-    "authRoleArn": {
-        "Fn::GetAtt": [
-            "AuthRole",
-            "Arn"
-        ]
-    }
+  "appName": "bmakeranalytics",
+  "roleName": "pinpointLambdaRolefdbc6c2c",
+  "cloudformationPolicyName": "cloudformationPolicyfdbc6c2c",
+  "cloudWatchPolicyName": "cloudWatchPolicyfdbc6c2c",
+  "pinpointPolicyName": "pinpointPolicyfdbc6c2c",
+  "authPolicyName": "pinpoint_amplify_fdbc6c2c",
+  "unauthPolicyName": "pinpoint_amplify_fdbc6c2c",
+  "authRoleName": {
+    "Ref": "AuthRoleName"
+  },
+  "unauthRoleName": {
+    "Ref": "UnauthRoleName"
+  },
+  "authRoleArn": {
+    "Fn::GetAtt": ["AuthRole", "Arn"]
+  }
 }

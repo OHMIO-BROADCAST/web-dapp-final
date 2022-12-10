@@ -70,56 +70,74 @@ function Manual() {
                   id="formik"
                   innerRef={formRef}
                   initialValues={{
-                    fullName: '',
-                    user: '',
-                    email: '',
-                    country: '',
-                    phone: '',
-                    country: '',
-                    password: '',
-                    passwordConfirmation: ''
+                    pair: '',
+                    type: '',
+                    price: '',
+                    position: ''
                   }}
                   validationSchema={Yup.object({
-                    user: Yup.string()
-                      .min(6, 'Must be 6 characters or more')
-                      .max(12, 'Must be 12 characters or less')
-                      .required('Required')
-                      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-                    fullName: Yup.string()
-                      .min(10, 'Must be 10 characters or more')
-                      .max(20, 'Must be 25 characters or less')
-                      .required('Required')
-                      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-                    email: Yup.string().email('Invalid email address')
+                    pair: Yup.string()
                       .required('Required'),
-                    phone: Yup.string()
-                      .min(10, 'Must be 10 characters or more')
-                      .max(15, 'Must be 15 characters or less')
-                      .matches(/^[1-9]+[0-9]*$/, "Only valid phone numbers are allowed for this field")
+
+                    type: Yup.string()
                       .required('Required'),
-                    country: Yup.string()
+
+                    price: Yup.number()
+                      .required('Required'),
+
+                    position: Yup.string()
                       .required('Required')
-                      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-                    password: Yup.string()
-                      .required('Password is required')
-                      .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-                      ),
-                    passwordConfirmation: Yup.string()
-                      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+
+
                   })}
                   onChange={(e) => { console.log(e) }}
                   onSubmit={async (values, { setSubmitting, resetForm }) => {
                     console.log('SUBMIT', values)
+                    /*  id: ID!
+                     title: String!*
+                     description: String!*
+                     timestamp: String!*
+                     type: String!*
+                     price: Float!*
+                     time12h: String!*
+                     date: String!*
+                     position: String!*
+                     isManual: Boolean*
+                     pair:String! */
+                    const timestamp = new Date().getTime();
 
-                    signalToSend.set("username", values.user);
-                    signalToSend.set("password", values.password);
-                    signalToSend.set("email", values.email);
-                    signalToSend.set("phone", values.phone);
-                    signalToSend.set("country", values.country);
-                    signalToSend.set("fullName", values.fullName);
+                    const today = new Date();
+                    let hours = today.getHours();
+                    const minute = today.getMinutes();
+                    hours = (hours % 12) || 12;
+                    var suffix = hours >= 12 ? "PM" : "AM";
+                    const time12h = ((hours + 11) % 12 + 1) + suffix;
 
-                    console.log('SUBMIT USER FINAL:', signalToSend);
+                    const yyyy = today.getFullYear();
+                    let mm = today.getMonth() + 1; // Months start at 0!
+                    let dd = today.getDate();
+
+                    if (dd < 10) dd = '0' + dd;
+                    if (mm < 10) mm = '0' + mm;
+
+                    const formattedToday = dd + '/' + mm + '/' + yyyy;
+
+
+                    signalToSend.set("pair", values.pair);
+                    signalToSend.set("type", values.type);
+                    signalToSend.set("price", values.price);
+                    signalToSend.set("position", values.position);
+
+                    signalToSend.set("isManual", true);
+
+                    signalToSend.set("title", "values.title");
+                    signalToSend.set("description", "values.description");
+                    signalToSend.set("timestamp", timestamp);
+                    signalToSend.set("time12h", time12h);
+                    signalToSend.set("date", formattedToday);
+
+
+                    console.log('SUBMIT SIGNAL FINAL:', signalToSend);
                     ////*************************************** */
                     try {
                       const response = await signalToSend.signUp();
@@ -127,23 +145,14 @@ function Manual() {
                       console.log("REGISTER SUCCESSFUL", response)
                       setSubmitting(false);
                       Swal.fire({
-                        title: 'Successful Register',
-                        text: 'Please verify your email',
+                        title: 'Señal enviada',
+                        text: 'Por favor revisa la app',
                         icon: 'success',
                         willClose: () => {
-                          history.push('/signin')
+                          resetForm()
                         }
                       }
                       )
-
-                      /* try {
-                        Moralis.User.requestEmailVerification(values.email)
-      
-                      } catch (error) {
-                        setShowSnackBar(true);
-                        setTypeSnackBar('error');
-                        setDescriptionSnackBar('Error sennding email verification')
-                      } */
 
                     } catch (error) {
                       // Show the error message somewhere and let the user try again.
@@ -154,7 +163,7 @@ function Manual() {
                       setShowSnackBar(true);
                       setTypeSnackBar('error');
                       setDescriptionSnackBar(errorMessage);
-                      Swal.fire('Please check and try again', error.message, 'error')
+                      Swal.fire('Revisa e intenta de nuevo', error.message, 'error')
 
                     }
 
@@ -168,6 +177,7 @@ function Manual() {
                     handleChange,
                     handleSubmit,
                     isSubmitting,
+                    resetForm,
                     touched,
                     values
                   }) => (
@@ -184,10 +194,10 @@ function Manual() {
                             type='text'
                             placeholder='Seleccione un par'
                             size='lg'
-                            id="form_fullname"
-                            name="fullName"
+                            id="form_pair"
+                            name="pair"
                             onChange={handleChange}
-                            value={values.fullName}
+                            value={values.pair}
                             border={true}
                             borderWidth={1}
                           >
@@ -198,7 +208,7 @@ function Manual() {
                             <option value='USDCAD'>USDCAD</option>
                           </Select>
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                            <ErrorMessage name="fullName" style={{ color: 'red' }} />
+                            <ErrorMessage name="pair" style={{ color: 'red' }} />
                           </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
@@ -211,13 +221,13 @@ function Manual() {
                             type='text'
                             placeholder='@1.00420'
                             size='lg'
-                            id="form_user"
-                            name="user"
+                            id="form_price"
+                            name="price"
                             onChange={handleChange}
-                            value={values.user}
+                            value={values.price}
                           />
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                            <ErrorMessage name="user" />
+                            <ErrorMessage name="price" />
                           </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
@@ -227,13 +237,13 @@ function Manual() {
                             variant='auth'
                             fontSize='sm'
                             ms='4px'
-                            type='email'
-                            id="form_email"
+                            type='type'
+                            id="form_type"
                             placeholder='Seleccione un tipo de orden'
                             size='lg'
-                            name="email"
+                            name="type"
                             onChange={handleChange}
-                            value={values.email}
+                            value={values.type}
                             border={true}
                             borderWidth={1}
                           >
@@ -241,13 +251,9 @@ function Manual() {
                             <option value='Close'>Close</option>
                           </Select>
                           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                            <ErrorMessage name="email" style={{ paddingTop: '0' }} />
+                            <ErrorMessage name="type" style={{ paddingTop: '0' }} />
                           </div>
 
-
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                            <ErrorMessage name="phone" style={{ paddingTop: '0' }} />
-                          </div>
 
                           <FormLabel ms='4px' fontSize='sm' fontWeight='bold'>
                             Tipo de Posición <FormLabel ms='4px' fontSize='sm' fontWeight='thin'>(Si es para Compra o Venta)</FormLabel>
@@ -259,10 +265,10 @@ function Manual() {
                             type='text'
                             placeholder='Seleccione un tipo de posición'
                             size='lg'
-                            id="form_country"
-                            name="country"
+                            id="form_position"
+                            name="position"
                             onChange={handleChange}
-                            value={values.country}
+                            value={values.position}
                             border={true}
                             borderWidth={1}
                           >
@@ -284,7 +290,11 @@ function Manual() {
                               h='45'
                               leftIcon={<AiOutlineClear color="#FFFFFF" size={21} />}
                               backgroundColor={"#ee5438"}
-                              color={"white"}>
+                              color={"white"}
+                              onClick={() => {
+                                resetForm()
+                              }}
+                            >
                               RESET
                             </Button>
 

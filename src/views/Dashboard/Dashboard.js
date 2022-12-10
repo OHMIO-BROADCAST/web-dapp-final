@@ -103,10 +103,12 @@ export default function Dashboard() {
               height: "300px",
               justifyContent: 'center',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              flexDirection: 'column'
             }}
           >
-            <Text>Home</Text>
+            <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro | Control Center</Text>
+            <Text align={'center'} fontWeight={300}>Hola Laura y Juanes, este es un espacio unico dedicado solo para Administradores</Text>
           </div>
 
         </Card>

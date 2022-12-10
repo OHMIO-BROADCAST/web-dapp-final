@@ -1,0 +1,48 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Notification @model {
+  id: ID!
+  title: String!
+  description: String!
+  timestamp: String!
+  type: String!
+  price: Float!
+  time12h: String!
+  date: String!
+  position: String!
+  isManual: Boolean!
+  pair:String!
+}
+type User @model {
+  id: ID!
+  name: String!
+  username: String!
+  phone: String!
+  email: String!
+  expoToken: String
+  forexSubscription: Boolean
+  hasPurchasedSomething: Boolean
+  totalReward: Float
+  totalReferred: Float
+  isReferred: Boolean
+  hasReferred: Boolean
+  referredBy: String
+}
+type Mutation {
+  pinpoint(input: pinpointInput): pinpointResult
+    @function(name: "pinpoint-${env}")
+}
+type pinpointResult {
+  statusCode: Int
+  body: String
+}
+input pinpointInput {
+  token: String!
+  name: String!
+  email: String!
+  message: String!
+  id: String!
+}
+

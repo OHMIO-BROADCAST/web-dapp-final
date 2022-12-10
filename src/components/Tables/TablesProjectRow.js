@@ -52,42 +52,58 @@ function DashboardTableRow(props) {
 
           {
             pair.toLowerCase() == 'usdcad' &&
-            <Image
-              src={
-                require(`../../assets/img/pairs/usdcad.png`)
-              }
-              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-            />
+            <Tooltip
+              hasArrow
+              label={"Identificador: " + id}
+              fontSize='sm'
+            ><Image
+                src={
+                  require(`../../assets/img/pairs/usdcad.png`)
+                }
+                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+              /></Tooltip>
           }
 
           {
             pair.toLowerCase() == 'nzdcad' &&
-            <Image
-              src={
-                require(`../../assets/img/pairs/nzdcad.png`)
-              }
-              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-            />
+            <Tooltip
+              hasArrow
+              label={"Identificador: " + id}
+              fontSize='sm'
+            ><Image
+                src={
+                  require(`../../assets/img/pairs/nzdcad.png`)
+                }
+                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+              /></Tooltip>
           }
 
           {
             pair.toLowerCase() == 'eurusd' &&
-            <Image
-              src={
-                require(`../../assets/img/pairs/eurusd.png`)
-              }
-              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-            />
+            <Tooltip
+              hasArrow
+              label={"Identificador: " + id}
+              fontSize='sm'
+            ><Image
+                src={
+                  require(`../../assets/img/pairs/eurusd.png`)
+                }
+                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+              /></Tooltip>
           }
 
           {
             pair.toLowerCase() == 'cadchf' &&
-            <Image
-              src={
-                require(`../../assets/img/pairs/cadchf.png`)
-              }
-              style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-            />
+            <Tooltip
+              hasArrow
+              label={"Identificador: " + id}
+              fontSize='sm'
+            ><Image
+                src={
+                  require(`../../assets/img/pairs/cadchf.png`)
+                }
+                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
+              /></Tooltip>
           }
           <Text
             fontSize="md"

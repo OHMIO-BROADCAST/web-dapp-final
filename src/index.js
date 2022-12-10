@@ -13,11 +13,18 @@ import "./index.css";
 import QuickStart from "components/QuickStart";
 import App from "./App";
 
-/** Get your free Moralis Account https://moralis.io/ */
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+import { AuthStyle } from "AuthStyle";
+
+import {
+  Authenticator
+} from '@aws-amplify/ui-react';
+
+Amplify.configure(awsExports);
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
-
 
 
 ReactDOM.render(

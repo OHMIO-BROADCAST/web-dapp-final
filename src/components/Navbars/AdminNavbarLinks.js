@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 // Chakra Icons
 import { BellIcon } from "@chakra-ui/icons";
 // Chakra Imports
@@ -18,6 +19,7 @@ import avatar3 from "assets/img/avatars/logout.png";
 import { useMoralis } from "react-moralis";
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { API, Auth } from 'aws-amplify';
 
 
 // Custom Icons
@@ -26,7 +28,6 @@ import { ArgonLogoDark, ArgonLogoLight, ChakraLogoDark, ChakraLogoLight, Profile
 import { ItemContent } from "components/Menu/ItemContent";
 import { SearchBar } from "components/Navbars/SearchBar/SearchBar";
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
-import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes.js";
 import Account from "components/Account/Account";
@@ -54,11 +55,14 @@ export default function HeaderLinks(props) {
 
   const { colorMode } = useColorMode();
 
-  // Chakra Color Mode
-  /*  let navbarIcon =
-     (fixed && scrolled)
-       ? useColorModeValue("gray.700", "gray.200")
-       : useColorModeValue("white", "gray.200"); */
+  const [user, setuser] = useState()
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log(user);
+      setuser(user);
+    });
+  }, [])
 
   let navbarIcon = useColorModeValue("white", "gray.200");
 
@@ -169,6 +173,22 @@ export default function HeaderLinks(props) {
           </Flex>
         </MenuList>
       </Menu> */}
+      <Flex
+        flexDirection={"row"}
+        justify="center"
+        justifyContent={"center"}
+        alignItems="center"
+        bg={"transparent"}
+        px="1rem"
+        style={{ borderRadius: "50" }}
+        onClick={props.onOpen}
+
+      >
+        <Text color={"white"} fontWeight={"bold"}>
+          {user && user.attributes.name}
+        </Text>
+
+      </Flex>
       <Menu>
         <MenuButton marginLeft={'1rem'}>
           <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
@@ -182,18 +202,19 @@ export default function HeaderLinks(props) {
                 aRoute={"/admin/profile"}
               />
             </MenuItem>
-            {/*  <MenuItem borderRadius='8px' mb='10px'>
+            <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Settings'
                 aSrc={avatar2}
                 aRoute={"/admin/profile"}
               />
-            </MenuItem> */}
+            </MenuItem>
             <MenuItem borderRadius='8px'
               onClick={async () => {
-                await Moralis.User.logOut()
+
+                await Auth.logOut()
                   .then(() => {
-                    Swal.fire("Log Out Success", '', 'info').then(() => history.push("/auth/signin"))
+                    Swal.fire("Log Out Success", '', 'info').then(() => history.push("/"))
 
                   });
                 console.log('User Logout')

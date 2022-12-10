@@ -10,7 +10,6 @@ import ForgotPassword from "views/Pages/ForgotPassword.js";
 
 import SignUp from "views/Pages/SignUp.js";
 
-
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import TokenPrice from "components/TokenPrice";
@@ -67,19 +66,12 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/contract",
+        path: "/users",
         name: "Todos",
         icon: <RocketIcon color='inherit' />,
         component: Tables,
         layout: "/admin",
       },
-      /* {
-        path: "/my-refeers-crypto",
-        name: "Referidos",
-        icon: <StatsIcon color='inherit' />,
-        component: Tables,
-        layout: "/admin",
-      } */
     ]
   },
   {
@@ -88,14 +80,14 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/purchase-payzen",
+        path: "/all-signals",
         name: "Todas",
         icon: <CreditIcon color='inherit' />,
         component: TablesSignals,
         layout: "/admin",
       },
       {
-        path: "/my-refeers-fiat",
+        path: "/manual-mode",
         name: "Modo Manual",
         icon: <StatsIcon color='inherit' />,
         component: Manual,
@@ -111,7 +103,6 @@ var dashRoutes = [
       {
         path: "/profile",
         name: "Perfil",
-        rtlName: "لوحة القيادة",
         icon: <PersonIcon color='inherit' />,
         secondaryNavbar: true,
         component: Profile,

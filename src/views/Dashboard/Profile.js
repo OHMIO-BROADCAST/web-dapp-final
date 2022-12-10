@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import { Auth } from 'aws-amplify'
 // Chakra imports
 import {
   Avatar,
@@ -28,7 +30,6 @@ import ImageArchitect3 from "assets/img/ImageArchitect3.png";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
-import React from "react";
 import {
   FaCube,
   FaFacebook,
@@ -50,10 +51,15 @@ function Profile() {
   const borderProfileColor = useColorModeValue("white", "transparent");
   const emailColor = useColorModeValue("gray.400", "gray.300");
 
-  const { Moralis, account, isAuthenticated, } = useMoralis();
 
-  const currentUser = Moralis.User.current();
-  console.log({ currentUser })
+  const [user, setuser] = useState()
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log(user);
+      setuser(user);
+    });
+  }, [])
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px", lg: "100px" }}>
@@ -89,14 +95,20 @@ function Profile() {
               color={textColor}
               fontWeight='bold'
               ms={{ sm: "8px", md: "0px" }}>
-              {currentUser.attributes.fullName}
-
+              {user && user.username}
+            </Text>
+            <Text
+              fontSize={{ sm: "lg", lg: "xl" }}
+              color={textColor}
+              fontWeight='bold'
+              ms={{ sm: "8px", md: "0px" }}>
+              {user && user.attributes.name}
             </Text>
             <Text
               fontSize={{ sm: "sm", md: "md" }}
               color={emailColor}
               fontWeight='semibold'>
-              {currentUser.attributes.email}
+              {user && user.attributes.email.toLowerCase()}
             </Text>
           </Flex>
         </Flex>
@@ -262,8 +274,7 @@ function Profile() {
                   Nombre Completo:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  {currentUser.attributes.fullName}
-
+                  {user && user.attributes.name}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -275,7 +286,7 @@ function Profile() {
                   Mobile:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  +{currentUser.attributes.phone}
+                  +{user && user.attributes.phone_number}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -287,21 +298,10 @@ function Profile() {
                   Telefono:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  {currentUser.attributes.email}
+                  {user && user.attributes.email.toLowerCase()}
                 </Text>
               </Flex>
-              <Flex align='center' mb='18px'>
-                <Text
-                  fontSize='md'
-                  color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
-                  Locacion:{" "}
-                </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  {currentUser.attributes.country}
-                </Text>
-              </Flex>
+
               <Flex align='center' mb='18px'>
                 <Text
                   fontSize='md'
@@ -311,13 +311,13 @@ function Profile() {
                   Estado de suscripción:{" "}
                 </Text>
                 <Badge
-                  bg={currentUser.attributes.country === true ? "green.400" : "green.400"}
-                  color={currentUser.attributes.country === true ? "white" : "white"}
+                  bg={(user && user.attributes.forexSubscription) == true ? "green.400" : "green.400"}
+                  color={(user && user.attributes.forexSubscription) == true ? "white" : "white"}
                   fontSize="16px"
                   p="3px 10px"
                   borderRadius="8px"
                 >
-                  {(currentUser.attributes.country) == true ? "Activo" : "Inactivo"}
+                  {(user && user.attributes.forexSubscription) == true ? "Activo" : "Inactivo"}
                 </Badge>
               </Flex>
             </Flex>

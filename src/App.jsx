@@ -11,9 +11,12 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={`/auth`} component={AuthLayout} />
+        {/* <Route path={`/auth`} component={AuthLayout} /> */}
         <Route path={`/admin`} component={AdminLayout} />
-        <Redirect from={`/`} to="/auth/signin" />
+        <Redirect from={`/`} to="/admin/dashboard" />
+        <Redirect from={`*`} to="/admin/dashboard" />
+        <Redirect from={`/*`} to="/admin/dashboard" />
+
       </Switch>
     </Router>
   )

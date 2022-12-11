@@ -19,6 +19,7 @@ function DashboardTableRow(props) {
     title,
     description,
     timestamp,
+    createdAt,
     type,
     pair,
     price,
@@ -126,11 +127,19 @@ function DashboardTableRow(props) {
         </Text>
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {date}
-        </Text>
+        <Tooltip
+          hasArrow
+          label={"Fecha de Lanzamiento por parte nuestra: " + createdAt}
+          fontSize='sm'
+        >
+          <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
+            {date}
+          </Text>
+        </Tooltip>
+
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
+
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {type}
         </Text>

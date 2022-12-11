@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Notification as NotificationModel } from "../../models/index";
+import { DataStore } from "aws-amplify";
 // Chakra imports
 import {
   Button,
@@ -25,6 +27,35 @@ import { tablesProjectData, tablesTableData } from "variables/general";
 function TablesSignals() {
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
+
+  const [Signals, setSignals] = useState([])
+  useEffect(() => {
+
+    //query the initial todolist and subscribe to data updates
+    const subscription = DataStore.observeQuery(NotificationModel).subscribe((snapshot) => {
+      //isSynced can be used to show a loading spinner when the list is being loaded. 
+      const { items, isSynced } = snapshot;
+      console.log("USUARIOS", items);
+      setSignals(items);
+    });
+
+    //unsubscribe to data updates when component is destroyed so that you don’t introduce a memory leak.
+    return async () => {
+      subscription.unsubscribe();
+      cleanDataStore();
+    }
+  }, []);
+
+
+
+  async function cleanDataStore() {
+    try {
+      await DataStore.clear();
+    } catch (error) {
+      console.log("error datastore clear", error)
+    }
+  }
+
 
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }} >
@@ -57,26 +88,66 @@ function TablesSignals() {
               </Tr>
             </Thead>
             <Tbody>
-              {tablesProjectData.map((row, index, arr) => {
-                return (
-                  <TablesProjectRow
-                    logo={row.logo}
-                    id={row.id}
-                    pair={row.pair}
-                    title={row.title}
-                    description={row.description}
-                    timestamp={row.timestamp}
-                    type={row.type}
-                    price={row.price}
-                    time12h={row.time12h}
-                    date={row.date}
-                    position={row.position}
-                    isManual={row.isManual}
+              {Signals.length > 0 && Signals.map((row, index, arr) => {
+                /* const sanitySignal = {
+                createdAt: "2022-12-11T02:06:57.084Z",
+                date: "06/12/2022",
+                description: "descriptionTest",
+                id: "2ff685a9-014e-41ee-b1b3-8f3d16638e8d",
+                isManual: false,
+                pair: "AUDCAD",
+                position: "Sell",
+                price: 1.8,
+                time12h: "12:10PM",
+                timestamp: "timseStamp",
+                title: "titleTest",
+                type: "SELL",
+                updatedAt: "2022-12-11T02:06:57.084Z",
+               } */
+                console.log("ITEM", row)
+                if (row) {
+                  const sanitySignal = {
+                    createdAt: "2022-12-11T02:06:57.084Z",
+                    date: "06/12/2022",
+                    description: "descriptionTest",
+                    id: "2ff685a9-014e-41ee-b1b3-8f3d16638e8d",
+                    isManual: false,
+                    pair: "AUDCAD",
+                    position: "Sell",
+                    price: 1.8,
+                    time12h: "12:10PM",
+                    timestamp: "timseStamp",
+                    title: "titleTest",
+                    type: "SELL",
+                    updatedAt: "2022-12-11T02:06:57.084Z",
+                  }
 
-                    isLast={index === arr.length - 1 ? true : false}
-                    key={index}
-                  />
-                );
+                  console.log("ROW", row)
+                  console.log("SANITY", sanitySignal)
+
+                  return (
+                    <TablesProjectRow
+                      id={sanitySignal.id}
+                      pair={sanitySignal.pair}
+                      title={sanitySignal.title}
+                      description={sanitySignal.description}
+                      timestamp={sanitySignal.timestamp}
+                      type={sanitySignal.type}
+                      price={sanitySignal.price}
+                      time12h={sanitySignal.time12h}
+                      date={sanitySignal.date}
+                      position={sanitySignal.position}
+                      isManual={sanitySignal.isManual}
+                      createdAt={sanitySignal.createdAt}
+
+                      isLast={index === arr.length - 1 ? true : false}
+                      key={index}
+                    />
+                  );
+                }
+                else {
+                  return null
+                }
               })}
             </Tbody>
           </Table>

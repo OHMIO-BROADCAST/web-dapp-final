@@ -5,6 +5,7 @@ import {
   Flex,
   Td,
   Text,
+  Tooltip,
   Tr,
   useColorModeValue
 } from "@chakra-ui/react";
@@ -60,9 +61,21 @@ function TablesTableRow(props) {
         </Text>
       </Td>
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
-        <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {expoToken}
-        </Text>
+        <Tooltip
+          hasArrow
+          label={"Token de Notificación: " + expoToken}
+          fontSize='sm'
+        >
+          <Badge
+            bg={(expoToken != null && expoToken != '') ? "green.400" : "grey.500"}
+            color={(expoToken != null && expoToken != '') ? "white" : "white"}
+            fontSize="16px"
+            p="3px 10px"
+            borderRadius="8px"
+          >
+            {(expoToken != null && expoToken != '') ? "Activo" : "Inactivo"}
+
+          </Badge></Tooltip>
       </Td>
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
         <Badge

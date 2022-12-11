@@ -12,7 +12,7 @@ import React from "react";
 import { AiFillDelete } from 'react-icons/ai'
 
 function TablesTableRow(props) {
-  const { logo, name, email, phone_number, username, referredBy, forexSubscription, totalReward, totalReferred, hasPurchasedSomething, expoToken, date_register, isLast } = props;
+  const { name, email, phone_number, username, referredBy, forexSubscription, totalReward, totalReferred, hasPurchasedSomething, expoToken, date_register, isLast } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "navy.900");
@@ -27,7 +27,7 @@ function TablesTableRow(props) {
         borderBottom={isLast ? "none" : null}
       >
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Avatar src={logo} w="50px" borderRadius="100px" me="18px" />
+          <Avatar w="50px" borderRadius="100px" me="18px" />
           <Flex direction="column">
             <Text
               fontSize="md"

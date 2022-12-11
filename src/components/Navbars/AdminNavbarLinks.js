@@ -189,7 +189,7 @@ export default function HeaderLinks(props) {
         </Text>
 
       </Flex>
-      <Menu>
+      {/* <Menu>
         <MenuButton marginLeft={'1rem'}>
           <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
         </MenuButton>
@@ -202,13 +202,13 @@ export default function HeaderLinks(props) {
                 aRoute={"/admin/profile"}
               />
             </MenuItem>
-            {/* <MenuItem borderRadius='8px' mb='10px'>
+            <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Settings'
                 aSrc={avatar2}
                 aRoute={"/admin/profile"}
               />
-            </MenuItem> */}
+            </MenuItem>
             <MenuItem borderRadius='8px'
               onClick={async () => {
 
@@ -228,7 +228,7 @@ export default function HeaderLinks(props) {
             </MenuItem>
           </Flex>
         </MenuList>
-      </Menu>
+      </Menu> */}
 
 
       <SidebarResponsive

@@ -97,7 +97,7 @@ var dashRoutes = [
       }
     ]
   },
-  {
+  /* {
     name: "Cuenta",
     category: "account",
     state: "pageCollapse",
@@ -111,7 +111,7 @@ var dashRoutes = [
         layout: "/admin",
       }
     ],
-  },
+  }, */
   {
     path: "/signin",
     name: "Sign In",

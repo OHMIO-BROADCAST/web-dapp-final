@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { User as UserModel } from "../../models/index";
-import { DataStore } from "aws-amplify";
+import { API, DataStore, graphqlOperation } from "aws-amplify";
 // Chakra imports
 import {
   Flex,
@@ -11,7 +11,8 @@ import {
   Button,
   Thead,
   Tr,
-  useColorModeValue
+  useColorModeValue,
+  Spinner
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/Card/Card.js";
@@ -22,19 +23,33 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import ThreeView from 'components/Spiral/Treeview.js'
 
 import { HiOutlineRefresh } from 'react-icons/hi'
+import { listUsers } from "graphql/queries";
 
 function Tables() {
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
   const [Users, setUsers] = useState([])
-  useEffect(() => {
 
-    //query the initial todolist and subscribe to data updates
+  async function getAllUsers() {
+    try {
+      const getAllUsersData = await (await API.graphql(graphqlOperation(listUsers))).data
+      if (getAllUsersData.listUsers.items != null) {
+        setUsers(getAllUsersData.listUsers.items)
+      }
+    } catch (error) {
+      console.log("Error actualizando usuarios", error)
+    }
+  }
+
+  useEffect(() => {
+    getAllUsers()
+    /* //query the initial todolist and subscribe to data updates
     const subscription = DataStore.observeQuery(UserModel).subscribe((snapshot) => {
       //isSynced can be used to show a loading spinner when the list is being loaded. 
       const { items, isSynced } = snapshot;
       console.log("USUARIOS", items);
+      setIsSynced(isSynced)
       setUsers(items);
     });
 
@@ -42,7 +57,7 @@ function Tables() {
     return async () => {
       subscription.unsubscribe();
       cleanDataStore();
-    }
+    } */
   }, []);
 
 
@@ -70,7 +85,9 @@ function Tables() {
           <Table variant="simple" color={textColor}>
             <Thead>
               <div style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
-                <Button leftIcon={<HiOutlineRefresh />}>ACTUALIZAR</Button>
+                <Button leftIcon={<HiOutlineRefresh />}
+                  onClick={() => getAllUsers()}
+                >ACTUALIZAR</Button>
               </div>
               <Tr my=".8rem" pl="0px" color="gray.400" >
                 <Th pl="0px" borderColor={borderColor} color="gray.400" >

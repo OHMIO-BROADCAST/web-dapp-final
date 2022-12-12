@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Notification as NotificationModel } from "../../models/index";
-import { DataStore } from "aws-amplify";
+import { DataStore, API, graphqlOperation } from "aws-amplify";
 // Chakra imports
 import {
   Button,
@@ -23,6 +23,9 @@ import ThreeView from 'components/Spiral/Treeview.js'
 import { HiOutlineRefresh } from 'react-icons/hi'
 
 import { tablesProjectData, tablesTableData } from "variables/general";
+import { listNotifications } from "graphql/queries";
+
+//"b8a7ec00-5a96-43af-899e-b76c1af0c365" ID del modo actual
 
 function TablesSignals() {
   const textColor = useColorModeValue("gray.700", "white");
@@ -30,8 +33,8 @@ function TablesSignals() {
 
   const [Signals, setSignals] = useState([])
   useEffect(() => {
-
-    //query the initial todolist and subscribe to data updates
+    getAllNotifications()
+    /* //query the initial todolist and subscribe to data updates
     const subscription = DataStore.observeQuery(NotificationModel).subscribe((snapshot) => {
       //isSynced can be used to show a loading spinner when the list is being loaded. 
       const { items, isSynced } = snapshot;
@@ -43,10 +46,20 @@ function TablesSignals() {
     return async () => {
       subscription.unsubscribe();
       cleanDataStore();
-    }
+    } */
   }, []);
 
-
+  async function getAllNotifications() {
+    console.log("obteniendo notificaciones...")
+    try {
+      const getAllNotificationsData = await (await API.graphql(graphqlOperation(listNotifications))).data
+      if (getAllNotificationsData.listNotifications.items != null) {
+        setSignals(getAllNotificationsData.listNotifications.items)
+      }
+    } catch (error) {
+      console.log("Error actualizando usuarios", error)
+    }
+  }
 
   async function cleanDataStore() {
     try {
@@ -71,7 +84,7 @@ function TablesSignals() {
           <Table variant="simple" color={textColor}>
             <Thead>
               <div style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center' }}>
-                <Button leftIcon={<HiOutlineRefresh />}>ACTUALIZAR</Button>
+                <Button leftIcon={<HiOutlineRefresh />} onClick={() => getAllNotifications()}>ACTUALIZAR</Button>
               </div>
               <Tr my=".8rem" pl="0px">
                 <Th pl="0px" color="gray.400" borderColor={borderColor}>
@@ -104,7 +117,6 @@ function TablesSignals() {
                 type: "SELL",
                 updatedAt: "2022-12-11T02:06:57.084Z",
                } */
-                console.log("ITEM", row)
                 if (row) {
                   const sanitySignal = {
                     createdAt: "2022-12-11T02:06:57.084Z",
@@ -121,9 +133,6 @@ function TablesSignals() {
                     type: "SELL",
                     updatedAt: "2022-12-11T02:06:57.084Z",
                   }
-
-                  console.log("ROW", row)
-                  console.log("SANITY", sanitySignal)
 
                   return (
                     <TablesProjectRow

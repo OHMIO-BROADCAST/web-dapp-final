@@ -230,8 +230,8 @@ function Manual() {
                             price: Number(values.price),
                             position: values.position,
                             isManual: true,
-                            title: "values.title",
-                            description: "values.description",
+                            title: "You have a new Signal, please check the app",
+                            description: "",
                             timestamp: timestamp.toString(),
                             time12h: time12h,
                             date: formattedToday

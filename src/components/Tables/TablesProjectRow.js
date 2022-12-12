@@ -31,6 +31,10 @@ function DashboardTableRow(props) {
   const titleColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <Tr>
       <Td minWidth={{ sm: "100px" }} pl="0px" borderColor={borderColor} borderBottom={isLast ? "none" : null}>
@@ -141,7 +145,7 @@ function DashboardTableRow(props) {
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
 
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {type}
+          {type.toUpperCase()}
         </Text>
       </Td>
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
@@ -157,13 +161,13 @@ function DashboardTableRow(props) {
       </Td>
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
         <Badge
-          bg={isManual === true ? "black.400" : "yellow.400"}
-          color={isManual === true ? "white" : "white"}
+          bg={isManual ? "purple.400" : "yellow.400"}
+          color={isManual ? "white" : "white"}
           fontSize="16px"
           p="3px 10px"
           borderRadius="8px"
         >
-          {isManual == true ? "Manual" : "Automática"}
+          {isManual ? "Manual" : "Automática"}
         </Badge>
       </Td>
       {/* <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>

@@ -80,7 +80,7 @@ export default function HeaderLinks(props) {
         w='18px'
         h='18px'
       /> */}
-      {/* <Flex
+      <Flex
         flexDirection={"row"}
         justify="center"
         justifyContent={"center"}
@@ -105,21 +105,22 @@ export default function HeaderLinks(props) {
         bg={"white"}
         px="1rem"
         style={{ borderRadius: "50" }}
+        borderRadius={15}
         onClick={props.onOpen}
 
       >
-        <Text color={"#876db2"} fontWeight={"bold"}>
+        <Text color={'orange'} fontWeight={"bold"} >
           Refer and earn
         </Text>
         <ExternalLinkIcon
           cursor='pointer'
           ms={{ base: "0.5rem", xl: "0.5rem" }}
           onClick={props.onOpen}
-          color={"#876db2"}
+          color={"orange"}
           w='18px'
           h='18px'
         />
-      </Flex> */}
+      </Flex>
       {/* <Menu>
         <MenuButton marginLeft={'1rem'}>
           <BellIcon color={navbarIcon} w='18px' h='18px' />
@@ -182,14 +183,14 @@ export default function HeaderLinks(props) {
               <ItemContentProfile
                 boldInfo='Profile'
                 aSrc={avatar1}
-                aRoute={"/admin/profile"}
+                aRoute={"/profile"}
               />
             </MenuItem>
             <MenuItem borderRadius='8px' mb='10px'>
               <ItemContentProfile
                 boldInfo='Settings'
                 aSrc={avatar2}
-                aRoute={"/admin/profile"}
+                aRoute={"/profile"}
               />
             </MenuItem>
             <MenuItem borderRadius='8px'

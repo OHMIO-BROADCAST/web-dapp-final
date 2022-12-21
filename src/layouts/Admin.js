@@ -167,7 +167,7 @@ export default function Dashboard(props) {
             <PanelContainer>
               <Switch>
                 {getRoutes(routes)}
-                {/* <Redirect from='/' to='/dashboard' /> */}
+                <Redirect from='/' to='/dashboard' />
               </Switch>
             </PanelContainer>
           </PanelContent>

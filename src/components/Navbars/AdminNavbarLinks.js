@@ -172,7 +172,7 @@ export default function HeaderLinks(props) {
         </Text>
 
       </Flex>
-      {/* <Menu>
+      <Menu>
         <MenuButton marginLeft={'1rem'}>
           <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
         </MenuButton>
@@ -195,13 +195,8 @@ export default function HeaderLinks(props) {
             <MenuItem borderRadius='8px'
               onClick={async () => {
 
-                await Auth.logOut()
-                  .then(() => {
-                    Swal.fire("Log Out Success", '', 'info').then(() => history.push("/"))
-
-                  });
+                await Auth.signOut();
                 console.log('User Logout')
-                window.location.reload()
               }}>
               <ItemContentProfile
                 boldInfo='Log Out'
@@ -211,7 +206,7 @@ export default function HeaderLinks(props) {
             </MenuItem>
           </Flex>
         </MenuList>
-      </Menu> */}
+      </Menu>
 
 
       <SidebarResponsive

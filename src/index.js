@@ -1,37 +1,27 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import RTLLayout from "layouts/RTL.js"; // Chakra imports
-import { ChakraProvider } from "@chakra-ui/react";
-// Custom Chakra theme
-import theme from "theme/theme.js";
+
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import "./index.css";
-import QuickStart from "components/QuickStart";
-import App from "./App";
 
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { AuthStyle } from "./AuthStyle";
 
 import {
   Authenticator
 } from '@aws-amplify/ui-react';
+import SelectorApp from "SelectorApp";
+
 
 Amplify.configure(awsExports);
 
 
 ReactDOM.render(
-
-  <AuthStyle>
-    <ChakraProvider theme={theme} resetCss={false} position="relative">
-
-      <App />
-
-    </ChakraProvider>
-  </AuthStyle>
+  <Authenticator.Provider>
+    <SelectorApp />
+  </Authenticator.Provider>
   ,
 
   document.getElementById("root"),

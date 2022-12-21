@@ -91,8 +91,8 @@ function Sidebar(props) {
         );
       }
       return (
-        <NavLink to={prop.layout + prop.path} key={key}>
-          {activeRoute(prop.layout + prop.path) === "active" ? (
+        <NavLink to={prop.path} key={key}>
+          {activeRoute(prop.path) === "active" ? (
             <Button
               boxSize="initial"
               justifyContent="flex-start"
@@ -325,8 +325,8 @@ export function SidebarResponsive(props) {
         );
       }
       return (
-        <NavLink to={prop.layout + prop.path} key={key}>
-          {activeRoute(prop.layout + prop.path) === "active" ? (
+        <NavLink to={prop.path} key={key}>
+          {activeRoute(prop.path) === "active" ? (
             <Button
               boxSize="initial"
               justifyContent="flex-start"

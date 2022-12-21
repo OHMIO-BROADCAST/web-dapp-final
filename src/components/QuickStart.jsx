@@ -1,11 +1,7 @@
 /* eslint-disable */
 
 import { Card, Timeline, Typography } from "antd";
-import React, { useMemo, useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
-import Blockie from "../components/Blockie";
-import Address from "components/Address/Address";
-import Treeview from './Spiral/Treeview'
+import React, { useMemo, useEffect, useState } from "react"
 
 // Chakra imports
 import {
@@ -41,77 +37,36 @@ const styles = {
 };
 
 export default function QuickStart({ isServerInfo }) {
-  const { Moralis, isAuthenticated, account } = useMoralis();
 
-  const isInchDex = useMemo(
-    () => (Moralis.Plugins?.oneInch ? true : false),
-    [Moralis.Plugins?.oneInch],
+
+
+
+  return (
+    <Flex
+      direction="column"
+      pt={{ base: "120px", md: "75px" }}
+      alignContent="center"
+      alignItems="center"
+    ><Card
+      style={styles.cardoffline}
+
+    >
+        <div
+          style={{
+            width: "auto",
+            height: "300px",
+            justifyContent: 'center',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <Text>Quickstart</Text>
+        </div>
+
+      </Card>
+    </Flex>
   );
-
-  const [address, setAddress] = useState();
-
-  useEffect(() => {
-    setAddress((isAuthenticated && account));
-  }, [account, isAuthenticated]);
-
-  if (!address) {
-    return (
-      <Flex
-        direction="column"
-        pt={{ base: "120px", md: "75px" }}
-        alignContent="center"
-        alignItems="center"
-      ><Card
-        style={styles.cardoffline}
-
-      >
-          <div
-            style={{
-              width: "auto",
-              height: "300px",
-              justifyContent: 'center',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Text>Please connect Wallet</Text>
-          </div>
-
-        </Card>
-      </Flex>
-    );
-  }
-  else {
-    return (
-      <Flex
-        direction="column"
-        pt={{ base: "120px", md: "75px" }}
-        alignContent="center"
-        alignItems="center"
-      ><Card
-        style={styles.card}
-        title={
-          <div style={styles.header}>
-            <Blockie scale={5} avatar currentWallet style />
-            <Address size="6" copyable />
-          </div>
-        }
-      >
-          <div
-            style={{
-              width: "80rem",
-              height: "300px",
-              justifyContent: 'center',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Treeview />
-          </div>
-
-        </Card>
-      </Flex>
-    );
-  }
-
 }
+
+
+

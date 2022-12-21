@@ -16,7 +16,6 @@ import {
 import avatar1 from "assets/img/avatars/profile.png";
 import avatar2 from "assets/img/avatars/settings.png";
 import avatar3 from "assets/img/avatars/logout.png";
-import { useMoralis } from "react-moralis";
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { API, Auth } from 'aws-amplify';
@@ -30,10 +29,6 @@ import { SearchBar } from "components/Navbars/SearchBar/SearchBar";
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
 import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes.js";
-import Account from "components/Account/Account";
-import Chains from "components/Chains";
-import TokenPrice from "components/TokenPrice";
-import NativeBalance from "components/NativeBalance";
 import { ItemContentProfile } from "components/Menu/ItemContentProfile";
 import Swal from "sweetalert2";
 import { FaCoins } from "react-icons/fa";
@@ -49,7 +44,6 @@ export default function HeaderLinks(props) {
     ...rest
   } = props;
 
-  const { Moralis, isAuthenticated, account } = useMoralis();
 
   const history = useHistory();
 
@@ -86,17 +80,6 @@ export default function HeaderLinks(props) {
         w='18px'
         h='18px'
       /> */}
-
-      <Chains />
-      {/*  <TokenPrice
-        address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-        chain="eth"
-        image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
-        size="40px"
-      /> */}
-      {/* <NativeBalance /> */}
-
-      {/* <Account me='16px' /> */}
       {/* <Flex
         flexDirection={"row"}
         justify="center"

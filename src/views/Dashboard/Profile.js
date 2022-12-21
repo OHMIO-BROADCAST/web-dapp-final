@@ -39,7 +39,6 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { IoDocumentsSharp } from "react-icons/io5";
-import { useMoralis } from "react-moralis";
 
 function Profile() {
   const { colorMode } = useColorMode();

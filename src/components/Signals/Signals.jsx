@@ -2,8 +2,6 @@
 import { useEffect } from "react";
 import { Form, notification } from "antd";
 import { useMemo, useState } from "react";
-import Address from "components/Address/Address";
-import { useMoralis, useMoralisQuery } from "react-moralis";
 
 // Chakra imports
 import {
@@ -49,11 +47,9 @@ import { IoDocumentsSharp } from "react-icons/io5";
 
 // Custom components
 import Card from "../Card/Card";
-import Blockie from "../Blockie";
 import ContractBuyABI from 'contracts/LicencseToken.json';
 
 export default function Signals() {
-  const { Moralis, chainId, isAuthenticated, account } = useMoralis();
   const [responses, setResponses] = useState({});
   const [contract, setContract] = useState();
 
@@ -89,12 +85,6 @@ export default function Signals() {
       fontWeight: "500",
     },
   };
-
-  useEffect(() => {
-    setAddress((isAuthenticated && account));
-    console.log("cargando contrato")
-  }, [account, isAuthenticated]);
-
 
 
 

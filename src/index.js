@@ -8,7 +8,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme.js";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
-import { MoralisProvider } from "react-moralis";
 import "./index.css";
 import QuickStart from "components/QuickStart";
 import App from "./App";
@@ -23,20 +22,16 @@ import {
 
 Amplify.configure(awsExports);
 
-const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
-const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
-
 
 ReactDOM.render(
 
-  <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-
+  <AuthStyle>
     <ChakraProvider theme={theme} resetCss={false} position="relative">
 
       <App />
 
     </ChakraProvider>
-  </MoralisProvider>
+  </AuthStyle>
   ,
 
   document.getElementById("root"),

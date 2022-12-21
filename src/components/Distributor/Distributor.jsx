@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
-import NativeBalance from "../NativeBalance";
-import Address from "../Address/Address";
-import Blockie from "../Blockie";
 import OnramperWidget from "@onramper/widget";
 
-import { useMoralis } from "react-moralis";
 
 // Chakra imports
 import {
@@ -43,7 +39,7 @@ function Distributor() {
 
     return (
         <Box flexDirection={"column"}>
-
+            Distributors
         </Box>
     )
 }

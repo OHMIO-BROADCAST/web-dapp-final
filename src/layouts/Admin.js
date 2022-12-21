@@ -31,7 +31,6 @@ import bgAdmin from "../assets/img/admin-background-violeta.png";
 
 import LogoDark from '../assets/img/LogoTIPSparaDark.png';
 import LogoLight from '../assets/img/LogoTIPSparaLight.png';
-import { useMoralis } from "react-moralis";
 
 import BackgroundDashboard from "components/Animations/Background/BackgroundDashboard";
 
@@ -60,7 +59,7 @@ export default function Dashboard(props) {
         }
       } else {
         if (
-          window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
+          window.location.href.indexOf(routes[i].path) !== -1
         ) {
           return routes[i].name;
         }
@@ -79,7 +78,7 @@ export default function Dashboard(props) {
         }
       } else {
         if (
-          window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
+          window.location.href.indexOf(routes[i].path) !== -1
         ) {
           if (routes[i].secondaryNavbar) {
             return routes[i].secondaryNavbar;
@@ -106,7 +105,7 @@ export default function Dashboard(props) {
       if (prop.layout === "/admin") {
         return (
           <Route
-            path={prop.layout + prop.path}
+            path={prop.path}
             component={prop.component}
             key={key}
           />
@@ -120,17 +119,6 @@ export default function Dashboard(props) {
   document.documentElement.dir = "ltr";
   // Chakra Color Mode
 
-
-
-  const { Moralis, isAuthenticated, isInitialized, account } = useMoralis();
-
-  const [address, setAddress] = useState();
-
-  const currentUser = Moralis.User.current();
-
-  useEffect(() => {
-    setAddress((isAuthenticated && account));
-  }, [account, isAuthenticated]);
 
 
 
@@ -179,7 +167,7 @@ export default function Dashboard(props) {
             <PanelContainer>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from='/admin' to='/admin/dashboard' />
+                {/* <Redirect from='/' to='/dashboard' /> */}
               </Switch>
             </PanelContainer>
           </PanelContent>

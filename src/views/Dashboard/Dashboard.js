@@ -41,7 +41,6 @@ import {
   lineChartOptions,
 } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
-import { useMoralis } from "react-moralis";
 
 const styles = {
   title: {
@@ -79,42 +78,36 @@ export default function Dashboard() {
   const textTableColor = useColorModeValue("gray.500", "white");
 
   const { colorMode } = useColorMode();
-  const { Moralis, isAuthenticated, account } = useMoralis();
-  const [address, setAddress] = useState();
 
-  useEffect(() => {
-    setAddress((isAuthenticated && account));
-  }, [account, isAuthenticated]);
 
-  if (!address) {
-    return (
-      <Flex
-        direction="column"
-        pt={{ base: "120px", md: "75px" }}
-        alignContent="center"
-        alignItems="center"
-      ><Card
-        style={styles.cardoffline}
+  /* return (
+    <Flex
+      direction="column"
+      pt={{ base: "120px", md: "75px" }}
+      alignContent="center"
+      alignItems="center"
+    ><Card
+      style={styles.cardoffline}
 
-      >
-          <div
-            style={{
-              width: "auto",
-              height: "300px",
-              justifyContent: 'center',
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'column'
-            }}
-          >
-            <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro | Control Center</Text>
-            <Text align={'center'} fontWeight={300}>Hola Laura y Juanes, este es un espacio unico dedicado solo para Administradores</Text>
-          </div>
+    >
+        <div
+          style={{
+            width: "auto",
+            height: "300px",
+            justifyContent: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column'
+          }}
+        >
+          <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro | Control Center</Text>
+          <Text align={'center'} fontWeight={300}>Hola Laura y Juanes, este es un espacio unico dedicado solo para Administradores</Text>
+        </div>
 
-        </Card>
-      </Flex>
-    );
-  }
+      </Card>
+    </Flex>
+  );
+} */
 
   return (
     <Flex flexDirection='column' pt={{ base: "120px", md: "75px" }}>

@@ -12,7 +12,6 @@ import {
 } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
-
 export function AuthStyle() {
     const { tokens } = useTheme();
 
@@ -261,7 +260,10 @@ export function AuthStyle() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Authenticator formFields={formFields} components={components}></Authenticator>
+            <Authenticator
+                formFields={formFields}
+                components={components}
+            ></Authenticator>
         </ThemeProvider>
     );
 }

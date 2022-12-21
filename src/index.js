@@ -15,7 +15,7 @@ import App from "./App";
 
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { AuthStyle } from "AuthStyle";
+import { AuthStyle } from "./AuthStyle";
 
 import {
   Authenticator
@@ -28,6 +28,7 @@ const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
 
 ReactDOM.render(
+
   <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
 
     <ChakraProvider theme={theme} resetCss={false} position="relative">
@@ -35,7 +36,8 @@ ReactDOM.render(
       <App />
 
     </ChakraProvider>
-  </MoralisProvider>,
+  </MoralisProvider>
+  ,
 
   document.getElementById("root"),
 );

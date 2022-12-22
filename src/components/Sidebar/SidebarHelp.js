@@ -36,15 +36,15 @@ export function SidebarHelp(props) {
           Tu nueva herramienta.
         </Text>
       </Flex>
-      <Link href='https://play.google.com/' target={"_blank"} minW='100%'>
+      <Link href='https://play.google.com/store/apps/details?id=com.bmaker.app' target={"_blank"} minW='100%'>
         <Button variant='primary' minW='100%'>
           Descargar Android
         </Button>
       </Link>
       <Link onClick={() => {
         Swal.fire({
-          text: 'Mantente al dia, por ahora solo soportamos Android',
-          title: 'Muy pronto!',
+          text: 'Stay Up, for now we only supports Android',
+          title: 'Coming soon!',
           icon: 'success'
         })
       }}

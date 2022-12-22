@@ -59,6 +59,12 @@ export default function HeaderLinks(props) {
   }, [])
 
   let navbarIcon = useColorModeValue("white", "gray.200");
+  // Chakra color mode
+  const textColor = useColorModeValue("gray.700", "white");
+  const iconColor = useColorModeValue("navy.500", "white");
+  const bgProfile = useColorModeValue("hsla(0,0%,100%,.8)", "navy.800");
+  const borderProfileColor = useColorModeValue("white", "transparent");
+  const emailColor = useColorModeValue("gray.400", "gray.300");
 
   let menuBg = useColorModeValue("white", "navy.800");
   if (secondary) {
@@ -89,10 +95,11 @@ export default function HeaderLinks(props) {
         px="1rem"
         style={{ borderRadius: "50" }}
         onClick={props.onOpen}
+        visibility={{ xs: 'hidden' }}
 
       >
         <Text color={"white"} fontWeight={"bold"}>
-          Total Accumulated: $350 USD
+          Total Accumulated by Refer: $0 USD
         </Text>
         <FaCoins size={14} color="#fff" style={{ marginLeft: '0.5rem' }} />
 
@@ -107,6 +114,7 @@ export default function HeaderLinks(props) {
         style={{ borderRadius: "50" }}
         borderRadius={15}
         onClick={props.onOpen}
+        visibility={{ xs: 'hidden' }}
 
       >
         <Text color={'orange'} fontWeight={"bold"} >
@@ -157,58 +165,62 @@ export default function HeaderLinks(props) {
           </Flex>
         </MenuList>
       </Menu> */}
+
       <Flex
         flexDirection={"row"}
         justify="center"
         justifyContent={"center"}
         alignItems="center"
-        bg={"transparent"}
-        px="1rem"
-        style={{ borderRadius: "50" }}
-        onClick={props.onOpen}
+        boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.02)'
+        border='1.5px solid'
+        borderColor={borderProfileColor}
+        bg={"white"}
+        borderRadius={45}
+        pl="1rem"
+        ml="1rem"
+        visibility={{ xs: 'hidden' }}
 
       >
-        <Text color={"white"} fontWeight={"bold"}>
+        <Text color={"orange"} fontWeight={"bold"}>
           {user && user.attributes.name}
         </Text>
+        <Menu>
+          <MenuButton marginLeft={'0.5rem'}>
+            <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
+          </MenuButton>
+          <MenuList p='16px 8px' bg={menuBg}>
+            <Flex flexDirection='column'>
+              <MenuItem borderRadius='8px' mb='10px'>
+                <ItemContentProfile
+                  boldInfo='Profile'
+                  aSrc={avatar1}
+                  aRoute={"/profile"}
+                />
+              </MenuItem>
+              <MenuItem borderRadius='8px' mb='10px'>
+                <ItemContentProfile
+                  boldInfo='Settings'
+                  aSrc={avatar2}
+                  aRoute={"/profile"}
+                />
+              </MenuItem>
+              <MenuItem borderRadius='8px'
+                onClick={async () => {
+
+                  await Auth.signOut();
+                  console.log('User Logout')
+                }}>
+                <ItemContentProfile
+                  boldInfo='Log Out'
+                  aSrc={avatar3}
+
+                />
+              </MenuItem>
+            </Flex>
+          </MenuList>
+        </Menu>
 
       </Flex>
-      <Menu>
-        <MenuButton marginLeft={'1rem'}>
-          <Avatar color={navbarIcon} w='2.3rem' h='2.3rem' me='0px' />
-        </MenuButton>
-        <MenuList p='16px 8px' bg={menuBg}>
-          <Flex flexDirection='column'>
-            <MenuItem borderRadius='8px' mb='10px'>
-              <ItemContentProfile
-                boldInfo='Profile'
-                aSrc={avatar1}
-                aRoute={"/profile"}
-              />
-            </MenuItem>
-            <MenuItem borderRadius='8px' mb='10px'>
-              <ItemContentProfile
-                boldInfo='Settings'
-                aSrc={avatar2}
-                aRoute={"/profile"}
-              />
-            </MenuItem>
-            <MenuItem borderRadius='8px'
-              onClick={async () => {
-
-                await Auth.signOut();
-                console.log('User Logout')
-              }}>
-              <ItemContentProfile
-                boldInfo='Log Out'
-                aSrc={avatar3}
-
-              />
-            </MenuItem>
-          </Flex>
-        </MenuList>
-      </Menu>
-
 
       <SidebarResponsive
         hamburgerColor={"white"}
@@ -221,30 +233,15 @@ export default function HeaderLinks(props) {
             )}
           </Stack>
         }
-        /* logo={
-          <Stack direction='row' spacing='12px' align='center' justify='center'>
-            {colorMode === "dark" ? (
-              <ArgonLogoLight w='74px' h='27px' />
-            ) : (
-              <ArgonLogoDark w='74px' h='27px' />
-            )}
-            <Box
-              w='1px'
-              h='20px'
-              bg={colorMode === "dark" ? "white" : "gray.700"}
-            />
-            {colorMode === "dark" ? (
-              <ChakraLogoLight w='82px' h='21px' />
-            ) : (
-              <ChakraLogoDark w='82px' h='21px' />
-            )}
-          </Stack>
-        } */
+
         colorMode={colorMode}
         secondary={props.secondary}
         routes={routes}
         {...rest}
       />
+
+
+
 
 
     </Flex >

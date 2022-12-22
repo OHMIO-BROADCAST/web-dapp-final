@@ -88,14 +88,14 @@ function TablesSignals() {
               </div>
               <Tr my=".8rem" pl="0px">
                 <Th pl="0px" color="gray.400" borderColor={borderColor}>
-                  PAR OPERADO
+                  PAIR OPERATED
                 </Th>
-                <Th color="gray.400" borderColor={borderColor}>Precio</Th>
-                <Th color="gray.400" borderColor={borderColor}>Hora (GMT-5)</Th>
-                <Th color="gray.400" borderColor={borderColor}>Fecha</Th>
-                <Th color="gray.400" borderColor={borderColor}>Tipo de Orden</Th>
-                <Th color="gray.400" borderColor={borderColor}>Posición</Th>
-                <Th color="gray.400" borderColor={borderColor}>Modo de adquisición</Th>
+                <Th color="gray.400" borderColor={borderColor}>Price</Th>
+                <Th color="gray.400" borderColor={borderColor}>Time (GMT-5)</Th>
+                <Th color="gray.400" borderColor={borderColor}>Date</Th>
+                <Th color="gray.400" borderColor={borderColor}>Type of Order</Th>
+                <Th color="gray.400" borderColor={borderColor}>Position</Th>
+                {/* <Th color="gray.400" borderColor={borderColor}>Modo de adquisición</Th> */}
 
                 <Th></Th>
               </Tr>
@@ -146,7 +146,6 @@ function TablesSignals() {
                       time12h={sanitySignal.time12h}
                       date={sanitySignal.date}
                       position={sanitySignal.position}
-                      isManual={sanitySignal.isManual}
                       createdAt={sanitySignal.createdAt}
 
                       isLast={index === arr.length - 1 ? true : false}

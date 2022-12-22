@@ -68,7 +68,7 @@ function Profile() {
         maxH='330px'
         justifyContent={{ sm: "center", md: "space-between" }}
         align='center'
-        backdropFilter='blur(1px)'
+        backdropFilter={{ md: 'blur(1px)', lg: 'blur(1px)', sm: 'none' }}
         boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.02)'
         border='1.5px solid'
         borderColor={borderProfileColor}
@@ -94,7 +94,7 @@ function Profile() {
               color={textColor}
               fontWeight='bold'
               ms={{ sm: "8px", md: "0px" }}>
-              {user && user.username}
+              @{user && user.username}
             </Text>
             <Text
               fontSize={{ sm: "lg", lg: "xl" }}
@@ -114,7 +114,7 @@ function Profile() {
         <Flex
           direction={{ sm: "column", lg: "column" }}
           w={{ sm: "100%", md: "50%", lg: "auto" }}>
-          <Button p='0px' bg='transparent' variant='no-effects'>
+          {/* <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
               align='center'
               w={{ sm: "100%", lg: "135px" }}
@@ -130,7 +130,7 @@ function Profile() {
                 EDIT
               </Text>
             </Flex>
-          </Button>
+          </Button> */}
           {/* <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
               align='center'
@@ -160,7 +160,7 @@ function Profile() {
               cursor='pointer'>
               <Icon color={"white"} as={FaFileAlt} me='6px' />
               <Text fontSize='xs' color={"white"} fontWeight='bold' flexWrap={true}>
-                Ver Tutoriales
+                TUTORIALS
               </Text>
             </Flex>
           </Button>
@@ -171,13 +171,13 @@ function Profile() {
         <Card p='16px'>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
-              Configuración de Plataforma
+              PLATFORM CONFIGURATION
             </Text>
           </CardHeader>
           <CardBody px='5px'>
             <Flex direction='column'>
               <Text fontSize='sm' color='gray.400' fontWeight='600' mb='20px'>
-                NOTIFICACIONES & SEÑALES
+                SIGNALS & NOTIFICATIONS
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -186,7 +186,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Notificaciones en App
+                  Push Notifications
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -215,7 +215,7 @@ function Profile() {
                 color='gray.400'
                 fontWeight='600'
                 m='6px 0px 20px 0px'>
-                PROGRAMA DE REFERIDOS
+                REFER PROGRAM
               </Text>
               <Flex align='center' mb='20px'>
                 <Switch colorScheme='navy' me='10px' />
@@ -224,7 +224,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Email cuando haya referido a alguien
+                  Email me when refer somebody
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -234,7 +234,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  SMS cuando haya referido a alguien
+                  SMS me when refer somebody
                 </Text>
               </Flex>
               <Flex align='center' mb='20px'>
@@ -244,7 +244,7 @@ function Profile() {
                   fontSize='md'
                   color='gray.400'
                   fontWeight='400'>
-                  Suscripción a noticias
+                  Subscription to news
                 </Text>
               </Flex>
             </Flex>
@@ -253,7 +253,7 @@ function Profile() {
         <Card p='16px' my={{ sm: "24px", xl: "0px" }}>
           <CardHeader p='12px 5px' mb='12px'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
-              Información de Perfil
+              PROFILE INFORMATION
             </Text>
           </CardHeader>
           <CardBody px='5px'>
@@ -270,7 +270,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Nombre Completo:{" "}
+                  Complete Name:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
                   {user && user.attributes.name}
@@ -282,10 +282,10 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Mobile:{" "}
+                  Phone Number:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
-                  +{user && user.attributes.phone_number}
+                  {user && user.attributes.phone_number}
                 </Text>
               </Flex>
               <Flex align='center' mb='18px'>
@@ -294,7 +294,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Telefono:{" "}
+                  Email:{" "}
                 </Text>
                 <Text fontSize='md' color='gray.400' fontWeight='400'>
                   {user && user.attributes.email.toLowerCase()}
@@ -307,7 +307,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Estado de suscripción:{" "}
+                  Subscription Status:{" "}
                 </Text>
                 <Badge
                   bg={(user && user.attributes.forexSubscription) == true ? "green.400" : "green.400"}
@@ -316,7 +316,7 @@ function Profile() {
                   p="3px 10px"
                   borderRadius="8px"
                 >
-                  {(user && user.attributes.forexSubscription) == true ? "Activo" : "Inactivo"}
+                  {(user && user.attributes.forexSubscription) == true ? "Active" : "Inactive"}
                 </Badge>
               </Flex>
             </Flex>

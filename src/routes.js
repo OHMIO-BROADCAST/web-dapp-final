@@ -36,6 +36,10 @@ import Manual from 'views/Dashboard/Manual';
 
 import { HiUsers } from 'react-icons/hi';
 import { AiTwotoneNotification } from 'react-icons/ai';
+import { AiOutlineDotChart } from 'react-icons/ai';
+import { SiMarketo } from 'react-icons/si';
+
+
 import { FaTools } from 'react-icons/fa'
 
 var dashRoutes = [
@@ -46,7 +50,7 @@ var dashRoutes = [
     component: Dashboard,
     layout: "/admin",
   },
-  {
+  /* {
     name: "USUARIOS",
     category: "robots",
     state: "pageCollapse",
@@ -59,43 +63,50 @@ var dashRoutes = [
         layout: "/admin",
       },
     ]
+  }, */
+  {
+    name: "SUBSCRIPTIONS",
+    category: "robots",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/forex",
+        name: "Forex",
+        icon: <SiMarketo color='inherit' />,
+        component: Signals,
+        layout: "/admin",
+      }
+    ]
   },
   {
-    name: "SEÑALES",
+    name: "SIGNALS",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/all-signals",
-        name: "Todas",
+        name: "All Notifications",
         icon: <AiTwotoneNotification color='inherit' />,
         component: TablesSignals,
-        layout: "/admin",
-      },
-      {
-        path: "/manual-mode",
-        name: "Modo Manual",
-        icon: <FaTools color='inherit' />,
-        component: Manual,
         layout: "/admin",
       }
     ]
   },
-  /* {
-    name: "Cuenta",
+  {
+    name: "ACCOUNT",
     category: "account",
     state: "pageCollapse",
     views: [
       {
         path: "/profile",
-        name: "Perfil",
+        name: "Profile",
         icon: <PersonIcon color='inherit' />,
         secondaryNavbar: true,
         component: Profile,
         layout: "/admin",
       }
     ],
-  }, */
+  },
 
 ];
 export default dashRoutes;

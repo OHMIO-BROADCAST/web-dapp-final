@@ -25,8 +25,8 @@ function DashboardTableRow(props) {
     price,
     time12h,
     date,
-    position,
-    isManual } = props;
+    position
+  } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
@@ -44,7 +44,7 @@ function DashboardTableRow(props) {
             pair.toLowerCase() == 'audcad' &&
             <Tooltip
               hasArrow
-              label={"Identificador: " + id}
+              label={"Identifier: " + id}
               fontSize='sm'
             >
               <Image
@@ -59,7 +59,7 @@ function DashboardTableRow(props) {
             pair.toLowerCase() == 'usdcad' &&
             <Tooltip
               hasArrow
-              label={"Identificador: " + id}
+              label={"Identifier: " + id}
               fontSize='sm'
             ><Image
                 src={
@@ -73,7 +73,7 @@ function DashboardTableRow(props) {
             pair.toLowerCase() == 'nzdcad' &&
             <Tooltip
               hasArrow
-              label={"Identificador: " + id}
+              label={"Identifier: " + id}
               fontSize='sm'
             ><Image
                 src={
@@ -87,7 +87,7 @@ function DashboardTableRow(props) {
             pair.toLowerCase() == 'eurusd' &&
             <Tooltip
               hasArrow
-              label={"Identificador: " + id}
+              label={"Identifier: " + id}
               fontSize='sm'
             ><Image
                 src={
@@ -101,7 +101,7 @@ function DashboardTableRow(props) {
             pair.toLowerCase() == 'cadchf' &&
             <Tooltip
               hasArrow
-              label={"Identificador: " + id}
+              label={"Identifier: " + id}
               fontSize='sm'
             ><Image
                 src={
@@ -133,7 +133,7 @@ function DashboardTableRow(props) {
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
         <Tooltip
           hasArrow
-          label={"Fecha de Lanzamiento por parte nuestra: " + createdAt}
+          label={"Creation Date: " + createdAt}
           fontSize='sm'
         >
           <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
@@ -159,7 +159,7 @@ function DashboardTableRow(props) {
           {position == "Buy" ? "Comprar" : "Vender"}
         </Badge>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      {/* <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
         <Badge
           bg={isManual ? "purple.400" : "yellow.400"}
           color={isManual ? "white" : "white"}
@@ -169,7 +169,7 @@ function DashboardTableRow(props) {
         >
           {isManual ? "Manual" : "Automática"}
         </Badge>
-      </Td>
+      </Td> */}
       {/* <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
         <Button p="0px" bg="transparent" variant="no-effects">
           <Icon as={FaEllipsisV} color="gray.400" cursor="pointer" />

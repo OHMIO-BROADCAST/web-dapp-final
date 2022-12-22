@@ -454,6 +454,7 @@ export function SidebarResponsive(props) {
       ref={mainPanel}
       alignItems="center"
       justifyContent={'space-between'}
+      my="1rem"
     >
       <HamburgerIcon
         color={hamburgerColor}

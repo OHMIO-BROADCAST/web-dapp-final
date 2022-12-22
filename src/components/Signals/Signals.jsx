@@ -111,8 +111,8 @@ export default function Signals() {
           <Grid
             templateColumns={{ sm: "1fr", md: "1fr 1fr", xl: "repeat(3, 1fr)" }}
             templateRows={{ sm: "1fr 1fr 1fr auto", md: "1fr 1fr", xl: "1fr" }}
-            gap='24px'>
-            <Flex direction='column'>
+            gap='1rem'>
+            <Flex direction='column' style={{ width: '20rem' }}>
               <Box mb='20px' position='relative' borderRadius='15px'>
                 <Image src={plan1} borderRadius='15px' />
                 <Box
@@ -125,7 +125,7 @@ export default function Signals() {
               </Box>
               <Flex direction='column'>
                 <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Signal Pack #1
+                  Forex Signal Package #1
                 </Text>
                 <Text
                   fontSize='xl'
@@ -147,7 +147,7 @@ export default function Signals() {
                 </Flex>
               </Flex>
             </Flex>
-            <Flex direction='column'>
+            <Flex direction='column' style={{ width: '20rem' }}>
               <Box mb='20px' position='relative' borderRadius='15px'>
                 <Image src={plan2} borderRadius='15px' />
                 <Box
@@ -160,7 +160,7 @@ export default function Signals() {
               </Box>
               <Flex direction='column'>
                 <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Signal Pack #2
+                  Forex Signal Package #2
                 </Text>
                 <Text
                   fontSize='xl'
@@ -182,7 +182,7 @@ export default function Signals() {
                 </Flex>
               </Flex>
             </Flex>
-            <Flex direction='column'>
+            <Flex direction='column' style={{ width: '20rem' }}>
               <Box mb='20px' position='relative' borderRadius='15px'>
                 <Image src={plan3} borderRadius='15px' />
                 <Box
@@ -193,9 +193,9 @@ export default function Signals() {
                   borderRadius='15px'
                   bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
               </Box>
-              <Flex direction='column'>
+              <Flex direction='column' >
                 <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Signal Pack #3
+                  Forex Signal Package #3
                 </Text>
                 <Text
                   fontSize='xl'

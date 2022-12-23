@@ -40,7 +40,7 @@ import { AiOutlineDotChart } from 'react-icons/ai';
 import { SiMarketo } from 'react-icons/si';
 import { TbReportMoney } from 'react-icons/tb';
 import { GiStairsGoal } from 'react-icons/gi';
-
+import { HiDocumentAdd } from 'react-icons/hi';
 
 
 
@@ -130,9 +130,9 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/all-signals",
-        name: "Sign Online",
-        icon: <AiTwotoneNotification color='inherit' />,
+        path: "/all-certificates",
+        name: "All Certificates",
+        icon: <HiDocumentAdd color='inherit' />,
         component: Signals,
         layout: "/admin",
       }

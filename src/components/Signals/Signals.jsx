@@ -10,6 +10,8 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Grid,
   Icon,
   Image,
@@ -51,11 +53,7 @@ import ContractBuyABI from 'contracts/LicencseToken.json';
 
 export default function Signals() {
   const [responses, setResponses] = useState({});
-  const [contract, setContract] = useState();
-
-  const [address, setAddress] = useState();
-
-  const { colorMode } = useColorMode();
+  const [anually, setAnually] = useState(true);
 
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
@@ -100,11 +98,22 @@ export default function Signals() {
         <CardHeader p='12px 5px' mb='12px'>
           <Flex direction='column'>
             <Text fontSize='lg' color={textColor} fontWeight='bold'>
-              Signal Packages
+              REAL TIME NOTIFICATIONS PACKAGES
             </Text>
-            <Text fontSize='sm' color='gray.400' fontWeight='400'>
-              Please take a look of our premium signal packages
+            <Text fontSize='sm' color='gray.400' fontWeight='bold'>
+              Please take a look of our premium services
             </Text>
+            <FormControl display='flex' alignItems='center' width={"100%"} justifyContent="center">
+              <FormLabel htmlFor='monthly-anually' mb='0' fontWeight={"bold"}>
+                MONTHLY
+              </FormLabel>
+              <Switch
+                id='monthly-anually' size='lg' colorScheme={"orange"}
+                value={anually} onChange={() => setAnually(!anually)} />
+              <FormLabel htmlFor='monthly-anually' mb='0' ml={"1rem"} fontWeight={"bold"} >
+                ANUALLY
+              </FormLabel>
+            </FormControl>
           </Flex>
         </CardHeader>
         <CardBody px='5px'>
@@ -112,9 +121,10 @@ export default function Signals() {
             templateColumns={{ sm: "1fr", md: "1fr 1fr", xl: "repeat(3, 1fr)" }}
             templateRows={{ sm: "1fr 1fr 1fr auto", md: "1fr 1fr", xl: "1fr" }}
             gap='1rem'>
-            <Flex direction='column' style={{ width: '20rem' }}>
+
+            {anually == true ? (<><Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
               <Box mb='20px' position='relative' borderRadius='15px'>
-                <Image src={plan1} borderRadius='15px' />
+                {/* <Image src={plan1} borderRadius='15px' /> */}
                 <Box
                   w='100%'
                   h='100%'
@@ -124,18 +134,28 @@ export default function Signals() {
                   bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
               </Box>
               <Flex direction='column'>
-                <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Forex Signal Package #1
+                <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                  PROFESSIONAL
                 </Text>
                 <Text
                   fontSize='xl'
                   color={textColor}
                   fontWeight='bold'
-                  mb='10px'>
-                  2 Months
+                  mb='10px' textAlign="center">
+                  1 MONTH / $150 USD
                 </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px'>
-                  This package comprehends AUD, USD, EUR, CAD ForEX
+
+                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                  This package comprehends current supporte pairs on Forex Market
+                </Text>
+                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                  Push Notifications in Real-Time
+                </Text>
+                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                  Support Assitance
+                </Text>
+                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                  1 Month Duration
                 </Text>
                 <Flex justifyContent='space-between'>
                   <Button variant='dark' minW='110px' h='36px'>
@@ -147,76 +167,241 @@ export default function Signals() {
                 </Flex>
               </Flex>
             </Flex>
-            <Flex direction='column' style={{ width: '20rem' }}>
-              <Box mb='20px' position='relative' borderRadius='15px'>
-                <Image src={plan2} borderRadius='15px' />
-                <Box
-                  w='100%'
-                  h='100%'
-                  position='absolute'
-                  top='0'
-                  borderRadius='15px'
-                  bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
-              </Box>
-              <Flex direction='column'>
-                <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Forex Signal Package #2
-                </Text>
-                <Text
-                  fontSize='xl'
-                  color={textColor}
-                  fontWeight='bold'
-                  mb='10px'>
-                  5 Months
-                </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px'>
-                  This package comprehends NASDAQ index
-                </Text>
-                <Flex justifyContent='space-between'>
-                  <Button variant='dark' minW='110px' h='36px'>
-                    Pay with Crypto
-                  </Button>
-                  <Button variant='light' minW='110px' h='36px'>
-                    Pay with FIAT
-                  </Button>
+              <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+                <Box mb='20px' position='relative' borderRadius='15px'>
+                  {/* <Image src={plan2} borderRadius='15px' /> */}
+                  <Box
+                    w='100%'
+                    h='100%'
+                    position='absolute'
+                    top='0'
+                    borderRadius='15px'
+                    bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                </Box>
+                <Flex direction='column'>
+                  <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                    PREMIUM
+                  </Text>
+                  <Text
+                    fontSize='xl'
+                    color={textColor}
+                    fontWeight='bold'
+                    mb='10px'
+                    textAlign="center">
+                    3 MONTH / $400 USD
+                  </Text>
+
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    This package comprehends current supporte pairs on Forex Market
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Push Notifications in Real-Time
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Support Assitance
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    1 Month Duration
+                  </Text>
+                  <Flex justifyContent='space-between'>
+                    <Button variant='dark' minW='110px' h='36px'>
+                      Pay with Crypto
+                    </Button>
+                    <Button variant='light' minW='110px' h='36px'>
+                      Pay with FIAT
+                    </Button>
+                  </Flex>
                 </Flex>
               </Flex>
-            </Flex>
-            <Flex direction='column' style={{ width: '20rem' }}>
-              <Box mb='20px' position='relative' borderRadius='15px'>
-                <Image src={plan3} borderRadius='15px' />
-                <Box
-                  w='100%'
-                  h='100%'
-                  position='absolute'
-                  top='0'
-                  borderRadius='15px'
-                  bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
-              </Box>
-              <Flex direction='column' >
-                <Text fontSize='md' color='gray.400' fontWeight='600' mb='10px'>
-                  Forex Signal Package #3
-                </Text>
-                <Text
-                  fontSize='xl'
-                  color={textColor}
-                  fontWeight='bold'
-                  mb='10px'>
-                  6 Months
-                </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px'>
-                  This package comprehends S&P500 and S&P100
-                </Text>
-                <Flex justifyContent='space-between'>
-                  <Button variant='dark' minW='110px' h='36px'>
-                    Pay with Crypto
-                  </Button>
-                  <Button variant='light' minW='110px' h='36px'>
-                    Pay with FIAT
-                  </Button>
+              <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually == true ? "green" : "orange") }}>
+                <Box mb='20px' position='relative' >
+                  {/* <Image src={plan3} borderRadius='15px' /> */}
+                  <Box
+                    w='100%'
+                    h='100%'
+                    position='absolute'
+                    top='0'
+                    borderRadius='15px'
+                    bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                </Box>
+                <Flex direction='column' >
+                  <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                    PLATINUM
+                  </Text>
+                  <Text
+                    fontSize='xl'
+                    color={textColor}
+                    fontWeight='bold'
+                    mb='10px'
+                    textAlign="center">
+                    6 MONTH / $700 USD
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    This package comprehends current supporte pairs on Forex Market
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Push Notifications in Real-Time
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Support Assitance
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    6 Month Duration
+                  </Text>
+
+                  <Flex justifyContent='space-between'>
+                    <Button variant='dark' minW='110px' h='36px'>
+                      Pay with Crypto
+                    </Button>
+                    <Button variant='light' minW='110px' h='36px'>
+                      Pay with FIAT
+                    </Button>
+                  </Flex>
+                </Flex>
+              </Flex></>) : (<><Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+                <Box mb='20px' position='relative' borderRadius='15px'>
+                  {/* <Image src={plan1} borderRadius='15px' /> */}
+                  <Box
+                    w='100%'
+                    h='100%'
+                    position='absolute'
+                    top='0'
+                    borderRadius='15px'
+                    bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                </Box>
+                <Flex direction='column'>
+                  <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                    PROFESSIONAL
+                  </Text>
+                  <Text
+                    fontSize='xl'
+                    color={textColor}
+                    fontWeight='bold'
+                    mb='10px' textAlign="center">
+                    1 MONTH / $140 USD
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' decoration={"underline"} textAlign="center" >
+                    Billed Anually
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    This package comprehends current supporte pairs on Forex Market
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Push Notifications in Real-Time
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Support Assitance
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    1 Month Duration
+                  </Text>
+                  <Flex justifyContent='space-between'>
+                    <Button variant='dark' minW='110px' h='36px'>
+                      Pay with Crypto
+                    </Button>
+                    <Button variant='light' minW='110px' h='36px'>
+                      Pay with FIAT
+                    </Button>
+                  </Flex>
                 </Flex>
               </Flex>
-            </Flex>
+                <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+                  <Box mb='20px' position='relative' borderRadius='15px'>
+                    {/* <Image src={plan2} borderRadius='15px' /> */}
+                    <Box
+                      w='100%'
+                      h='100%'
+                      position='absolute'
+                      top='0'
+                      borderRadius='15px'
+                      bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                  </Box>
+                  <Flex direction='column'>
+                    <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                      PREMIUM
+                    </Text>
+                    <Text
+                      fontSize='xl'
+                      color={textColor}
+                      fontWeight='bold'
+                      mb='10px'
+                      textAlign="center">
+                      3 MONTH / $390 USD
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' decoration={"underline"} textAlign="center" >
+                      Billed Anually
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      This package comprehends current supporte pairs on Forex Market
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      Push Notifications in Real-Time
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      Support Assitance
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      1 Month Duration
+                    </Text>
+                    <Flex justifyContent='space-between'>
+                      <Button variant='dark' minW='110px' h='36px'>
+                        Pay with Crypto
+                      </Button>
+                      <Button variant='light' minW='110px' h='36px'>
+                        Pay with FIAT
+                      </Button>
+                    </Flex>
+                  </Flex>
+                </Flex>
+                <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually == true ? "green" : "orange") }}>
+                  <Box mb='20px' position='relative' >
+                    {/* <Image src={plan3} borderRadius='15px' /> */}
+                    <Box
+                      w='100%'
+                      h='100%'
+                      position='absolute'
+                      top='0'
+                      borderRadius='15px'
+                      bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                  </Box>
+                  <Flex direction='column' >
+                    <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                      PLATINUM
+                    </Text>
+                    <Text
+                      fontSize='xl'
+                      color={textColor}
+                      fontWeight='bold'
+                      mb='10px'
+                      textAlign="center">
+                      6 MONTH / $690 USD
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' decoration={"underline"} textAlign="center" >
+                      Billed Anually
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      This package comprehends current supporte pairs on Forex Market
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      Push Notifications in Real-Time
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      Support Assitance
+                    </Text>
+                    <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                      6 Month Duration
+                    </Text>
+
+                    <Flex justifyContent='space-between'>
+                      <Button variant='dark' minW='110px' h='36px'>
+                        Pay with Crypto
+                      </Button>
+                      <Button variant='light' minW='110px' h='36px'>
+                        Pay with FIAT
+                      </Button>
+                    </Flex>
+                  </Flex>
+                </Flex></>)}
             {/* <Button
               p='0px'
               bg='transparent'
@@ -234,7 +419,7 @@ export default function Signals() {
         </CardBody>
       </Card>
 
-    </Flex>
+    </Flex >
   );
 
 }

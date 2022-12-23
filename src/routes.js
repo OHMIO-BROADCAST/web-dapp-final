@@ -38,6 +38,10 @@ import { HiUsers } from 'react-icons/hi';
 import { AiTwotoneNotification } from 'react-icons/ai';
 import { AiOutlineDotChart } from 'react-icons/ai';
 import { SiMarketo } from 'react-icons/si';
+import { TbReportMoney } from 'react-icons/tb';
+import { GiStairsGoal } from 'react-icons/gi';
+
+
 
 
 import { FaTools } from 'react-icons/fa'
@@ -79,15 +83,57 @@ var dashRoutes = [
     ]
   },
   {
-    name: "SIGNALS",
+    name: "REFEERS",
+    category: "robots",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/my-refeers",
+        name: "My Refeers",
+        icon: <StatsIcon color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+      {
+        path: "/my-comissions",
+        name: "Comissions",
+        icon: <TbReportMoney color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+    ]
+  },
+  {
+    name: "COMERCIAL",
+    category: "robots",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/my-clients",
+        name: "Clients",
+        icon: <StarIcon color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+      {
+        path: "/monthly-goal",
+        name: "Monthly Goal",
+        icon: <GiStairsGoal color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+    ]
+  },
+  {
+    name: "TERMS & CONDITIONS",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/all-signals",
-        name: "All Notifications",
+        name: "Sign Online",
         icon: <AiTwotoneNotification color='inherit' />,
-        component: TablesSignals,
+        component: Signals,
         layout: "/admin",
       }
     ]

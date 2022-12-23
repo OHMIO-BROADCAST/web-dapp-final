@@ -4,11 +4,14 @@ import { schema } from './schema';
 
 
 
-const { Notification, Modo, User, pinpointResult } = initSchema(schema);
+const { Notification, Noticia, CuotaComercial, Modo, Certificate, User, pinpointResult } = initSchema(schema);
 
 export {
   Notification,
+  Noticia,
+  CuotaComercial,
   Modo,
+  Certificate,
   User,
   pinpointResult
 };

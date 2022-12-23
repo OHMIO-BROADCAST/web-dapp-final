@@ -84,6 +84,132 @@ export const deleteNotification = /* GraphQL */ `
     }
   }
 `;
+export const createNoticia = /* GraphQL */ `
+  mutation CreateNoticia(
+    $input: CreateNoticiaInput!
+    $condition: ModelNoticiaConditionInput
+  ) {
+    createNoticia(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      type
+      externalUrl
+      optionalImage
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateNoticia = /* GraphQL */ `
+  mutation UpdateNoticia(
+    $input: UpdateNoticiaInput!
+    $condition: ModelNoticiaConditionInput
+  ) {
+    updateNoticia(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      type
+      externalUrl
+      optionalImage
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteNoticia = /* GraphQL */ `
+  mutation DeleteNoticia(
+    $input: DeleteNoticiaInput!
+    $condition: ModelNoticiaConditionInput
+  ) {
+    deleteNoticia(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      type
+      externalUrl
+      optionalImage
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createCuotaComercial = /* GraphQL */ `
+  mutation CreateCuotaComercial(
+    $input: CreateCuotaComercialInput!
+    $condition: ModelCuotaComercialConditionInput
+  ) {
+    createCuotaComercial(input: $input, condition: $condition) {
+      cantidadReferidos
+      lastUpdate
+      fechaCierre
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCuotaComercial = /* GraphQL */ `
+  mutation UpdateCuotaComercial(
+    $input: UpdateCuotaComercialInput!
+    $condition: ModelCuotaComercialConditionInput
+  ) {
+    updateCuotaComercial(input: $input, condition: $condition) {
+      cantidadReferidos
+      lastUpdate
+      fechaCierre
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCuotaComercial = /* GraphQL */ `
+  mutation DeleteCuotaComercial(
+    $input: DeleteCuotaComercialInput!
+    $condition: ModelCuotaComercialConditionInput
+  ) {
+    deleteCuotaComercial(input: $input, condition: $condition) {
+      cantidadReferidos
+      lastUpdate
+      fechaCierre
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createModo = /* GraphQL */ `
   mutation CreateModo(
     $input: CreateModoInput!
@@ -135,6 +261,63 @@ export const deleteModo = /* GraphQL */ `
     }
   }
 `;
+export const createCertificate = /* GraphQL */ `
+  mutation CreateCertificate(
+    $input: CreateCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    createCertificate(input: $input, condition: $condition) {
+      id
+      name
+      documentUnsigned
+      documentSigned
+      isSigned
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCertificate = /* GraphQL */ `
+  mutation UpdateCertificate(
+    $input: UpdateCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    updateCertificate(input: $input, condition: $condition) {
+      id
+      name
+      documentUnsigned
+      documentSigned
+      isSigned
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCertificate = /* GraphQL */ `
+  mutation DeleteCertificate(
+    $input: DeleteCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    deleteCertificate(input: $input, condition: $condition) {
+      id
+      name
+      documentUnsigned
+      documentSigned
+      isSigned
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -149,11 +332,16 @@ export const createUser = /* GraphQL */ `
       expoToken
       forexSubscription
       hasPurchasedSomething
+      expirationDate
       totalReward
       totalReferred
       isReferred
       hasReferred
       referredBy
+      isCommercial
+      cumplidoCuota
+      totalEarnComercial
+      registerDate
       createdAt
       updatedAt
       _version
@@ -176,11 +364,16 @@ export const updateUser = /* GraphQL */ `
       expoToken
       forexSubscription
       hasPurchasedSomething
+      expirationDate
       totalReward
       totalReferred
       isReferred
       hasReferred
       referredBy
+      isCommercial
+      cumplidoCuota
+      totalEarnComercial
+      registerDate
       createdAt
       updatedAt
       _version
@@ -203,11 +396,16 @@ export const deleteUser = /* GraphQL */ `
       expoToken
       forexSubscription
       hasPurchasedSomething
+      expirationDate
       totalReward
       totalReferred
       isReferred
       hasReferred
       referredBy
+      isCommercial
+      cumplidoCuota
+      totalEarnComercial
+      registerDate
       createdAt
       updatedAt
       _version

@@ -64,6 +64,82 @@ export declare const Notification: (new (init: ModelInit<Notification>) => Notif
   copyOf(source: Notification, mutator: (draft: MutableModel<Notification>) => MutableModel<Notification> | void): Notification;
 }
 
+type EagerNoticia = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Noticia, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly name: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly publishedDate: string;
+  readonly timestamp: string;
+  readonly time12h: string;
+  readonly type: string;
+  readonly externalUrl?: string | null;
+  readonly optionalImage?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyNoticia = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Noticia, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly name: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly publishedDate: string;
+  readonly timestamp: string;
+  readonly time12h: string;
+  readonly type: string;
+  readonly externalUrl?: string | null;
+  readonly optionalImage?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Noticia = LazyLoading extends LazyLoadingDisabled ? EagerNoticia : LazyNoticia
+
+export declare const Noticia: (new (init: ModelInit<Noticia>) => Noticia) & {
+  copyOf(source: Noticia, mutator: (draft: MutableModel<Noticia>) => MutableModel<Noticia> | void): Noticia;
+}
+
+type EagerCuotaComercial = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<CuotaComercial, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly cantidadReferidos: number;
+  readonly lastUpdate: string;
+  readonly fechaCierre?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyCuotaComercial = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<CuotaComercial, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly cantidadReferidos: number;
+  readonly lastUpdate: string;
+  readonly fechaCierre?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type CuotaComercial = LazyLoading extends LazyLoadingDisabled ? EagerCuotaComercial : LazyCuotaComercial
+
+export declare const CuotaComercial: (new (init: ModelInit<CuotaComercial>) => CuotaComercial) & {
+  copyOf(source: CuotaComercial, mutator: (draft: MutableModel<CuotaComercial>) => MutableModel<CuotaComercial> | void): CuotaComercial;
+}
+
 type EagerModo = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Modo, 'id'>;
@@ -94,6 +170,40 @@ export declare const Modo: (new (init: ModelInit<Modo>) => Modo) & {
   copyOf(source: Modo, mutator: (draft: MutableModel<Modo>) => MutableModel<Modo> | void): Modo;
 }
 
+type EagerCertificate = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Certificate, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly name: string;
+  readonly documentUnsigned: string;
+  readonly documentSigned?: string | null;
+  readonly isSigned: boolean;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyCertificate = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Certificate, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly name: string;
+  readonly documentUnsigned: string;
+  readonly documentSigned?: string | null;
+  readonly isSigned: boolean;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Certificate = LazyLoading extends LazyLoadingDisabled ? EagerCertificate : LazyCertificate
+
+export declare const Certificate: (new (init: ModelInit<Certificate>) => Certificate) & {
+  copyOf(source: Certificate, mutator: (draft: MutableModel<Certificate>) => MutableModel<Certificate> | void): Certificate;
+}
+
 type EagerUser = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<User, 'id'>;
@@ -107,11 +217,16 @@ type EagerUser = {
   readonly expoToken?: string | null;
   readonly forexSubscription?: boolean | null;
   readonly hasPurchasedSomething?: boolean | null;
+  readonly expirationDate?: string | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
   readonly referredBy?: string | null;
+  readonly isCommercial?: boolean | null;
+  readonly cumplidoCuota?: boolean | null;
+  readonly totalEarnComercial?: number | null;
+  readonly registerDate?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -129,11 +244,16 @@ type LazyUser = {
   readonly expoToken?: string | null;
   readonly forexSubscription?: boolean | null;
   readonly hasPurchasedSomething?: boolean | null;
+  readonly expirationDate?: string | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
   readonly referredBy?: string | null;
+  readonly isCommercial?: boolean | null;
+  readonly cumplidoCuota?: boolean | null;
+  readonly totalEarnComercial?: number | null;
+  readonly registerDate?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

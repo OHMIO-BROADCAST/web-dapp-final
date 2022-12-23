@@ -15,10 +15,39 @@ type Notification @model {
   isManual: Boolean!
   pair:String!
 }
+
+type Noticia @model{
+  id: ID!
+  name: String!
+  title: String!
+  subtitle: String!
+  publishedDate: String!
+  timestamp: String!
+  time12h: String!
+  type: String!
+  externalUrl: String
+  optionalImage: String
+}
+
+type CuotaComercial @model{
+  cantidadReferidos: Int!
+  lastUpdate: String!
+  fechaCierre: String
+}
+
 type Modo @model{
   automatic: Boolean!
   lastUpdate: String!
 }
+
+type Certificate @model{
+  id: ID!
+  name: String!
+  documentUnsigned: String!
+  documentSigned: String
+  isSigned: Boolean!
+}
+
 type User @model {
   id: ID!
   name: String!
@@ -26,14 +55,25 @@ type User @model {
   phone: String!
   email: String!
   expoToken: String
+
   forexSubscription: Boolean
   hasPurchasedSomething: Boolean
+  expirationDate: String
+
   totalReward: Float
   totalReferred: Float
   isReferred: Boolean
   hasReferred: Boolean
   referredBy: String
+
+  isCommercial: Boolean
+  cumplidoCuota: Boolean
+  totalEarnComercial: Float
+
+  registerDate: String
+  
 }
+
 type Mutation {
   pinpoint(input: pinpointInput): pinpointResult
     @function(name: "pinpoint-${env}")

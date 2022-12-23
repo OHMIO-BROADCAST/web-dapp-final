@@ -89,6 +89,158 @@ export const syncNotifications = /* GraphQL */ `
     }
   }
 `;
+export const getNoticia = /* GraphQL */ `
+  query GetNoticia($id: ID!) {
+    getNoticia(id: $id) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      type
+      externalUrl
+      optionalImage
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listNoticias = /* GraphQL */ `
+  query ListNoticias(
+    $filter: ModelNoticiaFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNoticias(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        title
+        subtitle
+        publishedDate
+        timestamp
+        time12h
+        type
+        externalUrl
+        optionalImage
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncNoticias = /* GraphQL */ `
+  query SyncNoticias(
+    $filter: ModelNoticiaFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncNoticias(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        title
+        subtitle
+        publishedDate
+        timestamp
+        time12h
+        type
+        externalUrl
+        optionalImage
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getCuotaComercial = /* GraphQL */ `
+  query GetCuotaComercial($id: ID!) {
+    getCuotaComercial(id: $id) {
+      cantidadReferidos
+      lastUpdate
+      fechaCierre
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCuotaComercials = /* GraphQL */ `
+  query ListCuotaComercials(
+    $filter: ModelCuotaComercialFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCuotaComercials(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        cantidadReferidos
+        lastUpdate
+        fechaCierre
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCuotaComercials = /* GraphQL */ `
+  query SyncCuotaComercials(
+    $filter: ModelCuotaComercialFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCuotaComercials(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        cantidadReferidos
+        lastUpdate
+        fechaCierre
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getModo = /* GraphQL */ `
   query GetModo($id: ID!) {
     getModo(id: $id) {
@@ -153,6 +305,76 @@ export const syncModos = /* GraphQL */ `
     }
   }
 `;
+export const getCertificate = /* GraphQL */ `
+  query GetCertificate($id: ID!) {
+    getCertificate(id: $id) {
+      id
+      name
+      documentUnsigned
+      documentSigned
+      isSigned
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCertificates = /* GraphQL */ `
+  query ListCertificates(
+    $filter: ModelCertificateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        documentUnsigned
+        documentSigned
+        isSigned
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCertificates = /* GraphQL */ `
+  query SyncCertificates(
+    $filter: ModelCertificateFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCertificates(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        documentUnsigned
+        documentSigned
+        isSigned
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -164,11 +386,16 @@ export const getUser = /* GraphQL */ `
       expoToken
       forexSubscription
       hasPurchasedSomething
+      expirationDate
       totalReward
       totalReferred
       isReferred
       hasReferred
       referredBy
+      isCommercial
+      cumplidoCuota
+      totalEarnComercial
+      registerDate
       createdAt
       updatedAt
       _version
@@ -193,11 +420,16 @@ export const listUsers = /* GraphQL */ `
         expoToken
         forexSubscription
         hasPurchasedSomething
+        expirationDate
         totalReward
         totalReferred
         isReferred
         hasReferred
         referredBy
+        isCommercial
+        cumplidoCuota
+        totalEarnComercial
+        registerDate
         createdAt
         updatedAt
         _version
@@ -231,11 +463,16 @@ export const syncUsers = /* GraphQL */ `
         expoToken
         forexSubscription
         hasPurchasedSomething
+        expirationDate
         totalReward
         totalReferred
         isReferred
         hasReferred
         referredBy
+        isCommercial
+        cumplidoCuota
+        totalEarnComercial
+        registerDate
         createdAt
         updatedAt
         _version

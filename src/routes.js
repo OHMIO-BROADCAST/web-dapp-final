@@ -45,6 +45,11 @@ import { HiDocumentAdd } from 'react-icons/hi';
 
 
 import { FaTools } from 'react-icons/fa'
+import Comissions from 'views/Dashboard/Comissions';
+import Refers from 'views/Dashboard/Refeers';
+import Comercials from 'views/Dashboard/Comercials';
+import Goal from 'views/Dashboard/Goal';
+import Certificates from 'views/Dashboard/Certificates';
 
 var dashRoutes = [
   {
@@ -91,14 +96,14 @@ var dashRoutes = [
         path: "/my-refeers",
         name: "My Refeers",
         icon: <StatsIcon color='inherit' size={22} />,
-        component: Signals,
+        component: Refers,
         layout: "/admin",
       },
       {
         path: "/my-comissions",
         name: "Comissions",
         icon: <TbReportMoney color='inherit' size={22} />,
-        component: Signals,
+        component: Comissions,
         layout: "/admin",
       },
     ]
@@ -112,14 +117,14 @@ var dashRoutes = [
         path: "/my-clients",
         name: "Clients",
         icon: <StarIcon color='inherit' size={22} />,
-        component: Signals,
+        component: Comercials,
         layout: "/admin",
       },
       {
         path: "/monthly-goal",
         name: "Monthly Goal",
         icon: <GiStairsGoal color='inherit' size={22} />,
-        component: Signals,
+        component: Goal,
         layout: "/admin",
       },
     ]
@@ -133,7 +138,7 @@ var dashRoutes = [
         path: "/all-certificates",
         name: "All Certificates",
         icon: <HiDocumentAdd color='inherit' />,
-        component: Signals,
+        component: Certificates,
         layout: "/admin",
       }
     ]

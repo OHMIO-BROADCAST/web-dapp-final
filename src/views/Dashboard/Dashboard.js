@@ -80,7 +80,7 @@ export default function Dashboard() {
   const { colorMode } = useColorMode();
 
 
-  /* return (
+  return (
     <Flex
       direction="column"
       pt={{ base: "120px", md: "75px" }}
@@ -100,16 +100,16 @@ export default function Dashboard() {
             flexDirection: 'column'
           }}
         >
-          <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro | Control Center</Text>
-          <Text align={'center'} fontWeight={300}>Hola Laura y Juanes, este es un espacio unico dedicado solo para Administradores</Text>
+          <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro</Text>
+          <Text align={'center'} fontWeight={300}>We are currently working on this main page</Text>
         </div>
 
       </Card>
     </Flex>
   );
-} */
 
-  return (
+
+  /* return (
     <Flex flexDirection='column' pt={{ base: "120px", md: "75px" }}>
       <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing='24px' mb='20px'>
         <Card minH='125px'>
@@ -312,7 +312,7 @@ export default function Dashboard() {
             <BarChart chartData={barChartData} chartOptions={barChartOptions} />
           </Box>
         </Card>
-        {/* <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
+        <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
           <Flex direction='column'>
             <Flex align='center' justify='space-between' p='22px'>
               <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -380,8 +380,8 @@ export default function Dashboard() {
               </Table>
             </Box>
           </Flex>
-        </Card> */}
-        {/* <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
+        </Card>
+        <Card p='0px' maxW={{ sm: "320px", md: "100%" }}>
           <Flex direction='column'>
             <Flex align='center' justify='space-between' p='22px'>
               <Text fontSize='lg' color={textColor} fontWeight='bold'>
@@ -449,8 +449,8 @@ export default function Dashboard() {
               </Tbody>
             </Table>
           </Box>
-        </Card> */}
+        </Card>
       </Grid>
     </Flex>
-  );
+  ); */
 }

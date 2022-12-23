@@ -44,32 +44,7 @@ function Tables() {
 
   useEffect(() => {
     getAllUsers()
-    /* //query the initial todolist and subscribe to data updates
-    const subscription = DataStore.observeQuery(UserModel).subscribe((snapshot) => {
-      //isSynced can be used to show a loading spinner when the list is being loaded. 
-      const { items, isSynced } = snapshot;
-      console.log("USUARIOS", items);
-      setIsSynced(isSynced)
-      setUsers(items);
-    });
-
-    //unsubscribe to data updates when component is destroyed so that you don’t introduce a memory leak.
-    return async () => {
-      subscription.unsubscribe();
-      cleanDataStore();
-    } */
   }, []);
-
-
-
-  async function cleanDataStore() {
-    try {
-      await DataStore.clear();
-    } catch (error) {
-      console.log("error datastore clear", error)
-    }
-  }
-
 
 
   return (

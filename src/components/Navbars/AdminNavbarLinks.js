@@ -99,7 +99,7 @@ export default function HeaderLinks(props) {
 
       >
         <Text color={"white"} fontWeight={"bold"}>
-          Total Accumulated by Refer: $0 USD
+          Total Accumulated by Refeer: $0 USD
         </Text>
         <FaCoins size={14} color="#fff" style={{ marginLeft: '0.5rem' }} />
 

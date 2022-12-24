@@ -57,6 +57,7 @@ type User @model {
   expoToken: String
 
   forexSubscription: Boolean
+  currentlyPlan: String
   hasPurchasedSomething: Boolean
   expirationDate: String
 

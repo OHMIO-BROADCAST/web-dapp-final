@@ -428,6 +428,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "currentlyPlan": {
+                    "name": "currentlyPlan",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "hasPurchasedSomething": {
                     "name": "hasPurchasedSomething",
                     "isArray": false,
@@ -555,5 +562,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "e34a650a0fe6180c709ead6445219997"
+    "version": "0595d4a4efd3184f22399c53264dde75"
 };

@@ -160,6 +160,9 @@ function Sidebar(props) {
           return null;
         }
       }
+      if (prop.category == "payments") {
+        return null;
+      }
       if (prop.category) {
         var st = {};
         st[prop["state"]] = !state[prop.state];

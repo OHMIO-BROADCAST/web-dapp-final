@@ -50,6 +50,7 @@ import Comercials from 'views/Dashboard/Comercials';
 import Goal from 'views/Dashboard/Goal';
 import Certificates from 'views/Dashboard/Certificates';
 import KYC from 'views/Dashboard/KYC';
+import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
 
 var dashRoutes = [
   {
@@ -127,6 +128,20 @@ var dashRoutes = [
         component: Goal,
         layout: "/admin",
       },
+    ]
+  },
+  {
+    name: "PAYMENTS",
+    category: "payments",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/success-purchase",
+        name: "Success Purchase",
+        icon: <StarIcon color='inherit' size={22} />,
+        component: PurchaseSuccess,
+        layout: "/admin",
+      }
     ]
   },
   {

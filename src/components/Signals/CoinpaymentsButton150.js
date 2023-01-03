@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CoinpaymentsButton150() {
+function CoinpaymentsButton150(userID) {
     return (
         <form action="https://www.coinpayments.net/index.php" method="post">
             <input type="hidden" name="cmd" defaultValue="_pay" />
@@ -16,6 +16,7 @@ function CoinpaymentsButton150() {
             <input type="hidden" name="amountf" defaultValue={150.0} />
             <input type="hidden" name="quantity" defaultValue={1} />
             <input type="hidden" name="allow_quantity" defaultValue={0} />
+            {/* <input type="hidden" name="ov1" defaultValue={userID} /> */}
             <input type="hidden" name="want_shipping" defaultValue={1} />
             <input
                 type="hidden"

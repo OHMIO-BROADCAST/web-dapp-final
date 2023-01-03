@@ -103,7 +103,7 @@ export default function Configurator(props) {
                   >
                     <Link
                       isExternal="true"
-                      href="https://twitter.com/tipscorporativo"
+                      href="https://twitter.com/bmaker"
                     >
                       <Button
                         colorScheme="twitter"
@@ -115,7 +115,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
+                      href="https://www.facebook.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
                     >
                       <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
                       >
@@ -124,7 +124,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
+                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
                     >
                       <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
                       >
@@ -133,7 +133,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-chakra/"
+                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
                     >
                       <Button colorScheme="whatsapp" leftIcon={<FaWhatsapp />} mb="0.5rem"
                       >

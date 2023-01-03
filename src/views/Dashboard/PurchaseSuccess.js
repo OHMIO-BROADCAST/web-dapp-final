@@ -112,7 +112,7 @@ export default function PurchaseSuccess() {
                     }}
                 >
                     <Text align={'center'} fontWeight={'bold'} fontSize={25}>Thank you for your Purchase!</Text>
-                    <Text align={'center'} fontWeight={300}>We are proccessing the payment and verifying, please check again in a moment or contact Support if have any trouble</Text>
+                    <Text align={'center'} fontWeight={300}>We are proccessing the payment and verifying, please check again in a moment or contact Support if have any trouble.</Text>
                 </div>
 
             </Card>

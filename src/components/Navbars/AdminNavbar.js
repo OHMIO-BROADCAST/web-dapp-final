@@ -29,6 +29,7 @@ export default function AdminNavbar(props) {
     secondary,
     brandText,
     onOpen,
+    money,
     ...rest
   } = props;
 
@@ -161,6 +162,7 @@ export default function AdminNavbar(props) {
             secondary={props.secondary}
             fixed={props.fixed}
             scrolled={scrolled}
+            money={money}
           />
         </Box>
       </Flex>

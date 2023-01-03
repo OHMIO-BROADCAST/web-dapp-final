@@ -41,6 +41,7 @@ export default function HeaderLinks(props) {
     scrolled,
     secondary,
     onOpen,
+    money,
     ...rest
   } = props;
 
@@ -98,9 +99,15 @@ export default function HeaderLinks(props) {
         visibility={{ xs: 'hidden' }}
 
       >
-        <Text color={"white"} fontWeight={"bold"}>
-          Total Accumulated by Refeer: $0 USD
-        </Text>
+
+        {money != null ?
+          (<Text color={"white"} fontWeight={"bold"}>
+            Total Accumulated by Refeer: ${money} USD
+          </Text>) : (<Text color={"white"} fontWeight={"bold"}>
+            Total Accumulated by Refeer: $0 USD
+          </Text>)
+        }
+
         <FaCoins size={14} color="#fff" style={{ marginLeft: '0.5rem' }} />
 
       </Flex>

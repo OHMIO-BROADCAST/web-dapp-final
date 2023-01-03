@@ -1,7 +1,6 @@
 /* eslint-disable */
-import { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Form, notification } from "antd";
-import { useMemo, useState } from "react";
 
 // Chakra imports
 import {
@@ -35,7 +34,6 @@ import plan3 from "assets/img/plan3.jpg";
 // Custom components
 import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
-import React from "react";
 import {
   FaCube,
   FaFacebook,
@@ -49,7 +47,8 @@ import { IoDocumentsSharp } from "react-icons/io5";
 
 // Custom components
 import Card from "../Card/Card";
-import ContractBuyABI from 'contracts/LicencseToken.json';
+import CoinpaymentsButton1 from "./CoinpaymentsButton1";
+
 import CoinpaymentsButton150 from "./CoinpaymentsButton150";
 import CoinpaymentsButton430 from "./CoinpaymentsButton430";
 import CoinpaymentsButton700 from "./CoinpaymentsButton700";
@@ -57,6 +56,9 @@ import CoinpaymentsButton700 from "./CoinpaymentsButton700";
 export default function Signals() {
   const [responses, setResponses] = useState({});
   const [anually, setAnually] = useState(true);
+  const [userID, setUserID] = useState()
+  const [currentUserName, setCurrentUserName] = useState()
+
 
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");
@@ -87,7 +89,25 @@ export default function Signals() {
     },
   };
 
+  async function getUserID() {
+    const userID = await Auth.currentSession()
+      .then(data => {
+        setUserID(data.idToken.payload.sub);
+        return data.idToken.payload.sub;
+      })
+      .catch(err => console.log(err));
+    const userName = await Auth.currentAuthenticatedUser()
+      .then(data => {
+        setCurrentUserName(data.username);
+        return data.username;
+      })
+      .catch(err => console.log(err))
+  }
 
+
+  /*   useEffect(() => {
+      getUserID()
+    }, []) */
 
 
   return (
@@ -148,14 +168,14 @@ export default function Signals() {
               </Box>
               <Flex direction='column'>
                 <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
-                  PROFESSIONAL
+                  PRUEBA
                 </Text>
                 <Text
                   fontSize='xl'
                   color={textColor}
                   fontWeight='bold'
                   mb='10px' textAlign="center">
-                  1 MONTH / $150 USD
+                  1 MONTH / $0.001 USD
                 </Text>
 
                 <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
@@ -171,13 +191,59 @@ export default function Signals() {
                   1 Month Duration
                 </Text>
                 <Flex justifyContent='center'>
-                  <CoinpaymentsButton150 />
+                  <CoinpaymentsButton1 userID={userID} />
+
+                  {/* <CoinpaymentsButton150 /> */}
                   {/*      <Button variant='light' minW='110px' h='36px'>
                     Pay with FIAT
                   </Button> */}
                 </Flex>
               </Flex>
             </Flex>
+              <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+                <Box mb='20px' position='relative' borderRadius='15px'>
+                  <Box
+                    w='100%'
+                    h='100%'
+                    position='absolute'
+                    top='0'
+                    borderRadius='15px'
+                    bg='linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)'></Box>
+                </Box>
+                <Flex direction='column'>
+                  <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
+                    PROFESSIONAL
+                  </Text>
+                  <Text
+                    fontSize='xl'
+                    color={textColor}
+                    fontWeight='bold'
+                    mb='10px' textAlign="center">
+                    1 MONTH / $150 USD
+                  </Text>
+
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    This package comprehends current supporte pairs on Forex Market
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Push Notifications in Real-Time
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    Support Assitance
+                  </Text>
+                  <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
+                    1 Month Duration
+                  </Text>
+                  <Flex justifyContent='center'>
+                    <CoinpaymentsButton150 userID={userID} />
+
+                    {/* <CoinpaymentsButton150 /> */}
+                    {/*      <Button variant='light' minW='110px' h='36px'>
+                    Pay with FIAT
+                  </Button> */}
+                  </Flex>
+                </Flex>
+              </Flex>
               <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
                 <Box mb='20px' position='relative' borderRadius='15px'>
                   {/* <Image src={plan2} borderRadius='15px' /> */}
@@ -215,7 +281,7 @@ export default function Signals() {
                     3 Month Duration
                   </Text>
                   <Flex justifyContent='center'>
-                    <CoinpaymentsButton430 />
+                    <CoinpaymentsButton430 userID={userID} />
                     {/* <Button variant='light' minW='110px' h='36px'>
                       Pay with FIAT
                     </Button> */}
@@ -259,7 +325,7 @@ export default function Signals() {
                   </Text>
 
                   <Flex justifyContent='center'>
-                    <CoinpaymentsButton700 />
+                    <CoinpaymentsButton700 userID={userID} />
                     {/* <Button variant='light' minW='110px' h='36px'>
                       Pay with FIAT
                     </Button> */}

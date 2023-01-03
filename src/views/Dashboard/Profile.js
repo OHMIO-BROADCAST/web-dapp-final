@@ -210,7 +210,7 @@ function Profile() {
                 </Text>
               </Flex>
 
-              <Text
+              {/* <Text
                 fontSize='sm'
                 color='gray.400'
                 fontWeight='600'
@@ -246,7 +246,7 @@ function Profile() {
                   fontWeight='400'>
                   Subscription to news
                 </Text>
-              </Flex>
+              </Flex> */}
             </Flex>
           </CardBody>
         </Card>

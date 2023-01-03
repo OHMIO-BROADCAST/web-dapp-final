@@ -52,6 +52,7 @@ import CoinpaymentsButton1 from "./CoinpaymentsButton1";
 import CoinpaymentsButton150 from "./CoinpaymentsButton150";
 import CoinpaymentsButton430 from "./CoinpaymentsButton430";
 import CoinpaymentsButton700 from "./CoinpaymentsButton700";
+import { Auth } from "aws-amplify";
 
 export default function Signals() {
   const [responses, setResponses] = useState({});
@@ -105,9 +106,9 @@ export default function Signals() {
   }
 
 
-  /*   useEffect(() => {
-      getUserID()
-    }, []) */
+  useEffect(() => {
+    getUserID()
+  }, [])
 
 
   return (

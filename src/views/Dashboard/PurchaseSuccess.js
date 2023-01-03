@@ -21,6 +21,8 @@ import {
 } from "@chakra-ui/react";
 // Custom components
 import React, { useEffect, useState } from "react";
+import * as queries from "../../graphql/queries.js";
+import * as mutations from "../../graphql/mutations";
 
 import Card from "components/Card/Card.js";
 import BarChart from "components/Charts/BarChart";
@@ -42,6 +44,7 @@ import {
 } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
 import Swal from "sweetalert2";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 
 const styles = {
     title: {
@@ -80,11 +83,37 @@ export default function PurchaseSuccess() {
 
     const { colorMode } = useColorMode();
 
+    const [user, setuser] = useState()
+
+
+    async function updatePaymentStatus(ID) {
+        console.log("updating user with ID", ID)
+        let userDetailstoUpdate = {
+            id: ID,
+            isPaymentProcessing: true
+        }
+        const updateUserPaymentProcessing = await API.graphql(
+            { query: mutations.updateUser, variables: { input: userDetailstoUpdate } }
+        ).then(data => {
+            console.log("Success updating payment status", data)
+        }).catch(error => {
+            console.log("Failed updating payment status", error)
+        });
+    }
+
     useEffect(() => {
         Swal.fire({
             title: 'The Payment is Proccessing',
             icon: 'success'
         })
+        Auth.currentAuthenticatedUser().then((user) => {
+            console.log("PURCHASE", user);
+            setuser(user);
+            if (user.attributes.sub != null) {
+                updatePaymentStatus(user.attributes.sub);
+            }
+        });
+
         return () => {
             null
         }

@@ -541,6 +541,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isPaymentProcessing": {
+                    "name": "isPaymentProcessing",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "totalReward": {
                     "name": "totalReward",
                     "isArray": false,
@@ -727,5 +734,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "1336703a1a7ce7d78bda778007b75c1d"
+    "version": "7e90f4116c2cff642b1e43537e90c489"
 };

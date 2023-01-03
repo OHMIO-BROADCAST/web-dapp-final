@@ -75,6 +75,8 @@ type User @model @searchable{
   hasPurchasedSomething: Boolean
   expirationDate: String
 
+  isPaymentProcessing: Boolean
+
   totalReward: Float
   totalReferred: Float
   isReferred: Boolean

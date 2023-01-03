@@ -16,7 +16,7 @@ function CoinpaymentsButton430(userID) {
             <input type="hidden" name="amountf" defaultValue={430.0} />
             <input type="hidden" name="quantity" defaultValue={1} />
             <input type="hidden" name="allow_quantity" defaultValue={0} />
-            {/* <input type="hidden" name="ov1" defaultValue={userID} /> */}
+            {userID && <input type="hidden" name="on1" defaultValue={userID.userID} />}
             <input type="hidden" name="want_shipping" defaultValue={1} />
             <input
                 type="hidden"

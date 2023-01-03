@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import { Flex, Link, List, ListItem, Text } from "@chakra-ui/react";
 import React from "react";
+import ButtonMailto from "./ButtonMailto";
 
 export default function Footer(props) {
   return (
@@ -36,8 +37,30 @@ export default function Footer(props) {
           style={{ textDecoration: 'underline' }}>
           {document.documentElement.dir === "rtl"
             ? " توقيت الإبداعية"
-            : "We help you to get financial freedom."}
-        </Link>
+            : "We help you to get financial freedom"}
+        </Link>.
+
+      </Text>
+
+      <Text
+        color='gray.400'
+        textAlign={{
+          base: "center",
+          xl: "start",
+        }}
+        mb={{ base: "20px", xl: "0px" }}>
+        <Text as='span'>
+          {document.documentElement.dir === "rtl"
+            ? " مصنوع من ❤️ بواسطة"
+            : "Need Help? Contact us at: "}
+        </Text>
+
+        <ButtonMailto
+          href='support@bmaker.pro'
+          target='_blank'
+          style={{ textDecoration: 'underline' }}
+          label="support@bmaker.pro" mailto="mailto:support@bmaker.pro"
+        />
 
       </Text>
       {/* <List display='flex'>

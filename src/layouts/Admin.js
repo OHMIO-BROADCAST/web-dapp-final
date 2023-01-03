@@ -99,6 +99,9 @@ export default function Dashboard(props) {
       if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
+      if (prop.category === "commercial") {
+        return getRoutes(prop.views);
+      }
       if (prop.category === "distributor") {
         return getRoutes(prop.views);
       }

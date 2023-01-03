@@ -199,7 +199,7 @@ export default function Signals() {
                     fontWeight='bold'
                     mb='10px'
                     textAlign="center">
-                    3 MONTH / $400 USD
+                    3 MONTH / $430 USD
                   </Text>
 
                   <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
@@ -243,7 +243,7 @@ export default function Signals() {
                     fontWeight='bold'
                     mb='10px'
                     textAlign="center">
-                    6 MONTH / $700 USD
+                    5 MONTH / $730 USD
                   </Text>
                   <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
                     This package comprehends current supporte pairs on Forex Market
@@ -255,7 +255,7 @@ export default function Signals() {
                     Support Assitance
                   </Text>
                   <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
-                    6 Month Duration
+                    5 Month Duration
                   </Text>
 
                   <Flex justifyContent='center'>

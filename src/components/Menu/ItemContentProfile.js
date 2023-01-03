@@ -10,7 +10,7 @@ export function ItemContentProfile(props) {
   const spacing = " ";
   const history = useHistory();
   return (
-    <Flex justifyContent='center' alignItems={'center'} onClick={() => { if (props.aRoute == "/admin/profile") { history.push(props.aRoute) } }}>
+    <Flex justifyContent='center' alignItems={'center'} onClick={() => { if (props.aRoute == "/profile") { history.push(props.aRoute) } }}>
       <Avatar
         name={props.aName}
         src={props.aSrc}

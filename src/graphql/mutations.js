@@ -407,7 +407,40 @@ export const createUser = /* GraphQL */ `
       totalReferred
       isReferred
       hasReferred
-      referredBy
+      referredBy {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      listUserReferred {
+        nextToken
+        startedAt
+      }
       isCommercial
       cumplidoCuota
       totalEarnCommercial
@@ -445,7 +478,40 @@ export const updateUser = /* GraphQL */ `
       totalReferred
       isReferred
       hasReferred
-      referredBy
+      referredBy {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      listUserReferred {
+        nextToken
+        startedAt
+      }
       isCommercial
       cumplidoCuota
       totalEarnCommercial
@@ -483,7 +549,40 @@ export const deleteUser = /* GraphQL */ `
       totalReferred
       isReferred
       hasReferred
-      referredBy
+      referredBy {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      listUserReferred {
+        nextToken
+        startedAt
+      }
       isCommercial
       cumplidoCuota
       totalEarnCommercial

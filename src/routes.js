@@ -109,8 +109,8 @@ var dashRoutes = [
     ]
   },
   {
-    name: "COMERCIAL",
-    category: "robots",
+    name: "COMMERCIAL",
+    category: "commercial",
     state: "pageCollapse",
     views: [
       {

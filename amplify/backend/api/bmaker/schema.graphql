@@ -61,11 +61,13 @@ type Certificate @model{
 }
 
 type User @model @searchable{
-  id: ID!
+
+  id: ID! 
   name: String!
   username: String!
   phone: String!
-  email: String!
+  email: String! @index(name: "byEmail", sortKeyFields:["username"])
+  
   expoToken: String
 
   forexSubscription: Boolean
@@ -77,7 +79,8 @@ type User @model @searchable{
   totalReferred: Float
   isReferred: Boolean
   hasReferred: Boolean
-  referredBy: String
+  referredBy: User @belongsTo(fields:["id"])
+  listUserReferred: [User] @hasMany(fields:["id"])
 
   isCommercial: Boolean
   cumplidoCuota: Boolean

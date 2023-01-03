@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import React, { useEffect, useState } from "react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 // chakra imports
 import {
@@ -28,14 +29,14 @@ import {
 } from "components/Scrollbar/Scrollbar";
 import { HSeparator } from "components/Separator/Separator";
 import { SidebarHelp } from "components/Sidebar/SidebarHelp";
-import React from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { NavLink, useLocation } from "react-router-dom";
-
+import { API, graphqlOperation, Auth } from "aws-amplify";
 
 import LogoLight from '../../assets/img/LogoTIPSparaLight.png';
 
-
+import * as queries from "../../graphql/queries.js";
+import * as mutations from "../../graphql/mutations";
 
 // FUNCTIONS
 
@@ -47,6 +48,91 @@ function Sidebar(props) {
   const mainPanel = React.useRef();
   let variantChange = "0.2s linear";
   // verifies if routeName is the one active (in browser input)
+
+
+  const [profile, setProfile] = useState({});
+  const [message, setMessage] = useState("");
+  const [userID, setUserID] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+  const [currentUserName, setCurrentUserName] = useState("");
+
+
+
+  async function createUser() {
+    const userDetails = {
+      "id": String(userID),
+      "name": String(currentUser.name),
+      "username": String(currentUserName),
+      "phone": String(currentUser.phone_number),
+      "email": String(currentUser.email),
+    }
+    console.log("Detalles de usuario a crear:", userDetails)
+
+    const result = await API.graphql(
+      graphqlOperation(mutations.createUser, { input: userDetails }),
+    ).then(data => {
+      console.log('responde created user', data)
+    }).catch(err => {
+      console.log('error creating user', err)
+    })
+  }
+
+  async function getUserProfile(sub) {
+    console.log("current state", profile, message, userID, currentUserName, currentUser)
+    try {
+      const result = await API.graphql(
+        graphqlOperation(queries.getUser, { id: sub })
+      )
+        .then(result => {
+          console.log("Resultado de la consulta del usuario", result.data.getUser)
+          setProfile(result.data.getUser)
+          return result.data.getUser;
+        })
+        .catch(err => console.log(err));
+      return result;
+
+    } catch (error) {
+      console.log("catch getuser")
+      const result = error
+      return result;
+    }
+  }
+
+  async function componenteMontado() {
+    //se obtiene ID usuario actual
+    const userID = await Auth.currentSession()
+      .then(data => {
+        setUserID(data.idToken.payload.sub);
+        setCurrentUser(data.idToken.payload)
+        return data.idToken.payload.sub;
+      })
+      .catch(err => console.log(err));
+    const userName = await Auth.currentAuthenticatedUser()
+      .then(data => {
+        setCurrentUserName(data.username);
+        return data.username;
+      })
+      .catch(err => console.log(err))
+
+    //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
+    const profile = await getUserProfile(userID);
+
+    if (profile == null) {
+      console.log("Usuario no creado en la BD, creando...")
+      createUser()
+    } else {
+      console.log("El usuario en BD es =>", profile)
+    }
+
+  }
+
+
+  useEffect(async () => {
+    componenteMontado()
+  }, [])
+
+
+
   const activeRoute = (routeName) => {
     return location.pathname === routeName ? "active" : "";
   };
@@ -63,6 +149,16 @@ function Sidebar(props) {
     return routes.map((prop, key) => {
       if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
         return null;
+      }
+      if (currentUser != null && currentUser.isCommercial) {
+        if (prop.path === '/my-clients' || prop.path === '/monthly-goal') {
+          return null;
+        }
+      }
+      if (currentUser != null && currentUser.isCommercial) {
+        if (prop.category == "commercial") {
+          return null;
+        }
       }
       if (prop.category) {
         var st = {};

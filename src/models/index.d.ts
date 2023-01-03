@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncItem, AsyncCollection } from "@aws-amplify/datastore";
 
 
 
@@ -265,7 +265,8 @@ type EagerUser = {
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
-  readonly referredBy?: string | null;
+  readonly referredBy?: User | null;
+  readonly listUserReferred?: (User | null)[] | null;
   readonly isCommercial?: boolean | null;
   readonly cumplidoCuota?: boolean | null;
   readonly totalEarnCommercial?: number | null;
@@ -298,7 +299,8 @@ type LazyUser = {
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
-  readonly referredBy?: string | null;
+  readonly referredBy: AsyncItem<User | undefined>;
+  readonly listUserReferred: AsyncCollection<User>;
   readonly isCommercial?: boolean | null;
   readonly cumplidoCuota?: boolean | null;
   readonly totalEarnCommercial?: number | null;

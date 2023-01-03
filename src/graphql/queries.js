@@ -33,7 +33,6 @@ export const searchUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
-        referredBy
         isCommercial
         cumplidoCuota
         totalEarnCommercial
@@ -545,7 +544,40 @@ export const getUser = /* GraphQL */ `
       totalReferred
       isReferred
       hasReferred
-      referredBy
+      referredBy {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      listUserReferred {
+        nextToken
+        startedAt
+      }
       isCommercial
       cumplidoCuota
       totalEarnCommercial
@@ -585,7 +617,6 @@ export const listUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
-        referredBy
         isCommercial
         cumplidoCuota
         totalEarnCommercial
@@ -634,7 +665,58 @@ export const syncUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
-        referredBy
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const usersByEmailAndUsername = /* GraphQL */ `
+  query UsersByEmailAndUsername(
+    $email: String!
+    $username: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    usersByEmailAndUsername(
+      email: $email
+      username: $username
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
         isCommercial
         cumplidoCuota
         totalEarnCommercial

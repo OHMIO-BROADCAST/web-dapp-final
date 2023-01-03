@@ -572,9 +572,33 @@ export const schema = {
                 "referredBy": {
                     "name": "referredBy",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "model": "User"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "id"
+                        ]
+                    }
+                },
+                "listUserReferred": {
+                    "name": "listUserReferred",
+                    "isArray": true,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "referredBy"
+                        ]
+                    }
                 },
                 "isCommercial": {
                     "name": "isCommercial",
@@ -666,6 +690,16 @@ export const schema = {
                 {
                     "type": "searchable",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEmail",
+                        "fields": [
+                            "email",
+                            "username"
+                        ]
+                    }
                 }
             ]
         }
@@ -693,5 +727,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "be5bbc95bdd44982327c9c66ce0ffc0a"
+    "version": "1336703a1a7ce7d78bda778007b75c1d"
 };

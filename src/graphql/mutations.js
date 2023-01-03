@@ -84,6 +84,75 @@ export const deleteNotification = /* GraphQL */ `
     }
   }
 `;
+export const createNoticiaPrincipal = /* GraphQL */ `
+  mutation CreateNoticiaPrincipal(
+    $input: CreateNoticiaPrincipalInput!
+    $condition: ModelNoticiaPrincipalConditionInput
+  ) {
+    createNoticiaPrincipal(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      externalUrl
+      portada
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateNoticiaPrincipal = /* GraphQL */ `
+  mutation UpdateNoticiaPrincipal(
+    $input: UpdateNoticiaPrincipalInput!
+    $condition: ModelNoticiaPrincipalConditionInput
+  ) {
+    updateNoticiaPrincipal(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      externalUrl
+      portada
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteNoticiaPrincipal = /* GraphQL */ `
+  mutation DeleteNoticiaPrincipal(
+    $input: DeleteNoticiaPrincipalInput!
+    $condition: ModelNoticiaPrincipalConditionInput
+  ) {
+    deleteNoticiaPrincipal(input: $input, condition: $condition) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      externalUrl
+      portada
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createNoticia = /* GraphQL */ `
   mutation CreateNoticia(
     $input: CreateNoticiaInput!
@@ -331,6 +400,7 @@ export const createUser = /* GraphQL */ `
       email
       expoToken
       forexSubscription
+      currentlyPlan
       hasPurchasedSomething
       expirationDate
       totalReward
@@ -340,7 +410,12 @@ export const createUser = /* GraphQL */ `
       referredBy
       isCommercial
       cumplidoCuota
-      totalEarnComercial
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
       registerDate
       createdAt
       updatedAt
@@ -363,6 +438,7 @@ export const updateUser = /* GraphQL */ `
       email
       expoToken
       forexSubscription
+      currentlyPlan
       hasPurchasedSomething
       expirationDate
       totalReward
@@ -372,7 +448,12 @@ export const updateUser = /* GraphQL */ `
       referredBy
       isCommercial
       cumplidoCuota
-      totalEarnComercial
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
       registerDate
       createdAt
       updatedAt
@@ -395,6 +476,7 @@ export const deleteUser = /* GraphQL */ `
       email
       expoToken
       forexSubscription
+      currentlyPlan
       hasPurchasedSomething
       expirationDate
       totalReward
@@ -404,7 +486,12 @@ export const deleteUser = /* GraphQL */ `
       referredBy
       isCommercial
       cumplidoCuota
-      totalEarnComercial
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
       registerDate
       createdAt
       updatedAt

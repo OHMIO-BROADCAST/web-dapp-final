@@ -24,7 +24,7 @@
       "function": {
         "pushNotification": {
           "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-          "s3Key": "amplify-builds/pushNotification-7a426c52386d6c724155-build.zip"
+          "s3Key": "amplify-builds/pushNotification-63485a3959725450692f-build.zip"
         },
         "pinpoint": {
           "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",

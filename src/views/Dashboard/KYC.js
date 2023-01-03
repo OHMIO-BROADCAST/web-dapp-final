@@ -68,7 +68,7 @@ const styles = {
     },
 };
 
-export default function Comissions() {
+export default function KYC() {
     // Chakra Color Mode
     const iconBlue = useColorModeValue("navy.500", "navy.500");
     const iconBoxInside = useColorModeValue("white", "white");
@@ -100,7 +100,7 @@ export default function Comissions() {
                         flexDirection: 'column'
                     }}
                 >
-                    <Text align={'center'} fontWeight={'bold'} fontSize={25}>Comissions | Coming Soon</Text>
+                    <Text align={'center'} fontWeight={'bold'} fontSize={25}>KYC | Coming Soon</Text>
                     <Text align={'center'} fontWeight={300}>We are working on this feature right now.</Text>
                 </div>
 

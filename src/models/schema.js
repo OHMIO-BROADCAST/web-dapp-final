@@ -106,6 +106,98 @@ export const schema = {
                 }
             ]
         },
+        "NoticiaPrincipal": {
+            "name": "NoticiaPrincipal",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "subtitle": {
+                    "name": "subtitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "publishedDate": {
+                    "name": "publishedDate",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "timestamp": {
+                    "name": "timestamp",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "time12h": {
+                    "name": "time12h",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "externalUrl": {
+                    "name": "externalUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "portada": {
+                    "name": "portada",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "NoticiaPrincipals",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "Noticia": {
             "name": "Noticia",
             "fields": {
@@ -498,10 +590,45 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "totalEarnComercial": {
-                    "name": "totalEarnComercial",
+                "totalEarnCommercial": {
+                    "name": "totalEarnCommercial",
                     "isArray": false,
                     "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "totalReferredCommercial": {
+                    "name": "totalReferredCommercial",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "dateStartCommercial": {
+                    "name": "dateStartCommercial",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isCompletedKYC": {
+                    "name": "isCompletedKYC",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "currentStateKYC": {
+                    "name": "currentStateKYC",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "externalURLKYC": {
+                    "name": "externalURLKYC",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -535,6 +662,10 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "searchable",
+                    "properties": {}
                 }
             ]
         }
@@ -562,5 +693,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "0595d4a4efd3184f22399c53264dde75"
+    "version": "be5bbc95bdd44982327c9c66ce0ffc0a"
 };

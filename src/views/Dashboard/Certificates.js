@@ -100,7 +100,7 @@ export default function Certificates() {
                         flexDirection: 'column'
                     }}
                 >
-                    <Text align={'center'} fontWeight={'bold'} fontSize={25}>Certificates | Coming Soons</Text>
+                    <Text align={'center'} fontWeight={'bold'} fontSize={25}>Certificates | Coming Soon</Text>
                     <Text align={'center'} fontWeight={300}>We are working on this feature right now.</Text>
                 </div>
 

@@ -16,6 +16,18 @@ type Notification @model {
   pair:String!
 }
 
+type NoticiaPrincipal @model{
+  id: ID!
+  name: String!
+  title: String!
+  subtitle: String!
+  publishedDate: String!
+  timestamp: String!
+  time12h: String!
+  externalUrl: String
+  portada: String!
+}
+
 type Noticia @model{
   id: ID!
   name: String!
@@ -48,7 +60,7 @@ type Certificate @model{
   isSigned: Boolean!
 }
 
-type User @model {
+type User @model @searchable{
   id: ID!
   name: String!
   username: String!
@@ -69,10 +81,15 @@ type User @model {
 
   isCommercial: Boolean
   cumplidoCuota: Boolean
-  totalEarnComercial: Float
+  totalEarnCommercial: Float
+  totalReferredCommercial: Int
+  dateStartCommercial: String
+
+  isCompletedKYC: Boolean
+  currentStateKYC: String
+  externalURLKYC: String
 
   registerDate: String
-  
 }
 
 type Mutation {

@@ -41,8 +41,7 @@ import { SiMarketo } from 'react-icons/si';
 import { TbReportMoney } from 'react-icons/tb';
 import { GiStairsGoal } from 'react-icons/gi';
 import { HiDocumentAdd } from 'react-icons/hi';
-
-
+import { GoLaw } from 'react-icons/go';
 
 import { FaTools } from 'react-icons/fa'
 import Comissions from 'views/Dashboard/Comissions';
@@ -50,12 +49,13 @@ import Refers from 'views/Dashboard/Refeers';
 import Comercials from 'views/Dashboard/Comercials';
 import Goal from 'views/Dashboard/Goal';
 import Certificates from 'views/Dashboard/Certificates';
+import KYC from 'views/Dashboard/KYC';
 
 var dashRoutes = [
   {
     path: "/dashboard",
     name: "Home",
-    icon: <HomeIcon color='inherit' />,
+    icon: <HomeIcon color='inherit' size={22} />,
     component: Dashboard,
     layout: "/admin",
   },
@@ -81,7 +81,7 @@ var dashRoutes = [
       {
         path: "/forex",
         name: "Forex",
-        icon: <SiMarketo color='inherit' />,
+        icon: <SiMarketo color='inherit' size={22} />,
         component: Signals,
         layout: "/admin",
       }
@@ -137,8 +137,15 @@ var dashRoutes = [
       {
         path: "/all-certificates",
         name: "All Certificates",
-        icon: <HiDocumentAdd color='inherit' />,
+        icon: <HiDocumentAdd color='inherit' size={22} />,
         component: Certificates,
+        layout: "/admin",
+      },
+      {
+        path: "/kyc",
+        name: "KYC & AML",
+        icon: <GoLaw color='inherit' size={22} />,
+        component: KYC,
         layout: "/admin",
       }
     ]
@@ -151,7 +158,7 @@ var dashRoutes = [
       {
         path: "/profile",
         name: "Profile",
-        icon: <PersonIcon color='inherit' />,
+        icon: <PersonIcon color='inherit' size={22} />,
         secondaryNavbar: true,
         component: Profile,
         layout: "/admin",

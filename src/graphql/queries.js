@@ -1,6 +1,73 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const searchUsers = /* GraphQL */ `
+  query SearchUsers(
+    $filter: SearchableUserFilterInput
+    $sort: [SearchableUserSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchableUserAggregationInput]
+  ) {
+    searchUsers(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        referredBy
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        registerDate
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 export const getNotification = /* GraphQL */ `
   query GetNotification($id: ID!) {
     getNotification(id: $id) {
@@ -78,6 +145,92 @@ export const syncNotifications = /* GraphQL */ `
         position
         isManual
         pair
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getNoticiaPrincipal = /* GraphQL */ `
+  query GetNoticiaPrincipal($id: ID!) {
+    getNoticiaPrincipal(id: $id) {
+      id
+      name
+      title
+      subtitle
+      publishedDate
+      timestamp
+      time12h
+      externalUrl
+      portada
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listNoticiaPrincipals = /* GraphQL */ `
+  query ListNoticiaPrincipals(
+    $filter: ModelNoticiaPrincipalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNoticiaPrincipals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        title
+        subtitle
+        publishedDate
+        timestamp
+        time12h
+        externalUrl
+        portada
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncNoticiaPrincipals = /* GraphQL */ `
+  query SyncNoticiaPrincipals(
+    $filter: ModelNoticiaPrincipalFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncNoticiaPrincipals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        title
+        subtitle
+        publishedDate
+        timestamp
+        time12h
+        externalUrl
+        portada
         createdAt
         updatedAt
         _version
@@ -385,6 +538,7 @@ export const getUser = /* GraphQL */ `
       email
       expoToken
       forexSubscription
+      currentlyPlan
       hasPurchasedSomething
       expirationDate
       totalReward
@@ -394,7 +548,12 @@ export const getUser = /* GraphQL */ `
       referredBy
       isCommercial
       cumplidoCuota
-      totalEarnComercial
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
       registerDate
       createdAt
       updatedAt
@@ -419,6 +578,7 @@ export const listUsers = /* GraphQL */ `
         email
         expoToken
         forexSubscription
+        currentlyPlan
         hasPurchasedSomething
         expirationDate
         totalReward
@@ -428,7 +588,12 @@ export const listUsers = /* GraphQL */ `
         referredBy
         isCommercial
         cumplidoCuota
-        totalEarnComercial
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
         registerDate
         createdAt
         updatedAt
@@ -462,6 +627,7 @@ export const syncUsers = /* GraphQL */ `
         email
         expoToken
         forexSubscription
+        currentlyPlan
         hasPurchasedSomething
         expirationDate
         totalReward
@@ -471,7 +637,12 @@ export const syncUsers = /* GraphQL */ `
         referredBy
         isCommercial
         cumplidoCuota
-        totalEarnComercial
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
         registerDate
         createdAt
         updatedAt

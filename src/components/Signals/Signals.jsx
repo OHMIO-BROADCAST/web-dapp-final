@@ -50,6 +50,9 @@ import { IoDocumentsSharp } from "react-icons/io5";
 // Custom components
 import Card from "../Card/Card";
 import ContractBuyABI from 'contracts/LicencseToken.json';
+import CoinpaymentsButton150 from "./CoinpaymentsButton150";
+import CoinpaymentsButton430 from "./CoinpaymentsButton430";
+import CoinpaymentsButton700 from "./CoinpaymentsButton700";
 
 export default function Signals() {
   const [responses, setResponses] = useState({});
@@ -103,7 +106,7 @@ export default function Signals() {
             <Text fontSize='sm' color='gray.400' fontWeight='bold'>
               Please take a look of our premium services
             </Text>
-            <FormControl display='flex' alignItems='center' width={"100%"} justifyContent="center">
+            {/* <FormControl display='flex' alignItems='center' width={"100%"} justifyContent="center">
               <FormLabel htmlFor='monthly-anually' mb='0' fontWeight={"bold"}>
                 MONTHLY
               </FormLabel>
@@ -113,7 +116,7 @@ export default function Signals() {
               <FormLabel htmlFor='monthly-anually' mb='0' ml={"1rem"} fontWeight={"bold"} >
                 ANUALLY
               </FormLabel>
-            </FormControl>
+            </FormControl> */}
           </Flex>
         </CardHeader>
         <CardBody px='5px'>
@@ -167,13 +170,11 @@ export default function Signals() {
                 <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
                   1 Month Duration
                 </Text>
-                <Flex justifyContent='space-between'>
-                  <Button variant='dark' minW='110px' h='36px'>
-                    Pay with Crypto
-                  </Button>
-                  <Button variant='light' minW='110px' h='36px'>
+                <Flex justifyContent='center'>
+                  <CoinpaymentsButton150 />
+                  {/*      <Button variant='light' minW='110px' h='36px'>
                     Pay with FIAT
-                  </Button>
+                  </Button> */}
                 </Flex>
               </Flex>
             </Flex>
@@ -211,15 +212,13 @@ export default function Signals() {
                     Support Assitance
                   </Text>
                   <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
-                    1 Month Duration
+                    3 Month Duration
                   </Text>
-                  <Flex justifyContent='space-between'>
-                    <Button variant='dark' minW='110px' h='36px'>
-                      Pay with Crypto
-                    </Button>
-                    <Button variant='light' minW='110px' h='36px'>
+                  <Flex justifyContent='center'>
+                    <CoinpaymentsButton430 />
+                    {/* <Button variant='light' minW='110px' h='36px'>
                       Pay with FIAT
-                    </Button>
+                    </Button> */}
                   </Flex>
                 </Flex>
               </Flex>
@@ -259,13 +258,11 @@ export default function Signals() {
                     6 Month Duration
                   </Text>
 
-                  <Flex justifyContent='space-between'>
-                    <Button variant='dark' minW='110px' h='36px'>
-                      Pay with Crypto
-                    </Button>
-                    <Button variant='light' minW='110px' h='36px'>
+                  <Flex justifyContent='center'>
+                    <CoinpaymentsButton700 />
+                    {/* <Button variant='light' minW='110px' h='36px'>
                       Pay with FIAT
-                    </Button>
+                    </Button> */}
                   </Flex>
                 </Flex>
               </Flex></>) : (<><Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
@@ -305,13 +302,13 @@ export default function Signals() {
                   <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
                     1 Month Duration
                   </Text>
-                  <Flex justifyContent='space-between'>
+                  <Flex justifyContent='center'>
                     <Button variant='dark' minW='110px' h='36px'>
                       Pay with Crypto
                     </Button>
-                    <Button variant='light' minW='110px' h='36px'>
+                    {/* <Button variant='light' minW='110px' h='36px'>
                       Pay with FIAT
-                    </Button>
+                    </Button> */}
                   </Flex>
                 </Flex>
               </Flex>
@@ -352,7 +349,7 @@ export default function Signals() {
                     <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >
                       1 Month Duration
                     </Text>
-                    <Flex justifyContent='space-between'>
+                    <Flex justifyContent='center'>
                       <Button variant='dark' minW='110px' h='36px'>
                         Pay with Crypto
                       </Button>
@@ -400,7 +397,7 @@ export default function Signals() {
                 6 Month Duration
               </Text>
 
-              <Flex justifyContent='space-between'>
+              <Flex justifyContent='center'>
                 <Button variant='dark' minW='110px' h='36px'>
                   Pay with Crypto
                 </Button>

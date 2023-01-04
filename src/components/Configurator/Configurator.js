@@ -29,6 +29,7 @@ export default function Configurator(props) {
     isOpen,
     onClose,
     fixed,
+    user,
     ...rest
   } = props;
   const [switched, setSwitched] = useState(props.isChecked);
@@ -103,7 +104,7 @@ export default function Configurator(props) {
                   >
                     <Link
                       isExternal="true"
-                      href="https://twitter.com/bmaker"
+                      href={`https://twitter.com/intent/tweet?text=https://app.bmaker.pro/invite/${user.username}`}
                     >
                       <Button
                         colorScheme="twitter"
@@ -115,7 +116,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.facebook.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
+                      href={`https://www.facebook.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
                     >
                       <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
                       >
@@ -124,7 +125,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
+                      href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
                     >
                       <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
                       >
@@ -133,7 +134,7 @@ export default function Configurator(props) {
                     </Link>
                     <Link
                       isExternal="true"
-                      href="https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user}"
+                      href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
                     >
                       <Button colorScheme="whatsapp" leftIcon={<FaWhatsapp />} mb="0.5rem"
                       >

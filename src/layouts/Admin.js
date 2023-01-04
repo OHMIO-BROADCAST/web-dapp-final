@@ -195,7 +195,7 @@ export default function Dashboard(props) {
       if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
-      if (prop.category === "commercial") {
+      if (currentUser != null && currentUser.isCommercial == true && prop.category === "commercial") {
         return getRoutes(prop.views);
       }
       if (prop.category === "payments") {

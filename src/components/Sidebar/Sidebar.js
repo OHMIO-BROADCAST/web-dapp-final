@@ -150,12 +150,8 @@ function Sidebar(props) {
       if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
         return null;
       }
-      if (currentUser != null && currentUser.isCommercial) {
-        if (prop.path === '/my-clients' || prop.path === '/monthly-goal') {
-          return null;
-        }
-      }
-      if (currentUser != null && currentUser.isCommercial) {
+      console.log("usuario es comerical?=", profile.isCommercial)
+      if (profile != null && !profile.isCommercial) {
         if (prop.category == "commercial") {
           return null;
         }

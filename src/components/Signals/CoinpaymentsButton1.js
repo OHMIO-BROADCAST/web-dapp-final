@@ -29,7 +29,7 @@ function CoinpaymentsButton1(userID) {
                 name="cancel_url"
                 defaultValue="https://app.bmaker.pro/"
             />
-            <input type="hidden" name="ipn_url" defaultValue="https://ipn.bmaker.pro/" />
+            <input type="hidden" name="ipn_url" defaultValue="https://ipnbmaker.free.beeceptor.com" />
             <input type="hidden" name="allow_extra" defaultValue={0} />
             <input
                 type="image"

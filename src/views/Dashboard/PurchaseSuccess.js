@@ -85,12 +85,26 @@ export default function PurchaseSuccess() {
 
     const [user, setuser] = useState()
 
-
     async function updatePaymentStatus(ID) {
         console.log("updating user with ID", ID)
+
+        const today = new Date();
+
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1 + 1; // Months start at 0! más un mes 
+        let dd = today.getDate();
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        const formattedExpirationDate = dd + '/' + mm + '/' + yyyy;
+        console.log("fecha de expiración", formattedExpirationDate)
+
         let userDetailstoUpdate = {
             id: ID,
-            isPaymentProcessing: true
+            isPaymentProcessing: true,
+            forexSubscription: true,
+            currentlyPlan: "monthly",
+            hasPurchasedSomething: true,
+            expirationDate: formattedExpirationDate
         }
         const updateUserPaymentProcessing = await API.graphql(
             { query: mutations.updateUser, variables: { input: userDetailstoUpdate } }

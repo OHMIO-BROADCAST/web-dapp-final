@@ -39,6 +39,10 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { IoDocumentsSharp } from "react-icons/io5";
+import { API, graphqlOperation } from "aws-amplify";
+
+import * as queries from "../../graphql/queries.js";
+import * as mutations from "../../graphql/mutations";
 
 function Profile() {
   const { colorMode } = useColorMode();
@@ -53,11 +57,94 @@ function Profile() {
 
   const [user, setuser] = useState()
 
+  const [profile, setProfile] = useState({});
+  const [message, setMessage] = useState("");
+  const [userID, setUserID] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+  const [currentUserName, setCurrentUserName] = useState("");
+
+
+
+
   useEffect(() => {
     Auth.currentAuthenticatedUser().then((user) => {
       console.log(user);
       setuser(user);
     });
+  }, [])
+
+
+  async function createUser() {
+    const userDetails = {
+      "id": String(userID),
+      "name": String(currentUser.name),
+      "username": String(currentUserName),
+      "phone": String(currentUser.phone_number),
+      "email": String(currentUser.email),
+    }
+    console.log("Detalles de usuario a crear:", userDetails)
+
+    const result = await API.graphql(
+      graphqlOperation(mutations.createUser, { input: userDetails }),
+    ).then(data => {
+      console.log('responde created user', data)
+    }).catch(err => {
+      console.log('error creating user', err)
+    })
+  }
+
+  async function getUserProfile(sub) {
+    console.log("current state", profile, message, userID, currentUserName, currentUser)
+    try {
+      const result = await API.graphql(
+        graphqlOperation(queries.getUser, { id: sub })
+      )
+        .then(result => {
+          console.log("Resultado de la consulta del usuario", result.data.getUser)
+          setProfile(result.data.getUser)
+          return result.data.getUser;
+        })
+        .catch(err => console.log(err));
+      return result;
+
+    } catch (error) {
+      console.log("catch getuser")
+      const result = error
+      return result;
+    }
+  }
+
+  async function componenteMontado() {
+    //se obtiene ID usuario actual
+    const userID = await Auth.currentSession()
+      .then(data => {
+        setUserID(data.idToken.payload.sub);
+        setCurrentUser(data.idToken.payload)
+        return data.idToken.payload.sub;
+      })
+      .catch(err => console.log(err));
+    const userName = await Auth.currentAuthenticatedUser()
+      .then(data => {
+        setCurrentUserName(data.username);
+        return data.username;
+      })
+      .catch(err => console.log(err))
+
+    //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
+    const profile = await getUserProfile(userID);
+
+    if (profile == null) {
+      console.log("Usuario no creado en la BD, creando...")
+      createUser()
+    } else {
+      console.log("El usuario en BD es =>", profile)
+    }
+
+  }
+
+
+  useEffect(async () => {
+    componenteMontado()
   }, [])
 
   return (
@@ -316,7 +403,7 @@ function Profile() {
                   p="3px 10px"
                   borderRadius="8px"
                 >
-                  {(user && user.attributes.forexSubscription) == true ? "Active" : "Inactive"}
+                  {profile && (profile.forexSubscription ? "Active" : "Inactive")}
                 </Badge>
               </Flex>
             </Flex>

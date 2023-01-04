@@ -157,7 +157,8 @@ export default function Signals() {
             alignItems="center"
           >
 
-            {anually == true ? (<><Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+            {anually == true ? (<>
+              {/* <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
               <Box mb='20px' position='relative' borderRadius='15px'>
                 <Box
                   w='100%'
@@ -197,7 +198,7 @@ export default function Signals() {
 
                 </Flex>
               </Flex>
-            </Flex>
+            </Flex> */}
               <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
                 <Box mb='20px' position='relative' borderRadius='15px'>
                   <Box

@@ -44,6 +44,9 @@ import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
 
+import { HiBellAlert } from 'react-icons/hi2'
+import { Tooltip } from "antd";
+
 function Profile() {
   const { colorMode } = useColorMode();
 
@@ -397,8 +400,8 @@ function Profile() {
                   Subscription Status:{" "}
                 </Text>
                 <Badge
-                  bg={(user && user.attributes.forexSubscription) == true ? "green.400" : "green.400"}
-                  color={(user && user.attributes.forexSubscription) == true ? "white" : "white"}
+                  bg={(profile && profile.forexSubscription) == true ? "green.400" : "gray.400"}
+                  color={"white"}
                   fontSize="16px"
                   p="3px 10px"
                   borderRadius="8px"
@@ -406,6 +409,56 @@ function Profile() {
                   {profile && (profile.forexSubscription ? "Active" : "Inactive")}
                 </Badge>
               </Flex>
+              {profile && (profile.forexSubscription ?
+                (<Flex align='center' mb='18px'>
+                  <Text
+                    fontSize='md'
+                    color={textColor}
+                    fontWeight='bold'
+                    me='10px'>
+                    Currently Plan:{" "}
+                  </Text>
+                  <Badge
+                    bg={(profile && profile.forexSubscription) == true ? "green.400" : "gray.400"}
+                    color={"white"}
+                    fontSize="16px"
+                    p="3px 10px"
+                    borderRadius="8px"
+                  >
+                    {profile && (profile.forexSubscription ? profile.currentlyPlan : "Inactive")}
+                  </Badge>
+                </Flex>) : null)
+              }
+
+
+              <Flex align='center' mb='18px'>
+                <Text
+                  fontSize='md'
+                  color={textColor}
+                  fontWeight='bold'
+                  me='10px'>
+                  KYC Verification:{" "}
+                </Text>
+                <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
+                  <Badge
+                    bg={(profile && profile.isCompletedKYC) == true ? "green.400" : "red.400"}
+                    color={"white"}
+                    fontSize="16px"
+                    p="3px 10px"
+                    borderRadius="8px"
+                  >
+                    {profile && (profile.isCompletedKYC ? "Complete" : "Incomplete")}
+                  </Badge>
+                </Tooltip>
+
+                {profile && (!profile.isCompletedKYC ?
+                  <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
+                    <HiBellAlert size={22} color={"#f56565"} style={{ marginLeft: 10 }} /></Tooltip> :
+                  null)}
+
+              </Flex>
+
+
             </Flex>
           </CardBody>
         </Card>

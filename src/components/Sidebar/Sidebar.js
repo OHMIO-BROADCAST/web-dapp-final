@@ -119,7 +119,7 @@ function Sidebar(props) {
 
     if (profile == null) {
       console.log("Usuario no creado en la BD, creando...")
-      createUser()
+      //createUser()
     } else {
       console.log("El usuario en BD es =>", profile)
     }
@@ -150,7 +150,7 @@ function Sidebar(props) {
       if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
         return null;
       }
-      console.log("usuario es comerical?=", profile.isCommercial)
+      // console.log("usuario es comerical?=", profile.isCommercial)
       if (profile != null && !profile.isCommercial) {
         if (prop.category == "commercial") {
           return null;

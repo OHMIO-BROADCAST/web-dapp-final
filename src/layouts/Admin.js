@@ -52,26 +52,27 @@ export default function Dashboard(props) {
 
   const [totalReward, setTotalReward] = useState();
 
-
-
-
   async function createUser() {
-    const userDetails = {
-      "id": String(userID),
-      "name": String(currentUser.name),
-      "username": String(currentUserName),
-      "phone": String(currentUser.phone_number),
-      "email": String(currentUser.email),
-    }
-    console.log("Detalles de usuario a crear:", userDetails)
+    console.log({ userID, currentUserName, currentUser })
+    if ((userID != null && userID != "") && currentUser != null && currentUserName != null) {
+      const userDetails = {
+        "id": String(userID),
+        "name": String(currentUser.name),
+        "username": String(currentUserName),
+        "phone": String(currentUser.phone_number),
+        "email": String(currentUser.email),
+      }
+      console.log("Detalles de usuario a crear:", userDetails)
 
-    const result = await API.graphql(
-      graphqlOperation(mutations.createUser, { input: userDetails }),
-    ).then(data => {
-      console.log('responde created user', data)
-    }).catch(err => {
-      console.log('error creating user', err)
-    })
+      const result = await API.graphql(
+        graphqlOperation(mutations.createUser, { input: userDetails }),
+      ).then(data => {
+        console.log('responde created user', data)
+      }).catch(err => {
+        console.log('error creating user', err)
+      })
+    }
+
   }
 
   async function getUserProfile(sub) {
@@ -100,6 +101,7 @@ export default function Dashboard(props) {
     //se obtiene ID usuario actual
     const userID = await Auth.currentSession()
       .then(data => {
+        console.log("LLEGAAAAAAAAAAAA", data)
         setUserID(data.idToken.payload.sub);
         setCurrentUser(data.idToken.payload)
         return data.idToken.payload.sub;
@@ -107,8 +109,10 @@ export default function Dashboard(props) {
       .catch(err => console.log(err));
     const userName = await Auth.currentAuthenticatedUser()
       .then(data => {
-        setCurrentUserName(data.username);
-        return data.username;
+        if (data.username != null) {
+          console.log(data.username);
+          return data.username;
+        }
       })
       .catch(err => console.log(err))
 

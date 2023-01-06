@@ -91,59 +91,64 @@ export default function Configurator(props) {
 
               <HSeparator />
 
-              <Box mt="1rem">
-                <Box w="100%">
-                  <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#F9AE40' }}>
-                    These are another social options
-                  </Text>
-                  <Flex
-                    justifyContent="center"
-                    alignContent="center"
-                    flexDirection="column"
-                    alignItems="center"
-                  >
-                    <Link
-                      isExternal="true"
-                      href={`https://twitter.com/intent/tweet?text=https://app.bmaker.pro/invite/${user.username}`}
-                    >
-                      <Button
-                        colorScheme="twitter"
-                        leftIcon={<FaTwitter />}
-                        mb="0.5rem"
+              {
+                user && (
+                  <Box mt="1rem">
+                    <Box w="100%">
+                      <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#F9AE40' }}>
+                        These are another social options
+                      </Text>
+                      <Flex
+                        justifyContent="center"
+                        alignContent="center"
+                        flexDirection="column"
+                        alignItems="center"
                       >
-                        <Text>Tweet</Text>
-                      </Button>
-                    </Link>
-                    <Link
-                      isExternal="true"
-                      href={`https://www.facebook.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
-                    >
-                      <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
-                      >
-                        <Text>Share</Text>
-                      </Button>
-                    </Link>
-                    <Link
-                      isExternal="true"
-                      href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
-                    >
-                      <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
-                      >
-                        <Text>Share</Text>
-                      </Button>
-                    </Link>
-                    <Link
-                      isExternal="true"
-                      href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
-                    >
-                      <Button colorScheme="whatsapp" leftIcon={<FaWhatsapp />} mb="0.5rem"
-                      >
-                        <Text>Share</Text>
-                      </Button>
-                    </Link>
-                  </Flex>
-                </Box>
-              </Box>
+                        <Link
+                          isExternal="true"
+                          href={`https://twitter.com/intent/tweet?text=https://app.bmaker.pro/invite/${user.username}`}
+                        >
+                          <Button
+                            colorScheme="twitter"
+                            leftIcon={<FaTwitter />}
+                            mb="0.5rem"
+                          >
+                            <Text>Tweet</Text>
+                          </Button>
+                        </Link>
+                        <Link
+                          isExternal="true"
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
+                        >
+                          <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
+                          >
+                            <Text>Share</Text>
+                          </Button>
+                        </Link>
+                        <Link
+                          isExternal="true"
+                          href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
+                        >
+                          <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
+                          >
+                            <Text>Share</Text>
+                          </Button>
+                        </Link>
+                        <Link
+                          isExternal="true"
+                          href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
+                        >
+                          <Button colorScheme="whatsapp" leftIcon={<FaWhatsapp />} mb="0.5rem"
+                          >
+                            <Text>Share</Text>
+                          </Button>
+                        </Link>
+                      </Flex>
+                    </Box>
+                  </Box>
+                )
+              }
+
             </Flex>
           </DrawerBody>
         </DrawerContent>

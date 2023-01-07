@@ -314,7 +314,7 @@ export default function Signals() {
             >
 
               {anually == true ? (<>
-                {/* <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
+                <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
                   <Box mb='20px' position='relative' borderRadius='15px'>
                     <Box
                       w='100%'
@@ -326,7 +326,7 @@ export default function Signals() {
                   </Box>
                   <Flex direction='column'>
                     <Text fontSize='md' color='gray.400' fontWeight='bold' mb='10px' textAlign="center">
-                      PRUEBA
+                      ***PRUEBA***
                     </Text>
                     <Text
                       fontSize='xl'
@@ -352,7 +352,7 @@ export default function Signals() {
                       <CoinpaymentsButton1 userID={userID} />
                     </Flex>
                   </Flex>
-                </Flex> */}
+                </Flex>
                 <Flex direction='column' style={{ width: '20rem', borderWidth: '3px', padding: "1rem", borderRadius: 20, borderColor: (anually === true ? "green" : "orange") }}>
                   <Box mb='20px' position='relative' borderRadius='15px'>
                     <Box

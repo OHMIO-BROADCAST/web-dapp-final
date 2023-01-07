@@ -72,7 +72,7 @@ const styles = {
     },
 };
 
-export default function PurchaseSuccess() {
+export default function PurchaseSuccessFivemestral() {
     // Chakra Color Mode
     const iconBlue = useColorModeValue("navy.500", "navy.500");
     const iconBoxInside = useColorModeValue("white", "white");
@@ -91,7 +91,7 @@ export default function PurchaseSuccess() {
         const today = new Date();
 
         const yyyy = today.getFullYear();
-        let mm = today.getMonth() + 1 + 1; // Months start at 0! más un mes 
+        let mm = today.getMonth() + 1 + 5; // Months start at 0! más un mes 
         let dd = today.getDate();
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;
@@ -101,9 +101,9 @@ export default function PurchaseSuccess() {
         let userDetailstoUpdate = {
             id: ID,
             isPaymentProcessing: true,
-            forexSubscription: true,
             payWithApplePay: false,
-            currentlyPlan: "monthly",
+            forexSubscription: true,
+            currentlyPlan: "five months",
             hasPurchasedSomething: true,
             expirationDate: formattedExpirationDate
         }

@@ -52,6 +52,8 @@ import Certificates from 'views/Dashboard/Certificates';
 import KYC from 'views/Dashboard/KYC';
 import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
 import CertificatesTest from 'views/Dashboard/CertificatesTest';
+import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
+import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
 
 var dashRoutes = [
   {
@@ -138,9 +140,23 @@ var dashRoutes = [
     views: [
       {
         path: "/success-purchase",
-        name: "Success Purchase",
+        name: "Success Purchase Month",
         icon: <StarIcon color='inherit' size={22} />,
         component: PurchaseSuccess,
+        layout: "/admin",
+      },
+      {
+        path: "/success-purchase-trimestral",
+        name: "Success Purchase Trimestral",
+        icon: <StarIcon color='inherit' size={22} />,
+        component: PurchaseSuccessTrimestral,
+        layout: "/admin",
+      },
+      {
+        path: "/success-purchase-5months",
+        name: "Success Purchase 5 Months",
+        icon: <StarIcon color='inherit' size={22} />,
+        component: PurchaseSuccessFivemestral,
         layout: "/admin",
       }
     ]

@@ -21,7 +21,7 @@ function CoinpaymentsButton430(userID) {
             <input
                 type="hidden"
                 name="success_url"
-                defaultValue="https://app.bmaker.pro/success-purchase"
+                defaultValue="https://app.bmaker.pro/success-purchase-trimestral"
             />
             <input
                 type="hidden"

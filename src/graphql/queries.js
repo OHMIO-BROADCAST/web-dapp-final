@@ -30,6 +30,7 @@ export const searchUsers = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -538,6 +539,7 @@ export const getUser = /* GraphQL */ `
       hasPurchasedSomething
       expirationDate
       isPaymentProcessing
+      payWithApplePay
       totalReward
       totalReferred
       isReferred
@@ -554,6 +556,7 @@ export const getUser = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -617,6 +620,7 @@ export const listUsers = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -668,6 +672,7 @@ export const syncUsers = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -723,6 +728,7 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred

@@ -428,10 +428,10 @@ function CertificatesTest() {
                                         bg='transparent'
                                         w='16px'
                                         h='16px'
-                                        variant='no-effects'>
-                                        <Icon
+                                        variant='no-effects'>                                        <Icon
                                             as={FaPencilAlt}
                                             color={colorMode === "dark" && "white"}
+                                            onClick={() => setIsOpenModalTermsConditions(true)}
                                         />
                                     </Button>
                                 </Flex>
@@ -574,7 +574,7 @@ function CertificatesTest() {
                     </CardBody>
                 </Card> */}
             </Grid>
-        </Flex>
+        </Flex >
     );
 }
 

@@ -534,6 +534,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "payWithApplePay": {
+                    "name": "payWithApplePay",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "totalReward": {
                     "name": "totalReward",
                     "isArray": false,
@@ -734,5 +741,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "91543b178ef3b7df9a09f88bc68ac4c8"
+    "version": "4b072aa05a0d8021d9f9b980dd45c5fb"
 };

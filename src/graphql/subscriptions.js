@@ -357,6 +357,7 @@ export const onCreateUser = /* GraphQL */ `
       hasPurchasedSomething
       expirationDate
       isPaymentProcessing
+      payWithApplePay
       totalReward
       totalReferred
       isReferred
@@ -373,6 +374,7 @@ export const onCreateUser = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -431,6 +433,7 @@ export const onUpdateUser = /* GraphQL */ `
       hasPurchasedSomething
       expirationDate
       isPaymentProcessing
+      payWithApplePay
       totalReward
       totalReferred
       isReferred
@@ -447,6 +450,7 @@ export const onUpdateUser = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred
@@ -505,6 +509,7 @@ export const onDeleteUser = /* GraphQL */ `
       hasPurchasedSomething
       expirationDate
       isPaymentProcessing
+      payWithApplePay
       totalReward
       totalReferred
       isReferred
@@ -521,6 +526,7 @@ export const onDeleteUser = /* GraphQL */ `
         hasPurchasedSomething
         expirationDate
         isPaymentProcessing
+        payWithApplePay
         totalReward
         totalReferred
         isReferred

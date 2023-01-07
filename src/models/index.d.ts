@@ -258,6 +258,7 @@ type EagerUser = {
   readonly hasPurchasedSomething?: boolean | null;
   readonly expirationDate?: string | null;
   readonly isPaymentProcessing?: boolean | null;
+  readonly payWithApplePay?: boolean | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
@@ -295,6 +296,7 @@ type LazyUser = {
   readonly hasPurchasedSomething?: boolean | null;
   readonly expirationDate?: string | null;
   readonly isPaymentProcessing?: boolean | null;
+  readonly payWithApplePay?: boolean | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;

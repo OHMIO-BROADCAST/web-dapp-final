@@ -74,6 +74,7 @@ type User @model @searchable{
   expirationDate: String
 
   isPaymentProcessing: Boolean
+  payWithApplePay: Boolean
 
   totalReward: Float
   totalReferred: Float

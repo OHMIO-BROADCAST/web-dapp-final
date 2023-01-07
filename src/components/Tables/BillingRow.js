@@ -7,7 +7,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { FaEye, FaPencilAlt, FaPrint, FaTrashAlt } from "react-icons/fa";
 
 function BillingRow(props) {
   const textColor = useColorModeValue("gray.700", "white");
@@ -35,7 +35,7 @@ function BillingRow(props) {
             </Text>
           </Text>
           <Text color="gray.400" fontSize="sm" fontWeight="semibold">
-            VAT Number:{" "}
+            Document ID:{" "}
             <Text as="span" color={nameColor}>
               {number}
             </Text>
@@ -53,19 +53,19 @@ function BillingRow(props) {
             mb={{ sm: "10px", md: "0px" }}
             me={{ md: "12px" }}
           >
-            <Flex color="red.500" cursor="pointer" align="center" p="12px">
-              <Icon as={FaTrashAlt} me="4px" />
+            <Flex color="blue.500" cursor="pointer" align="center" p="12px">
+              <Icon as={FaEye} me="4px" />
               <Text fontSize="sm" fontWeight="semibold">
-                DELETE
+                VIEW
               </Text>
             </Flex>
           </Button>
           <Button p="0px" bg="transparent"
             variant="no-effects">
             <Flex color={textColor} cursor="pointer" align="center" p="12px">
-              <Icon as={FaPencilAlt} me="4px" />
+              <Icon as={FaPrint} me="4px" />
               <Text fontSize="sm" fontWeight="semibold">
-                EDIT
+                PRINT
               </Text>
             </Flex>
           </Button>

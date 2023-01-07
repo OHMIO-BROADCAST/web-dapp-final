@@ -151,10 +151,8 @@ function Sidebar(props) {
         return null;
       }
       // console.log("usuario es comerical?=", profile.isCommercial)
-      if (profile != null && !profile.isCommercial == false) {
-        if (prop.category == "commercial") {
-          return null;
-        }
+      if (profile != null && (profile.isCommercial == false || profile.isCommercial == null) && prop.category === "commercial") {
+        return null;
       }
       if (prop.category == "payments") {
         return null;

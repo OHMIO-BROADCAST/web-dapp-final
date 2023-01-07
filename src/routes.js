@@ -51,6 +51,7 @@ import Goal from 'views/Dashboard/Goal';
 import Certificates from 'views/Dashboard/Certificates';
 import KYC from 'views/Dashboard/KYC';
 import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
+import CertificatesTest from 'views/Dashboard/CertificatesTest';
 
 var dashRoutes = [
   {
@@ -153,7 +154,7 @@ var dashRoutes = [
         path: "/all-certificates",
         name: "All Certificates",
         icon: <HiDocumentAdd color='inherit' size={22} />,
-        component: Certificates,
+        component: CertificatesTest,
         layout: "/admin",
       },
       {

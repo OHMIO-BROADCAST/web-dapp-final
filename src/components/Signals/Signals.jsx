@@ -55,9 +55,10 @@ import CoinpaymentsButton700 from "./CoinpaymentsButton700";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
+import { Loader } from "@aws-amplify/ui-react";
 
 export default function Signals() {
-  const [responses, setResponses] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [anually, setAnually] = useState(true);
 
   const [profile, setProfile] = useState({});
@@ -148,6 +149,7 @@ export default function Signals() {
 
   async function getUserProfile(sub) {
     console.log("current state", profile, message, userID, currentUserName, currentUser)
+    setIsLoading(true)
     try {
       const result = await API.graphql(
         graphqlOperation(queries.getUser, { id: sub })
@@ -155,9 +157,13 @@ export default function Signals() {
         .then(result => {
           console.log("Resultado de la consulta del usuario", result.data.getUser)
           setProfile(result.data.getUser)
+          setIsLoading(false)
           return result.data.getUser;
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err)
+          setIsLoading(false)
+        });
       return result;
 
     } catch (error) {
@@ -199,6 +205,34 @@ export default function Signals() {
   useEffect(async () => {
     componenteMontado()
   }, [])
+
+  if (isLoading) {
+    return (
+      <Flex
+        direction="column"
+        pt={{ base: "120px", md: "75px" }}
+        alignContent="center"
+        alignItems="center"
+      ><Card
+        style={styles.cardoffline}
+
+      >
+          <div
+            style={{
+              width: "auto",
+              height: "300px",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <Loader variation="linear" filledColor={"#f9a640"} />
+          </div>
+        </Card>
+      </Flex>
+    )
+  }
 
   if (profile && profile.forexSubscription) {
     return (

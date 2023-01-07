@@ -32,8 +32,6 @@ const styles = {
     },
 };
 
-import DashboardTableRow from 'components/Tables/DashboardTableRow'
-import ReferLink from 'components/ReferLink/ReferLink';
 
 function Distributor() {
 

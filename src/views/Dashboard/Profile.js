@@ -46,6 +46,7 @@ import * as mutations from "../../graphql/mutations";
 
 import { HiBellAlert } from 'react-icons/hi2'
 import { Tooltip } from "antd";
+import { Loader } from "@aws-amplify/ui-react";
 
 function Profile() {
   const { colorMode } = useColorMode();
@@ -66,8 +67,7 @@ function Profile() {
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserName, setCurrentUserName] = useState("");
 
-
-
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     Auth.currentAuthenticatedUser().then((user) => {
@@ -98,6 +98,7 @@ function Profile() {
 
   async function getUserProfile(sub) {
     console.log("current state", profile, message, userID, currentUserName, currentUser)
+    setIsLoading(true)
     try {
       const result = await API.graphql(
         graphqlOperation(queries.getUser, { id: sub })
@@ -105,6 +106,7 @@ function Profile() {
         .then(result => {
           console.log("Resultado de la consulta del usuario", result.data.getUser)
           setProfile(result.data.getUser)
+          setIsLoading(false)
           return result.data.getUser;
         })
         .catch(err => console.log(err));
@@ -113,6 +115,7 @@ function Profile() {
     } catch (error) {
       console.log("catch getuser")
       const result = error
+      setIsLoading(false)
       return result;
     }
   }
@@ -134,6 +137,7 @@ function Profile() {
       .catch(err => console.log(err))
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
+
     const profile = await getUserProfile(userID);
 
     if (profile == null) {
@@ -149,6 +153,40 @@ function Profile() {
   useEffect(async () => {
     componenteMontado()
   }, [])
+
+  if (isLoading) {
+    return (
+      <Flex
+        direction="column"
+        pt={{ base: "120px", md: "75px" }}
+        alignContent="center"
+        alignItems="center"
+      ><Card
+        style={{
+          boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+          border: "1px solid #e7eaf3",
+          borderRadius: "1rem",
+          width: "450px",
+          fontSize: "16px",
+          fontWeight: "500"
+        }}
+      >
+          <div
+            style={{
+              width: "auto",
+              height: "300px",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <Loader variation="linear" filledColor={"#f9a640"} />
+          </div>
+        </Card>
+      </Flex>
+    )
+  }
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px", lg: "100px" }}>

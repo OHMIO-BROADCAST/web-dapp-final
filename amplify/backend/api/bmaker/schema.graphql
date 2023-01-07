@@ -18,19 +18,17 @@ type Notification @model {
 
 type NoticiaPrincipal @model{
   id: ID!
-  name: String!
   title: String!
   subtitle: String!
   publishedDate: String!
+  source: String!
   timestamp: String!
-  time12h: String!
-  externalUrl: String
+  externalUrl: String!
   portada: String!
 }
 
 type Noticia @model{
   id: ID!
-  name: String!
   title: String!
   subtitle: String!
   publishedDate: String!
@@ -95,6 +93,7 @@ type User @model @searchable{
   externalURLKYC: String
 
   registerDate: String
+  solicitoEliminarCuenta: Boolean
 }
 
 type Mutation {

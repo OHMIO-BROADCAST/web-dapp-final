@@ -116,13 +116,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "title": {
                     "name": "title",
                     "isArray": false,
@@ -144,15 +137,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "timestamp": {
-                    "name": "timestamp",
+                "source": {
+                    "name": "source",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "time12h": {
-                    "name": "time12h",
+                "timestamp": {
+                    "name": "timestamp",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -162,7 +155,7 @@ export const schema = {
                     "name": "externalUrl",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "portada": {
@@ -205,13 +198,6 @@ export const schema = {
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -670,6 +656,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "solicitoEliminarCuenta": {
+                    "name": "solicitoEliminarCuenta",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -734,5 +727,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "7e90f4116c2cff642b1e43537e90c489"
+    "version": "c662789b03483613013b9b7007cd3f03"
 };

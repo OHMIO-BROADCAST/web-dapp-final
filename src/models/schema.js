@@ -649,6 +649,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "hasSigned": {
+                    "name": "hasSigned",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "registerDate": {
                     "name": "registerDate",
                     "isArray": false,
@@ -727,5 +734,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "c662789b03483613013b9b7007cd3f03"
+    "version": "91543b178ef3b7df9a09f88bc68ac4c8"
 };

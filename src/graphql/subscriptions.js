@@ -79,12 +79,11 @@ export const onCreateNoticiaPrincipal = /* GraphQL */ `
   ) {
     onCreateNoticiaPrincipal(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
+      source
       timestamp
-      time12h
       externalUrl
       portada
       createdAt
@@ -101,12 +100,11 @@ export const onUpdateNoticiaPrincipal = /* GraphQL */ `
   ) {
     onUpdateNoticiaPrincipal(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
+      source
       timestamp
-      time12h
       externalUrl
       portada
       createdAt
@@ -123,12 +121,11 @@ export const onDeleteNoticiaPrincipal = /* GraphQL */ `
   ) {
     onDeleteNoticiaPrincipal(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
+      source
       timestamp
-      time12h
       externalUrl
       portada
       createdAt
@@ -143,7 +140,6 @@ export const onCreateNoticia = /* GraphQL */ `
   subscription OnCreateNoticia($filter: ModelSubscriptionNoticiaFilterInput) {
     onCreateNoticia(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
@@ -164,7 +160,6 @@ export const onUpdateNoticia = /* GraphQL */ `
   subscription OnUpdateNoticia($filter: ModelSubscriptionNoticiaFilterInput) {
     onUpdateNoticia(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
@@ -185,7 +180,6 @@ export const onDeleteNoticia = /* GraphQL */ `
   subscription OnDeleteNoticia($filter: ModelSubscriptionNoticiaFilterInput) {
     onDeleteNoticia(filter: $filter) {
       id
-      name
       title
       subtitle
       publishedDate
@@ -362,6 +356,7 @@ export const onCreateUser = /* GraphQL */ `
       currentlyPlan
       hasPurchasedSomething
       expirationDate
+      isPaymentProcessing
       totalReward
       totalReferred
       isReferred
@@ -377,6 +372,7 @@ export const onCreateUser = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -389,7 +385,9 @@ export const onCreateUser = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -408,7 +406,9 @@ export const onCreateUser = /* GraphQL */ `
       isCompletedKYC
       currentStateKYC
       externalURLKYC
+      hasSigned
       registerDate
+      solicitoEliminarCuenta
       createdAt
       updatedAt
       _version
@@ -430,6 +430,7 @@ export const onUpdateUser = /* GraphQL */ `
       currentlyPlan
       hasPurchasedSomething
       expirationDate
+      isPaymentProcessing
       totalReward
       totalReferred
       isReferred
@@ -445,6 +446,7 @@ export const onUpdateUser = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -457,7 +459,9 @@ export const onUpdateUser = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -476,7 +480,9 @@ export const onUpdateUser = /* GraphQL */ `
       isCompletedKYC
       currentStateKYC
       externalURLKYC
+      hasSigned
       registerDate
+      solicitoEliminarCuenta
       createdAt
       updatedAt
       _version
@@ -498,6 +504,7 @@ export const onDeleteUser = /* GraphQL */ `
       currentlyPlan
       hasPurchasedSomething
       expirationDate
+      isPaymentProcessing
       totalReward
       totalReferred
       isReferred
@@ -513,6 +520,7 @@ export const onDeleteUser = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -525,7 +533,9 @@ export const onDeleteUser = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -544,7 +554,9 @@ export const onDeleteUser = /* GraphQL */ `
       isCompletedKYC
       currentStateKYC
       externalURLKYC
+      hasSigned
       registerDate
+      solicitoEliminarCuenta
       createdAt
       updatedAt
       _version

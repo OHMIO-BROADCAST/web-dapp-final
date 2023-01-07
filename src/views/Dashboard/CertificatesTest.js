@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Chakra imports
 import { CheckboxField, Loader } from "@aws-amplify/ui-react";
 import {
@@ -26,6 +26,7 @@ import InvoicesRow from "components/Tables/InvoicesRow";
 import TransactionRow from "components/Tables/TransactionRow";
 import { BsFileEarmarkLock2, BsFillFileEarmarkFill, BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineCaretDown } from "react-icons/ai";
+import { MdDoNotDisturbOnTotalSilence, MdNoteAlt } from 'react-icons/md'
 import {
     FaPaypal,
     FaPencilAlt,
@@ -42,6 +43,10 @@ import {
 } from "variables/general";
 import ModalCertified from "./ModalCertified";
 
+import { Auth, API, graphqlOperation } from "aws-amplify";
+import * as queries from "../../graphql/queries.js";
+import * as mutations from "../../graphql/mutations";
+
 function CertificatesTest() {
     // Chakra color mode
     const iconBlue = useColorModeValue("navy.500", "navy.500");
@@ -49,19 +54,160 @@ function CertificatesTest() {
     const borderColor = useColorModeValue("#dee2e6", "transparent");
     const { colorMode } = useColorMode();
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const [isOpenModalTermsConditions, setIsOpenModalTermsConditions] = useState(false)
 
     const [userHasSigned, setUserHasSigned] = useState(false)
-
+    const [profile, setProfile] = useState({});
+    const [message, setMessage] = useState("");
+    const [userID, setUserID] = useState("");
+    const [currentUser, setCurrentUser] = useState({});
+    const [currentUserName, setCurrentUserName] = useState("");
 
     console.log(colorMode);
 
 
 
     const acceptTermsAndConditions = () => {
+        console.log("aceptign terms")
+    }
+
+    const styles = {
+        title: {
+            fontSize: "30px",
+            fontWeight: "600",
+        },
+        header: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "5px",
+        },
+        card: {
+            boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+            border: "1px solid #e7eaf3",
+            borderRadius: "1rem",
+            width: "450px",
+            fontSize: "16px",
+            fontWeight: "500",
+        },
+        cardoffline: {
+            boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+            border: "1px solid #e7eaf3",
+            borderRadius: "1rem",
+            width: "450px",
+            fontSize: "16px",
+            fontWeight: "500",
+        },
+    };
+
+    async function createUser() {
+        const userDetails = {
+            "id": String(userID),
+            "name": String(currentUser.name),
+            "username": String(currentUserName),
+            "phone": String(currentUser.phone_number),
+            "email": String(currentUser.email),
+        }
+        console.log("Detalles de usuario a crear:", userDetails)
+
+        const result = await API.graphql(
+            graphqlOperation(mutations.createUser, { input: userDetails }),
+        ).then(data => {
+            console.log('responde created user', data)
+        }).catch(err => {
+            console.log('error creating user', err)
+        })
+    }
+
+    async function getUserProfile(sub) {
+        console.log("current state", profile, message, userID, currentUserName, currentUser)
+        setIsLoading(true)
+        try {
+            const result = await API.graphql(
+                graphqlOperation(queries.getUser, { id: sub })
+            )
+                .then(result => {
+                    console.log("Resultado de la consulta del usuario", result.data.getUser)
+                    setProfile(result.data.getUser)
+                    setIsLoading(false)
+                    return result.data.getUser;
+                })
+                .catch(err => {
+                    console.log(err)
+                    setIsLoading(false)
+                });
+            return result;
+
+        } catch (error) {
+            console.log("catch getuser")
+            const result = error
+            return result;
+        }
+    }
+
+    async function componenteMontado() {
+        //se obtiene ID usuario actual
+        const userID = await Auth.currentSession()
+            .then(data => {
+                setUserID(data.idToken.payload.sub);
+                setCurrentUser(data.idToken.payload)
+                return data.idToken.payload.sub;
+            })
+            .catch(err => console.log(err));
+        const userName = await Auth.currentAuthenticatedUser()
+            .then(data => {
+                setCurrentUserName(data.username);
+                return data.username;
+            })
+            .catch(err => console.log(err))
+
+        //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
+        const profile = await getUserProfile(userID);
+
+        if (profile == null) {
+            console.log("Usuario no creado en la BD, creando...")
+            createUser()
+        } else {
+            console.log("El usuario en BD es =>", profile)
+        }
 
     }
 
+
+    useEffect(async () => {
+        componenteMontado()
+    }, [])
+
+
+    if (isLoading) {
+        return (
+            <Flex
+                direction="column"
+                pt={{ base: "120px", md: "75px" }}
+                alignContent="center"
+                alignItems="center"
+            ><Card
+                style={styles.cardoffline}
+
+            >
+                    <div
+                        style={{
+                            width: "auto",
+                            height: "300px",
+                            justifyContent: 'center',
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexDirection: 'column'
+                        }}
+                    >
+                        <Loader variation="linear" filledColor={"#f9a640"} />
+                    </div>
+                </Card>
+            </Flex>
+        )
+    }
 
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
@@ -112,7 +258,7 @@ function CertificatesTest() {
                                                 fontSize='2xl'
                                                 letterSpacing='2px'
                                                 fontWeight='bold'>
-                                                NOT SIGNED
+                                                {profile && (profile.hasUser == true ? "SIGNED" : "NOT SIGNED")}
                                             </Text>
                                         </Box>
                                         <Flex mt='14px'>
@@ -268,10 +414,13 @@ function CertificatesTest() {
                                     borderColor={borderColor}
                                     align='center'>
                                     <IconBox me='10px' w='25px' h='25px'>
-                                        <Loader w='100%' h='100%' />
+                                        {profile && (profile.hasUser == true ? <MdNoteAlt w='100%' h='100%' size={22} /> : <MdDoNotDisturbOnTotalSilence w='100%' h='100%' size={22} />)}
+
+                                        {/* <Loader w='100%' h='100%' /> */}
                                     </IconBox>
                                     <Text color='gray.400' fontSize='md' fontWeight='semibold'>
-                                        STATUS: Signing
+                                        STATUS:                                                 {profile && (profile.hasUser == true ? "SIGNED" : "NOT SIGNED")}
+
                                     </Text>
                                     <Spacer />
                                     <Button

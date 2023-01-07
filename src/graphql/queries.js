@@ -29,6 +29,7 @@ export const searchUsers = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -41,7 +42,9 @@ export const searchUsers = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -159,12 +162,11 @@ export const getNoticiaPrincipal = /* GraphQL */ `
   query GetNoticiaPrincipal($id: ID!) {
     getNoticiaPrincipal(id: $id) {
       id
-      name
       title
       subtitle
       publishedDate
+      source
       timestamp
-      time12h
       externalUrl
       portada
       createdAt
@@ -188,12 +190,11 @@ export const listNoticiaPrincipals = /* GraphQL */ `
     ) {
       items {
         id
-        name
         title
         subtitle
         publishedDate
+        source
         timestamp
-        time12h
         externalUrl
         portada
         createdAt
@@ -222,12 +223,11 @@ export const syncNoticiaPrincipals = /* GraphQL */ `
     ) {
       items {
         id
-        name
         title
         subtitle
         publishedDate
+        source
         timestamp
-        time12h
         externalUrl
         portada
         createdAt
@@ -245,7 +245,6 @@ export const getNoticia = /* GraphQL */ `
   query GetNoticia($id: ID!) {
     getNoticia(id: $id) {
       id
-      name
       title
       subtitle
       publishedDate
@@ -271,7 +270,6 @@ export const listNoticias = /* GraphQL */ `
     listNoticias(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
         title
         subtitle
         publishedDate
@@ -306,7 +304,6 @@ export const syncNoticias = /* GraphQL */ `
     ) {
       items {
         id
-        name
         title
         subtitle
         publishedDate
@@ -540,6 +537,7 @@ export const getUser = /* GraphQL */ `
       currentlyPlan
       hasPurchasedSomething
       expirationDate
+      isPaymentProcessing
       totalReward
       totalReferred
       isReferred
@@ -555,6 +553,7 @@ export const getUser = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -567,7 +566,9 @@ export const getUser = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -586,7 +587,9 @@ export const getUser = /* GraphQL */ `
       isCompletedKYC
       currentStateKYC
       externalURLKYC
+      hasSigned
       registerDate
+      solicitoEliminarCuenta
       createdAt
       updatedAt
       _version
@@ -613,6 +616,7 @@ export const listUsers = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -625,7 +629,9 @@ export const listUsers = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -661,6 +667,7 @@ export const syncUsers = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -673,7 +680,9 @@ export const syncUsers = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version
@@ -713,6 +722,7 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        isPaymentProcessing
         totalReward
         totalReferred
         isReferred
@@ -725,7 +735,9 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         isCompletedKYC
         currentStateKYC
         externalURLKYC
+        hasSigned
         registerDate
+        solicitoEliminarCuenta
         createdAt
         updatedAt
         _version

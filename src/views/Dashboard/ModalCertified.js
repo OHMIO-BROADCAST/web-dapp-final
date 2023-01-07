@@ -8,10 +8,10 @@ function ModalCertified({ isOpen, onClose, userHasSign, setUserHasSign }) {
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={true}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>ACCEPT TERMS & CONDITIONS</ModalHeader>
+                <ModalHeader>ACCEPT TERMS & CONDITIONS & SIGN DOCUMENT ONLINE</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    By accepting this message you accept the Terms & Conditions of BMaker Pro.
+                    By accepting this message you accept the Terms & Conditions and Accept the Disclaimer document of BMaker Pro.
                 </ModalBody>
 
                 <ModalFooter>

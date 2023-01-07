@@ -277,8 +277,8 @@ export const tablesProjectData = [
 export const invoicesData = [
   {
     date: "Disclamer",
-    code: "ID: asdkm-opsajd-ojsadoi",
-    price: "Last Update: 01/05/27",
+    code: "ID: FRB1235476",
+    price: "Last Update: 06/01/2023",
     logo: FaFilePdf,
     format: "PDF",
   }

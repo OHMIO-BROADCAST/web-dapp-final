@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 // Chakra imports
 import { CheckboxField, Loader } from "@aws-amplify/ui-react";
 import {
@@ -23,7 +24,7 @@ import { HSeparator } from "components/Separator/Separator";
 import BillingRow from "components/Tables/BillingRow";
 import InvoicesRow from "components/Tables/InvoicesRow";
 import TransactionRow from "components/Tables/TransactionRow";
-import React from "react";
+import { BsFileEarmarkLock2, BsFillFileEarmarkFill, BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineCaretDown } from "react-icons/ai";
 import {
     FaPaypal,
@@ -31,7 +32,7 @@ import {
     FaRegCalendarAlt,
     FaWallet,
 } from "react-icons/fa";
-import { RiMastercardFill } from "react-icons/ri";
+import { RiMastercardFill, RiSecurePaymentLine } from "react-icons/ri";
 import { TbFileCertificate } from "react-icons/tb";
 import {
     billingData,
@@ -39,6 +40,7 @@ import {
     newestTransactions,
     olderTransactions,
 } from "variables/general";
+import ModalCertified from "./ModalCertified";
 
 function CertificatesTest() {
     // Chakra color mode
@@ -47,7 +49,19 @@ function CertificatesTest() {
     const borderColor = useColorModeValue("#dee2e6", "transparent");
     const { colorMode } = useColorMode();
 
+    const [isOpenModalTermsConditions, setIsOpenModalTermsConditions] = useState(false)
+
+    const [userHasSigned, setUserHasSigned] = useState(false)
+
+
     console.log(colorMode);
+
+
+
+    const acceptTermsAndConditions = () => {
+
+    }
+
 
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
@@ -85,7 +99,7 @@ function CertificatesTest() {
                                             CERTIFICATE STATUS
                                         </Text>
                                         <Icon
-                                            as={TbFileCertificate}
+                                            as={BsFillShieldLockFill}
                                             w='48px'
                                             h='auto'
                                             color='gray.400'
@@ -105,7 +119,7 @@ function CertificatesTest() {
                                             <Flex direction='column' me='34px'>
                                                 <Text fontSize='xs'>LAST UPDATE</Text>
                                                 <Text fontSize='xs' fontWeight='bold'>
-                                                    01/05/24
+                                                    06/01/2023
                                                 </Text>
                                             </Flex>
                                             <Flex direction='column'>
@@ -123,7 +137,7 @@ function CertificatesTest() {
                             <CardBody>
                                 <Flex direction='column' align='center' w='100%' py='14px'>
                                     <IconBox as='box' h={"60px"} w={"60px"} bg={iconBlue}>
-                                        <Icon h={"24px"} w={"24px"} color='white' as={FaWallet} />
+                                        <Icon h={"24px"} w={"24px"} color='white' as={TbFileCertificate} />
                                     </IconBox>
                                     <Flex
                                         direction='column'
@@ -133,19 +147,20 @@ function CertificatesTest() {
                                         align='center'
                                         w='100%'>
                                         <Text fontSize='md' color={textColor} fontWeight='bold'>
-                                            Salary
+                                            Main Purpouse
                                         </Text>
                                         <Text
                                             mb='24px'
                                             fontSize='xs'
                                             color='gray.400'
+                                            mt="1"
                                             fontWeight='semibold'>
-                                            Financial Advices
+                                            Discharge of Responsability that comes with Financial Advices.
                                         </Text>
                                         <HSeparator />
                                     </Flex>
                                     <Text fontSize='lg' color={textColor} fontWeight='bold'>
-                                        +$2000
+                                        Financial Advice
                                     </Text>
                                 </Flex>
                             </CardBody>
@@ -159,7 +174,7 @@ function CertificatesTest() {
                                     w='100%'
                                     py='14px'>
                                     <IconBox as='box' h={"60px"} w={"60px"} bg={iconBlue}>
-                                        <Icon h={"24px"} w={"24px"} color='white' as={FaPaypal} />
+                                        <Icon h={"24px"} w={"24px"} color='white' as={BsFileEarmarkLock2} />
                                     </IconBox>
                                     <Flex
                                         direction='column'
@@ -169,19 +184,20 @@ function CertificatesTest() {
                                         align='center'
                                         w='100%'>
                                         <Text fontSize='md' color={textColor} fontWeight='bold'>
-                                            Paypal
+                                            Second Purpouse
                                         </Text>
                                         <Text
                                             mb='24px'
                                             fontSize='xs'
                                             color='gray.400'
+                                            mt="1"
                                             fontWeight='semibold'>
-                                            Freelance Payment
+                                            Discharge of Responsability that comes with High Risk investments and High Volatile markets.
                                         </Text>
                                         <HSeparator />
                                     </Flex>
                                     <Text fontSize='lg' color={textColor} fontWeight='bold'>
-                                        $455.00
+                                        Risk Investments
                                     </Text>
                                 </Flex>
                             </CardBody>
@@ -197,7 +213,7 @@ function CertificatesTest() {
                                 <Text fontSize='lg' color={textColor} fontWeight='bold'>
                                     Sign online
                                 </Text>
-                                <Button variant={colorMode === "dark" ? "primary" : "dark"}>
+                                <Button variant={colorMode === "dark" ? "primary" : "dark"} onClick={() => setIsOpenModalTermsConditions(true)}>
                                     SIGN CERTIFICATE
                                 </Button>
                             </Flex>
@@ -215,23 +231,33 @@ function CertificatesTest() {
                                     borderRadius='15px'
                                     width='100%'
                                     border='1px solid'
-                                    borderColor={borderColor}
+                                    borderColor={"#F9A640"}
                                     align='center'
                                     mb={{ sm: "24px", md: "0px" }}
                                     me={{ sm: "0px", md: "24px" }}>
-                                    <IconBox me='10px' w='25px' h='22px'>
-                                        <CheckboxField w='100%' h='100%' />
+                                    <IconBox me='10px' w='25px' h='22px'
+                                        onClick={() => setIsOpenModalTermsConditions(true)}>
+                                        <CheckboxField w='100%' h='100%' value={userHasSigned}
+                                            readOnly
+                                            disabled
+                                        />
                                     </IconBox>
                                     <Text color='gray.400' fontSize='md' fontWeight='semibold'>
                                         ACCEPT TERMS & CONDITIONS
                                     </Text>
+                                    <ModalCertified
+                                        isOpen={isOpenModalTermsConditions}
+                                        onClose={() => setIsOpenModalTermsConditions(false)}
+                                        userHasSigned={userHasSigned}
+                                        setUserHasSigned={setUserHasSigned}
+                                    />
                                     <Spacer />
-                                    <Button p='0px' w='16px' h='16px' variant='no-effects'>
+                                    {/* <Button p='0px' w='16px' h='16px' variant='no-effects'>
                                         <Icon
                                             as={AiOutlineCaretDown}
                                             color={colorMode === "dark" && "white"}
                                         />
-                                    </Button>
+                                    </Button> */}
                                 </Flex>
                                 <Flex
                                     p='16px'
@@ -245,7 +271,7 @@ function CertificatesTest() {
                                         <Loader w='100%' h='100%' />
                                     </IconBox>
                                     <Text color='gray.400' fontSize='md' fontWeight='semibold'>
-                                        STATUS
+                                        STATUS: Signing
                                     </Text>
                                     <Spacer />
                                     <Button

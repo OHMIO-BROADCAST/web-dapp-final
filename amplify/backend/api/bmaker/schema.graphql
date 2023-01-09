@@ -94,6 +94,7 @@ type User @model @searchable{
   externalURLKYC: String
 
   hasSigned: Boolean
+  dateSigned: String
 
   registerDate: String
   solicitoEliminarCuenta: Boolean

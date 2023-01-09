@@ -26,7 +26,7 @@ import InvoicesRow from "components/Tables/InvoicesRow";
 import TransactionRow from "components/Tables/TransactionRow";
 import { BsFileEarmarkLock2, BsFillFileEarmarkFill, BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineCaretDown } from "react-icons/ai";
-import { MdDoNotDisturbOnTotalSilence, MdNoteAlt } from 'react-icons/md'
+import { MdCheck, MdDoNotDisturbOnTotalSilence, MdNoteAlt } from 'react-icons/md'
 import {
     FaPaypal,
     FaPencilAlt,
@@ -65,12 +65,44 @@ function CertificatesTest() {
     const [currentUser, setCurrentUser] = useState({});
     const [currentUserName, setCurrentUserName] = useState("");
 
+    const [isSigning, setIsSigning] = useState(false)
+
     console.log(colorMode);
 
 
+    const updateSignStatus = async () => {
+        setIsOpenModalTermsConditions(false)
+        setIsSigning(true)
+        console.log("aceptign terms, intentando firmar el certificado")
 
-    const acceptTermsAndConditions = () => {
-        console.log("aceptign terms")
+        const today = new Date();
+
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        const formattedSignDate = dd + '/' + mm + '/' + yyyy;
+        console.log("fecha de firma", formattedSignDate)
+
+        let userDetailstoUpdate = {
+            id: profile.id,
+            hasSigned: true,
+            dateSigned: formattedSignDate
+        }
+        const updateUserSigning = await API.graphql(
+            { query: mutations.updateUser, variables: { input: userDetailstoUpdate } }
+        ).then(data => {
+            console.log("Success signing status", data)
+            setIsSigning(false)
+            setUserHasSigned(true)
+        }).catch(error => {
+            console.log("Failed signing status", error)
+            setIsSigning(false)
+            setUserHasSigned(false)
+
+        });
+
     }
 
     const styles = {
@@ -258,14 +290,17 @@ function CertificatesTest() {
                                                 fontSize='2xl'
                                                 letterSpacing='2px'
                                                 fontWeight='bold'>
-                                                {profile && (profile.hasUser == true ? "SIGNED" : "NOT SIGNED")}
+                                                {userHasSigned == true ? "SIGNED" : "NOT SIGNED"}
                                             </Text>
+
                                         </Box>
                                         <Flex mt='14px'>
                                             <Flex direction='column' me='34px'>
                                                 <Text fontSize='xs'>LAST UPDATE</Text>
                                                 <Text fontSize='xs' fontWeight='bold'>
-                                                    06/01/2023
+
+                                                    {userHasSigned == true ? (profile.dateSigned == null ? "06/01/2023" : profile.dateSigned) : "06/01/2023"}
+
                                                 </Text>
                                             </Flex>
                                             <Flex direction='column'>
@@ -303,7 +338,7 @@ function CertificatesTest() {
                                             fontWeight='semibold'>
                                             Discharge of Responsability that comes with Financial Advices.
                                         </Text>
-                                        <HSeparator />
+                                        <HSeparator style={{ marginTop: 33 }} />
                                     </Flex>
                                     <Text fontSize='lg' color={textColor} fontWeight='bold'>
                                         Financial Advice
@@ -359,9 +394,10 @@ function CertificatesTest() {
                                 <Text fontSize='lg' color={textColor} fontWeight='bold'>
                                     Sign online
                                 </Text>
-                                <Button variant={colorMode === "dark" ? "primary" : "dark"} onClick={() => setIsOpenModalTermsConditions(true)}>
+                                {userHasSigned != true ? <Button variant={colorMode === "dark" ? "primary" : "dark"} onClick={() => setIsOpenModalTermsConditions(true)}>
                                     SIGN CERTIFICATE
-                                </Button>
+                                </Button> : null}
+
                             </Flex>
                         </CardHeader>
                         <CardBody>
@@ -382,8 +418,15 @@ function CertificatesTest() {
                                     mb={{ sm: "24px", md: "0px" }}
                                     me={{ sm: "0px", md: "24px" }}>
                                     <IconBox me='10px' w='25px' h='22px'
-                                        onClick={() => setIsOpenModalTermsConditions(true)}>
-                                        <CheckboxField w='100%' h='100%' value={userHasSigned}
+                                        onClick={() => {
+                                            if (!userHasSigned) {
+                                                setIsOpenModalTermsConditions(true)
+                                            }
+                                        }
+                                        }
+                                    >
+
+                                        <CheckboxField w='100%' h='100%' checked={userHasSigned}
                                             readOnly
                                             disabled
                                         />
@@ -396,6 +439,7 @@ function CertificatesTest() {
                                         onClose={() => setIsOpenModalTermsConditions(false)}
                                         userHasSigned={userHasSigned}
                                         setUserHasSigned={setUserHasSigned}
+                                        updateSignStatus={updateSignStatus}
                                     />
                                     <Spacer />
                                     {/* <Button p='0px' w='16px' h='16px' variant='no-effects'>
@@ -414,16 +458,20 @@ function CertificatesTest() {
                                     borderColor={borderColor}
                                     align='center'>
                                     <IconBox me='10px' w='25px' h='25px'>
-                                        {profile && (profile.hasUser == true ? <MdNoteAlt w='100%' h='100%' size={22} /> : <MdDoNotDisturbOnTotalSilence w='100%' h='100%' size={22} />)}
+                                        {isSigning && <Loader w='100%' h='100%' />}
+                                        {!isSigning && <>
+                                            {userHasSigned == true ? <MdNoteAlt w='100%' h='100%' size={22} /> : <MdDoNotDisturbOnTotalSilence w='100%' h='100%' size={22} />}
+                                        </>}
 
-                                        {/* <Loader w='100%' h='100%' /> */}
+
                                     </IconBox>
                                     <Text color='gray.400' fontSize='md' fontWeight='semibold'>
-                                        STATUS:                                                 {profile && (profile.hasUser == true ? "SIGNED" : "NOT SIGNED")}
+                                        STATUS: {userHasSigned == true ? "SIGNED" : "NOT SIGNED"}
+
 
                                     </Text>
                                     <Spacer />
-                                    <Button
+                                    {userHasSigned == true ? <MdCheck w='100%' h='100%' size={22} /> : <Button
                                         p='0px'
                                         bg='transparent'
                                         w='16px'
@@ -433,7 +481,9 @@ function CertificatesTest() {
                                             color={colorMode === "dark" && "white"}
                                             onClick={() => setIsOpenModalTermsConditions(true)}
                                         />
-                                    </Button>
+                                    </Button>}
+
+
                                 </Flex>
                             </Flex>
                         </CardBody>

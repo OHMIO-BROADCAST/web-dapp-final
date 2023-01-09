@@ -388,6 +388,7 @@ export const onCreateUser = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -409,6 +410,7 @@ export const onCreateUser = /* GraphQL */ `
       currentStateKYC
       externalURLKYC
       hasSigned
+      dateSigned
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -464,6 +466,7 @@ export const onUpdateUser = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -485,6 +488,7 @@ export const onUpdateUser = /* GraphQL */ `
       currentStateKYC
       externalURLKYC
       hasSigned
+      dateSigned
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -540,6 +544,7 @@ export const onDeleteUser = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -561,6 +566,7 @@ export const onDeleteUser = /* GraphQL */ `
       currentStateKYC
       externalURLKYC
       hasSigned
+      dateSigned
       registerDate
       solicitoEliminarCuenta
       createdAt

@@ -2,7 +2,7 @@ import { CheckboxField } from "@aws-amplify/ui-react";
 
 const { Button, Modal, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, ModalOverlay, ModalContent, Checkbox } = require("@chakra-ui/react")
 
-function ModalCertified({ isOpen, onClose, userHasSign, setUserHasSign }) {
+function ModalCertified({ isOpen, onClose, userHasSign, setUserHasSign, updateSignStatus }) {
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} closeOnEsc={true}>
@@ -15,7 +15,7 @@ function ModalCertified({ isOpen, onClose, userHasSign, setUserHasSign }) {
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button colorScheme='blue' mr={3} onClick={onClose}>
+                    <Button colorScheme='blue' mr={3} onClick={updateSignStatus}>
                         ACCEPT
                     </Button>
                     <Button variant='ghost' onClick={onClose}>CLOSE</Button>

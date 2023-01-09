@@ -44,6 +44,7 @@ export const searchUsers = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -570,6 +571,7 @@ export const getUser = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -591,6 +593,7 @@ export const getUser = /* GraphQL */ `
       currentStateKYC
       externalURLKYC
       hasSigned
+      dateSigned
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -634,6 +637,7 @@ export const listUsers = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -686,6 +690,7 @@ export const syncUsers = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -742,6 +747,7 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         currentStateKYC
         externalURLKYC
         hasSigned
+        dateSigned
         registerDate
         solicitoEliminarCuenta
         createdAt

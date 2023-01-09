@@ -333,7 +333,7 @@ export default function Signals() {
                       color={textColor}
                       fontWeight='bold'
                       mb='10px' textAlign="center">
-                      1 MONTH / $0.001 USD
+                      1 MONTH / $10 USD
                     </Text>
 
                     <Text fontSize='md' color='gray.400' fontWeight='400' mb='20px' >

@@ -16,6 +16,8 @@ import {
 import BackgroundCard1 from "assets/img/BackgroundCard1.png";
 // Custom components
 import Card from "components/Card/Card.js";
+import Swal from "sweetalert2";
+
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import IconBox from "components/Icons/IconBox";
@@ -96,11 +98,18 @@ function CertificatesTest() {
             console.log("Success signing status", data)
             setIsSigning(false)
             setUserHasSigned(true)
+            Swal.fire({
+                title: 'The sign was success',
+                icon: 'success'
+            })
         }).catch(error => {
             console.log("Failed signing status", error)
             setIsSigning(false)
             setUserHasSigned(false)
-
+            Swal.fire({
+                title: 'Something Happen, please try again',
+                icon: 'error'
+            })
         });
 
     }
@@ -506,7 +515,11 @@ function CertificatesTest() {
                                 borderColor={colorMode === "dark" && "white"}
                                 _hover={colorMode === "dark" && "none"}
                                 minW='110px'
-                                maxH='35px'>
+                                maxH='35px'
+                                onClick={() => Swal.fire({
+                                    title: 'For the moment we only have this Disclaimer',
+                                    icon: 'info'
+                                })}>
                                 VIEW ALL
                             </Button>
                         </Flex>

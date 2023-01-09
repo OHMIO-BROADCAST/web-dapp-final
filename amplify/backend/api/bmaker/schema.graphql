@@ -80,7 +80,7 @@ type User @model @searchable{
   totalReferred: Float
   isReferred: Boolean
   hasReferred: Boolean
-  referredBy: User @belongsTo(fields:["id"])
+  referredBy: User @hasOne(fields:["id"])
   listUserReferred: [User] @hasMany(fields:["id"])
 
   isCommercial: Boolean

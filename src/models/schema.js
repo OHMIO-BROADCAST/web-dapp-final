@@ -578,7 +578,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "association": {
-                        "connectionType": "BELONGS_TO",
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
                         "targetNames": [
                             "id"
                         ]
@@ -596,7 +599,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "referredBy"
+                            "id"
                         ]
                     }
                 },
@@ -721,6 +724,15 @@ export const schema = {
                             "username"
                         ]
                     }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "gsi-User.listUserReferred",
+                        "fields": [
+                            "id"
+                        ]
+                    }
                 }
             ]
         }
@@ -748,5 +760,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "857f5321fa31a28f6e0158f784dc98b3"
+    "version": "faf560e0a24cb9e4d5629373ffd42e65"
 };

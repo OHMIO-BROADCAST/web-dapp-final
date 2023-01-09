@@ -95,6 +95,7 @@ type User @model @searchable{
 
   hasSigned: Boolean
   dateSigned: String
+  hasiOSSession: Boolean
 
   registerDate: String
   solicitoEliminarCuenta: Boolean

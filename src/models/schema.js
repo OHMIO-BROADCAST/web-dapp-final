@@ -673,6 +673,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "hasiOSSession": {
+                    "name": "hasiOSSession",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "registerDate": {
                     "name": "registerDate",
                     "isArray": false,
@@ -760,5 +767,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "faf560e0a24cb9e4d5629373ffd42e65"
+    "version": "c2dc0c8b7e6c8e1e50638538eca6443f"
 };

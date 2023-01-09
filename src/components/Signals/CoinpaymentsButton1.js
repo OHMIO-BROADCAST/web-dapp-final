@@ -11,7 +11,7 @@ function CoinpaymentsButton1(userID) {
                 name="merchant"
                 defaultValue="048990b0c04fc240a473e0dbbc801327"
             />
-            <input type="hidden" name="item_name" defaultValue="FX-5MONTH" />
+            <input type="hidden" name="item_name" defaultValue="FX-MONTH" />
             <input type="hidden" name="item_number" defaultValue={1} />
             <input type="hidden" name="currency" defaultValue="USD" />
             <input type="hidden" name="amountf" defaultValue={10} />

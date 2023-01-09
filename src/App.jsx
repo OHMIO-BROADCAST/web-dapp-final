@@ -12,12 +12,16 @@ function App() {
     console.log("AUTHSTATUS", authStatus)
   }, [authStatus])
 
-
+  /* if (env === 'production') {
+    console.log = function () {};
+} */
 
   return (
     <Router>
       <Switch>
         <Route path={`/`} component={AdminLayout} />
+        <Route path={`/*`} component={AdminLayout} />
+
       </Switch>
     </Router>
   )

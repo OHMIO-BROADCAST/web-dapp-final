@@ -48,7 +48,6 @@ import { HiBellAlert } from 'react-icons/hi2'
 import { Tooltip } from "antd";
 import { Loader } from "@aws-amplify/ui-react";
 import { BsFillShieldLockFill } from "react-icons/bs";
-import { DeleteIcon } from "@chakra-ui/icons";
 
 function Profile() {
   const { colorMode } = useColorMode();
@@ -68,7 +67,6 @@ function Profile() {
   const [userID, setUserID] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserName, setCurrentUserName] = useState("");
-  const [hasiOsSession, setHasiOsSession] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -109,8 +107,7 @@ function Profile() {
         .then(result => {
           console.log("Resultado de la consulta del usuario", result.data.getUser)
           setProfile(result.data.getUser)
-          if (result.data.getUser.hasiOSSession)
-            setIsLoading(false)
+          setIsLoading(false)
           return result.data.getUser;
         })
         .catch(err => console.log(err));
@@ -341,29 +338,6 @@ function Profile() {
                   SMS
                 </Text>
               </Flex>
-              {/* <Flex align='center' mb='20px' border={"1px"} borderColor={"#1a1f39"} borderRadius={15} paddingTop={10} paddingBottom={10} flexDirection="column" justifyContent="center" alignItems={"center"}>
-                <Text fontSize='lg' color={textColor} fontWeight='bold'>
-                  CURRENT DEVICES
-                </Text>
-                <Flex flexDirection="row" marginTop={5}
-                >
-
-                  <Button>
-                    <Text
-                      noOfLines={1}
-                      fontSize='md'
-                      color='gray.400'
-                      fontWeight='bold'
-
-                      marginRight={4}>
-                      ANDROID
-                    </Text>
-                    <DeleteIcon style={{ width: 20, height: 20 }} color={"red.500"} />
-
-                  </Button>
-
-                </Flex>
-              </Flex> */}
 
               {/* <Text
                 fontSize='sm'

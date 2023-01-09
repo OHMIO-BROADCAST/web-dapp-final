@@ -1,0 +1,52 @@
+address1=cualquiera+%2324&address2=cualquiera+%2324&amount1=10&amount2=9.99899&city=medellin&company=&country=CO&country_name=COLOMBIA&currency1=USD&currency2=USDT.TRC20&email=mauro.henaog%40gmail.com&fee=0.04999&first_name=Mauricio&ipn_id=88e1e1a5e71f5625fb01c997a03dfc7b&ipn_mode=hmac&ipn_type=button&ipn_version=1.0&item_amount=10&item_name=FX-5MONTH&item_number=1&last_name=Henao&merchant=048990b0c04fc240a473e0dbbc801327&net=9.949&on1=240b4788-e643-445e-9160-9fc64514e368&phone=%2B573218474651&quantity=1&received_amount=9.99899&received_confirms=10&send_tx=ce2a836b7643bc0e09d9b18abb1328cfe97034b1b6ac1ab564e408f5e3e9f5ae&shipping=0&state=Antioquia&status=100&status_text=Complete&subtotal=10&tax=0&txn_id=CPHA5OY10ZGUEPNNWN8E7C08D9&zip=23
+HEADERS
+{
+  "user-agent": "CoinPayments.net IPN Generator",
+  "content-length": "745",
+  "accept": "*/*",
+  "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+  "hmac": "ce4ffc15af4f1aa48259a540c2983b93eae25ef6b3de4c18c13159d83acde79f67a55d8fcf0e1351334109c5955a3634d22906e7e1f2db1c904d22e7ff3f20c2",
+  "x-forwarded-for": "206.71.159.57",
+  "x-forwarded-host": "ipnbmaker.free.beeceptor.com",
+  "x-forwarded-proto": "https",
+  "accept-encoding": "gzip"
+}
+
+BODY
+address1=cualquiera+#24
+address2=cualquiera+#24
+amount1=10
+amount2=9.99899
+city=medellin
+company=
+country=CO
+country_name=COLOMBIA
+currency1=USD
+currency2=USDT.TRC20
+email=mauro.henaog@gmail.com
+fee=0.04999
+first_name=Mauricio
+ipn_id=88e1e1a5e71f5625fb01c997a03dfc7b
+ipn_mode=hmac
+ipn_type=button
+ipn_version=1.0
+item_amount=10
+item_name=FX-5MONTH
+item_number=1
+last_name=Henao
+merchant=048990b0c04fc240a473e0dbbc801327
+net=9.949
+on1=240b4788-e643-445e-9160-9fc64514e368
+phone=+573218474651
+quantity=1
+received_amount=9.99899
+received_confirms=10
+send_tx=ce2a836b7643bc0e09d9b18abb1328cfe97034b1b6ac1ab564e408f5e3e9f5ae
+shipping=0
+state=Antioquia
+status=100
+status_text=Complete
+subtotal=10
+tax=0
+txn_id=CPHA5OY10ZGUEPNNWN8E7C08D9
+zip=23

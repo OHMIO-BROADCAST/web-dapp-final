@@ -360,7 +360,7 @@ function CertificatesTest() {
                                             fontWeight='semibold'>
                                             Discharge of Responsability that comes with Financial Advices.
                                         </Text>
-                                        <HSeparator style={{ marginTop: 33 }} />
+                                        <HSeparator />
                                     </Flex>
                                     <Text fontSize='lg' color={textColor} fontWeight='bold'>
                                         Financial Advice

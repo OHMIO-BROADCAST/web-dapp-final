@@ -530,7 +530,7 @@ function CertificatesTest() {
                                 minW='110px'
                                 maxH='35px'
                                 onClick={() => Swal.fire({
-                                    title: 'For the moment we only have this Disclaimer',
+                                    title: 'In this moment we only have the Disclaimer Certificate',
                                     icon: 'info'
                                 })}>
                                 VIEW ALL

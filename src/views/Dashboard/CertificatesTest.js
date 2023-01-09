@@ -75,7 +75,7 @@ function CertificatesTest() {
     const updateSignStatus = async () => {
         setIsOpenModalTermsConditions(false)
         setIsSigning(true)
-        console.log("aceptign terms, intentando firmar el certificado")
+        console.log("firmar usuario con ID", profile.id)
 
         const today = new Date();
 
@@ -90,27 +90,29 @@ function CertificatesTest() {
         let userDetailstoUpdate = {
             id: profile.id,
             hasSigned: true,
-            dateSigned: formattedSignDate
+            dateSigned: formattedSignDate,
+            _version: profile._version
         }
-        const updateUserSigning = await API.graphql(
-            { query: mutations.updateUser, variables: { input: userDetailstoUpdate } }
-        ).then(data => {
-            console.log("Success signing status", data)
-            setIsSigning(false)
-            setUserHasSigned(true)
-            Swal.fire({
-                title: 'The sign was success',
-                icon: 'success'
-            })
-        }).catch(error => {
-            console.log("Failed signing status", error)
-            setIsSigning(false)
-            setUserHasSigned(false)
-            Swal.fire({
-                title: 'Something Happen, please try again',
-                icon: 'error'
-            })
-        });
+
+        const updateUserSigning = await API.graphql(graphqlOperation(mutations.updateUser, { input: userDetailstoUpdate }))
+            .then(data => {
+                console.log("Success signing status", data)
+                setIsSigning(false)
+                setUserHasSigned(true)
+                Swal.fire({
+                    title: 'The sign was success',
+                    icon: 'success'
+                })
+                componenteMontado()
+            }).catch(error => {
+                console.log("Failed signing status", error)
+                setIsSigning(false)
+                setUserHasSigned(false)
+                Swal.fire({
+                    title: 'Something Happen, please try again',
+                    icon: 'error'
+                })
+            });
 
     }
 
@@ -173,6 +175,9 @@ function CertificatesTest() {
                     console.log("Resultado de la consulta del usuario", result.data.getUser)
                     setProfile(result.data.getUser)
                     setIsLoading(false)
+                    if (result.data.getUser.hasSigned !== null && result.data.getUser.hasSigned == true) {
+                        setUserHasSigned(true)
+                    }
                     return result.data.getUser;
                 })
                 .catch(err => {
@@ -212,6 +217,7 @@ function CertificatesTest() {
             createUser()
         } else {
             console.log("El usuario en BD es =>", profile)
+            console.log("LAPUTAAAAAA", profile.hasSigned)
         }
 
     }
@@ -220,6 +226,13 @@ function CertificatesTest() {
     useEffect(async () => {
         componenteMontado()
     }, [])
+
+    useEffect(() => {
+        if (profile.hasSigned == true) {
+            setUserHasSigned(profile.hasSigned)
+        }
+    }, [profile])
+
 
 
     if (isLoading) {

@@ -479,19 +479,21 @@ function Profile() {
                 </Text>
                 <Tooltip title="You have to sign the Certificates to enable all BMaker Features" placement="bottom">
                   <Badge
-                    bg={(profile && profile.isCompletedKYC) == true ? "green.400" : "gray.400"}
+                    bg={profile.hasSigned == true ? "green.400" : "gray.400"}
                     color={"white"}
                     fontSize="16px"
                     p="3px 10px"
                     borderRadius="8px"
-                  >
-                    {profile && (profile.hasSigned ? "Signed" : "Unsigned")}
+                  >{profile &&
+                    <>
+                      {profile.hasSigned == true ? "Signed" : "Unsigned"}
+                    </>}
                   </Badge>
                 </Tooltip>
 
                 {profile && (!profile.isCompletedKYC ?
                   <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
-                    <BsFillShieldLockFill size={22} color={"#a0aec0"} style={{ marginLeft: 10 }} /></Tooltip> :
+                    <BsFillShieldLockFill size={22} color={profile.hasSigned == true ? "#48bb79" : "#a0aec0"} style={{ marginLeft: 10 }} /></Tooltip> :
                   null)}
 
               </Flex>

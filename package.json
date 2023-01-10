@@ -1,5 +1,6 @@
 {
   "name": "bmakerpro",
+  "homepage": "https://app.bmaker.pro/",
   "version": "0.1.0",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

@@ -83,7 +83,15 @@ export default function PurchaseSuccessFivemestral() {
 
     const { colorMode } = useColorMode();
 
-    const [user, setuser] = useState()
+    const [user, setuser] = useState();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [profile, setProfile] = useState({});
+    const [message, setMessage] = useState("");
+    const [userID, setUserID] = useState("");
+    const [currentUser, setCurrentUser] = useState({});
+    const [currentUserName, setCurrentUserName] = useState("");
 
     async function updatePaymentStatus(ID) {
         console.log("updating user with ID", ID)
@@ -99,13 +107,14 @@ export default function PurchaseSuccessFivemestral() {
         console.log("fecha de expiración", formattedExpirationDate)
 
         let userDetailstoUpdate = {
-            id: ID,
+            id: userID,
             isPaymentProcessing: true,
-            payWithApplePay: false,
             forexSubscription: true,
+            payWithApplePay: false,
             currentlyPlan: "five months",
             hasPurchasedSomething: true,
-            expirationDate: formattedExpirationDate
+            expirationDate: formattedExpirationDate,
+            _version: profile._version
         }
         const updateUserPaymentProcessing = await API.graphql(
             { query: mutations.updateUser, variables: { input: userDetailstoUpdate } }
@@ -121,19 +130,95 @@ export default function PurchaseSuccessFivemestral() {
             title: 'The Payment is Proccessing',
             icon: 'success'
         })
-        Auth.currentAuthenticatedUser().then((user) => {
+        if (profile != null) {
             console.log("PURCHASE", user);
-            setuser(user);
-            if (user.attributes.sub != null) {
-                updatePaymentStatus(user.attributes.sub);
+            if (userID != null) {
+                updatePaymentStatus(userID);
             }
-        });
+        };
 
         return () => {
             null
         }
+    }, [profile])
+
+    useEffect(async () => {
+        componenteMontado()
     }, [])
 
+    async function createUser() {
+        const userDetails = {
+            "id": String(userID),
+            "name": String(currentUser.name),
+            "username": String(currentUserName),
+            "phone": String(currentUser.phone_number),
+            "email": String(currentUser.email),
+        }
+        console.log("Detalles de usuario a crear:", userDetails)
+
+        const result = await API.graphql(
+            graphqlOperation(mutations.createUser, { input: userDetails }),
+        ).then(data => {
+            console.log('responde created user', data)
+        }).catch(err => {
+            console.log('error creating user', err)
+        })
+    }
+
+    async function getUserProfile(sub) {
+        console.log("current state", profile, message, userID, currentUserName, currentUser)
+        setIsLoading(true)
+        try {
+            const result = await API.graphql(
+                graphqlOperation(queries.getUser, { id: sub })
+            )
+                .then(result => {
+                    console.log("Resultado de la consulta del usuario", result.data.getUser)
+                    setProfile(result.data.getUser)
+                    setIsLoading(false)
+                    return result.data.getUser;
+                })
+                .catch(err => {
+                    console.log(err)
+                    setIsLoading(false)
+                });
+            return result;
+
+        } catch (error) {
+            console.log("catch getuser")
+            const result = error
+            return result;
+        }
+    }
+
+    async function componenteMontado() {
+        //se obtiene ID usuario actual
+        const userID = await Auth.currentSession()
+            .then(data => {
+                setUserID(data.idToken.payload.sub);
+                setCurrentUser(data.idToken.payload)
+                return data.idToken.payload.sub;
+            })
+            .catch(err => console.log(err));
+        const userName = await Auth.currentAuthenticatedUser()
+            .then(data => {
+                setCurrentUserName(data.username);
+                return data.username;
+            })
+            .catch(err => console.log(err))
+
+        //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
+        const profile = await getUserProfile(userID);
+
+        if (profile == null) {
+            console.log("Usuario no creado en la BD, creando...")
+            createUser()
+        } else {
+            console.log("El usuario en BD es =>", profile)
+            console.log("LAPUTAAAAAA", profile.hasSigned)
+        }
+
+    }
 
     return (
         <Flex

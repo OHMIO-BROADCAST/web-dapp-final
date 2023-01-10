@@ -153,7 +153,7 @@ var dashRoutes = [
         layout: "/admin",
       },
       {
-        path: "/success-purchase-5months",
+        path: "/success-purchase-5month",
         name: "Success Purchase 5 Months",
         icon: <StarIcon color='inherit' size={22} />,
         component: PurchaseSuccessFivemestral,

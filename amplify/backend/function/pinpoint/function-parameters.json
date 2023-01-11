@@ -1,10 +1,19 @@
 {
   "permissions": {
-    "api": {
-      "pushAPI": ["read"]
-    },
     "analytics": {
-      "amplifypushapp": ["create", "read", "update", "delete"]
+      "bmakeranalytics": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "api": {
+      "bmaker": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
     }
   }
 }

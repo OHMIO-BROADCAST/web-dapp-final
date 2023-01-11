@@ -1,11 +1,19 @@
 /* Amplify Params - DO NOT EDIT
+	ANALYTICS_BMAKERANALYTICS_ID
+	ANALYTICS_BMAKERANALYTICS_REGION
+	API_BMAKER_GRAPHQLAPIENDPOINTOUTPUT
+	API_BMAKER_GRAPHQLAPIIDOUTPUT
+	API_BMAKER_GRAPHQLAPIKEYOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//* Amplify Params - DO NOT EDIT
 You can access the following resource attributes as environment variables from your Lambda function
 var environment = process.env.ENV
 var region = process.env.REGION
-var apiPushAPIGraphQLAPIIdOutput = process.env.API_PUSHAPI_GRAPHQLAPIIDOUTPUT
-var apiPushAPIGraphQLAPIEndpointOutput = process.env.API_PUSHAPI_GRAPHQLAPIENDPOINTOUTPUT
-var analyticsAmplifypushappId = process.env.ANALYTICS_AMPLIFYPUSHAPP_ID
-var analyticsAmplifypushappRegion = process.env.ANALYTICS_AMPLIFYPUSHAPP_REGION
+var apiBMAKERGraphQLAPIIdOutput = process.env.API_BMAKER_GRAPHQLAPIIDOUTPUT
+var apiBMAKERGraphQLAPIEndpointOutput = process.env.API_BMAKER_GRAPHQLAPIENDPOINTOUTPUT
+var analyticsAmplifypushappId = process.env.ANALYTICS_BMAKERANALYTICS_ID
+var analyticsAmplifypushappRegion = process.env.ANALYTICS_BMAKERANALYTICS_REGION
 
 Amplify Params - DO NOT EDIT */
 

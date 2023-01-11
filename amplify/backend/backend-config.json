@@ -8,7 +8,11 @@
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [],
-        "signupAttributes": ["EMAIL", "NAME", "PHONE_NUMBER"],
+        "signupAttributes": [
+          "EMAIL",
+          "NAME",
+          "PHONE_NUMBER"
+        ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": [
@@ -19,8 +23,12 @@
           ]
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": ["SMS"],
-        "verificationMechanisms": ["EMAIL"]
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
       }
     }
   },
@@ -55,19 +63,50 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "bmaker",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ]
     },
     "pinpoint": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "analytics",
+          "resourceName": "bmakeranalytics",
+          "attributes": [
+            "Id",
+            "Region"
+          ]
+        },
+        {
+          "category": "api",
+          "resourceName": "bmaker",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ]
     }
   },
   "notifications": {
     "bmakeranalytics": {
       "service": "Pinpoint",
-      "channels": ["FCM", "Email"]
+      "channels": [
+        "FCM",
+        "Email"
+      ]
     }
   }
 }

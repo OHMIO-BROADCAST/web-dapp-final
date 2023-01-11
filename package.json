@@ -1,6 +1,7 @@
 {
   "name": "bmakerpro",
   "version": "0.1.0",
+  "homepage": "https://app.bmaker.pro/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@aws-amplify/cli": "^10.5.2",

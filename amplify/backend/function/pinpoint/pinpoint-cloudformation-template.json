@@ -15,6 +15,26 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "analyticsbmakeranalyticsId": {
+      "Type": "String",
+      "Default": "analyticsbmakeranalyticsId"
+    },
+    "analyticsbmakeranalyticsRegion": {
+      "Type": "String",
+      "Default": "analyticsbmakeranalyticsRegion"
+    },
+    "apibmakerGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apibmakerGraphQLAPIIdOutput"
+    },
+    "apibmakerGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apibmakerGraphQLAPIEndpointOutput"
+    },
+    "apibmakerGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Default": "apibmakerGraphQLAPIKeyOutput"
     }
   },
   "Conditions": {
@@ -69,11 +89,29 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "ANALYTICS_BMAKERANALYTICS_ID": {
+              "Ref": "analyticsbmakeranalyticsId"
+            },
+            "ANALYTICS_BMAKERANALYTICS_REGION": {
+              "Ref": "analyticsbmakeranalyticsRegion"
+            },
+            "API_BMAKER_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apibmakerGraphQLAPIIdOutput"
+            },
+            "API_BMAKER_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apibmakerGraphQLAPIEndpointOutput"
+            },
+            "API_BMAKER_GRAPHQLAPIKEYOUTPUT": {
+              "Ref": "apibmakerGraphQLAPIKeyOutput"
             }
           }
         },
         "Role": {
-          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
         },
         "Runtime": "nodejs14.x",
         "Layers": [],
@@ -107,16 +145,22 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": ["lambda.amazonaws.com"]
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
               },
-              "Action": ["sts:AssumeRole"]
+              "Action": [
+                "sts:AssumeRole"
+              ]
             }
           ]
         }
       }
     },
     "lambdaexecutionpolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
@@ -155,6 +199,146 @@
           ]
         }
       }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "mobiletargeting:Put*",
+                "mobiletargeting:Create*",
+                "mobiletargeting:Send*",
+                "mobiletargeting:Get*",
+                "mobiletargeting:List*",
+                "mobiletargeting:Update*",
+                "mobiletargeting:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:mobiletargeting:",
+                      {
+                        "Ref": "analyticsbmakeranalyticsRegion"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apps/",
+                      {
+                        "Ref": "analyticsbmakeranalyticsId"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:mobiletargeting:",
+                      {
+                        "Ref": "analyticsbmakeranalyticsRegion"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apps/",
+                      {
+                        "Ref": "analyticsbmakeranalyticsId"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "appsync:GraphQL"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apibmakerGraphQLAPIIdOutput"
+                      },
+                      "/types/Query/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apibmakerGraphQLAPIIdOutput"
+                      },
+                      "/types/Mutation/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apibmakerGraphQLAPIIdOutput"
+                      },
+                      "/types/Subscription/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   },
   "Outputs": {
@@ -165,7 +349,10 @@
     },
     "Arn": {
       "Value": {
-        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
       }
     },
     "Region": {

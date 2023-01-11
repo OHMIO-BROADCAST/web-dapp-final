@@ -24,11 +24,11 @@
       "function": {
         "pushNotification": {
           "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-          "s3Key": "amplify-builds/pushNotification-63485a3959725450692f-build.zip"
+          "s3Key": "amplify-builds/pushNotification-526847346d594b653958-build.zip"
         },
         "pinpoint": {
           "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-          "s3Key": "amplify-builds/pinpoint-68553057337371537457-build.zip"
+          "s3Key": "amplify-builds/pinpoint-55326e432f44612f3877-build.zip"
         }
       }
     }

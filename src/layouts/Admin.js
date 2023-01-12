@@ -65,6 +65,7 @@ export default function Dashboard(props) {
         graphqlOperation(mutations.createUser, { input: userDetails }),
       ).then(data => {
         console.log('responde created user', data)
+        window.location.reload();
       }).catch(err => {
         console.log('error creating user', err)
       })

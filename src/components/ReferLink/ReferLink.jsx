@@ -12,7 +12,7 @@ function ReferLink() {
 
     useEffect(() => {
         Auth.currentAuthenticatedUser().then((user) => {
-            console.log("REFERRRR", user);
+            // console.log("REFERRRR", user);
             setuser(user);
         });
     }, [])

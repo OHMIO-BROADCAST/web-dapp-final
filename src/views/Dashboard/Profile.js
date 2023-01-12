@@ -139,14 +139,14 @@ function Profile() {
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
 
-    const profile = await getUserProfile(userID);
-
-    if (profile == null) {
-      console.log("Usuario no creado en la BD, creando...")
-      createUser()
-    } else {
-      console.log("El usuario en BD es =>", profile)
-    }
+    /*     const profile = await getUserProfile(userID);
+    
+        if (profile == null) {
+          console.log("Usuario no creado en la BD, creando...")
+          createUser()
+        } else {
+          console.log("El usuario en BD es =>", profile)
+        } */
 
   }
 
@@ -469,6 +469,7 @@ function Profile() {
                 </Flex>) : null)
               }
 
+
               <Flex align='center' mb='18px'>
                 <Text
                   fontSize='md'
@@ -477,19 +478,23 @@ function Profile() {
                   me='10px'>
                   Certificate Disclaimer:{" "}
                 </Text>
-                <Tooltip title="You have to sign the Certificates to enable all BMaker Features" placement="bottom">
-                  <Badge
-                    bg={profile.hasSigned == true ? "green.400" : "gray.400"}
-                    color={"white"}
-                    fontSize="16px"
-                    p="3px 10px"
-                    borderRadius="8px"
-                  >{profile &&
-                    <>
-                      {profile.hasSigned == true ? "Signed" : "Unsigned"}
-                    </>}
-                  </Badge>
-                </Tooltip>
+                {profile &&
+                  <Tooltip title="You have to sign the Certificates to enable all BMaker Features" placement="bottom">
+                    <Badge
+                      bg={profile.hasSigned == true ? "green.400" : "gray.400"}
+                      color={"white"}
+                      fontSize="16px"
+                      p="3px 10px"
+                      borderRadius="8px"
+                    >{profile &&
+                      <>
+                        {profile.hasSigned == true ? "Signed" : "Unsigned"}
+                      </>}
+                    </Badge>
+                  </Tooltip>
+                }
+
+
 
                 {profile && (!profile.isCompletedKYC ?
                   <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">

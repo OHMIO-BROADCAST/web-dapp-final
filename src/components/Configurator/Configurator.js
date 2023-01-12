@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 // Chakra Imports
 import {
   Box,
@@ -13,9 +14,9 @@ import {
   useColorMode,
   useColorModeValue
 } from "@chakra-ui/react";
+import { Auth } from "aws-amplify";
 import ReferLink from "components/ReferLink/ReferLink";
 import { HSeparator } from "components/Separator/Separator";
-import React, { useState } from "react";
 import GitHubButton from "react-github-btn";
 import { FaFacebook, FaTwitter, FaWhatsapp, FaGoogle } from "react-icons/fa";
 
@@ -29,7 +30,6 @@ export default function Configurator(props) {
     isOpen,
     onClose,
     fixed,
-    user,
     ...rest
   } = props;
   const [switched, setSwitched] = useState(props.isChecked);
@@ -46,6 +46,19 @@ export default function Configurator(props) {
   const secondaryButtonColor = useColorModeValue("gray.700", "white");
   const bgDrawer = useColorModeValue("white", "navy.800");
   const settingsRef = React.useRef();
+
+
+  const [user, setuser] = useState()
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then((user) => {
+      // console.log("REFERRRR", user);
+      setuser(user);
+    });
+  }, [])
+
+
+
   return (
     <>
       <Drawer

@@ -115,14 +115,14 @@ function Sidebar(props) {
       .catch(err => console.log(err))
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
-    const profile = await getUserProfile(userID);
-
-    if (profile == null) {
-      console.log("Usuario no creado en la BD, creando...")
-      //createUser()
-    } else {
-      console.log("El usuario en BD es =>", profile)
-    }
+    /*     const profile = await getUserProfile(userID);
+    
+        if (profile == null) {
+          console.log("Usuario no creado en la BD, creando...")
+          //createUser()
+        } else {
+          console.log("El usuario en BD es =>", profile)
+        } */
 
   }
 
@@ -151,7 +151,8 @@ function Sidebar(props) {
         return null;
       }
       // console.log("usuario es comerical?=", profile.isCommercial)
-      if ((profile.isCommercial == false || profile.isCommercial == null) && prop.category === "commercial") {
+      if ((profile && profile.isCommercial == false && prop.category === "commercial") || (profile && profile.isCommercial == null && prop.category === "commercial")
+        || (!profile && prop.category === "commercial")) {
         return null;
       }
       if (prop.category == "payments") {

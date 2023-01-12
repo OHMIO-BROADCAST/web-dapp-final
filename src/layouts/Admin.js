@@ -49,18 +49,23 @@ export default function Dashboard(props) {
   const [userID, setUserID] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserName, setCurrentUserName] = useState("");
+  const [currentUserPhone, setCurrentUserPhone] = useState("")
+  const [currentUserEmail, setCurrentUserEmail] = useState("")
+
 
   const [totalReward, setTotalReward] = useState();
 
   async function createUser() {
     console.log({ userID, currentUserName, currentUser })
-    if ((userID != null && userID != "") && currentUser != null && currentUserName != null) {
+
+    if ((userID != null && userID != "") && currentUserEmail != null
+      && currentUserName != null && currentUserPhone != null) {
       const userDetails = {
         "id": String(userID),
         "name": String(currentUser.name),
         "username": String(currentUserName),
-        "phone": String(currentUser.phone_number),
-        "email": String(currentUser.email),
+        "phone": String(currentUserPhone),
+        "email": String(currentUserEmail),
       }
       console.log("Detalles de usuario a crear:", userDetails)
 
@@ -87,7 +92,9 @@ export default function Dashboard(props) {
           setTotalReward(result.data.getUser.totalReward)
           return result.data.getUser;
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err)
+        });
       return result;
 
     } catch (error) {
@@ -99,11 +106,17 @@ export default function Dashboard(props) {
 
   async function componenteMontado() {
     //se obtiene ID usuario actual
-    const userID = await Auth.currentSession()
+    const userIDRequest = await Auth.currentSession()
       .then(data => {
-        console.log("LLEGAAAAAAAAAAAA", data)
+        console.log("USUARIO AUTENTICADO EN ADMIN", data)
+
         setUserID(data.idToken.payload.sub);
         setCurrentUser(data.idToken.payload)
+
+        setCurrentUserName(data.payload.username)
+        setCurrentUserPhone(data.idToken.phone_number)
+        setCurrentUserEmail(data.idToken.email)
+
         return data.idToken.payload.sub;
       })
       .catch(err => console.log(err));
@@ -117,24 +130,19 @@ export default function Dashboard(props) {
       .catch(err => console.log(err))
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
-    const profile = await getUserProfile(userID);
-
-    if (profile == null) {
+    const profileResponse = await getUserProfile(userID);
+    if (profileResponse == null) {
       console.log("Usuario no creado en la BD, creando...")
       createUser()
     } else {
       console.log("El usuario en BD es =>", profile)
       setProfile(profile)
     }
-
   }
-
 
   useEffect(async () => {
     componenteMontado()
   }, [])
-
-
 
 
 

@@ -75,45 +75,46 @@ function CertificatesTest() {
     const updateSignStatus = async () => {
         setIsOpenModalTermsConditions(false)
         setIsSigning(true)
-        console.log("firmar usuario con ID", profile.id)
+        if (profile != null) {
+            console.log("firmar usuario con ID", profile.id)
 
-        const today = new Date();
+            const today = new Date();
 
-        const yyyy = today.getFullYear();
-        let mm = today.getMonth() + 1; // Months start at 0!
-        let dd = today.getDate();
-        if (dd < 10) dd = '0' + dd;
-        if (mm < 10) mm = '0' + mm;
-        const formattedSignDate = dd + '/' + mm + '/' + yyyy;
-        console.log("fecha de firma", formattedSignDate)
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; // Months start at 0!
+            let dd = today.getDate();
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
+            const formattedSignDate = dd + '/' + mm + '/' + yyyy;
+            console.log("fecha de firma", formattedSignDate)
 
-        let userDetailstoUpdate = {
-            id: profile.id,
-            hasSigned: true,
-            dateSigned: formattedSignDate,
-            _version: profile._version
+            let userDetailstoUpdate = {
+                id: profile.id,
+                hasSigned: true,
+                dateSigned: formattedSignDate,
+                _version: profile._version
+            }
+
+            const updateUserSigning = await API.graphql(graphqlOperation(mutations.updateUser, { input: userDetailstoUpdate }))
+                .then(data => {
+                    console.log("Success signing status", data)
+                    setIsSigning(false)
+                    setUserHasSigned(true)
+                    Swal.fire({
+                        title: 'The sign was success',
+                        icon: 'success'
+                    })
+                    componenteMontado()
+                }).catch(error => {
+                    console.log("Failed signing status", error)
+                    setIsSigning(false)
+                    setUserHasSigned(false)
+                    Swal.fire({
+                        title: 'Something Happen, please try again',
+                        icon: 'error'
+                    })
+                });
         }
-
-        const updateUserSigning = await API.graphql(graphqlOperation(mutations.updateUser, { input: userDetailstoUpdate }))
-            .then(data => {
-                console.log("Success signing status", data)
-                setIsSigning(false)
-                setUserHasSigned(true)
-                Swal.fire({
-                    title: 'The sign was success',
-                    icon: 'success'
-                })
-                componenteMontado()
-            }).catch(error => {
-                console.log("Failed signing status", error)
-                setIsSigning(false)
-                setUserHasSigned(false)
-                Swal.fire({
-                    title: 'Something Happen, please try again',
-                    icon: 'error'
-                })
-            });
-
     }
 
     const styles = {
@@ -195,7 +196,7 @@ function CertificatesTest() {
 
     async function componenteMontado() {
         //se obtiene ID usuario actual
-        const userID = await Auth.currentSession()
+        const userIDRequest = await Auth.currentSession()
             .then(data => {
                 setUserID(data.idToken.payload.sub);
                 setCurrentUser(data.idToken.payload)
@@ -210,7 +211,7 @@ function CertificatesTest() {
             .catch(err => console.log(err))
 
         //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
-        const profile = await getUserProfile(userID);
+        const profile = await getUserProfile(userIDRequest);
 
         if (profile == null) {
             console.log("Usuario no creado en la BD, creando...")
@@ -228,8 +229,10 @@ function CertificatesTest() {
     }, [])
 
     useEffect(() => {
-        if (profile.hasSigned == true) {
-            setUserHasSigned(profile.hasSigned)
+        if (profile != null) {
+            if (profile.hasSigned == true) {
+                setUserHasSigned(profile.hasSigned)
+            }
         }
     }, [profile])
 

@@ -109,8 +109,10 @@ function Sidebar(props) {
       .catch(err => console.log(err));
     const userName = await Auth.currentAuthenticatedUser()
       .then(data => {
-        setCurrentUserName(data.username);
-        return data.username;
+        if (data != null) {
+          setCurrentUserName(data.username);
+          return data.username;
+        }
       })
       .catch(err => console.log(err))
 

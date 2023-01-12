@@ -46,26 +46,20 @@ export default function Dashboard(props) {
 
   const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
-  const [userID, setUserID] = useState("");
-  const [currentUser, setCurrentUser] = useState({});
-  const [currentUserName, setCurrentUserName] = useState("");
-  const [currentUserPhone, setCurrentUserPhone] = useState("")
-  const [currentUserEmail, setCurrentUserEmail] = useState("")
+  const [currentUserCompleteObject, setCurrentUserCompleteObject] = useState({});
 
 
-  const [totalReward, setTotalReward] = useState();
 
-  async function createUser() {
-    console.log({ userID, currentUserName, currentUser })
+  async function createUser(usuario) {
+    console.log("insumos para crear usuario:", usuario)
 
-    if ((userID != null && userID != "") && currentUserEmail != null
-      && currentUserName != null && currentUserPhone != null) {
+    if (usuario != null && usuario.attributes != null) {
       const userDetails = {
-        "id": String(userID),
-        "name": String(currentUser.name),
-        "username": String(currentUserName),
-        "phone": String(currentUserPhone),
-        "email": String(currentUserEmail),
+        "id": usuario.attributes.sub,
+        "username": usuario.username,
+        "name": usuario.attributes.name,
+        "phone": usuario.attributes.phone_number,
+        "email": usuario.attributes.email,
       }
       console.log("Detalles de usuario a crear:", userDetails)
 
@@ -81,16 +75,17 @@ export default function Dashboard(props) {
   }
 
   async function getUserProfile(sub) {
-    console.log("current state", profile, message, userID, currentUserName, currentUser)
+    console.log("obteniendo perfil de ", sub)
     try {
       const result = await API.graphql(
         graphqlOperation(queries.getUser, { id: sub })
       )
         .then(result => {
           console.log("Resultado de la consulta del usuario", result.data.getUser)
-          setProfile(result.data.getUser)
-          setTotalReward(result.data.getUser.totalReward)
-          return result.data.getUser;
+          if (result != null) {
+            setProfile(result.data.getUser)
+            return result.data.getUser;
+          }
         })
         .catch(err => {
           console.log(err)
@@ -106,34 +101,24 @@ export default function Dashboard(props) {
 
   async function componenteMontado() {
     //se obtiene ID usuario actual
-    const userIDRequest = await Auth.currentSession()
+    const userObjectID = await Auth.currentAuthenticatedUser()
       .then(data => {
-        console.log("USUARIO AUTENTICADO EN ADMIN", data)
-
-        setUserID(data.idToken.payload.sub);
-        setCurrentUser(data.idToken.payload)
-
-        setCurrentUserName(data.payload.username)
-        setCurrentUserPhone(data.idToken.phone_number)
-        setCurrentUserEmail(data.idToken.email)
-
-        return data.idToken.payload.sub;
-      })
-      .catch(err => console.log(err));
-    const userName = await Auth.currentAuthenticatedUser()
-      .then(data => {
-        if (data.username != null) {
-          console.log(data.username);
-          return data.username;
+        console.log("DATA current", data);
+        if (data) {
+          setCurrentUserCompleteObject(data)
+          return data.attributes.sub;
         }
       })
       .catch(err => console.log(err))
 
+    const userObjectComplete = await Auth.currentAuthenticatedUser()
+
+
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
-    const profileResponse = await getUserProfile(userID);
+    const profileResponse = await getUserProfile(userObjectID);
     if (profileResponse == null) {
       console.log("Usuario no creado en la BD, creando...")
-      createUser()
+      createUser(userObjectComplete)
     } else {
       console.log("El usuario en BD es =>", profile)
       setProfile(profile)
@@ -207,7 +192,10 @@ export default function Dashboard(props) {
       if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
-      if (currentUser != null && currentUser.isCommercial == true && prop.category === "commercial") {
+      if (currentUserCompleteObject != null &&
+        currentUserCompleteObject.attributes != null &&
+        currentUserCompleteObject.attributes.isCommercial == true &&
+        prop.category === "commercial") {
         return getRoutes(prop.views);
       }
       if (prop.category === "payments") {
@@ -267,14 +255,17 @@ export default function Dashboard(props) {
           xl: "calc(100% - 275px)",
         }}>
         <Portal>
-          <AdminNavbar
-            onOpen={onOpen}
-            brandText={getActiveRoute(routes)}
-            secondary={getActiveNavbar(routes)}
-            fixed={fixed}
-            money={currentUser.totalReward}
-            {...rest}
-          />
+          {currentUserCompleteObject &&
+            <AdminNavbar
+              onOpen={onOpen}
+              brandText={getActiveRoute(routes)}
+              secondary={getActiveNavbar(routes)}
+              fixed={fixed}
+              money={currentUserCompleteObject.attributes ? currentUserCompleteObject.attributes.totalReward : 0}
+              {...rest}
+            />
+          }
+
         </Portal>
 
         {getRoute() ? (

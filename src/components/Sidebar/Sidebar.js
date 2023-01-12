@@ -117,14 +117,14 @@ function Sidebar(props) {
       .catch(err => console.log(err))
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
-    /*     const profile = await getUserProfile(userID);
-    
-        if (profile == null) {
-          console.log("Usuario no creado en la BD, creando...")
-          //createUser()
-        } else {
-          console.log("El usuario en BD es =>", profile)
-        } */
+    const profile = await getUserProfile(userID);
+
+    if (profile == null) {
+      console.log("sidebarUsuario no creado en la BD, creando...")
+      //createUser()
+    } else {
+      console.log("sidebarEl usuario en BD es =>", profile)
+    }
 
   }
 

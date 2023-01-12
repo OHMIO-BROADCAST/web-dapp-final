@@ -48,8 +48,6 @@ export default function Dashboard(props) {
   const [message, setMessage] = useState("");
   const [currentUserCompleteObject, setCurrentUserCompleteObject] = useState({});
 
-
-
   async function createUser(usuario) {
     console.log("insumos para crear usuario:", usuario)
 

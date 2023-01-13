@@ -37,6 +37,7 @@ import {
   FaFileAlt,
   FaPlus,
   FaTwitter,
+  FaAndroid,
 } from "react-icons/fa";
 import { IoDocumentsSharp } from "react-icons/io5";
 import { API, graphqlOperation } from "aws-amplify";
@@ -47,7 +48,9 @@ import * as mutations from "../../graphql/mutations";
 import { HiBellAlert } from 'react-icons/hi2'
 import { Tooltip } from "antd";
 import { Loader } from "@aws-amplify/ui-react";
-import { BsFillShieldLockFill } from "react-icons/bs";
+import { BsApple, BsFillShieldLockFill } from "react-icons/bs";
+import { DeleteIcon } from "@chakra-ui/icons";
+import Swal from "sweetalert2";
 
 function Profile() {
   const { colorMode } = useColorMode();
@@ -70,12 +73,46 @@ function Profile() {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const [hasiOSSession, setHasiOSSession] = useState(false)
+  const [hasAndroidSession, setHasAndroidSession] = useState(false)
+
+
   useEffect(() => {
     Auth.currentAuthenticatedUser().then((user) => {
       console.log(user);
       setuser(user);
     });
   }, [])
+
+  const updateSessionStatus = async () => {
+    setIsLoading(true)
+    if (profile != null) {
+      console.log("actualizar sesion de usuario con ID", profile.id)
+      let userDetailstoUpdate = {
+        id: profile.id,
+        hasiOSSession: false,
+        hasAndroidSession: false,
+        _version: profile._version
+      }
+      const updateUserSession = await API.graphql(graphqlOperation(mutations.updateUser, { input: userDetailstoUpdate }))
+        .then(data => {
+          console.log("Success signing status", data)
+          setIsLoading(false)
+          Swal.fire({
+            title: 'The sign was success',
+            icon: 'success'
+          })
+          componenteMontado()
+        }).catch(error => {
+          console.log("Failed signing status", error)
+          setIsLoading(false)
+          Swal.fire({
+            title: 'Something Happen, please try again',
+            icon: 'error'
+          })
+        });
+    }
+  }
 
 
   async function createUser() {
@@ -337,6 +374,59 @@ function Profile() {
                   SMS
                 </Text>
               </Flex>
+              {(hasAndroidSession || hasiOSSession) ?
+                <Flex align='center' mb='20px' border={"1px"} borderColor={"#1a1f39"} borderRadius={15} paddingTop={10} paddingBottom={10} flexDirection="column" justifyContent="center" alignItems={"center"}>
+                  <Text fontSize='lg' color={textColor} fontWeight='bold'>
+                    CURRENT DEVICES
+                  </Text>
+                  <Flex flexDirection="row" marginTop={5}
+                  >
+
+                    <Button justifyContent={"center"} alignItems="center"
+                      leftIcon={<FaAndroid style={{ width: 20, height: 20 }} />}
+                      rightIcon={<DeleteIcon style={{ width: 20, height: 20 }} color={"red.500"} />
+                      }>
+                      <Text
+                        noOfLines={1}
+                        fontSize='md'
+                        color='gray.400'
+                        fontWeight='bold'
+                        marginTop={1}
+
+                        marginRight={4}>
+                        ANDROID
+                      </Text>
+
+                    </Button>
+
+                  </Flex>
+                  <Flex flexDirection="row" marginTop={5}
+                  >
+
+                    <Button justifyContent={"center"} alignItems="center"
+                      leftIcon={<BsApple style={{ width: 20, height: 20 }} />}
+                      rightIcon={<DeleteIcon style={{ width: 20, height: 20 }} color={"red.500"} />
+                      }>
+                      <Text
+                        noOfLines={1}
+                        fontSize='md'
+                        color='gray.400'
+                        fontWeight='bold'
+                        marginTop={1}
+
+                        marginRight={4}>
+                        iOS
+                      </Text>
+
+                    </Button>
+
+                  </Flex>
+                </Flex>
+                :
+                null
+
+              }
+
 
               {/* <Text
                 fontSize='sm'

@@ -46,6 +46,7 @@ export const searchUsers = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -574,6 +575,7 @@ export const getUser = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -597,6 +599,7 @@ export const getUser = /* GraphQL */ `
       hasSigned
       dateSigned
       hasiOSSession
+      hasAndroidSession
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -642,6 +645,7 @@ export const listUsers = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -696,6 +700,7 @@ export const syncUsers = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -754,6 +759,7 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt

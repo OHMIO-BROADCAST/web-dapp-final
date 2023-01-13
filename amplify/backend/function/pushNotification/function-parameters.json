@@ -1,7 +1,11 @@
 {
   "permissions": {
     "api": {
-      "bmaker": ["Query", "Mutation", "Subscription"]
+      "bmaker": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
     }
   },
   "lambdaLayers": []

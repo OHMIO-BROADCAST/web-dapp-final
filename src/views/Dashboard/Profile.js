@@ -84,6 +84,21 @@ function Profile() {
     });
   }, [])
 
+  useEffect(() => {
+    if (profile != null) {
+      if (profile.hasiOSSession != null || profile.hasiOSSession == false) {
+        setHasiOSSession(false)
+      }
+      if (profile.hasAndroidSession != null || profile.hasAndroidSession == false) {
+        setHasAndroidSession(false)
+      }
+    }
+    return () => {
+      null
+    }
+  }, [profile])
+
+
   const updateSessionStatus = async () => {
     setIsLoading(true)
     if (profile != null) {

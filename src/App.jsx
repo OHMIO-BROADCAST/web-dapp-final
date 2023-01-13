@@ -5,6 +5,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
 import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
 import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
+import Invite from 'views/Dashboard/Invite';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
         <Route path={`/success-purchase`} component={PurchaseSuccess} />
         <Route path={`/success-purchase-trimestral`} component={PurchaseSuccessTrimestral} />
         <Route path={`/success-purchase-5month`} component={PurchaseSuccessFivemestral} />
+
+        <Route path={`/invite/:username`} component={Invite} />
+
       </Switch>
     </Router>
   )

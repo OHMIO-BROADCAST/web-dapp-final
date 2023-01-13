@@ -54,6 +54,7 @@ import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
 import CertificatesTest from 'views/Dashboard/CertificatesTest';
 import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
 import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
+import Invite from 'views/Dashboard/Invite';
 
 var dashRoutes = [
   {
@@ -157,6 +158,20 @@ var dashRoutes = [
         name: "Success Purchase 5 Months",
         icon: <StarIcon color='inherit' size={22} />,
         component: PurchaseSuccessFivemestral,
+        layout: "/admin",
+      }
+    ]
+  },
+  {
+    name: "INVITE USER",
+    category: "invite",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/invite",
+        name: "Invite User",
+        icon: <StarIcon color='inherit' size={22} />,
+        component: Invite,
         layout: "/admin",
       }
     ]

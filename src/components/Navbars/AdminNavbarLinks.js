@@ -104,7 +104,7 @@ export default function HeaderLinks(props) {
           (<Text color={"white"} fontWeight={"bold"}>
             Total Accumulated by Refeer: ${money} USD
           </Text>) : (<Text color={"white"} fontWeight={"bold"}>
-            Total Accumulated by Refeer: $0 USD
+            Total Accumulated by Reefer: $0 USD
           </Text>)
         }
 
@@ -125,7 +125,7 @@ export default function HeaderLinks(props) {
 
       >
         <Text color={'orange'} fontWeight={"bold"} >
-          Refer and earn
+          Reefer and earn
         </Text>
         <ExternalLinkIcon
           cursor='pointer'

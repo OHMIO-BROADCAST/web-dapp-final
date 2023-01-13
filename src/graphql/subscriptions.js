@@ -390,6 +390,7 @@ export const onCreateUser = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -413,6 +414,7 @@ export const onCreateUser = /* GraphQL */ `
       hasSigned
       dateSigned
       hasiOSSession
+      hasAndroidSession
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -470,6 +472,7 @@ export const onUpdateUser = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -493,6 +496,7 @@ export const onUpdateUser = /* GraphQL */ `
       hasSigned
       dateSigned
       hasiOSSession
+      hasAndroidSession
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -550,6 +554,7 @@ export const onDeleteUser = /* GraphQL */ `
         hasSigned
         dateSigned
         hasiOSSession
+        hasAndroidSession
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -573,6 +578,7 @@ export const onDeleteUser = /* GraphQL */ `
       hasSigned
       dateSigned
       hasiOSSession
+      hasAndroidSession
       registerDate
       solicitoEliminarCuenta
       createdAt

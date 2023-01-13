@@ -680,6 +680,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "hasAndroidSession": {
+                    "name": "hasAndroidSession",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "registerDate": {
                     "name": "registerDate",
                     "isArray": false,
@@ -767,5 +774,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "c2dc0c8b7e6c8e1e50638538eca6443f"
+    "version": "5fc7569bde3189f7da41a764a165929f"
 };

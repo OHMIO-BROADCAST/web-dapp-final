@@ -191,10 +191,9 @@ export default function Dashboard(props) {
       if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
-      if (currentUserCompleteObject != null &&
-        currentUserCompleteObject.attributes != null &&
-        currentUserCompleteObject.attributes.isCommercial == true &&
-        prop.category === "commercial") {
+      if ((profile && profile.isCommercial == false && prop.category === "commercial") ||
+        (profile && profile.isCommercial == null && prop.category === "commercial") ||
+        (!profile && prop.category === "commercial")) {
         return getRoutes(prop.views);
       }
       if (prop.category === "payments") {

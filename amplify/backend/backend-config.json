@@ -8,11 +8,7 @@
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [],
-        "signupAttributes": [
-          "EMAIL",
-          "NAME",
-          "PHONE_NUMBER"
-        ],
+        "signupAttributes": ["EMAIL", "NAME", "PHONE_NUMBER"],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": [
@@ -23,12 +19,8 @@
           ]
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "mfaTypes": ["SMS"],
+        "verificationMechanisms": ["EMAIL"]
       }
     }
   },
@@ -83,10 +75,7 @@
         {
           "category": "analytics",
           "resourceName": "bmakeranalytics",
-          "attributes": [
-            "Id",
-            "Region"
-          ]
+          "attributes": ["Id", "Region"]
         },
         {
           "category": "api",
@@ -103,10 +92,7 @@
   "notifications": {
     "bmakeranalytics": {
       "service": "Pinpoint",
-      "channels": [
-        "FCM",
-        "Email"
-      ]
+      "channels": ["FCM", "Email"]
     }
   }
 }

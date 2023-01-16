@@ -171,24 +171,7 @@ export default function Invite() {
         }
     }, [])
 
-    async function createUser() {
-        const userDetails = {
-            "id": String(userID),
-            "name": String(currentUser.name),
-            "username": String(currentUserName),
-            "phone": String(currentUser.phone_number),
-            "email": String(currentUser.email),
-        }
-        console.log("Detalles de usuario a crear:", userDetails)
 
-        const result = await API.graphql(
-            graphqlOperation(mutations.createUser, { input: userDetails }),
-        ).then(data => {
-            console.log('responde created user', data)
-        }).catch(err => {
-            console.log('error creating user', err)
-        })
-    }
 
     async function getUserProfile(sub) {
         console.log("current state", profile, message, userID, currentUserName, currentUser)
@@ -237,7 +220,6 @@ export default function Invite() {
 
         if (profile == null) {
             console.log("Usuario no creado en la BD, creando...")
-            // createUser()
         } else {
             console.log("El usuario en BD es =>", profile)
         }

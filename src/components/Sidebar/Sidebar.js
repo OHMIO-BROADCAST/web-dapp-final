@@ -153,8 +153,9 @@ function Sidebar(props) {
         return null;
       }
       // console.log("usuario es comerical?=", profile.isCommercial)
-      if ((profile && profile.isCommercial == false && prop.category === "commercial") || (profile && profile.isCommercial == null && prop.category === "commercial")
-        || (!profile && prop.category === "commercial")) {
+      if ((profile && profile.isCommercial == false && prop.category === "commercial") ||
+        (profile && profile.isCommercial == null && prop.category === "commercial") ||
+        (!profile && prop.category === "commercial")) {
         return null;
       }
       if (prop.category == "payments") {

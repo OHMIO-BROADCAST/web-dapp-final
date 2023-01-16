@@ -51,6 +51,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { AiOutlineClear } from "react-icons/ai";
 import { MdCancel, MdCheck } from "react-icons/md";
 
+
 const styles = {
     title: {
         fontSize: "20px",
@@ -99,10 +100,48 @@ export default function Invite() {
 
     const history = useHistory();
 
-    // para la  URL
+    //PROCESO:
+    //1. VERIFICAR QUE EL USUARIO ACTUAL NO TENGA REFERIDO, DE LO CONTRARIO MONTAR OTRO MENSAJE Y NO PROCEDER
+    //CON LAS OTRAS LLAMADAS
+
+    //2. SI EL USUARIO AUN NO HA SIDO REFERIDO ENTONCES OBTENER USUARIO QUE COMPARTIÓ EL LINK PARA VERIFICAR QUE SI EXISTE
+    // SI NO EXISTE SALIR DE INMEDIATO CON UNA ALERTA
+
+
+    //*************PROCESO PARA USUARIO NO COMERCIALES OSEA USUARIOS NORMALES */
+
+    //4. SI EXISTE ENTONCES REALIZAR DOS ACTUALIZACIONES
+    //+ UNA PARA EL USUARIO QUE COMPARTIO EL LINK => SUMAR 1 AL TOTAL DE REFERIDOS 
+    //  listUserReferred = SUMAR ESTE USUARIO AL QUE COMPARTIO EL LINK
+    //  totalReward = SUMAR 30 USD
+    //  totalReferred = SUMAR UNO
+    //  hasReferred -> TRUE
+
+    //+ OTRA PARA EL USUARIO DE LA SESION ACTUAL => EDITAR 
+    //  referredBy -> INCLUIR EL USUARIO DE LA URL
+    //  isReferred -> TRUE
+
+
+    //*************PROCESO PARA USUARIOS COMERCIALES *************************/ (VERIFICAR LÓGICA)
+
+    //4. SI EXISTE ENTONCES REALIZAR DOS ACTUALIZACIONES
+    //+ UNA PARA EL USUARIO QUE COMPARTIO EL LINK => SUMAR 1 AL TOTAL DE REFERIDOS 
+    //  listUserReferred = SUMAR ESTE USUARIO AL QUE COMPARTIO EL LINK
+    //  totalReward = SUMAR 30 USD
+    //  totalReferred = SUMAR UNO
+    //  hasReferred -> TRUE
+
+    // DE ACUERDO A LA FECHA Y CANTIDAD DE USUARIO REFERIDOS DE ESTE USUARIO:
+    //  totalEarnCommercial => SUMAR 50 USD 
+    //  totalReferredCommercia
+
+    //+ OTRA PARA EL USUARIO DE LA SESION ACTUAL => EDITAR 
+    //  referredBy -> INCLUIR EL USUARIO DE LA URL
+    //  isReferred -> TRUE
 
     const location = useLocation();
     const [currentPath, setCurrentPath] = useState();
+
 
     useEffect(() => {
         setCurrentPath(location.pathname.slice(8));
@@ -237,8 +276,8 @@ export default function Invite() {
             alignItems="center"
         ><Card
             style={styles.cardoffline}
-
         >
+
                 <div
                     style={{
                         width: "auto",
@@ -251,6 +290,7 @@ export default function Invite() {
                 >
                     <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to BMaker Reefer System</Text>
                     <Text align={'center'} fontWeight={300}>We are proccessing the Reefer of the user:</Text>
+
                     {currentPath != '' ? <Text align={'center'} marginTop={10} marginBottom={10} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
                 </div>
 

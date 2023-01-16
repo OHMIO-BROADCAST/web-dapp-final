@@ -147,7 +147,7 @@ export default function Configurator(props) {
                             <Text>Share</Text>
                           </Button>
                         </Link>
-                        <Link
+                        {/* <Link
                           isExternal="true"
                           href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.bmaker.pro/invite/${user.username}`}
                         >
@@ -155,7 +155,7 @@ export default function Configurator(props) {
                           >
                             <Text>Share</Text>
                           </Button>
-                        </Link>
+                        </Link> */}
                       </Flex>
                     </Box>
                   </Box>

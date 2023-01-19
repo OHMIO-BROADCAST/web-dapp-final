@@ -198,6 +198,7 @@ export default function PurchaseSuccess() {
             "username": String(currentUserName),
             "phone": String(currentUser.phone_number),
             "email": String(currentUser.email),
+            "isCommercial": false,
         }
         console.log("Detalles de usuario a crear:", userDetails)
 

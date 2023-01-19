@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 // Chakra imports
 import {
     Box,
@@ -19,37 +20,20 @@ import {
     useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
-// Custom components
-import React, { useEffect, useState } from "react";
+
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
 
 import Card from "components/Card/Card.js";
-import BarChart from "components/Charts/BarChart";
-import LineChart from "components/Charts/LineChart";
-import IconBox from "components/Icons/IconBox";
-// Custom icons
-import {
-    CartIcon,
-    DocumentIcon,
-    GlobeIcon,
-    WalletIcon,
-} from "components/Icons/Icons.js";
-// Variables
-import {
-    barChartData,
-    barChartOptions,
-    lineChartData,
-    lineChartOptions,
-} from "variables/charts";
-import { pageVisits, socialTraffic } from "variables/general";
+
 import Swal from "sweetalert2";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import { useHistory, useLocation, useParams } from "react-router";
-import { fontSize } from "@mui/system";
-import { RiSendPlaneFill } from "react-icons/ri";
-import { AiOutlineClear } from "react-icons/ai";
+
 import { MdCancel, MdCheck } from "react-icons/md";
+import HorizontalLinearStepper from "components/Stepper/HorizontalLinearStepper.js";
+import { Stepper } from "@mui/material";
+import { Step, StepLabel } from "@material-ui/core";
 
 
 const styles = {
@@ -99,6 +83,7 @@ export default function Invite() {
     const [currentUserName, setCurrentUserName] = useState("");
 
     const history = useHistory();
+
 
     //PROCESO:
     //1. VERIFICAR QUE EL USUARIO ACTUAL NO TENGA REFERIDO, DE LO CONTRARIO MONTAR OTRO MENSAJE Y NO PROCEDER
@@ -277,6 +262,13 @@ export default function Invite() {
         ><Card
             style={styles.cardoffline}
         >
+                <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
 
                 <div
                     style={{

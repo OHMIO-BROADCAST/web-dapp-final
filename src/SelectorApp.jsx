@@ -19,9 +19,10 @@ function SelectorApp() {
   return (
     <>
       {authStatus === 'configuring' && 'Loading...'}
-      {authStatus !== 'authenticated' ? <AuthStyle /> : (<ChakraProvider theme={theme} resetCss={false} position="relative">
-        <App />
-      </ChakraProvider>)}
+      {authStatus !== 'authenticated' ? <AuthStyle /> : (
+        <ChakraProvider theme={theme} resetCss={false} position="relative">
+          <App />
+        </ChakraProvider>)}
     </>
   )
 }

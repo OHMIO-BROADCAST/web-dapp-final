@@ -58,24 +58,6 @@ function Sidebar(props) {
 
 
 
-  async function createUser() {
-    const userDetails = {
-      "id": String(userID),
-      "name": String(currentUser.name),
-      "username": String(currentUserName),
-      "phone": String(currentUser.phone_number),
-      "email": String(currentUser.email),
-    }
-    console.log("Detalles de usuario a crear:", userDetails)
-
-    const result = await API.graphql(
-      graphqlOperation(mutations.createUser, { input: userDetails }),
-    ).then(data => {
-      console.log('responde created user', data)
-    }).catch(err => {
-      console.log('error creating user', err)
-    })
-  }
 
   async function getUserProfile(sub) {
     console.log("current state", profile, message, userID, currentUserName, currentUser)
@@ -120,8 +102,7 @@ function Sidebar(props) {
     const profile = await getUserProfile(userID);
 
     if (profile == null) {
-      console.log("sidebarUsuario no creado en la BD, creando...")
-      //createUser()
+      console.log("sidebarUsuario no creado en la BD...")
     } else {
       console.log("sidebarEl usuario en BD es =>", profile)
     }

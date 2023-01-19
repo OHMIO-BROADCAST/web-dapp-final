@@ -58,7 +58,7 @@ export default function Dashboard(props) {
         "name": usuario.attributes.name,
         "phone": usuario.attributes.phone_number,
         "email": usuario.attributes.email,
-
+        "isCommercial": false,
       }
       console.log("Detalles de usuario a crear:", userDetails)
 

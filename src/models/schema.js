@@ -687,6 +687,41 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "deviceOSName": {
+                    "name": "deviceOSName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "deviceModelName": {
+                    "name": "deviceModelName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "deviceName": {
+                    "name": "deviceName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "deviceBrand": {
+                    "name": "deviceBrand",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "activeDate": {
+                    "name": "activeDate",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "registerDate": {
                     "name": "registerDate",
                     "isArray": false,
@@ -774,5 +809,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "5fc7569bde3189f7da41a764a165929f"
+    "version": "10f4650536af668f1f97fdb29d6f83d6"
 };

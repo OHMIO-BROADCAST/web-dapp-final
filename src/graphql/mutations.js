@@ -432,6 +432,11 @@ export const createUser = /* GraphQL */ `
         dateSigned
         hasiOSSession
         hasAndroidSession
+        deviceOSName
+        deviceModelName
+        deviceName
+        deviceBrand
+        activeDate
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -456,6 +461,11 @@ export const createUser = /* GraphQL */ `
       dateSigned
       hasiOSSession
       hasAndroidSession
+      deviceOSName
+      deviceModelName
+      deviceName
+      deviceBrand
+      activeDate
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -517,6 +527,11 @@ export const updateUser = /* GraphQL */ `
         dateSigned
         hasiOSSession
         hasAndroidSession
+        deviceOSName
+        deviceModelName
+        deviceName
+        deviceBrand
+        activeDate
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -541,6 +556,11 @@ export const updateUser = /* GraphQL */ `
       dateSigned
       hasiOSSession
       hasAndroidSession
+      deviceOSName
+      deviceModelName
+      deviceName
+      deviceBrand
+      activeDate
       registerDate
       solicitoEliminarCuenta
       createdAt
@@ -602,6 +622,11 @@ export const deleteUser = /* GraphQL */ `
         dateSigned
         hasiOSSession
         hasAndroidSession
+        deviceOSName
+        deviceModelName
+        deviceName
+        deviceBrand
+        activeDate
         registerDate
         solicitoEliminarCuenta
         createdAt
@@ -626,6 +651,11 @@ export const deleteUser = /* GraphQL */ `
       dateSigned
       hasiOSSession
       hasAndroidSession
+      deviceOSName
+      deviceModelName
+      deviceName
+      deviceBrand
+      activeDate
       registerDate
       solicitoEliminarCuenta
       createdAt

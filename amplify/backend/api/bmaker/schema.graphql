@@ -95,8 +95,14 @@ type User @model @searchable{
 
   hasSigned: Boolean
   dateSigned: String
+
   hasiOSSession: Boolean
   hasAndroidSession: Boolean
+  deviceOSName: String
+  deviceModelName: String
+  deviceName: String
+  deviceBrand: String
+  activeDate: String
 
   registerDate: String
   solicitoEliminarCuenta: Boolean

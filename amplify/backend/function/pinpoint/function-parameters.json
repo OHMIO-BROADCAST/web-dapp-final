@@ -1,19 +1,10 @@
 {
   "permissions": {
     "analytics": {
-      "bmakeranalytics": [
-        "create",
-        "read",
-        "update",
-        "delete"
-      ]
+      "bmakeranalytics": ["create", "read", "update", "delete"]
     },
     "api": {
-      "bmaker": [
-        "Query",
-        "Mutation",
-        "Subscription"
-      ]
+      "bmaker": ["Query", "Mutation", "Subscription"]
     }
   }
 }

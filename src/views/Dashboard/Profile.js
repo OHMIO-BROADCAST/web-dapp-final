@@ -400,7 +400,7 @@ function Profile() {
                 </Text>
               </Flex>
               {profile && ((profile.hasiOSSession == true || profile.hasAndroidSession == true) ?
-                <Flex align='center' mb='20px' border={"1px"} borderColor={"#1a1f39"} borderRadius={15} paddingTop={10} paddingBottom={10} flexDirection="column" justifyContent="center" alignItems={"center"}>
+                <Flex align='center' mb='20px' border={"1px"} borderColor={"#b3b3b3"} borderRadius={15} paddingTop={10} paddingBottom={10} flexDirection="column" justifyContent="center" alignItems={"center"}>
                   <Text fontSize='lg' color={textColor} fontWeight='bold'>
                     CURRENT DEVICES
                   </Text>

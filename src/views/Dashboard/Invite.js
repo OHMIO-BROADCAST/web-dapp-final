@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Chakra imports
 import {
-    Box,
     Button,
     Flex,
     Grid,
@@ -31,9 +30,14 @@ import { API, graphqlOperation, Auth } from "aws-amplify";
 import { useHistory, useLocation, useParams } from "react-router";
 
 import { MdCancel, MdCheck } from "react-icons/md";
-import HorizontalLinearStepper from "components/Stepper/HorizontalLinearStepper.js";
-import { Stepper } from "@mui/material";
-import { Step, StepLabel } from "@material-ui/core";
+
+import Box from '@mui/material/Box';
+
+import { Step, StepContent, StepLabel, Stepper, Button as ButtonMaterial, CircularProgress } from "@mui/material/";
+import { createTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@mui/system";
+import { blue, green, orange, purple, red } from "@mui/material/colors";
+import { pink } from "@material-ui/core/colors";
 
 
 const styles = {
@@ -75,6 +79,8 @@ export default function Invite() {
 
     const [user, setuser] = useState()
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingRefeer, setIsLoadingRefeer] = useState(false);
+
 
     const [profile, setProfile] = useState({});
     const [message, setMessage] = useState("");
@@ -85,6 +91,22 @@ export default function Invite() {
     const history = useHistory();
 
 
+    const [hasAccepted, setHasAccepted] = useState(false)
+    const [activeStep, setActiveStep] = useState(0);
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
+
     //PROCESO:
     //1. VERIFICAR QUE EL USUARIO ACTUAL NO TENGA REFERIDO, DE LO CONTRARIO MONTAR OTRO MENSAJE Y NO PROCEDER
     //CON LAS OTRAS LLAMADAS
@@ -92,7 +114,47 @@ export default function Invite() {
     //2. SI EL USUARIO AUN NO HA SIDO REFERIDO ENTONCES OBTENER USUARIO QUE COMPARTIÓ EL LINK PARA VERIFICAR QUE SI EXISTE
     // SI NO EXISTE SALIR DE INMEDIATO CON UNA ALERTA
 
+    const steps = [
+        {
+            label: 'Verify Users',
+            description: `We need to check the authenticity of the users.`,
+        },
+        {
+            label: 'Creating Refeer',
+            description: `Adding user to the system`,
+        },
+        {
+            label: 'Finish',
+            description: `Enjoy! Thanks for using BMaker Pro.`,
+        },
+    ];
 
+    const theme = createTheme({
+        palette: {
+            navbar: orange[100],
+            tag: {
+                red: red[200],
+                pink: pink[200],
+                purple: purple[200],
+                blue: blue[200],
+                green: green[200],
+            },
+
+        },
+        typography: {
+            fontFamily: [
+                "NotoSans",
+                "NotoSansThai",
+                "Arial",
+                "Roboto",
+                "'Helvetica Neue'",
+                "sans-serif",
+            ].join(","),
+        },
+        shape: {
+            borderRadius: 15,
+        },
+    });
     //*************PROCESO PARA USUARIO NO COMERCIALES OSEA USUARIOS NORMALES */
 
     //4. SI EXISTE ENTONCES REALIZAR DOS ACTUALIZACIONES
@@ -139,9 +201,7 @@ export default function Invite() {
 
     async function updatePaymentStatus(ID) {
         console.log("updating user with ID", ID)
-
         const today = new Date();
-
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1 + 1; // Months start at 0! más un mes 
         let dd = today.getDate();
@@ -149,7 +209,6 @@ export default function Invite() {
         if (mm < 10) mm = '0' + mm;
         const formattedExpirationDate = dd + '/' + mm + '/' + yyyy;
         console.log("fecha de expiración", formattedExpirationDate)
-
         let userDetailstoUpdate = {
             id: userID,
             isPaymentProcessing: true,
@@ -247,10 +306,20 @@ export default function Invite() {
         } else {
             console.log("El usuario en BD es =>", profile)
         }
-
-
-
     }
+
+    const isStepFailed = (step) => {
+        return step === 1;
+    };
+
+    useEffect(() => {
+        if (hasAccepted) {
+            console.log("inicia proceso de referido")
+        }
+        return () => {
+            null
+        }
+    }, [hasAccepted])
 
 
     return (
@@ -262,18 +331,10 @@ export default function Invite() {
         ><Card
             style={styles.cardoffline}
         >
-                <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-                    {steps.map((label) => (
-                        <Step key={label}>
-                            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
-
                 <div
                     style={{
                         width: "auto",
-                        height: "300px",
+                        height: "auto",
                         justifyContent: 'center',
                         display: 'flex',
                         alignItems: 'center',
@@ -282,8 +343,7 @@ export default function Invite() {
                 >
                     <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to BMaker Reefer System</Text>
                     <Text align={'center'} fontWeight={300}>We are proccessing the Reefer of the user:</Text>
-
-                    {currentPath != '' ? <Text align={'center'} marginTop={10} marginBottom={10} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
+                    {currentPath != '' ? <Text align={'center'} marginTop={"1rem"} marginBottom={"2rem"} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
                 </div>
 
                 <Flex style={{ marginBottom: '2rem' }}>
@@ -311,14 +371,62 @@ export default function Invite() {
                         h='45'
                         disabled={isLoading}
                         onClick={() => {
-                            Swal.fire({
+                            /* Swal.fire({
                                 title: 'Reefer Added',
                                 icon: 'success'
-                            })
+                            }) */
+                            if (hasAccepted != true) {
+                                setHasAccepted(true)
+                            }
                         }} leftIcon={<MdCheck size={21} />} >
                         ACCEPT
                     </Button>
                 </Flex>
+
+                {hasAccepted == true ?
+                    <Flex sx={{ maxWidth: 400 }}>
+                        <ThemeProvider theme={theme}>
+                            <Stepper activeStep={activeStep} orientation="vertical">
+                                {steps && steps.map((step, index) => (
+                                    <Step key={step.label}>
+                                        <StepLabel
+                                        >
+                                            {step.label}
+                                        </StepLabel>
+                                        <StepContent>
+                                            <Text>{step.description}</Text>
+                                            <Box sx={{ mb: 2 }}>
+                                                <div>
+                                                    {isLoadingRefeer &&
+                                                        <ButtonMaterial
+                                                            variant="contained"
+                                                            sx={{ mt: 1, mr: 1 }}
+                                                        >
+                                                            <CircularProgress size={20} style={{ color: 'white', marginRight: '1rem' }} />
+                                                            {index === steps.length - 1 ? 'Finish' : 'Loading'}
+                                                        </ButtonMaterial>
+                                                    }
+
+                                                </div>
+                                            </Box>
+                                        </StepContent>
+                                    </Step>
+                                ))}
+                            </Stepper>
+                            {/* {activeStep === steps.length && (
+                                <Flex>
+                                    <Text>All steps completed</Text>
+                                    <ButtonMaterial onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                                        Reset
+                                    </ButtonMaterial>
+                                </Flex>
+                            )} */}
+                        </ThemeProvider>
+                    </Flex>
+                    : null
+                }
+
+
 
             </Card>
         </Flex >

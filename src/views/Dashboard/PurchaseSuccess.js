@@ -138,11 +138,11 @@ export default function PurchaseSuccess() {
     const [currentUser, setCurrentUser] = useState({});
     const [currentUserName, setCurrentUserName] = useState("");
 
+
+    //FUNCIÓN PARA ACTUALIZAR ESTADO DE SUSCRIPCIÓN
     async function updatePaymentStatus(ID) {
         console.log("updating user with ID", ID)
-
         const today = new Date();
-
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1 + 1; // Months start at 0! más un mes 
         let dd = today.getDate();
@@ -150,7 +150,6 @@ export default function PurchaseSuccess() {
         if (mm < 10) mm = '0' + mm;
         const formattedExpirationDate = dd + '/' + mm + '/' + yyyy;
         console.log("fecha de expiración", formattedExpirationDate)
-
         let userDetailstoUpdate = {
             id: userID,
             isPaymentProcessing: true,
@@ -170,6 +169,9 @@ export default function PurchaseSuccess() {
         });
     }
 
+
+
+    //AL INICIAR SE DEBE DE OBTENER
     useEffect(() => {
         Swal.fire({
             title: 'The Payment is Proccessing',

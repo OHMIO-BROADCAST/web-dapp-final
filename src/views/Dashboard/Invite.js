@@ -304,7 +304,19 @@ export default function Invite() {
         if (profile == null) {
             console.log("Usuario no creado en la BD, creando...")
         } else {
-            console.log("El usuario en BD es =>", profile)
+            console.log("INVITE El usuario en BD es =>", profile)
+            if (profile.isReferred) {
+                Swal.fire({
+                    title: 'You already has been referred',
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Accept'
+                }).then((result) => {
+                    history.push('/profile')
+                })
+            }
         }
     }
 
@@ -312,9 +324,47 @@ export default function Invite() {
         return step === 1;
     };
 
+    const verifyUserWhoRefeer = async () => {
+        if (location != '') {
+            const profileReferred = getUserProfileRefeer(location)
+
+            if (profileReferred == null) {
+                console.log("Usuario que compartio el link no existe")
+            } else {
+                console.log("Usuario que compartio el link si existe, es", profileReferred)
+            }
+        }
+    }
+
+    async function getUserProfileRefeer(nam) {
+        setIsLoadingRefeer(true)
+        try {
+            const result = await API.graphql(
+                graphqlOperation(queries.getUser, { username: nam })
+            )
+                .then(result => {
+                    console.log("Resultado de la consulta del usuario que compartio link", result.data.getUser)
+                    setProfile(result.data.getUser)
+                    setIsLoadingRefeer(false)
+                    return result.data.getUser;
+                })
+                .catch(err => {
+                    console.log(err)
+                    setIsLoadingRefeer(false)
+                });
+            return result;
+
+        } catch (error) {
+            console.log("catch getuser que compartio link")
+            const result = error
+            return result;
+        }
+    }
+
     useEffect(() => {
         if (hasAccepted) {
             console.log("inicia proceso de referido")
+            verifyUserWhoRefeer()
         }
         return () => {
             null
@@ -331,89 +381,105 @@ export default function Invite() {
         ><Card
             style={styles.cardoffline}
         >
-                <div
-                    style={{
-                        width: "auto",
-                        height: "auto",
-                        justifyContent: 'center',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'column'
-                    }}
-                >
-                    <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to BMaker Reefer System</Text>
-                    <Text align={'center'} fontWeight={300}>We are proccessing the Reefer of the user:</Text>
-                    {currentPath != '' ? <Text align={'center'} marginTop={"1rem"} marginBottom={"2rem"} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
-                </div>
-
-                <Flex style={{ marginBottom: '2rem' }}>
-                    <Button
-                        fontSize='14px'
-                        variant='dark'
-                        fontWeight='bold'
-                        w='40%'
-                        h='45'
-                        leftIcon={<MdCancel color="#FFFFFF" size={21} />}
-                        backgroundColor={"#ee5438"}
-                        color={"white"}
-                        onClick={() => {
-                            history.push("/dashboard")
+                {profile && (profile.isReferred) ?
+                    <div
+                        style={{
+                            width: "auto",
+                            height: "auto",
+                            justifyContent: 'center',
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexDirection: 'column'
                         }}
                     >
-                        CANCEL
-                    </Button>
+                        <Text align={'center'} fontWeight={'bold'} fontSize={25}>You already has been referred</Text>
+                        <Text align={'center'} fontWeight={300}>We work hard to prevent errors, please if persist communicate to support@bmaker.pro</Text>
+                    </div>
+                    : (
+                        <>
+                            <div
+                                style={{
+                                    width: "auto",
+                                    height: "auto",
+                                    justifyContent: 'center',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    flexDirection: 'column'
+                                }}
+                            >
+                                <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to BMaker Reefer System</Text>
+                                <Text align={'center'} fontWeight={300}>We are proccessing the Reefer of the user:</Text>
+                                {currentPath != '' ? <Text align={'center'} marginTop={"1rem"} marginBottom={"2rem"} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
+                            </div>
 
-                    <Button
-                        fontSize='14px'
-                        variant='dark'
-                        fontWeight='bold'
-                        w='60%'
-                        h='45'
-                        disabled={isLoading}
-                        onClick={() => {
-                            /* Swal.fire({
-                                title: 'Reefer Added',
-                                icon: 'success'
-                            }) */
-                            if (hasAccepted != true) {
-                                setHasAccepted(true)
-                            }
-                        }} leftIcon={<MdCheck size={21} />} >
-                        ACCEPT
-                    </Button>
-                </Flex>
+                            <Flex style={{ marginBottom: '2rem' }}>
+                                <Button
+                                    fontSize='14px'
+                                    variant='dark'
+                                    fontWeight='bold'
+                                    w='40%'
+                                    h='45'
+                                    leftIcon={<MdCancel color="#FFFFFF" size={21} />}
+                                    backgroundColor={"#ee5438"}
+                                    color={"white"}
+                                    onClick={() => {
+                                        history.push("/dashboard")
+                                    }}
+                                >
+                                    CANCEL
+                                </Button>
 
-                {hasAccepted == true ?
-                    <Flex sx={{ maxWidth: 400 }}>
-                        <ThemeProvider theme={theme}>
-                            <Stepper activeStep={activeStep} orientation="vertical">
-                                {steps && steps.map((step, index) => (
-                                    <Step key={step.label}>
-                                        <StepLabel
-                                        >
-                                            {step.label}
-                                        </StepLabel>
-                                        <StepContent>
-                                            <Text>{step.description}</Text>
-                                            <Box sx={{ mb: 2 }}>
-                                                <div>
-                                                    {isLoadingRefeer &&
-                                                        <ButtonMaterial
-                                                            variant="contained"
-                                                            sx={{ mt: 1, mr: 1 }}
-                                                        >
-                                                            <CircularProgress size={20} style={{ color: 'white', marginRight: '1rem' }} />
-                                                            {index === steps.length - 1 ? 'Finish' : 'Loading'}
-                                                        </ButtonMaterial>
-                                                    }
+                                <Button
+                                    fontSize='14px'
+                                    variant='dark'
+                                    fontWeight='bold'
+                                    w='60%'
+                                    h='45'
+                                    disabled={isLoading}
+                                    onClick={() => {
+                                        /* Swal.fire({
+                                            title: 'Reefer Added',
+                                            icon: 'success'
+                                        }) */
+                                        if (hasAccepted != true) {
+                                            setHasAccepted(true)
+                                        }
+                                    }} leftIcon={<MdCheck size={21} />} >
+                                    ACCEPT
+                                </Button>
+                            </Flex>
 
-                                                </div>
-                                            </Box>
-                                        </StepContent>
-                                    </Step>
-                                ))}
-                            </Stepper>
-                            {/* {activeStep === steps.length && (
+                            {hasAccepted == true ?
+                                <Flex sx={{ maxWidth: 400 }}>
+                                    <ThemeProvider theme={theme}>
+                                        <Stepper activeStep={activeStep} orientation="vertical">
+                                            {steps && steps.map((step, index) => (
+                                                <Step key={step.label}>
+                                                    <StepLabel
+                                                    >
+                                                        {step.label}
+                                                    </StepLabel>
+                                                    <StepContent>
+                                                        <Text>{step.description}</Text>
+                                                        <Box sx={{ mb: 2 }}>
+                                                            <div>
+                                                                {isLoadingRefeer &&
+                                                                    <ButtonMaterial
+                                                                        variant="contained"
+                                                                        sx={{ mt: 1, mr: 1 }}
+                                                                    >
+                                                                        <CircularProgress size={20} style={{ color: 'white', marginRight: '1rem' }} />
+                                                                        {index === steps.length - 1 ? 'Finish' : 'Loading'}
+                                                                    </ButtonMaterial>
+                                                                }
+
+                                                            </div>
+                                                        </Box>
+                                                    </StepContent>
+                                                </Step>
+                                            ))}
+                                        </Stepper>
+                                        {/* {activeStep === steps.length && (
                                 <Flex>
                                     <Text>All steps completed</Text>
                                     <ButtonMaterial onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
@@ -421,10 +487,13 @@ export default function Invite() {
                                     </ButtonMaterial>
                                 </Flex>
                             )} */}
-                        </ThemeProvider>
-                    </Flex>
-                    : null
+                                    </ThemeProvider>
+                                </Flex>
+                                : null
+                            }</>
+                    )
                 }
+
 
 
 

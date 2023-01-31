@@ -38,6 +38,7 @@ import { createTheme } from '@mui/material/styles'
 import { ThemeProvider } from "@mui/system";
 import { blue, green, orange, purple, red } from "@mui/material/colors";
 import { pink } from "@material-ui/core/colors";
+import { User } from "models/index.js";
 
 
 const styles = {
@@ -326,6 +327,22 @@ export default function Invite() {
         return step === 1;
     };
 
+    const createRefeer = async () => {
+        if (location != '') {
+            const resultCreateRefer = markingUserAsRefeer()
+            if (resultCreateRefer == null) {
+                console.log("No se pudo marcar como referido no existe")
+            } else {
+                if(resultCreateRefer.id!=null){
+                    console.log("Se pudo marcar como referido", resultCreateRefer)
+                }else{
+                    console.log("Error marcando usuario", resultCreateRefer)
+                }
+
+            }
+        }
+    }
+
     const verifyUserWhoRefeer = async () => {
         if (location != '') {
             const profileReferred = getUserProfileRefeer(location)
@@ -339,6 +356,63 @@ export default function Invite() {
                 }
 
             }
+        }
+    }
+
+    async function markingUserAsRefeer() {
+        setIsLoadingRefeer(true)
+        console.log("id del suuario actual", profile.id)
+        try {
+            let userDetailstoUpdate = {
+                id: profile.id,
+                _version: profile._version,
+                isReferred: true,
+                referredBy: profileRefeer,
+                
+              }
+
+            const result = await API.graphql(
+                graphqlOperation(mutations.updateUser,  { input: userDetailstoUpdate })
+            )
+                .then(result => {
+                    console.log("Resultado de la actualización del usuario actual", result)
+                    setIsLoadingRefeer(false)
+                    handleNext()
+                    return result.data.getUser;
+                })
+                .catch(err => {
+                    console.log("error",err)
+                    setIsLoadingRefeer(false)
+                    Swal.fire({
+                        title: 'Error creating refeer',
+                        text:'Something happen, please try again if persist contact support.',
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Accept'
+                    }).then((result) => {
+                        history.push('/profile')
+                    })
+                    
+                });
+            return result;
+
+        } catch (error) {
+            console.log("catch updatinguser")
+            const result = error
+            Swal.fire({
+                title: 'Error creating refeer',
+                text:'Something happen, please try again if persist contact support.',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Accept'
+            }).then((result) => {
+                history.push('/profile')
+            })
+            return result;
         }
     }
 
@@ -356,7 +430,7 @@ export default function Invite() {
                 graphqlOperation(queries.searchUsers, { filter: filter})
             )
                 .then(result => {
-                    console.log("Resultado de la consulta del usuario que compartio link", result.data.getUser)
+                    console.log("Resultado de la consulta del usuario que compartio link", result.data.searchUsers.items[0])
                     setProfileRefeer(result.data.getUser)
                     setIsLoadingRefeer(false)
                     handleNext()
@@ -396,6 +470,17 @@ export default function Invite() {
             null
         }
     }, [hasAccepted])
+
+    useEffect(() => {
+        if (activeStep==1) {
+            console.log("usuario que refiere verificado, creando referido...")
+            createRefeer()
+
+        }
+        return () => {
+            null
+        }
+    }, [activeStep])
 
 
     return (

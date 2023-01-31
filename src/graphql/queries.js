@@ -739,6 +739,70 @@ export const syncUsers = /* GraphQL */ `
     }
   }
 `;
+export const usersByPhoneAndEmail = /* GraphQL */ `
+  query UsersByPhoneAndEmail(
+    $phone: String!
+    $email: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    usersByPhoneAndEmail(
+      phone: $phone
+      email: $email
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        username
+        phone
+        email
+        expoToken
+        forexSubscription
+        currentlyPlan
+        hasPurchasedSomething
+        expirationDate
+        isPaymentProcessing
+        payWithApplePay
+        totalReward
+        totalReferred
+        isReferred
+        hasReferred
+        isCommercial
+        cumplidoCuota
+        totalEarnCommercial
+        totalReferredCommercial
+        dateStartCommercial
+        isCompletedKYC
+        currentStateKYC
+        externalURLKYC
+        hasSigned
+        dateSigned
+        hasiOSSession
+        hasAndroidSession
+        deviceOSName
+        deviceModelName
+        deviceName
+        deviceBrand
+        activeDate
+        registerDate
+        solicitoEliminarCuenta
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const usersByEmailAndUsername = /* GraphQL */ `
   query UsersByEmailAndUsername(
     $email: String!

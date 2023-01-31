@@ -767,6 +767,16 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
+                        "name": "byUsername",
+                        "fields": [
+                            "phone",
+                            "email"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
                         "name": "byEmail",
                         "fields": [
                             "email",

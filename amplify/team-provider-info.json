@@ -19,7 +19,8 @@
         "Pinpoint": {
           "Name": "bmakeranalytics-staging",
           "Id": "b33e320e21424478b52f46bfadb18492"
-        }
+        },
+        "bmakeranalytics": {}
       },
       "function": {
         "pushNotification": {
@@ -30,6 +31,9 @@
           "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
           "s3Key": "amplify-builds/pinpoint-55326e432f44612f3877-build.zip"
         }
+      },
+      "api": {
+        "bmaker": {}
       }
     }
   }

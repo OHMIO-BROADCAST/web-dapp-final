@@ -1,7 +1,8 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
 type Notification @model {
   id: ID!
   title: String!
@@ -13,10 +14,10 @@ type Notification @model {
   date: String!
   position: String!
   isManual: Boolean!
-  pair:String!
+  pair: String!
 }
 
-type NoticiaPrincipal @model{
+type NoticiaPrincipal @model {
   id: ID!
   title: String!
   subtitle: String!
@@ -27,7 +28,7 @@ type NoticiaPrincipal @model{
   portada: String!
 }
 
-type Noticia @model{
+type Noticia @model {
   id: ID!
   title: String!
   subtitle: String!
@@ -39,18 +40,18 @@ type Noticia @model{
   optionalImage: String
 }
 
-type CuotaComercial @model{
+type CuotaComercial @model {
   cantidadReferidos: Int!
   lastUpdate: String!
   fechaCierre: String
 }
 
-type Modo @model{
+type Modo @model {
   automatic: Boolean!
   lastUpdate: String!
 }
 
-type Certificate @model{
+type Certificate @model {
   id: ID!
   name: String!
   documentUnsigned: String!
@@ -58,14 +59,13 @@ type Certificate @model{
   isSigned: Boolean!
 }
 
-type User @model @searchable{
-
-  id: ID! 
+type User @model @searchable {
+  id: ID!
   name: String!
   username: String!
-  phone: String!
-  email: String! @index(name: "byEmail", sortKeyFields:["username"])
-  
+  phone: String! @index(name: "byUsername", sortKeyFields: ["email"])
+  email: String! @index(name: "byEmail", sortKeyFields: ["username"])
+
   expoToken: String
 
   forexSubscription: Boolean
@@ -80,8 +80,8 @@ type User @model @searchable{
   totalReferred: Float
   isReferred: Boolean
   hasReferred: Boolean
-  referredBy: User @hasOne(fields:["id"])
-  listUserReferred: [User] @hasMany(fields:["id"])
+  referredBy: User @hasOne(fields: ["id"])
+  listUserReferred: [User] @hasMany(fields: ["id"])
 
   isCommercial: Boolean
   cumplidoCuota: Boolean
@@ -123,4 +123,3 @@ input pinpointInput {
   message: String!
   id: String!
 }
-

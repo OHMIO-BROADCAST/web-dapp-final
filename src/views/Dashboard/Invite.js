@@ -83,6 +83,8 @@ export default function Invite() {
 
 
     const [profile, setProfile] = useState({});
+    const [profileRefeer, setProfileRefeer] = useState({});
+
     const [message, setMessage] = useState("");
     const [userID, setUserID] = useState("");
     const [currentUser, setCurrentUser] = useState({});
@@ -327,11 +329,15 @@ export default function Invite() {
     const verifyUserWhoRefeer = async () => {
         if (location != '') {
             const profileReferred = getUserProfileRefeer(location)
-
             if (profileReferred == null) {
                 console.log("Usuario que compartio el link no existe")
             } else {
-                console.log("Usuario que compartio el link si existe, es", profileReferred)
+                if(profileRefeer.id!=null){
+                    console.log("Usuario que compartio el link si existe, es", profileReferred)
+                }else{
+                    console.log("Error con el usuario que compartio el link", profileReferred)
+                }
+
             }
         }
     }
@@ -339,18 +345,38 @@ export default function Invite() {
     async function getUserProfileRefeer(nam) {
         setIsLoadingRefeer(true)
         try {
+            const filter = {
+                username: {
+                    match: {
+                        username: nam
+                    }
+                }
+            }
             const result = await API.graphql(
-                graphqlOperation(queries.getUser, { username: nam })
+                graphqlOperation(queries.searchUsers, { filter: filter})
             )
                 .then(result => {
                     console.log("Resultado de la consulta del usuario que compartio link", result.data.getUser)
-                    setProfile(result.data.getUser)
+                    setProfileRefeer(result.data.getUser)
                     setIsLoadingRefeer(false)
+                    handleNext()
                     return result.data.getUser;
                 })
                 .catch(err => {
                     console.log(err)
                     setIsLoadingRefeer(false)
+                    Swal.fire({
+                        title: 'User not valid',
+                        text:'The user who shared the link is not valid',
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Accept'
+                    }).then((result) => {
+                        history.push('/profile')
+                    })
+                    
                 });
             return result;
 

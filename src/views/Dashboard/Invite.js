@@ -434,7 +434,7 @@ export default function Invite() {
 
     async function updatingRefeerList() {
         setIsLoadingRefeer(true)
-        console.log("id del usuario a aactualizar", profileRefeer.id)
+        console.log("id del usuario a actualizar", profileRefeer.id)
         try {
             //INICIALIZAMOS
             let userDetailstoUpdate = {
@@ -451,32 +451,20 @@ export default function Invite() {
 
             if(profileRefeer.isCommercial){
                 //SI EL USUARIO ES COMERCIAL
-                if(profileRefeer.listUserReferred!=null){
-                
-                    if(profileRefeer.totalReferredCommercial!=null){  
-                        //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                        let userDetailstoUpdate = {
-                            id: profileRefeer.id,
-                            _version: profileRefeer._version,
-                            hasReferred: true,
-                            listUserReferred: (profileRefeer.listUserReferred.push(profile.username)),
-                            totalReferredCommercial: (profileRefeer.totalReferredCommercial + 1)
-                        }
-                    }
-                    else{
-                        //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                        let userDetailstoUpdate = {
-                            id: profileRefeer.id,
-                            _version: profileRefeer._version,
-                            hasReferred: true,
-                            listUserReferred: (profileRefeer.listUserReferred.push(profile.username)),
-                            totalReferredCommercial: (profileRefeer.totalReferredCommercial + 1)
-                        }
-                    }
-
+                if(profileRefeer.listUserReferredAsCommercial!=null){
+                    //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                    userDetailstoUpdate.listUserReferredAsCommercial = (profileRefeer.listUserReferredAsCommercial.push(profile.username))
+                }else{
+                    //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                    userDetailstoUpdate.listUserReferredAsCommercial= profileRefeer.listUserReferredAsCommercial.push(profile.username)
+                }
+                if(profileRefeer.totalReferredCommercial!=null){  
+                    //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                    userDetailstoUpdate.totalReferredCommercial= (profileRefeer.totalReferredCommercial + 1)
+                }else{
+                    userDetailstoUpdate.totalReferredCommercial= 1
                 }
             }
-
             const result = await API.graphql(
                 graphqlOperation(mutations.updateUser,  { input: userDetailstoUpdate })
             )
@@ -503,7 +491,6 @@ export default function Invite() {
                     
                 });
             return result;
-
         } catch (error) {
             console.log("catch updatinguser")
             const result = error

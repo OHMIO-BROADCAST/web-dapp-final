@@ -436,26 +436,43 @@ export default function Invite() {
         setIsLoadingRefeer(true)
         console.log("id del usuario a actualizar", profileRefeer.id)
         try {
-            //INICIALIZAMOS
-            const objetoAuxiliar = profileRefeer.listUserReferred
-            objetoAuxiliar.push(profile.username)
-
-            console.log("UP",objetoAuxiliar)
-
+            //INICIALIZAMOS con lo basico
             let userDetailstoUpdate = {
                 id: profileRefeer.id,
                 _version: profileRefeer._version,
-                hasReferred: true,
-                listUserReferred: objetoAuxiliar
+                hasReferred: true
             }
-            /* if(profileRefeer.isCommercial){
+            //SI EL USUARIO YA TIENE LISTA DE REFERIDOS NO NULA
+            if(profileRefeer.listUserReferred!=null){
+                const objetoAuxiliar = profileRefeer.listUserReferred
+                objetoAuxiliar.push(profile.username)
+                userDetailstoUpdate = {
+                    id: profileRefeer.id,
+                    _version: profileRefeer._version,
+                    hasReferred: true,
+                    listUserReferred: objetoAuxiliar
+                }
+            }else{
+                userDetailstoUpdate = {
+                    id: profileRefeer.id,
+                    _version: profileRefeer._version,
+                    hasReferred: true,
+                    listUserReferred: [profile.username]
+                }
+            }
+            
+
+
+             if(profileRefeer.isCommercial){
                 //SI EL USUARIO ES COMERCIAL
                 if(profileRefeer.listUserReferredAsCommercial!=null){
-                    //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                    userDetailstoUpdate.listUserReferredAsCommercial =(profileRefeer.listUserReferredAsCommercial.push(profile.username))
-                }else{
                     //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                    userDetailstoUpdate.listUserReferredAsCommercial= profileRefeer.listUserReferredAsCommercial.push(profile.username)
+                    const objetoAuxiliarCommercial = profileRefeer.listUserReferredAsCommercial
+                    objetoAuxiliarCommercial.push(profile.username)
+                    userDetailstoUpdate.listUserReferredAsCommercial =objetoAuxiliarCommercial
+                }else{
+                    //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                    userDetailstoUpdate.listUserReferredAsCommercial= [profile.username]
                 }
                 if(profileRefeer.totalReferredCommercial!=null){  
                     //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
@@ -463,7 +480,7 @@ export default function Invite() {
                 }else{
                     userDetailstoUpdate.totalReferredCommercial= 1
                 }
-            } */
+            } 
 
             const result = await API.graphql(
                 graphqlOperation(mutations.updateUser,  { input: userDetailstoUpdate })

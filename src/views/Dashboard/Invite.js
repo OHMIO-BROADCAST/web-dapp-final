@@ -453,7 +453,7 @@ export default function Invite() {
                 //SI EL USUARIO ES COMERCIAL
                 if(profileRefeer.listUserReferredAsCommercial!=null){
                     //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                    userDetailstoUpdate.listUserReferredAsCommercial = (profileRefeer.listUserReferredAsCommercial.push(profile.username))
+                    userDetailstoUpdate.listUserReferredAsCommercial  (profileRefeer.listUserReferredAsCommercial.push(profile.username))
                 }else{
                     //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
                     userDetailstoUpdate.listUserReferredAsCommercial= profileRefeer.listUserReferredAsCommercial.push(profile.username)

@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncItem, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
@@ -17,6 +17,28 @@ type LazypinpointResult = {
 export declare type pinpointResult = LazyLoading extends LazyLoadingDisabled ? EagerpinpointResult : LazypinpointResult
 
 export declare const pinpointResult: (new (init: ModelInit<pinpointResult>) => pinpointResult)
+
+type EagerPurchase = {
+  readonly id: string;
+  readonly username: string;
+  readonly date: string;
+  readonly plan: string;
+  readonly expirationDate: string;
+  readonly paymentMethod: string;
+}
+
+type LazyPurchase = {
+  readonly id: string;
+  readonly username: string;
+  readonly date: string;
+  readonly plan: string;
+  readonly expirationDate: string;
+  readonly paymentMethod: string;
+}
+
+export declare type Purchase = LazyLoading extends LazyLoadingDisabled ? EagerPurchase : LazyPurchase
+
+export declare const Purchase: (new (init: ModelInit<Purchase>) => Purchase)
 
 type EagerNotification = {
   readonly [__modelMeta__]: {
@@ -257,19 +279,21 @@ type EagerUser = {
   readonly currentlyPlan?: string | null;
   readonly hasPurchasedSomething?: boolean | null;
   readonly expirationDate?: string | null;
+  readonly listPurchases?: (Purchase | null)[] | null;
   readonly isPaymentProcessing?: boolean | null;
   readonly payWithApplePay?: boolean | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
-  readonly referredBy?: User | null;
-  readonly listUserReferred?: (User | null)[] | null;
+  readonly referredBy?: string | null;
+  readonly listUserReferred?: (string | null)[] | null;
   readonly isCommercial?: boolean | null;
   readonly cumplidoCuota?: boolean | null;
   readonly totalEarnCommercial?: number | null;
   readonly totalReferredCommercial?: number | null;
   readonly dateStartCommercial?: string | null;
+  readonly listUserReferredAsCommercial?: (string | null)[] | null;
   readonly isCompletedKYC?: boolean | null;
   readonly currentStateKYC?: string | null;
   readonly externalURLKYC?: string | null;
@@ -303,19 +327,21 @@ type LazyUser = {
   readonly currentlyPlan?: string | null;
   readonly hasPurchasedSomething?: boolean | null;
   readonly expirationDate?: string | null;
+  readonly listPurchases?: (Purchase | null)[] | null;
   readonly isPaymentProcessing?: boolean | null;
   readonly payWithApplePay?: boolean | null;
   readonly totalReward?: number | null;
   readonly totalReferred?: number | null;
   readonly isReferred?: boolean | null;
   readonly hasReferred?: boolean | null;
-  readonly referredBy: AsyncItem<User | undefined>;
-  readonly listUserReferred: AsyncCollection<User>;
+  readonly referredBy?: string | null;
+  readonly listUserReferred?: (string | null)[] | null;
   readonly isCommercial?: boolean | null;
   readonly cumplidoCuota?: boolean | null;
   readonly totalEarnCommercial?: number | null;
   readonly totalReferredCommercial?: number | null;
   readonly dateStartCommercial?: string | null;
+  readonly listUserReferredAsCommercial?: (string | null)[] | null;
   readonly isCompletedKYC?: boolean | null;
   readonly currentStateKYC?: string | null;
   readonly externalURLKYC?: string | null;

@@ -343,6 +343,22 @@ export default function Invite() {
         }
     }
 
+    const updateRefeers = async () => {
+        if (location != '') {
+            const resultUpdateRefeerList = updatingRefeerList()
+            if (resultUpdateRefeerList == null) {
+                console.log("No se pudo actualizar lista de referidos algo no existe")
+            } else {
+                if(resultUpdateRefeerList.id!=null){
+                    console.log("Se pudo actualizar la lista de refiros", resultUpdateRefeerList)
+                }else{
+                    console.log("Error actualizando lista de referidos", resultUpdateRefeerList)
+                }
+
+            }
+        }
+    }
+
     const verifyUserWhoRefeer = async () => {
         if (location != '') {
             const profileReferred = getUserProfileRefeer(location)
@@ -367,7 +383,7 @@ export default function Invite() {
                 id: profile.id,
                 _version: profile._version,
                 isReferred: true,
-                referredBy: profileRefeer,
+                referredBy: profileRefeer.username,
                 
               }
 
@@ -416,6 +432,96 @@ export default function Invite() {
         }
     }
 
+    async function updatingRefeerList() {
+        setIsLoadingRefeer(true)
+        console.log("id del usuario a aactualizar", profileRefeer.id)
+        try {
+            //INICIALIZAMOS
+            let userDetailstoUpdate = {
+                id: profileRefeer.id,
+                _version: profileRefeer._version,
+                hasReferred: true,
+                listUserReferred: [profile.username],
+            }
+
+            if(profileRefeer.listUserReferred!=null){
+                //NO ES EL PRIMER REFERIDO
+                userDetailstoUpdate.listUserReferred = (profileRefeer.listUserReferred.push(profile.username))
+            }
+
+            if(profileRefeer.isCommercial){
+                //SI EL USUARIO ES COMERCIAL
+                if(profileRefeer.listUserReferred!=null){
+                
+                    if(profileRefeer.totalReferredCommercial!=null){  
+                        //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                        let userDetailstoUpdate = {
+                            id: profileRefeer.id,
+                            _version: profileRefeer._version,
+                            hasReferred: true,
+                            listUserReferred: (profileRefeer.listUserReferred.push(profile.username)),
+                            totalReferredCommercial: (profileRefeer.totalReferredCommercial + 1)
+                        }
+                    }
+                    else{
+                        //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
+                        let userDetailstoUpdate = {
+                            id: profileRefeer.id,
+                            _version: profileRefeer._version,
+                            hasReferred: true,
+                            listUserReferred: (profileRefeer.listUserReferred.push(profile.username)),
+                            totalReferredCommercial: (profileRefeer.totalReferredCommercial + 1)
+                        }
+                    }
+
+                }
+            }
+
+            const result = await API.graphql(
+                graphqlOperation(mutations.updateUser,  { input: userDetailstoUpdate })
+            )
+                .then(result => {
+                    console.log("Resultado de la actualización del usuario que compartio link", result)
+                    setIsLoadingRefeer(false)
+                    handleNext()
+                    return result.data.getUser;
+                })
+                .catch(err => {
+                    console.log("error",err)
+                    setIsLoadingRefeer(false)
+                    Swal.fire({
+                        title: 'Error updating refeer list',
+                        text:'Something happen, please try again if persist contact support.',
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Accept'
+                    }).then((result) => {
+                        history.push('/profile')
+                    })
+                    
+                });
+            return result;
+
+        } catch (error) {
+            console.log("catch updatinguser")
+            const result = error
+            Swal.fire({
+                title: 'Error creating refeer',
+                text:'Something happen, please try again if persist contact support.',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Accept'
+            }).then((result) => {
+                history.push('/profile')
+            })
+            return result;
+        }
+    }
+
     async function getUserProfileRefeer(nam) {
         setIsLoadingRefeer(true)
         try {
@@ -431,10 +537,28 @@ export default function Invite() {
             )
                 .then(result => {
                     console.log("Resultado de la consulta del usuario que compartio link", result.data.searchUsers.items[0])
-                    setProfileRefeer(result.data.getUser)
-                    setIsLoadingRefeer(false)
-                    handleNext()
-                    return result.data.getUser;
+                            if(result.data.searchUsers.items[0]!=null){
+                                setProfileRefeer(result.data.searchUsers.items[0])
+                                setIsLoadingRefeer(false)
+                                if(result.data.searchUsers.items[0].id==profile.id){
+                                    Swal.fire({
+                                        title: 'User not valid',
+                                        text:'You cannot refeer yourself',
+                                        icon: 'error',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Accept'
+                                    }).then((result) => {
+                                        history.push('/profile')
+                                    })
+                                }else{
+                                    handleNext()
+                                }
+                        }
+                   
+                    
+                    return result.data.searchUsers.items[0];
                 })
                 .catch(err => {
                     console.log(err)
@@ -472,10 +596,13 @@ export default function Invite() {
     }, [hasAccepted])
 
     useEffect(() => {
-        if (activeStep==1) {
+        if (activeStep===1) {
             console.log("usuario que refiere verificado, creando referido...")
             createRefeer()
-
+        }
+        if (activeStep===2) {
+            console.log("usuario que ha sido marcado como referido, actualizando lista de quien compartio el link...")
+            updateRefeers()
         }
         return () => {
             null

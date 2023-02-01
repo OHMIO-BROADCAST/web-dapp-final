@@ -527,6 +527,16 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "listPurchases": {
+                    "name": "listPurchases",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Purchase"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
                 "isPaymentProcessing": {
                     "name": "isPaymentProcessing",
                     "isArray": false,
@@ -572,36 +582,17 @@ export const schema = {
                 "referredBy": {
                     "name": "referredBy",
                     "isArray": false,
-                    "type": {
-                        "model": "User"
-                    },
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "id"
-                        ]
-                    }
+                    "attributes": []
                 },
                 "listUserReferred": {
                     "name": "listUserReferred",
                     "isArray": true,
-                    "type": {
-                        "model": "User"
-                    },
+                    "type": "String",
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "id"
-                        ]
-                    }
+                    "isArrayNullable": true
                 },
                 "isCommercial": {
                     "name": "isCommercial",
@@ -637,6 +628,14 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "listUserReferredAsCommercial": {
+                    "name": "listUserReferredAsCommercial",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "isCompletedKYC": {
                     "name": "isCompletedKYC",
@@ -767,29 +766,10 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byUsername",
-                        "fields": [
-                            "phone",
-                            "email"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
                         "name": "byEmail",
                         "fields": [
                             "email",
                             "username"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "gsi-User.listUserReferred",
-                        "fields": [
-                            "id"
                         ]
                     }
                 }
@@ -816,8 +796,55 @@ export const schema = {
                     "attributes": []
                 }
             }
+        },
+        "Purchase": {
+            "name": "Purchase",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "username": {
+                    "name": "username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "plan": {
+                    "name": "plan",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "expirationDate": {
+                    "name": "expirationDate",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "paymentMethod": {
+                    "name": "paymentMethod",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "10f4650536af668f1f97fdb29d6f83d6"
+    "version": "a956f96145e6acdf64b3d5f32e5195e0"
 };

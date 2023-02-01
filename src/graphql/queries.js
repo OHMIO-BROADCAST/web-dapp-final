@@ -35,11 +35,14 @@ export const searchUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
+        referredBy
+        listUserReferred
         isCommercial
         cumplidoCuota
         totalEarnCommercial
         totalReferredCommercial
         dateStartCommercial
+        listUserReferredAsCommercial
         isCompletedKYC
         currentStateKYC
         externalURLKYC
@@ -546,63 +549,28 @@ export const getUser = /* GraphQL */ `
       currentlyPlan
       hasPurchasedSomething
       expirationDate
+      listPurchases {
+        id
+        username
+        date
+        plan
+        expirationDate
+        paymentMethod
+      }
       isPaymentProcessing
       payWithApplePay
       totalReward
       totalReferred
       isReferred
       hasReferred
-      referredBy {
-        id
-        name
-        username
-        phone
-        email
-        expoToken
-        forexSubscription
-        currentlyPlan
-        hasPurchasedSomething
-        expirationDate
-        isPaymentProcessing
-        payWithApplePay
-        totalReward
-        totalReferred
-        isReferred
-        hasReferred
-        isCommercial
-        cumplidoCuota
-        totalEarnCommercial
-        totalReferredCommercial
-        dateStartCommercial
-        isCompletedKYC
-        currentStateKYC
-        externalURLKYC
-        hasSigned
-        dateSigned
-        hasiOSSession
-        hasAndroidSession
-        deviceOSName
-        deviceModelName
-        deviceName
-        deviceBrand
-        activeDate
-        registerDate
-        solicitoEliminarCuenta
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      listUserReferred {
-        nextToken
-        startedAt
-      }
+      referredBy
+      listUserReferred
       isCommercial
       cumplidoCuota
       totalEarnCommercial
       totalReferredCommercial
       dateStartCommercial
+      listUserReferredAsCommercial
       isCompletedKYC
       currentStateKYC
       externalURLKYC
@@ -649,11 +617,14 @@ export const listUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
+        referredBy
+        listUserReferred
         isCommercial
         cumplidoCuota
         totalEarnCommercial
         totalReferredCommercial
         dateStartCommercial
+        listUserReferredAsCommercial
         isCompletedKYC
         currentStateKYC
         externalURLKYC
@@ -709,75 +680,14 @@ export const syncUsers = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
+        referredBy
+        listUserReferred
         isCommercial
         cumplidoCuota
         totalEarnCommercial
         totalReferredCommercial
         dateStartCommercial
-        isCompletedKYC
-        currentStateKYC
-        externalURLKYC
-        hasSigned
-        dateSigned
-        hasiOSSession
-        hasAndroidSession
-        deviceOSName
-        deviceModelName
-        deviceName
-        deviceBrand
-        activeDate
-        registerDate
-        solicitoEliminarCuenta
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const usersByPhoneAndEmail = /* GraphQL */ `
-  query UsersByPhoneAndEmail(
-    $phone: String!
-    $email: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    usersByPhoneAndEmail(
-      phone: $phone
-      email: $email
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        username
-        phone
-        email
-        expoToken
-        forexSubscription
-        currentlyPlan
-        hasPurchasedSomething
-        expirationDate
-        isPaymentProcessing
-        payWithApplePay
-        totalReward
-        totalReferred
-        isReferred
-        hasReferred
-        isCommercial
-        cumplidoCuota
-        totalEarnCommercial
-        totalReferredCommercial
-        dateStartCommercial
+        listUserReferredAsCommercial
         isCompletedKYC
         currentStateKYC
         externalURLKYC
@@ -837,11 +747,14 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         totalReferred
         isReferred
         hasReferred
+        referredBy
+        listUserReferred
         isCommercial
         cumplidoCuota
         totalEarnCommercial
         totalReferredCommercial
         dateStartCommercial
+        listUserReferredAsCommercial
         isCompletedKYC
         currentStateKYC
         externalURLKYC

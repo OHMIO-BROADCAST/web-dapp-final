@@ -59,6 +59,15 @@ type Certificate @model {
   isSigned: Boolean!
 }
 
+type Purchase {
+  id: ID!
+  username: String!
+  date: String!
+  plan: String!
+  expirationDate: String!
+  paymentMethod: String!
+}
+
 type User @model @searchable {
   id: ID!
   name: String!
@@ -72,6 +81,7 @@ type User @model @searchable {
   currentlyPlan: String
   hasPurchasedSomething: Boolean
   expirationDate: String
+  listPurchases: [Purchase]
 
   isPaymentProcessing: Boolean
   payWithApplePay: Boolean
@@ -80,14 +90,15 @@ type User @model @searchable {
   totalReferred: Float
   isReferred: Boolean
   hasReferred: Boolean
-  referredBy: User @hasOne(fields: ["id"])
-  listUserReferred: [User] @hasMany(fields: ["id"])
+  referredBy: String
+  listUserReferred: [String]
 
   isCommercial: Boolean
   cumplidoCuota: Boolean
   totalEarnCommercial: Float
   totalReferredCommercial: Int
   dateStartCommercial: String
+  listUserReferredAsCommercial: [String]
 
   isCompletedKYC: Boolean
   currentStateKYC: String

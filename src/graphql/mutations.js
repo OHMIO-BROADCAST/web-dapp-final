@@ -1,6 +1,126 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const addReferredUser = /* GraphQL */ `
+  mutation AddReferredUser($userId: ID!, $referredUserId: String!) {
+    addReferredUser(userId: $userId, referredUserId: $referredUserId) {
+      id
+      name
+      username
+      phone
+      email
+      expoToken
+      forexSubscription
+      currentlyPlan
+      hasPurchasedSomething
+      expirationDate
+      listPurchases {
+        id
+        username
+        date
+        plan
+        expirationDate
+        paymentMethod
+      }
+      isPaymentProcessing
+      payWithApplePay
+      totalReward
+      totalReferred
+      isReferred
+      hasReferred
+      referredBy
+      listUserReferred
+      isCommercial
+      cumplidoCuota
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      listUserReferredAsCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
+      hasSigned
+      dateSigned
+      hasiOSSession
+      hasAndroidSession
+      deviceOSName
+      deviceModelName
+      deviceName
+      deviceBrand
+      activeDate
+      registerDate
+      solicitoEliminarCuenta
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const addReferredUserAsCommercial = /* GraphQL */ `
+  mutation AddReferredUserAsCommercial(
+    $userId: ID!
+    $referredUserIdAsCommercial: String!
+  ) {
+    addReferredUserAsCommercial(
+      userId: $userId
+      referredUserIdAsCommercial: $referredUserIdAsCommercial
+    ) {
+      id
+      name
+      username
+      phone
+      email
+      expoToken
+      forexSubscription
+      currentlyPlan
+      hasPurchasedSomething
+      expirationDate
+      listPurchases {
+        id
+        username
+        date
+        plan
+        expirationDate
+        paymentMethod
+      }
+      isPaymentProcessing
+      payWithApplePay
+      totalReward
+      totalReferred
+      isReferred
+      hasReferred
+      referredBy
+      listUserReferred
+      isCommercial
+      cumplidoCuota
+      totalEarnCommercial
+      totalReferredCommercial
+      dateStartCommercial
+      listUserReferredAsCommercial
+      isCompletedKYC
+      currentStateKYC
+      externalURLKYC
+      hasSigned
+      dateSigned
+      hasiOSSession
+      hasAndroidSession
+      deviceOSName
+      deviceModelName
+      deviceName
+      deviceBrand
+      activeDate
+      registerDate
+      solicitoEliminarCuenta
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const pinpoint = /* GraphQL */ `
   mutation Pinpoint($input: pinpointInput) {
     pinpoint(input: $input) {

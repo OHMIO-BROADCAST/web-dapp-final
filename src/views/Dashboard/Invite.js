@@ -437,23 +437,22 @@ export default function Invite() {
         console.log("id del usuario a actualizar", profileRefeer.id)
         try {
             //INICIALIZAMOS
+            const objetoAuxiliar = profileRefeer.listUserReferred
+            objetoAuxiliar.push(profile.username)
+
+            console.log("UP",objetoAuxiliar)
+
             let userDetailstoUpdate = {
                 id: profileRefeer.id,
                 _version: profileRefeer._version,
                 hasReferred: true,
-                listUserReferred: [profile.username],
+                listUserReferred: objetoAuxiliar
             }
-
-            if(profileRefeer.listUserReferred!=null){
-                //NO ES EL PRIMER REFERIDO
-                userDetailstoUpdate.listUserReferred = (profileRefeer.listUserReferred.push(profile.username))
-            }
-
-            if(profileRefeer.isCommercial){
+            /* if(profileRefeer.isCommercial){
                 //SI EL USUARIO ES COMERCIAL
                 if(profileRefeer.listUserReferredAsCommercial!=null){
                     //SI EL USUARIO ES COMERCIAL Y ES LA PRIMERA VEZ Q REFIERE COMERCIAL
-                    userDetailstoUpdate.listUserReferredAsCommercial  (profileRefeer.listUserReferredAsCommercial.push(profile.username))
+                    userDetailstoUpdate.listUserReferredAsCommercial =(profileRefeer.listUserReferredAsCommercial.push(profile.username))
                 }else{
                     //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
                     userDetailstoUpdate.listUserReferredAsCommercial= profileRefeer.listUserReferredAsCommercial.push(profile.username)
@@ -464,7 +463,8 @@ export default function Invite() {
                 }else{
                     userDetailstoUpdate.totalReferredCommercial= 1
                 }
-            }
+            } */
+
             const result = await API.graphql(
                 graphqlOperation(mutations.updateUser,  { input: userDetailstoUpdate })
             )
@@ -472,6 +472,16 @@ export default function Invite() {
                     console.log("Resultado de la actualización del usuario que compartio link", result)
                     setIsLoadingRefeer(false)
                     handleNext()
+                    Swal.fire({
+                        title: 'Refeer Added',
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Accept'
+                    }).then((result) => {
+                        history.push('/profile')
+                    })
                     return result.data.getUser;
                 })
                 .catch(err => {

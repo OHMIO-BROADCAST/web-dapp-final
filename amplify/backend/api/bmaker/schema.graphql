@@ -81,7 +81,7 @@ type User @model @searchable {
   currentlyPlan: String
   hasPurchasedSomething: Boolean
   expirationDate: String
-  listPurchases: [Purchase]
+  listPurchases: [Purchase!]
 
   isPaymentProcessing: Boolean
   payWithApplePay: Boolean
@@ -91,14 +91,14 @@ type User @model @searchable {
   isReferred: Boolean
   hasReferred: Boolean
   referredBy: String
-  listUserReferred: [String]
+  listUserReferred: [String!]
 
   isCommercial: Boolean
   cumplidoCuota: Boolean
   totalEarnCommercial: Float
   totalReferredCommercial: Int
   dateStartCommercial: String
-  listUserReferredAsCommercial: [String]
+  listUserReferredAsCommercial: [String!]
 
   isCompletedKYC: Boolean
   currentStateKYC: String
@@ -120,6 +120,11 @@ type User @model @searchable {
 }
 
 type Mutation {
+  addReferredUser(userId: ID!, referredUserId: String!): User
+  addReferredUserAsCommercial(
+    userId: ID!
+    referredUserIdAsCommercial: String!
+  ): User
   pinpoint(input: pinpointInput): pinpointResult
     @function(name: "pinpoint-${env}")
 }

@@ -6,44 +6,35 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import {
-  GridProps,
-  SwitchFieldProps,
-  TextFieldProps,
-} from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type ValidationResponse = {
-  hasError: boolean;
-  errorMessage?: string;
+    hasError: boolean;
+    errorMessage?: string;
 };
-export declare type ValidationFunction<T> = (
-  value: T,
-  validationResponse: ValidationResponse,
-) => ValidationResponse | Promise<ValidationResponse>;
+export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type NewForm1InputValues = {
-  name?: string;
-  documentUnsigned?: string;
-  documentSigned?: string;
-  isSigned?: boolean;
+    name?: string;
+    documentUnsigned?: string;
+    documentSigned?: string;
+    isSigned?: boolean;
 };
 export declare type NewForm1ValidationValues = {
-  name?: ValidationFunction<string>;
-  documentUnsigned?: ValidationFunction<string>;
-  documentSigned?: ValidationFunction<string>;
-  isSigned?: ValidationFunction<boolean>;
+    name?: ValidationFunction<string>;
+    documentUnsigned?: ValidationFunction<string>;
+    documentSigned?: ValidationFunction<string>;
+    isSigned?: ValidationFunction<boolean>;
 };
-export declare type FormProps<T> = Partial<T> &
-  React.DOMAttributes<HTMLDivElement>;
+export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NewForm1OverridesProps = {
-  NewForm1Grid?: FormProps<GridProps>;
-  name?: FormProps<TextFieldProps>;
-  documentUnsigned?: FormProps<TextFieldProps>;
-  documentSigned?: FormProps<TextFieldProps>;
-  isSigned?: FormProps<SwitchFieldProps>;
+    NewForm1Grid?: FormProps<GridProps>;
+    name?: FormProps<TextFieldProps>;
+    documentUnsigned?: FormProps<TextFieldProps>;
+    documentSigned?: FormProps<TextFieldProps>;
+    isSigned?: FormProps<SwitchFieldProps>;
 } & EscapeHatchProps;
-export declare type NewForm1Props = React.PropsWithChildren<
-  {
+export declare type NewForm1Props = React.PropsWithChildren<{
     overrides?: NewForm1OverridesProps | undefined | null;
-  } & {
+} & {
     clearOnSuccess?: boolean;
     onSubmit?: (fields: NewForm1InputValues) => NewForm1InputValues;
     onSuccess?: (fields: NewForm1InputValues) => void;
@@ -51,6 +42,5 @@ export declare type NewForm1Props = React.PropsWithChildren<
     onCancel?: () => void;
     onChange?: (fields: NewForm1InputValues) => NewForm1InputValues;
     onValidate?: NewForm1ValidationValues;
-  } & React.CSSProperties
->;
+} & React.CSSProperties>;
 export default function NewForm1(props: NewForm1Props): React.ReactElement;

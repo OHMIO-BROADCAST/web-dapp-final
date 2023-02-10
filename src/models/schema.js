@@ -107,7 +107,7 @@ export const schema = {
                 "totalReferred": {
                     "name": "totalReferred",
                     "isArray": false,
-                    "type": "Float",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -846,5 +846,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "8d59a8fafb7aefd63f9e01db96f89e21"
+    "version": "3ba2e2c637c9dc79007f8b6597e0e0a1"
 };

@@ -460,10 +460,12 @@ export default function Invite() {
                     listUserReferred: [profile.username]
                 }
             }
-            
-
-
-             if(profileRefeer.isCommercial){
+            if(profileRefeer.totalReferred!=null){  
+                userDetailstoUpdate.totalReferred= (profileRefeer.totalReferred + 1)
+            }else{
+                userDetailstoUpdate.totalReferred= 1
+            }
+            if(profileRefeer.isCommercial){
                 //SI EL USUARIO ES COMERCIAL
                 if(profileRefeer.listUserReferredAsCommercial!=null){
                     //SI EL USUARIO ES COMERCIAL Y NO ES LA PRIMERA VEZ Q REFIERE COMERCIAL
@@ -480,6 +482,7 @@ export default function Invite() {
                 }else{
                     userDetailstoUpdate.totalReferredCommercial= 1
                 }
+                
             } 
 
             const result = await API.graphql(

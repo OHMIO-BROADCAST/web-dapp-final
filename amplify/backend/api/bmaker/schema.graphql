@@ -87,7 +87,7 @@ type User @model @searchable {
   payWithApplePay: Boolean
 
   totalReward: Float
-  totalReferred: Float
+  totalReferred: Int
   isReferred: Boolean
   hasReferred: Boolean
   referredBy: String

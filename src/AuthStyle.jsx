@@ -22,7 +22,7 @@ export function AuthStyle() {
             return (
                 <View textAlign="center" padding={tokens.space.large}>
                     <Image
-                        alt="BMaker logo"
+                        alt="OHMIO logo"
                         src={require('./assets/Colorlogonobackground.png')}
                         style={{ width: '16rem', height: 'auto' }}
                     />
@@ -36,7 +36,7 @@ export function AuthStyle() {
             return (
                 <View textAlign="center" padding={tokens.space.large}>
                     <Text color={tokens.colors.neutral[80]}>
-                        &copy; BMaker Pro - All Rights Reserved
+                        &copy; OHMIO Broadcast - All Rights Reserved
                     </Text>
                 </View>
             );

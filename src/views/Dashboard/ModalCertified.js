@@ -11,7 +11,7 @@ function ModalCertified({ isOpen, onClose, userHasSign, setUserHasSign, updateSi
                 <ModalHeader>ACCEPT TERMS & CONDITIONS & SIGN DOCUMENT ONLINE</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    By accepting this message you accept the Terms & Conditions and Accept the Disclaimer document of BMaker Pro.
+                    By accepting this message you accept the Terms & Conditions and Accept the Disclaimer document of OHMIO Broadcast.
                 </ModalBody>
 
                 <ModalFooter>

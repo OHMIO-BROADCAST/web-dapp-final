@@ -100,7 +100,7 @@ export default function Dashboard() {
             flexDirection: 'column'
           }}
         >
-          <Text align={'center'} fontWeight={'bold'} fontSize={25}>BMaker Pro</Text>
+          <Text align={'center'} fontWeight={'bold'} fontSize={25}>OHMIO Broadcast</Text>
           <Text align={'center'} fontWeight={300}>We are currently working on this main page</Text>
         </div>
 

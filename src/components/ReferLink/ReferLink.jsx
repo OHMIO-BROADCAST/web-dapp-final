@@ -21,7 +21,7 @@ function ReferLink() {
     const ClickCopyRefer = () => {
         buttonCopy.current.className = "link-button success"
         if (user != null) {
-            navigator.clipboard.writeText(`https://app.bmaker.pro/invite/${user.username}`)
+            navigator.clipboard.writeText(`https://app.ohmiobroadcast.io/invite/${user.username}`)
         }
 
         setTimeout(() => {
@@ -33,7 +33,7 @@ function ReferLink() {
         <a className="link-button" href="#" ref={buttonCopy} role="button" onClick={() => ClickCopyRefer()}>
             <span className="refer-link">
                 {" "}
-                https://app.bmaker.pro/invite/
+                https://app.ohmiobroadcast.io/invite/
             </span>
             <div className="icon" ref={iconCopy} >
                 <div className="copy-link">

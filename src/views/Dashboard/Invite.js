@@ -128,7 +128,7 @@ export default function Invite() {
         },
         {
             label: 'Finish',
-            description: `Enjoy! Thanks for using BMaker Pro.`,
+            description: `Enjoy! Thanks for using OHMIO Broadcast.`,
         },
     ];
 
@@ -648,7 +648,7 @@ export default function Invite() {
                         }}
                     >
                         <Text align={'center'} fontWeight={'bold'} fontSize={25}>You already has been referred</Text>
-                        <Text align={'center'} fontWeight={300}>We work hard to prevent errors, please if persist communicate to support@bmaker.pro</Text>
+                        <Text align={'center'} fontWeight={300}>We work hard to prevent errors, please if persist communicate to support@ohmiobroadcast.io</Text>
                     </div>
                     : (
                         <>
@@ -662,7 +662,7 @@ export default function Invite() {
                                     flexDirection: 'column'
                                 }}
                             >
-                                <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to BMaker Reefer System</Text>
+                                <Text align={'center'} fontWeight={'bold'} fontSize={25}>Welcome to OHMIO Reefer System</Text>
                                 <Text align={'center'} fontWeight={300}>We are proccessing the Reefer of the user:</Text>
                                 {currentPath != '' ? <Text align={'center'} marginTop={"1rem"} marginBottom={"2rem"} fontWeight={"bold"} fontSize={20} textDecorationLine="underline"> {currentPath}</Text> : null}
                             </div>

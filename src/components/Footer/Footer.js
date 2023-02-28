@@ -32,7 +32,7 @@ export default function Footer(props) {
         </Text>
         <Link
           color='navy.400'
-          href='https://bmaker.pro/'
+          href='https://ohmiobroadcast.io/'
           target='_blank'
           style={{ textDecoration: 'underline' }}>
           {document.documentElement.dir === "rtl"
@@ -56,10 +56,10 @@ export default function Footer(props) {
         </Text>
 
         <ButtonMailto
-          href='support@bmaker.pro'
+          href='support@ohmiobroadcast.io'
           target='_blank'
           style={{ textDecoration: 'underline' }}
-          label="support@bmaker.pro" mailto="mailto:support@bmaker.pro"
+          label="support@ohmiobroadcast.io" mailto="mailto:support@ohmiobroadcast.io"
         />
 
       </Text>

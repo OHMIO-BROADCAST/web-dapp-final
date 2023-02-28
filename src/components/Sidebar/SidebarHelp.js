@@ -30,13 +30,13 @@ export function SidebarHelp(props) {
       <Image src={SidebarHelpImage} w='250px' h="auto" />
       <Flex direction='column' textAlign='center'>
         <Text fontSize='14px' color={textColor} fontWeight='bold'>
-          BMaker Signals App
+          OHMIO Signals App
         </Text>
         <Text fontSize='12px' color='gray.500'>
           Tu nueva herramienta.
         </Text>
       </Flex>
-      <Link href='https://play.google.com/store/apps/details?id=com.bmaker.app' target={"_blank"} minW='100%'>
+      <Link href='https://play.google.com/store/apps/details?id=com.ohmio.app' target={"_blank"} minW='100%'>
         <Button variant='primary' minW='100%'>
           Descargar Android
         </Button>

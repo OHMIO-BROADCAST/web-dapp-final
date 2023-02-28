@@ -88,7 +88,7 @@ function enableChannels(appID, email) {
     EmailChannelRequest: {
       /* required */
       FromAddress:
-        "admin@bmaker.pro" /* use the emailaddress that you activated in AWS SES, required  */,
+        "admin@ohmiobroadcast.io" /* use the emailaddress that you activated in AWS SES, required  */,
       Identity:
         "arn:aws:ses:eu-east-1:383333479832:identity/" + email /* required */,
       Enabled: true
@@ -195,7 +195,7 @@ async function createCampaign(appID, message, env, segmentID) {
             `<!DOCTYPE html>\n    <html lang="en">\n    <head>\n    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n</head>\n<body>\n<H2>Hallo {{User.UserAttributes.name}},</H2>\n\n <br />This is a Text Message from PinPoint. \n You have send this text: \n\n` +
             message +
             `\n</body>\n</html>`,
-          FromAddress: "admin@bmaker.pro"
+          FromAddress: "admin@ohmiobroadcast.io"
         },
         DefaultMessage: {
           // you push message

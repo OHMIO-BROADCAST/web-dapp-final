@@ -287,8 +287,8 @@ export const invoicesData = [
 export const billingData = [
   {
     name: "Document Online",
-    company: "BMaker Pro",
-    email: "legal@bmaker.pro",
+    company: "OHMIO Broadcast",
+    email: "legal@ohmiobroadcast.io",
     number: "FRB1235476",
   },
 

@@ -1,7 +1,7 @@
 {
-  "name": "bmakerpro",
+  "name": "ohmiodapp",
   "version": "0.1.0",
-  "homepage": "https://app.bmaker.pro/",
+  "homepage": "https://app.ohmiobroadcast.io/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@aws-amplify/cli": "^10.5.2",

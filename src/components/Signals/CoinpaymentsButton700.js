@@ -21,14 +21,14 @@ function CoinpaymentsButton700(userID) {
             <input
                 type="hidden"
                 name="success_url"
-                defaultValue="https://app.bmaker.pro/success-purchase-5month"
+                defaultValue="https://app.ohmiobroadcast.io/success-purchase-5month"
             />
             <input
                 type="hidden"
                 name="cancel_url"
-                defaultValue="https://app.bmaker.pro/"
+                defaultValue="https://app.ohmiobroadcast.io/"
             />
-            <input type="hidden" name="ipn_url" defaultValue="https://ipn.bmaker.pro/" />
+            <input type="hidden" name="ipn_url" defaultValue="https://ipn.ohmiobroadcast.io/" />
             <input type="hidden" name="allow_extra" defaultValue={0} />
             <input
                 type="image"

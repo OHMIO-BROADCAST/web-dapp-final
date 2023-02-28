@@ -560,7 +560,7 @@ function Profile() {
                   Certificate Disclaimer:{" "}
                 </Text>
                 {profile &&
-                  <Tooltip title="You have to sign the Certificates to enable all BMaker Features" placement="bottom">
+                  <Tooltip title="You have to sign the Certificates to enable all OHMIO Features" placement="bottom">
                     <Badge
                       bg={profile.hasSigned == true ? "green.400" : "gray.400"}
                       color={"white"}
@@ -578,7 +578,7 @@ function Profile() {
 
 
                 {profile && (!profile.isCompletedKYC ?
-                  <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
+                  <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
                     <BsFillShieldLockFill size={22} color={profile.hasSigned == true ? "#48bb79" : "#a0aec0"} style={{ marginLeft: 10 }} /></Tooltip> :
                   null)}
 
@@ -592,7 +592,7 @@ function Profile() {
                   me='10px'>
                   KYC Verification:{" "}
                 </Text>
-                <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
+                <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
                   <Badge
                     bg={(profile && profile.isCompletedKYC) == true ? "green.400" : "red.400"}
                     color={"white"}
@@ -605,7 +605,7 @@ function Profile() {
                 </Tooltip>
 
                 {profile && (!profile.isCompletedKYC ?
-                  <Tooltip title="You have to complete the KYC process to enable all BMaker Features" placement="bottom">
+                  <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
                     <HiBellAlert size={22} color={"#f56565"} style={{ marginLeft: 10 }} /></Tooltip> :
                   null)}
 

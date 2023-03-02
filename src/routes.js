@@ -55,7 +55,7 @@ import CertificatesTest from 'views/Dashboard/CertificatesTest';
 import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
 import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
 import Invite from 'views/Dashboard/Invite';
-import { MdOutlineTravelExplore } from 'react-icons/md';
+import { MdAccountBalanceWallet, MdOutlineTravelExplore } from 'react-icons/md';
 
 var dashRoutes = [
   {
@@ -92,14 +92,21 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/forex",
+        path: "/wallets",
+        name: "Wallets",
+        icon: <MdAccountBalanceWallet color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+      {
+        path: "/tokens",
         name: "Tokens",
         icon: <SiMarketo color='inherit' size={22} />,
         component: Signals,
         layout: "/admin",
       },
       {
-        path: "/forex",
+        path: "/nfts",
         name: "NFTs",
         icon: <SiArtstation color='inherit' size={22} />,
         component: Signals,

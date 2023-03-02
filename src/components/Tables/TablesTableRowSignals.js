@@ -6,13 +6,27 @@ import {
   Td,
   Text,
   Tr,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { AiFillDelete } from 'react-icons/ai'
+import { AiFillDelete } from "react-icons/ai";
 
 function TablesTableRowSignals(props) {
-  const { logo, name, email, phone_number, username, referredBy, forexSubscription, totalReward, totalReferred, hasPurchasedSomething, expoToken, date_register, isLast } = props;
+  const {
+    logo,
+    name,
+    email,
+    phone_number,
+    username,
+    referredBy,
+    forexSubscription,
+    totalReward,
+    totalReferred,
+    hasPurchasedSomething,
+    expoToken,
+    date_register,
+    isLast,
+  } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "navy.900");
@@ -83,7 +97,7 @@ function TablesTableRowSignals(props) {
           p="3px 10px"
           borderRadius="8px"
         >
-          {'$ ' + totalReward.toString()}
+          {"$ " + totalReward.toString()}
         </Badge>
       </Td>
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
@@ -110,13 +124,10 @@ function TablesTableRowSignals(props) {
 
       <Td borderColor={borderColor} borderBottom={isLast ? "none" : null}>
         <Button p="0px" bg="transparent" variant="no-effects">
-          <AiFillDelete
-            size={22}
-            color="#EF4237"
-          />
+          <AiFillDelete size={22} color="#EF4237" />
         </Button>
       </Td>
-    </Tr >
+    </Tr>
   );
 }
 

@@ -4,18 +4,16 @@
 	API_BMAKER_GRAPHQLAPIKEYOUTPUT
 	ENV
 	REGION
-Amplify Params - DO NOT EDIT *//* Amplify Params - DO NOT EDIT
+Amplify Params - DO NOT EDIT */ /* Amplify Params - DO NOT EDIT
 You can access the following resource attributes as environment variables from your Lambda function
 var environment = process.env.ENV
 var region = process.env.REGION
 var apiBMAKERGraphQLAPIIdOutput = process.env.API_BMAKER_GRAPHQLAPIIDOUTPUT
 var apiBMAKERGraphQLAPIEndpointOutput = process.env.API_BMAKER_GRAPHQLAPIENDPOINTOUTPUT
-Amplify Params - DO NOT EDIT */ const {
-  Expo
-} = require("expo-server-sdk");
+Amplify Params - DO NOT EDIT */ const { Expo } = require("expo-server-sdk");
 // Create a new Expo SDK client
 let expo = new Expo();
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
   try {
     let messages = [];
     // prettier-ignore
@@ -93,7 +91,7 @@ exports.handler = function(event, context, callback) {
               continue;
             } else if (receipt.status === "error") {
               console.error(
-                `There was an error sending a notification: ${receipt.message}`
+                `There was an error sending a notification: ${receipt.message}`,
               );
               if (receipt.details && receipt.details.error) {
                 // The error codes are listed in the Expo documentation:

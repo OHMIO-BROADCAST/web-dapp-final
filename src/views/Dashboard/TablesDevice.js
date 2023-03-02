@@ -12,7 +12,7 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-  Spinner
+  Spinner,
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/Card/Card.js";
@@ -20,38 +20,46 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import TablesProjectRow from "components/Tables/TablesProjectRow";
 import TablesTableRow from "components/Tables/TablesTableRow";
-import ThreeView from 'components/Spiral/Treeview.js'
+import ThreeView from "components/Spiral/Treeview.js";
 
-import { HiOutlineRefresh } from 'react-icons/hi'
+import { HiOutlineRefresh } from "react-icons/hi";
 import { listUsers } from "graphql/queries";
 import TablesDeviceRow from "components/Tables/TablesDeviceRow";
 
 function TablesDevice(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const { deviceOSName,
+  const {
+    deviceOSName,
     deviceModelName,
     deviceName,
     deviceBrand,
     activeDate,
-    deleteDevice } = props;
+    deleteDevice,
+  } = props;
 
   return (
-    <Flex direction="column" >
+    <Flex direction="column">
       <Card overflowX={{ sm: "scroll", xl: "hidden" }} pb="0px">
-
-        <CardBody style={{ height: 'auto' }}>
-
+        <CardBody style={{ height: "auto" }}>
           <Table variant="simple" color={textColor}>
             <Thead>
-              <Tr my=".8rem" pl="0px" color="gray.400" >
-                <Th pl="0px" borderColor={borderColor} color="gray.400" >
+              <Tr my=".8rem" pl="0px" color="gray.400">
+                <Th pl="0px" borderColor={borderColor} color="gray.400">
                   Operating System (OS)
                 </Th>
-                <Th borderColor={borderColor} color="gray.400" >Model</Th>
-                <Th borderColor={borderColor} color="gray.400" >Name</Th>
-                <Th borderColor={borderColor} color="gray.400" >Brand</Th>
-                <Th borderColor={borderColor} color="gray.400" >Active Date</Th>
+                <Th borderColor={borderColor} color="gray.400">
+                  Model
+                </Th>
+                <Th borderColor={borderColor} color="gray.400">
+                  Name
+                </Th>
+                <Th borderColor={borderColor} color="gray.400">
+                  Brand
+                </Th>
+                <Th borderColor={borderColor} color="gray.400">
+                  Active Date
+                </Th>
                 <Th borderColor={borderColor}></Th>
               </Tr>
             </Thead>
@@ -66,12 +74,8 @@ function TablesDevice(props) {
               />
             </Tbody>
           </Table>
-
-
-
         </CardBody>
       </Card>
-
     </Flex>
   );
 }

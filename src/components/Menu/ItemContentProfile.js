@@ -10,14 +10,22 @@ export function ItemContentProfile(props) {
   const spacing = " ";
   const history = useHistory();
   return (
-    <Flex justifyContent='center' alignItems={'center'} onClick={() => { if (props.aRoute == "/profile") { history.push(props.aRoute) } }}>
+    <Flex
+      justifyContent="center"
+      alignItems={"center"}
+      onClick={() => {
+        if (props.aRoute == "/profile") {
+          history.push(props.aRoute);
+        }
+      }}
+    >
       <Avatar
         name={props.aName}
         src={props.aSrc}
         borderRadius="12px"
         me="16px"
       />
-      <Flex flexDirection="column" >
+      <Flex flexDirection="column">
         <Text fontSize="14px" mb="5px" color={notificationColor}>
           <Text fontWeight="bold" fontSize="14px" as="span">
             {props.boldInfo}

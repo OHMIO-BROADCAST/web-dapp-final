@@ -28,7 +28,7 @@ export const globalStyles = {
       700: "#975A16",
       800: "#744210",
       900: "#5F370E",
-    }
+    },
   },
   styles: {
     global: (props) => ({

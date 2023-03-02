@@ -1,12 +1,10 @@
 /* eslint-disable */
 
 import { Card, Timeline, Typography } from "antd";
-import React, { useMemo, useEffect, useState } from "react"
+import React, { useMemo, useEffect, useState } from "react";
 
 // Chakra imports
-import {
-  Flex
-} from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 const { Text } = Typography;
 
@@ -37,36 +35,26 @@ const styles = {
 };
 
 export default function QuickStart({ isServerInfo }) {
-
-
-
-
   return (
     <Flex
       direction="column"
       pt={{ base: "120px", md: "75px" }}
       alignContent="center"
       alignItems="center"
-    ><Card
-      style={styles.cardoffline}
-
     >
+      <Card style={styles.cardoffline}>
         <div
           style={{
             width: "auto",
             height: "300px",
-            justifyContent: 'center',
-            display: 'flex',
-            alignItems: 'center'
+            justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Text>Quickstart</Text>
         </div>
-
       </Card>
     </Flex>
   );
 }
-
-
-

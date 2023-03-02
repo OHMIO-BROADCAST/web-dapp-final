@@ -6,7 +6,7 @@
 	API_BMAKER_GRAPHQLAPIKEYOUTPUT
 	ENV
 	REGION
-Amplify Params - DO NOT EDIT *//* Amplify Params - DO NOT EDIT
+Amplify Params - DO NOT EDIT */ /* Amplify Params - DO NOT EDIT
 You can access the following resource attributes as environment variables from your Lambda function
 var environment = process.env.ENV
 var region = process.env.REGION
@@ -37,7 +37,7 @@ exports.handler = async (event, context) => {
       event.id,
       event.email,
       event.name,
-      event.token
+      event.token,
     );
 
     // Create a segment where you want to filter the endpoint you want to send a message to
@@ -49,7 +49,7 @@ exports.handler = async (event, context) => {
       appID,
       event.message,
       hookLambda,
-      segmentID
+      segmentID,
     );
 
     return result;
@@ -62,12 +62,12 @@ async function createApp() {
   let params = {
     CreateApplicationRequest: {
       /* required */
-      Name: "Push App" /* Campaign name, required */
-    }
+      Name: "Push App" /* Campaign name, required */,
+    },
   };
 
   return new Promise((res, rej) => {
-    pinpoint.createApp(params, function(err, data) {
+    pinpoint.createApp(params, function (err, data) {
       if (err) {
         rej(err);
         console.log(err, err.stack); // an error occurred
@@ -91,10 +91,10 @@ function enableChannels(appID, email) {
         "admin@ohmiobroadcast.io" /* use the emailaddress that you activated in AWS SES, required  */,
       Identity:
         "arn:aws:ses:eu-east-1:383333479832:identity/" + email /* required */,
-      Enabled: true
-    }
+      Enabled: true,
+    },
   };
-  pinpoint.updateEmailChannel(params, function(err, data) {
+  pinpoint.updateEmailChannel(params, function (err, data) {
     if (err) console.log(err, err.stack);
     else console.log(data); // successful response
   });
@@ -117,19 +117,19 @@ async function createEndPoints(appID, id, email, name, token) {
       User: {
         UserAttributes: {
           name: [
-            name
+            name,
             /* more items */
           ],
           expoToken: [
-            token
+            token,
             /* more items */
-          ]
-        }
-      }
-    }
+          ],
+        },
+      },
+    },
   };
 
-  await pinpoint.updateEndpoint(params, function(err, data) {
+  await pinpoint.updateEndpoint(params, function (err, data) {
     if (err) {
       console.log(err, err.stack);
       // an error occurred
@@ -149,19 +149,19 @@ function createSegment(appID) {
           Channel: {
             Values: [
               /* required */
-              "EMAIL"
+              "EMAIL",
               /* more items */
             ],
-            DimensionType: "INCLUSIVE"
-          }
-        }
+            DimensionType: "INCLUSIVE",
+          },
+        },
       },
-      Name: "Segment"
-    }
+      Name: "Segment",
+    },
   };
 
   return new Promise((res, rej) => {
-    pinpoint.createSegment(params, function(err, data) {
+    pinpoint.createSegment(params, function (err, data) {
       if (err) {
         rej(err);
         console.log(err, err.stack); // an error occurred
@@ -184,7 +184,7 @@ async function createCampaign(appID, message, env, segmentID) {
       HoldoutPercent: 0,
       Hook: {
         LambdaFunctionName: env,
-        Mode: "FILTER"
+        Mode: "FILTER",
       },
       IsPaused: false,
       Limits: {},
@@ -195,40 +195,40 @@ async function createCampaign(appID, message, env, segmentID) {
             `<!DOCTYPE html>\n    <html lang="en">\n    <head>\n    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n</head>\n<body>\n<H2>Hallo {{User.UserAttributes.name}},</H2>\n\n <br />This is a Text Message from PinPoint. \n You have send this text: \n\n` +
             message +
             `\n</body>\n</html>`,
-          FromAddress: "admin@ohmiobroadcast.io"
+          FromAddress: "admin@ohmiobroadcast.io",
         },
         DefaultMessage: {
           // you push message
-          Body: message
-        }
+          Body: message,
+        },
       },
       Name: "push campaign",
       Schedule: {
         IsLocalTime: false,
         QuietTime: {},
         StartTime: utcDate.toISOString(),
-        Frequency: "ONCE"
+        Frequency: "ONCE",
       },
       SegmentId: String(segmentID),
       SegmentVersion: 1,
-      tags: {}
-    }
+      tags: {},
+    },
   };
 
   return new Promise((res, rej) => {
-    pinpoint.createCampaign(params, function(err, data) {
+    pinpoint.createCampaign(params, function (err, data) {
       if (err) {
         console.log(err, err.stack); // an error occurred
         const response = {
           statusCode: 500,
-          body: JSON.stringify(err)
+          body: JSON.stringify(err),
         };
         rej(response);
       } else {
         console.log(data);
         const response = {
           statusCode: 200,
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         };
 
         res(response); // successful response

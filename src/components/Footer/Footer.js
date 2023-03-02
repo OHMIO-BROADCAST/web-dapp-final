@@ -14,54 +14,58 @@ export default function Footer(props) {
         base: "center",
         xl: "start",
       }}
-      justifyContent='space-between'
-      px='30px'
-      pb='20px'>
+      justifyContent="space-between"
+      px="30px"
+      pb="20px"
+    >
       <Text
-        color='gray.400'
+        color="gray.400"
         textAlign={{
           base: "center",
           xl: "start",
         }}
-        mb={{ base: "20px", xl: "0px" }}>
+        mb={{ base: "20px", xl: "0px" }}
+      >
         &copy; {1900 + new Date().getYear()}.{" "}
-        <Text as='span'>
+        <Text as="span">
           {document.documentElement.dir === "rtl"
             ? " مصنوع من ❤️ بواسطة"
             : "OHMIO for Broadcast industry | "}
         </Text>
         <Link
-          color='navy.400'
-          href='https://ohmiobroadcast.io/'
-          target='_blank'
-          style={{ textDecoration: 'underline' }}>
+          color="navy.400"
+          href="https://ohmiobroadcast.io/"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+        >
           {document.documentElement.dir === "rtl"
             ? " توقيت الإبداعية"
             : "We help you to control stations"}
-        </Link>.
-
+        </Link>
+        .
       </Text>
 
       <Text
-        color='gray.400'
+        color="gray.400"
         textAlign={{
           base: "center",
           xl: "start",
         }}
-        mb={{ base: "20px", xl: "0px" }}>
-        <Text as='span'>
+        mb={{ base: "20px", xl: "0px" }}
+      >
+        <Text as="span">
           {document.documentElement.dir === "rtl"
             ? " مصنوع من ❤️ بواسطة"
             : "Need Help? Contact us at: "}
         </Text>
 
         <ButtonMailto
-          href='support@ohmiobroadcast.io'
-          target='_blank'
-          style={{ textDecoration: 'underline' }}
-          label="support@ohmiobroadcast.io" mailto="mailto:support@ohmiobroadcast.io"
+          href="support@ohmiobroadcast.io"
+          target="_blank"
+          style={{ textDecoration: "underline" }}
+          label="support@ohmiobroadcast.io"
+          mailto="mailto:support@ohmiobroadcast.io"
         />
-
       </Text>
       {/* <List display='flex'>
         <ListItem

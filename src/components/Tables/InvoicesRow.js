@@ -29,13 +29,17 @@ function InvoicesRow(props) {
           {price}
         </Text>
       </Box>
-      <Button p="0px" bg="transparent" variant="no-effects" >
+      <Button p="0px" bg="transparent" variant="no-effects">
         <Flex alignItems="center" p="12px">
           <Icon as={logo} w="20px" h="auto" me="5px" color={textColor} />
-          <a fontSize="md" color={textColor} fontWeight="bold"
+          <a
+            fontSize="md"
+            color={textColor}
+            fontWeight="bold"
             href="https://docdro.id/TOtCXlt"
             target={"_blank"}
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             {format}
           </a>
         </Flex>

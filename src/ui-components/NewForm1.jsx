@@ -37,10 +37,10 @@ export default function NewForm1(props) {
   };
   const [name, setName] = React.useState(initialValues.name);
   const [documentUnsigned, setDocumentUnsigned] = React.useState(
-    initialValues.documentUnsigned
+    initialValues.documentUnsigned,
   );
   const [documentSigned, setDocumentSigned] = React.useState(
-    initialValues.documentSigned
+    initialValues.documentSigned,
   );
   const [isSigned, setIsSigned] = React.useState(initialValues.isSigned);
   const [errors, setErrors] = React.useState({});
@@ -85,16 +85,16 @@ export default function NewForm1(props) {
             if (Array.isArray(modelFields[fieldName])) {
               promises.push(
                 ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
-                )
+                  runValidationTasks(fieldName, item),
+                ),
               );
               return promises;
             }
             promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
+              runValidationTasks(fieldName, modelFields[fieldName]),
             );
             return promises;
-          }, [])
+          }, []),
         );
         if (validationResponses.some((r) => r.hasError)) {
           return;

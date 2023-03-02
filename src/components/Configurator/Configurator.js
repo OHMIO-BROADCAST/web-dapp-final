@@ -8,11 +8,12 @@ import {
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-  Flex, Link,
+  Flex,
+  Link,
   Switch,
   Text,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Auth } from "aws-amplify";
 import ReferLink from "components/ReferLink/ReferLink";
@@ -20,7 +21,7 @@ import { HSeparator } from "components/Separator/Separator";
 import GitHubButton from "react-github-btn";
 import { FaFacebook, FaTwitter, FaWhatsapp, FaGoogle } from "react-icons/fa";
 
-import './SharedSocial.css';
+import "./SharedSocial.css";
 
 export default function Configurator(props) {
   const {
@@ -38,7 +39,7 @@ export default function Configurator(props) {
 
   let bgButton = useColorModeValue(
     "linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%)",
-    "white"
+    "white",
   );
   let colorButton = useColorModeValue("white", "gray.700");
   const secondaryButtonBg = useColorModeValue("white", "transparent");
@@ -47,17 +48,14 @@ export default function Configurator(props) {
   const bgDrawer = useColorModeValue("white", "navy.800");
   const settingsRef = React.useRef();
 
-
-  const [user, setuser] = useState()
+  const [user, setuser] = useState();
 
   useEffect(() => {
     Auth.currentAuthenticatedUser().then((user) => {
       // console.log("REFERRRR", user);
       setuser(user);
     });
-  }, [])
-
-
+  }, []);
 
   return (
     <>
@@ -71,7 +69,12 @@ export default function Configurator(props) {
         <DrawerContent bg={bgDrawer}>
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
-            <Text fontSize="xl" fontWeight="bold" mt="16px" style={{ color: '#F9AE40' }}>
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              mt="16px"
+              style={{ color: "#F9AE40" }}
+            >
               MY REFER LINKS
             </Text>
 
@@ -79,13 +82,17 @@ export default function Configurator(props) {
           </DrawerHeader>
           <DrawerBody w="340px" ps="24px" pe="40px">
             <Flex flexDirection="column">
-
               <Flex
                 justifyContent="space-between"
                 alignItems="center"
                 mb="1rem"
               >
-                <Text fontSize="md" fontWeight="600" mb="4px" style={{ color: '#F9AE40' }}>
+                <Text
+                  fontSize="md"
+                  fontWeight="600"
+                  mb="4px"
+                  style={{ color: "#F9AE40" }}
+                >
                   GENERAL LINK
                 </Text>
               </Flex>
@@ -93,61 +100,69 @@ export default function Configurator(props) {
               <HSeparator />
 
               <Box mt="1rem">
-                <Flex
-                  justifyContent="center"
-                  alignItems="center"
-                  w="100%"
-                >
+                <Flex justifyContent="center" alignItems="center" w="100%">
                   <ReferLink />
                 </Flex>
               </Box>
 
               <HSeparator />
 
-              {
-                user && (
-                  <Box mt="1rem">
-                    <Box w="100%">
-                      <Text fontWeight={"bold"} fontSize="1rem" mb="1rem" mt="1rem" textAlign="center" style={{ color: '#F9AE40' }}>
-                        These are another social options
-                      </Text>
-                      <Flex
-                        justifyContent="center"
-                        alignContent="center"
-                        flexDirection="column"
-                        alignItems="center"
+              {user && (
+                <Box mt="1rem">
+                  <Box w="100%">
+                    <Text
+                      fontWeight={"bold"}
+                      fontSize="1rem"
+                      mb="1rem"
+                      mt="1rem"
+                      textAlign="center"
+                      style={{ color: "#F9AE40" }}
+                    >
+                      These are another social options
+                    </Text>
+                    <Flex
+                      justifyContent="center"
+                      alignContent="center"
+                      flexDirection="column"
+                      alignItems="center"
+                    >
+                      <Link
+                        isExternal="true"
+                        href={`https://twitter.com/intent/tweet?text=https://app.ohmiobroadcast.io/invite/${user.username}`}
                       >
-                        <Link
-                          isExternal="true"
-                          href={`https://twitter.com/intent/tweet?text=https://app.ohmiobroadcast.io/invite/${user.username}`}
+                        <Button
+                          colorScheme="twitter"
+                          leftIcon={<FaTwitter />}
+                          mb="0.5rem"
                         >
-                          <Button
-                            colorScheme="twitter"
-                            leftIcon={<FaTwitter />}
-                            mb="0.5rem"
-                          >
-                            <Text>Tweet</Text>
-                          </Button>
-                        </Link>
-                        <Link
-                          isExternal="true"
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://app.ohmiobroadcast.io/invite/${user.username}`}
+                          <Text>Tweet</Text>
+                        </Button>
+                      </Link>
+                      <Link
+                        isExternal="true"
+                        href={`https://www.facebook.com/sharer/sharer.php?u=https://app.ohmiobroadcast.io/invite/${user.username}`}
+                      >
+                        <Button
+                          colorScheme="facebook"
+                          leftIcon={<FaFacebook />}
+                          mb="0.5rem"
                         >
-                          <Button colorScheme="facebook" leftIcon={<FaFacebook />} mb="0.5rem"
-                          >
-                            <Text>Share</Text>
-                          </Button>
-                        </Link>
-                        <Link
-                          isExternal="true"
-                          href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.ohmiobroadcast.io/invite/${user.username}`}
+                          <Text>Share</Text>
+                        </Button>
+                      </Link>
+                      <Link
+                        isExternal="true"
+                        href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.ohmiobroadcast.io/invite/${user.username}`}
+                      >
+                        <Button
+                          colorScheme="red"
+                          leftIcon={<FaGoogle />}
+                          mb="0.5rem"
                         >
-                          <Button colorScheme="red" leftIcon={<FaGoogle />} mb="0.5rem"
-                          >
-                            <Text>Share</Text>
-                          </Button>
-                        </Link>
-                        {/* <Link
+                          <Text>Share</Text>
+                        </Button>
+                      </Link>
+                      {/* <Link
                           isExternal="true"
                           href={`https://www.whatsapp.com/sharer/sharer.php?u=https://app.ohmiobroadcast.io/invite/${user.username}`}
                         >
@@ -156,12 +171,10 @@ export default function Configurator(props) {
                             <Text>Share</Text>
                           </Button>
                         </Link> */}
-                      </Flex>
-                    </Box>
+                    </Flex>
                   </Box>
-                )
-              }
-
+                </Box>
+              )}
             </Flex>
           </DrawerBody>
         </DrawerContent>

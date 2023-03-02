@@ -242,7 +242,7 @@ export const tablesProjectData = [
     time12h: "12:04 PM",
     date: "17/12/2022",
     position: "Buy",
-    isManual: false
+    isManual: false,
   },
   {
     logo: AdobexdLogo,
@@ -256,7 +256,7 @@ export const tablesProjectData = [
     time12h: "12:04 PM",
     date: "17/12/2022",
     position: "Sell",
-    isManual: false
+    isManual: false,
   },
   {
     logo: AdobexdLogo,
@@ -270,8 +270,8 @@ export const tablesProjectData = [
     time12h: "12:04 PM",
     date: "17/12/2022",
     position: "Sell",
-    isManual: false
-  }
+    isManual: false,
+  },
 ];
 
 export const invoicesData = [
@@ -281,7 +281,7 @@ export const invoicesData = [
     price: "Last Update: 06/01/2023",
     logo: FaFilePdf,
     format: "PDF",
-  }
+  },
 ];
 
 export const billingData = [
@@ -291,7 +291,6 @@ export const billingData = [
     email: "legal@ohmiobroadcast.io",
     number: "FRB1235476",
   },
-
 ];
 
 export const newestTransactions = [
@@ -341,33 +340,33 @@ export const pageVisits = [
     pageName: "/argon/",
     visitors: "4,569",
     uniqueUsers: 340,
-    bounceRate: "46,53%"
+    bounceRate: "46,53%",
   },
   {
     pageName: "/argon/index.html",
     visitors: "3,985",
     uniqueUsers: 319,
-    bounceRate: "46,53%"
+    bounceRate: "46,53%",
   },
   {
     pageName: "/argon/charts.html",
     visitors: "3,513",
     uniqueUsers: 294,
-    bounceRate: "36,49%"
+    bounceRate: "36,49%",
   },
   {
     pageName: "/argon/tables.html",
     visitors: "2,050",
     uniqueUsers: 147,
-    bounceRate: "50,87%"
+    bounceRate: "50,87%",
   },
   {
     pageName: "/argon/profile.html",
     visitors: "1,795",
     uniqueUsers: 190,
-    bounceRate: "46,53%"
+    bounceRate: "46,53%",
   },
-]
+];
 
 export const socialTraffic = [
   {
@@ -399,5 +398,5 @@ export const socialTraffic = [
     visitors: "2,645",
     percentage: 30,
     color: "orange",
-  }
-]
+  },
+];

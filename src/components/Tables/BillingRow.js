@@ -56,7 +56,9 @@ function BillingRow(props) {
           >
             <Flex color="blue.500" cursor="pointer" align="center" p="12px">
               <Icon as={FaEye} me="4px" />
-              <a fontSize="sm" fontWeight="semibold"
+              <a
+                fontSize="sm"
+                fontWeight="semibold"
                 href="https://docdro.id/TOtCXlt"
                 target={"_blank"}
                 rel="noreferrer"
@@ -65,11 +67,12 @@ function BillingRow(props) {
               </a>
             </Flex>
           </Button>
-          <Button p="0px" bg="transparent"
-            variant="no-effects">
+          <Button p="0px" bg="transparent" variant="no-effects">
             <Flex color={textColor} cursor="pointer" align="center" p="12px">
               <Icon as={FaPrint} me="4px" />
-              <a fontSize="sm" fontWeight="semibold"
+              <a
+                fontSize="sm"
+                fontWeight="semibold"
                 href="https://docdro.id/TOtCXlt"
                 target={"_blank"}
                 rel="noreferrer"

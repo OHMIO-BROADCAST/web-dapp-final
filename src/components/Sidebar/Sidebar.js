@@ -16,7 +16,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import IconBox from "components/Icons/IconBox";
 import {
@@ -25,7 +25,7 @@ import {
   renderTrack,
   renderTrackRTL,
   renderView,
-  renderViewRTL
+  renderViewRTL,
 } from "components/Scrollbar/Scrollbar";
 import { HSeparator } from "components/Separator/Separator";
 import { SidebarHelp } from "components/Sidebar/SidebarHelp";
@@ -33,7 +33,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { NavLink, useLocation } from "react-router-dom";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 
-import LogoLight from '../../assets/img/LogoTIPSparaLight.png';
+import LogoLight from "../../assets/img/LogoTIPSparaLight.png";
 
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
@@ -49,33 +49,38 @@ function Sidebar(props) {
   let variantChange = "0.2s linear";
   // verifies if routeName is the one active (in browser input)
 
-
   const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
   const [userID, setUserID] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserName, setCurrentUserName] = useState("");
 
-
-
-
   async function getUserProfile(sub) {
-    console.log("current state", profile, message, userID, currentUserName, currentUser)
+    console.log(
+      "current state",
+      profile,
+      message,
+      userID,
+      currentUserName,
+      currentUser,
+    );
     try {
       const result = await API.graphql(
-        graphqlOperation(queries.getUser, { id: sub })
+        graphqlOperation(queries.getUser, { id: sub }),
       )
-        .then(result => {
-          console.log("Resultado de la consulta del usuario", result.data.getUser)
-          setProfile(result.data.getUser)
+        .then((result) => {
+          console.log(
+            "Resultado de la consulta del usuario",
+            result.data.getUser,
+          );
+          setProfile(result.data.getUser);
           return result.data.getUser;
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
       return result;
-
     } catch (error) {
-      console.log("catch getuser")
-      const result = error
+      console.log("catch getuser");
+      const result = error;
       return result;
     }
   }
@@ -83,38 +88,34 @@ function Sidebar(props) {
   async function componenteMontado() {
     //se obtiene ID usuario actual
     const userID = await Auth.currentSession()
-      .then(data => {
+      .then((data) => {
         setUserID(data.idToken.payload.sub);
-        setCurrentUser(data.idToken.payload)
+        setCurrentUser(data.idToken.payload);
         return data.idToken.payload.sub;
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
     const userName = await Auth.currentAuthenticatedUser()
-      .then(data => {
+      .then((data) => {
         if (data != null) {
           setCurrentUserName(data.username);
           return data.username;
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
     const profile = await getUserProfile(userID);
 
     if (profile == null) {
-      console.log("sidebarUsuario no creado en la BD...")
+      console.log("sidebarUsuario no creado en la BD...");
     } else {
-      console.log("sidebarEl usuario en BD es =>", profile)
+      console.log("sidebarEl usuario en BD es =>", profile);
     }
-
   }
 
-
   useEffect(async () => {
-    componenteMontado()
-  }, [])
-
-
+    componenteMontado();
+  }, []);
 
   const activeRoute = (routeName) => {
     return location.pathname === routeName ? "active" : "";
@@ -130,13 +131,24 @@ function Sidebar(props) {
     let inactiveColor = useColorModeValue("gray.400", "gray.400");
     let sidebarActiveShadow = "0px 7px 11px rgba(0, 0, 0, 0.04)";
     return routes.map((prop, key) => {
-      if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
+      if (
+        prop.redirect ||
+        prop.path === "/signin" ||
+        prop.path === "/signup" ||
+        prop.path === "/forgot-password"
+      ) {
         return null;
       }
       // console.log("usuario es comerical?=", profile.isCommercial)
-      if ((profile && profile.isCommercial == false && prop.category === "commercial") ||
-        (profile && profile.isCommercial == null && prop.category === "commercial") ||
-        (!profile && prop.category === "commercial")) {
+      if (
+        (profile &&
+          profile.isCommercial == false &&
+          prop.category === "commercial") ||
+        (profile &&
+          profile.isCommercial == null &&
+          prop.category === "commercial") ||
+        (!profile && prop.category === "commercial")
+      ) {
         return null;
       }
       if (prop.category == "payments") {
@@ -328,7 +340,7 @@ function Sidebar(props) {
             }
             renderThumbVertical={useColorModeValue(
               renderThumbLight,
-              renderThumbDark
+              renderThumbDark,
             )}
             renderView={
               document.documentElement.dir === "rtl"
@@ -369,14 +381,19 @@ export function SidebarResponsive(props) {
   let inactiveColor = useColorModeValue("gray.400", "white");
   let sidebarActiveShadow = useColorModeValue(
     "0px 7px 11px rgba(0, 0, 0, 0.04)",
-    "none"
+    "none",
   );
   let sidebarBackgroundColor = useColorModeValue("white", "navy.800");
 
   // this function creates the links and collapses that appear in the sidebar (left menu)
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.redirect || prop.path === '/signin' || prop.path === '/signup' || prop.path === '/forgot-password') {
+      if (
+        prop.redirect ||
+        prop.path === "/signin" ||
+        prop.path === "/signup" ||
+        prop.path === "/forgot-password"
+      ) {
         return null;
       }
       if (prop.category) {
@@ -519,8 +536,8 @@ export function SidebarResponsive(props) {
   //  BRAND
 
   var brand = (
-    <Box pt={"35px"} mb="8px" pl={'1rem'}>
-      <Image src={LogoLight} style={{ width: '10rem', height: 'auto' }} />
+    <Box pt={"35px"} mb="8px" pl={"1rem"}>
+      <Image src={LogoLight} style={{ width: "10rem", height: "auto" }} />
       <HSeparator my="26px" />
     </Box>
   );
@@ -534,14 +551,14 @@ export function SidebarResponsive(props) {
       display={{ sm: "flex", xl: "none" }}
       ref={mainPanel}
       alignItems="center"
-      justifyContent={'space-between'}
+      justifyContent={"space-between"}
       my="1rem"
     >
       <HamburgerIcon
         color={hamburgerColor}
         w="2.5rem"
         h="2.5rem"
-        ml={'1rem'}
+        ml={"1rem"}
         ref={btnRef}
         onClick={onOpen}
       />

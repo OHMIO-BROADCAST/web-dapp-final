@@ -12,10 +12,13 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FaEllipsisV } from "react-icons/fa";
-import { Tooltip } from '@chakra-ui/react'
+import { Tooltip } from "@chakra-ui/react";
 
 function DashboardTableRow(props) {
-  const { logo, isLast, id,
+  const {
+    logo,
+    isLast,
+    id,
     title,
     description,
     timestamp,
@@ -25,7 +28,7 @@ function DashboardTableRow(props) {
     price,
     time12h,
     date,
-    position
+    position,
   } = props;
   const textColor = useColorModeValue("gray.500", "white");
   const titleColor = useColorModeValue("gray.700", "white");
@@ -37,79 +40,82 @@ function DashboardTableRow(props) {
 
   return (
     <Tr>
-      <Td minWidth={{ sm: "100px" }} pl="0px" borderColor={borderColor} borderBottom={isLast ? "none" : null}>
+      <Td
+        minWidth={{ sm: "100px" }}
+        pl="0px"
+        borderColor={borderColor}
+        borderBottom={isLast ? "none" : null}
+      >
         <Flex alignItems="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-
-          {
-            pair.toLowerCase() == 'audcad' &&
-            <Tooltip
-              hasArrow
-              label={"Identifier: " + id}
-              fontSize='sm'
-            >
+          {pair.toLowerCase() == "audcad" && (
+            <Tooltip hasArrow label={"Identifier: " + id} fontSize="sm">
               <Image
-                src={
-                  require(`../../assets/img/pairs/audcad.png`)
-                }
-                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-              /></Tooltip>
-          }
+                src={require(`../../assets/img/pairs/audcad.png`)}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 10,
+                  marginRight: 8,
+                }}
+              />
+            </Tooltip>
+          )}
 
-          {
-            pair.toLowerCase() == 'usdcad' &&
-            <Tooltip
-              hasArrow
-              label={"Identifier: " + id}
-              fontSize='sm'
-            ><Image
-                src={
-                  require(`../../assets/img/pairs/usdcad.png`)
-                }
-                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-              /></Tooltip>
-          }
+          {pair.toLowerCase() == "usdcad" && (
+            <Tooltip hasArrow label={"Identifier: " + id} fontSize="sm">
+              <Image
+                src={require(`../../assets/img/pairs/usdcad.png`)}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 10,
+                  marginRight: 8,
+                }}
+              />
+            </Tooltip>
+          )}
 
-          {
-            pair.toLowerCase() == 'nzdcad' &&
-            <Tooltip
-              hasArrow
-              label={"Identifier: " + id}
-              fontSize='sm'
-            ><Image
-                src={
-                  require(`../../assets/img/pairs/nzdcad.png`)
-                }
-                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-              /></Tooltip>
-          }
+          {pair.toLowerCase() == "nzdcad" && (
+            <Tooltip hasArrow label={"Identifier: " + id} fontSize="sm">
+              <Image
+                src={require(`../../assets/img/pairs/nzdcad.png`)}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 10,
+                  marginRight: 8,
+                }}
+              />
+            </Tooltip>
+          )}
 
-          {
-            pair.toLowerCase() == 'eurusd' &&
-            <Tooltip
-              hasArrow
-              label={"Identifier: " + id}
-              fontSize='sm'
-            ><Image
-                src={
-                  require(`../../assets/img/pairs/eurusd.png`)
-                }
-                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-              /></Tooltip>
-          }
+          {pair.toLowerCase() == "eurusd" && (
+            <Tooltip hasArrow label={"Identifier: " + id} fontSize="sm">
+              <Image
+                src={require(`../../assets/img/pairs/eurusd.png`)}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 10,
+                  marginRight: 8,
+                }}
+              />
+            </Tooltip>
+          )}
 
-          {
-            pair.toLowerCase() == 'cadchf' &&
-            <Tooltip
-              hasArrow
-              label={"Identifier: " + id}
-              fontSize='sm'
-            ><Image
-                src={
-                  require(`../../assets/img/pairs/cadchf.png`)
-                }
-                style={{ width: 50, height: 50, borderRadius: 10, marginRight: 8 }}
-              /></Tooltip>
-          }
+          {pair.toLowerCase() == "cadchf" && (
+            <Tooltip hasArrow label={"Identifier: " + id} fontSize="sm">
+              <Image
+                src={require(`../../assets/img/pairs/cadchf.png`)}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 10,
+                  marginRight: 8,
+                }}
+              />
+            </Tooltip>
+          )}
           <Text
             fontSize="md"
             color={titleColor}
@@ -131,24 +137,22 @@ function DashboardTableRow(props) {
         </Text>
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
-        <Tooltip
-          hasArrow
-          label={"Creation Date: " + createdAt}
-          fontSize='sm'
-        >
+        <Tooltip hasArrow label={"Creation Date: " + createdAt} fontSize="sm">
           <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
             {date}
           </Text>
         </Tooltip>
-
       </Td>
       <Td borderBottom={isLast ? "none" : null} borderColor={borderColor}>
-
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
           {type.toUpperCase()}
         </Text>
       </Td>
-      <Td borderColor={borderColor} borderBottom={isLast ? "none" : null} style={{ height: '100%', justifyContent: 'center' }}>
+      <Td
+        borderColor={borderColor}
+        borderBottom={isLast ? "none" : null}
+        style={{ height: "100%", justifyContent: "center" }}
+      >
         <Badge
           bg={position == "Buy" ? "green.400" : "red.400"}
           color={position == "Buy" ? "white" : "white"}
@@ -175,7 +179,7 @@ function DashboardTableRow(props) {
           <Icon as={FaEllipsisV} color="gray.400" cursor="pointer" />
         </Button>
       </Td> */}
-    </Tr >
+    </Tr>
   );
 }
 

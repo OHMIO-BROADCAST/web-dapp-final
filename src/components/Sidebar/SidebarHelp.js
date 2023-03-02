@@ -10,8 +10,7 @@ import {
 } from "@chakra-ui/react";
 import SidebarHelpImage from "assets/img/SidebarHelpImage.png";
 import React from "react";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
 
 export function SidebarHelp(props) {
   // Pass the computed styles into the `__css` prop
@@ -20,43 +19,54 @@ export function SidebarHelp(props) {
   const { colorMode } = useColorMode();
   return (
     <Stack
-      justify='center'
-      direction='column'
-      align='center'
-      spacing='10px'
+      justify="center"
+      direction="column"
+      align="center"
+      spacing="10px"
       mb="22px"
       mt="auto"
-      mx='20px'>
-      <Image src={SidebarHelpImage} w='250px' h="auto" style={{borderRadius:45}} />
-      <Flex direction='column' textAlign='center'>
-        <Text fontSize='14px' color={textColor} fontWeight='bold'>
+      mx="20px"
+    >
+      <Image
+        src={SidebarHelpImage}
+        w="250px"
+        h="auto"
+        style={{ borderRadius: 45 }}
+      />
+      <Flex direction="column" textAlign="center">
+        <Text fontSize="14px" color={textColor} fontWeight="bold">
           OHMIO App
         </Text>
-        <Text fontSize='12px' color='gray.500'>
+        <Text fontSize="12px" color="gray.500">
           Unlock the power of Blockchain.
         </Text>
       </Flex>
-      <Link href='https://play.google.com/store/apps/details?id=com.ohmio.app' target={"_blank"} minW='100%'>
-        <Button variant='primary' minW='100%'>
+      <Link
+        href="https://play.google.com/store/apps/details?id=com.ohmio.app"
+        target={"_blank"}
+        minW="100%"
+      >
+        <Button variant="primary" minW="100%">
           Download Android
         </Button>
       </Link>
-      <Link onClick={() => {
-        Swal.fire({
-          text: 'Stay Up, for now we only supports Android',
-          title: 'Coming soon!',
-          icon: 'success'
-        })
-      }}
-        minW='100%'>
-
+      <Link
+        onClick={() => {
+          Swal.fire({
+            text: "Stay Up, for now we only supports Android",
+            title: "Coming soon!",
+            icon: "success",
+          });
+        }}
+        minW="100%"
+      >
         <Button
-          variant={colorMode === "light" ? 'dark' : "navy"}
-          minW='100%'
-          mb={window.innerWidth <= 1024 && "12px"}>
+          variant={colorMode === "light" ? "dark" : "navy"}
+          minW="100%"
+          mb={window.innerWidth <= 1024 && "12px"}
+        >
           Download iOS
         </Button>
-
       </Link>
     </Stack>
   );

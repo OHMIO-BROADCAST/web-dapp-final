@@ -26,7 +26,6 @@ export const barChartOptions = {
     axisBorder: {
       show: false,
     },
-    
   },
   yaxis: {
     show: true,
@@ -111,7 +110,7 @@ export const lineChartOptions = {
       "Dec",
     ],
     axisTicks: {
-      show: false
+      show: false,
     },
     axisBorder: {
       show: false,

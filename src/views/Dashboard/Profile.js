@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Auth } from 'aws-amplify'
+import { Auth } from "aws-amplify";
 // Chakra imports
 import {
   Avatar,
@@ -45,7 +45,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
 
-import { HiBellAlert } from 'react-icons/hi2'
+import { HiBellAlert } from "react-icons/hi2";
 import { Tooltip } from "antd";
 import { Loader } from "@aws-amplify/ui-react";
 import { BsApple, BsFillShieldLockFill } from "react-icons/bs";
@@ -63,8 +63,7 @@ function Profile() {
   const borderProfileColor = useColorModeValue("white", "transparent");
   const emailColor = useColorModeValue("gray.400", "gray.300");
 
-
-  const [user, setuser] = useState()
+  const [user, setuser] = useState();
 
   const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
@@ -72,38 +71,39 @@ function Profile() {
   const [currentUser, setCurrentUser] = useState({});
   const [currentUserName, setCurrentUserName] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [hasiOSSession, setHasiOSSession] = useState(false)
-  const [hasAndroidSession, setHasAndroidSession] = useState(false)
-  const [deviceOSName, setDeviceOSName] = useState("")
-  const [deviceModelName, setDeviceModelName] = useState("")
-  const [deviceName, setDeviceName] = useState("")
-  const [deviceBrand, setDeviceBrand] = useState("")
-  const [activeDate, setActiveDate] = useState("")
-
+  const [hasiOSSession, setHasiOSSession] = useState(false);
+  const [hasAndroidSession, setHasAndroidSession] = useState(false);
+  const [deviceOSName, setDeviceOSName] = useState("");
+  const [deviceModelName, setDeviceModelName] = useState("");
+  const [deviceName, setDeviceName] = useState("");
+  const [deviceBrand, setDeviceBrand] = useState("");
+  const [activeDate, setActiveDate] = useState("");
 
   useEffect(() => {
     Auth.currentAuthenticatedUser().then((user) => {
       console.log(user);
       setuser(user);
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (profile != null) {
       if (profile.hasiOSSession != null || profile.hasiOSSession == false) {
-        setHasiOSSession(false)
+        setHasiOSSession(false);
       }
-      if (profile.hasAndroidSession != null || profile.hasAndroidSession == false) {
-        setHasAndroidSession(false)
+      if (
+        profile.hasAndroidSession != null ||
+        profile.hasAndroidSession == false
+      ) {
+        setHasAndroidSession(false);
       }
     }
     return () => {
-      null
-    }
-  }, [profile])
-
+      null;
+    };
+  }, [profile]);
 
   const deleteDevice = async () => {
     if (profile != null) {
@@ -117,68 +117,76 @@ function Profile() {
         deviceName: "",
         deviceBrand: "",
         activeDate: "",
-      }
+      };
 
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You will logout the current sessions",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          setIsLoading(true)
-          const updateUserSession = await API.graphql(graphqlOperation(mutations.updateUser, { input: userDetailstoUpdate }))
-            .then(data => {
-              console.log("Success signing status", data)
-              setIsLoading(false)
+          setIsLoading(true);
+          const updateUserSession = await API.graphql(
+            graphqlOperation(mutations.updateUser, {
+              input: userDetailstoUpdate,
+            }),
+          )
+            .then((data) => {
+              console.log("Success signing status", data);
+              setIsLoading(false);
               Swal.fire({
-                title: 'The device was deleted',
-                icon: 'success'
-              })
-              componenteMontado()
-            }).catch(error => {
-              console.log("Failed deleting device", error)
-              setIsLoading(false)
+                title: "The device was deleted",
+                icon: "success",
+              });
+              componenteMontado();
+            })
+            .catch((error) => {
+              console.log("Failed deleting device", error);
+              setIsLoading(false);
               Swal.fire({
-                title: 'Something Happen, please try again',
-                text: 'If this persist, contact support',
-                icon: 'error'
-              })
+                title: "Something Happen, please try again",
+                text: "If this persist, contact support",
+                icon: "error",
+              });
             });
-
         }
-      })
-
-
+      });
     }
-  }
-
-
-
+  };
 
   async function getUserProfile(sub) {
-    console.log("current state", profile, message, userID, currentUserName, currentUser)
-    setIsLoading(true)
+    console.log(
+      "current state",
+      profile,
+      message,
+      userID,
+      currentUserName,
+      currentUser,
+    );
+    setIsLoading(true);
     try {
       const result = await API.graphql(
-        graphqlOperation(queries.getUser, { id: sub })
+        graphqlOperation(queries.getUser, { id: sub }),
       )
-        .then(result => {
-          console.log("Resultado de la consulta del usuario", result.data.getUser)
-          setProfile(result.data.getUser)
-          setIsLoading(false)
+        .then((result) => {
+          console.log(
+            "Resultado de la consulta del usuario",
+            result.data.getUser,
+          );
+          setProfile(result.data.getUser);
+          setIsLoading(false);
           return result.data.getUser;
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
       return result;
-
     } catch (error) {
-      console.log("catch getuser")
-      const result = error
-      setIsLoading(false)
+      console.log("catch getuser");
+      const result = error;
+      setIsLoading(false);
       return result;
     }
   }
@@ -186,35 +194,33 @@ function Profile() {
   async function componenteMontado() {
     //se obtiene ID usuario actual
     const userID = await Auth.currentSession()
-      .then(data => {
+      .then((data) => {
         setUserID(data.idToken.payload.sub);
-        setCurrentUser(data.idToken.payload)
+        setCurrentUser(data.idToken.payload);
         return data.idToken.payload.sub;
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
     const userName = await Auth.currentAuthenticatedUser()
-      .then(data => {
+      .then((data) => {
         setCurrentUserName(data.username);
         return data.username;
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
 
     const profile = await getUserProfile(userID);
 
     if (profile == null) {
-      console.log("Usuario no creado en la BD, creando...")
+      console.log("Usuario no creado en la BD, creando...");
     } else {
-      console.log("El usuario en BD es =>", profile)
+      console.log("El usuario en BD es =>", profile);
     }
-
   }
 
-
   useEffect(async () => {
-    componenteMontado()
-  }, [])
+    componenteMontado();
+  }, []);
 
   if (isLoading) {
     return (
@@ -223,87 +229,94 @@ function Profile() {
         pt={{ base: "120px", md: "75px" }}
         alignContent="center"
         alignItems="center"
-      ><Card
-        style={{
-          boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-          border: "1px solid #e7eaf3",
-          borderRadius: "1rem",
-          width: "450px",
-          fontSize: "16px",
-          fontWeight: "500"
-        }}
       >
+        <Card
+          style={{
+            boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+            border: "1px solid #e7eaf3",
+            borderRadius: "1rem",
+            width: "450px",
+            fontSize: "16px",
+            fontWeight: "500",
+          }}
+        >
           <div
             style={{
               width: "auto",
               height: "300px",
-              justifyContent: 'center',
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'column'
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
             }}
           >
             <Loader variation="linear" filledColor={"#f9a640"} />
           </div>
         </Card>
       </Flex>
-    )
+    );
   }
 
   return (
-    <Flex direction='column' pt={{ base: "120px", md: "75px", lg: "100px" }}>
+    <Flex direction="column" pt={{ base: "120px", md: "75px", lg: "100px" }}>
       <Flex
         direction={{ sm: "column", md: "row" }}
-        mb='24px'
-        maxH='330px'
+        mb="24px"
+        maxH="330px"
         justifyContent={{ sm: "center", md: "space-between" }}
-        align='center'
-        backdropFilter={{ md: 'blur(1px)', lg: 'blur(1px)', sm: 'none' }}
-        boxShadow='0px 2px 5.5px rgba(0, 0, 0, 0.02)'
-        border='1.5px solid'
+        align="center"
+        backdropFilter={{ md: "blur(1px)", lg: "blur(1px)", sm: "none" }}
+        boxShadow="0px 2px 5.5px rgba(0, 0, 0, 0.02)"
+        border="1.5px solid"
         borderColor={borderProfileColor}
         bg={bgProfile}
-        p='24px'
-        borderRadius='20px'>
+        p="24px"
+        borderRadius="20px"
+      >
         <Flex
-          align='center'
+          align="center"
           mb={{ sm: "10px", md: "0px" }}
           direction={{ sm: "column", md: "row" }}
           w={{ sm: "100%" }}
-          textAlign={{ sm: "center", md: "start" }}>
+          textAlign={{ sm: "center", md: "start" }}
+        >
           <Avatar
             me={{ md: "22px" }}
             src={avatar5}
-            w='80px'
-            h='80px'
-            borderRadius='100px'
+            w="80px"
+            h="80px"
+            borderRadius="100px"
           />
-          <Flex direction='column' maxWidth='100%' my={{ sm: "14px" }}>
+          <Flex direction="column" maxWidth="100%" my={{ sm: "14px" }}>
             <Text
               fontSize={{ sm: "lg", lg: "xl" }}
               color={textColor}
-              fontWeight='bold'
-              ms={{ sm: "8px", md: "0px" }}>
+              fontWeight="bold"
+              ms={{ sm: "8px", md: "0px" }}
+            >
               @{user && user.username}
             </Text>
             <Text
               fontSize={{ sm: "lg", lg: "xl" }}
               color={textColor}
-              fontWeight='bold'
-              ms={{ sm: "8px", md: "0px" }}>
+              fontWeight="bold"
+              ms={{ sm: "8px", md: "0px" }}
+            >
               {user && user.attributes.name}
             </Text>
             <Text
               fontSize={{ sm: "sm", md: "md" }}
               color={emailColor}
-              fontWeight='semibold'>
+              fontWeight="semibold"
+            >
               {user && user.attributes.email.toLowerCase()}
             </Text>
           </Flex>
         </Flex>
         <Flex
           direction={{ sm: "column", lg: "column" }}
-          w={{ sm: "100%", md: "50%", lg: "auto" }}>
+          w={{ sm: "100%", md: "50%", lg: "auto" }}
+        >
           {/* <Button p='0px' bg='transparent' variant='no-effects'>
             <Flex
               align='center'
@@ -336,7 +349,7 @@ function Profile() {
               </Text>
             </Flex>
           </Button> */}
-         {/*  <Button p='0px' bg='transparent' variant='no-effects' my={"1rem"}>
+          {/*  <Button p='0px' bg='transparent' variant='no-effects' my={"1rem"}>
             <Flex
               align='center'
               w={{ sm: "100%", lg: "auto" }}
@@ -357,68 +370,79 @@ function Profile() {
         </Flex>
       </Flex>
 
-      <Grid templateColumns={{ sm: "1fr", xl: "repeat(2, 1fr)" }} gap='22px'>
-        <Card p='16px'>
-          <CardHeader p='12px 5px' mb='12px'>
-            <Text fontSize='lg' color={textColor} fontWeight='bold'>
+      <Grid templateColumns={{ sm: "1fr", xl: "repeat(2, 1fr)" }} gap="22px">
+        <Card p="16px">
+          <CardHeader p="12px 5px" mb="12px">
+            <Text fontSize="lg" color={textColor} fontWeight="bold">
               PLATFORM CONFIGURATION
             </Text>
           </CardHeader>
-          <CardBody px='5px'>
-            <Flex direction='column'>
-              <Text fontSize='sm' color='gray.400' fontWeight='600' mb='20px'>
+          <CardBody px="5px">
+            <Flex direction="column">
+              <Text fontSize="sm" color="gray.400" fontWeight="600" mb="20px">
                 SIGNALS & NOTIFICATIONS
               </Text>
-              <Flex align='center' mb='20px'>
-                <Switch colorScheme='navy' me='10px' />
+              <Flex align="center" mb="20px">
+                <Switch colorScheme="navy" me="10px" />
                 <Text
                   noOfLines={1}
-                  fontSize='md'
-                  color='gray.400'
-                  fontWeight='400'>
+                  fontSize="md"
+                  color="gray.400"
+                  fontWeight="400"
+                >
                   Push Notifications
                 </Text>
               </Flex>
-              <Flex align='center' mb='20px'>
-                <Switch colorScheme='navy' me='10px' />
+              <Flex align="center" mb="20px">
+                <Switch colorScheme="navy" me="10px" />
                 <Text
                   noOfLines={1}
-                  fontSize='md'
-                  color='gray.400'
-                  fontWeight='400'>
+                  fontSize="md"
+                  color="gray.400"
+                  fontWeight="400"
+                >
                   Email
                 </Text>
               </Flex>
-              <Flex align='center' mb='20px'>
-                <Switch colorScheme='navy' me='10px' />
+              <Flex align="center" mb="20px">
+                <Switch colorScheme="navy" me="10px" />
                 <Text
                   noOfLines={1}
-                  fontSize='md'
-                  color='gray.400'
-                  fontWeight='400'>
+                  fontSize="md"
+                  color="gray.400"
+                  fontWeight="400"
+                >
                   SMS
                 </Text>
               </Flex>
-              {profile && ((profile.hasiOSSession == true || profile.hasAndroidSession == true) ?
-                <Flex align='center' mb='20px' border={"1px"} borderColor={"#b3b3b3"} borderRadius={15} paddingTop={10} paddingBottom={10} flexDirection="column" justifyContent="center" alignItems={"center"}>
-                  <Text fontSize='lg' color={textColor} fontWeight='bold'>
-                    CURRENT DEVICES
-                  </Text>
-                  <TablesDevice
-                    deviceOSName={profile.deviceOSName}
-                    deviceModelName={profile.deviceModelName}
-                    deviceName={profile.deviceName}
-                    deviceBrand={profile.deviceBrand}
-                    activeDate={profile.activeDate}
-                    deleteDevice={() => deleteDevice()}
-                  />
-
-                </Flex>
-                : null)
-              }
-
-
-
+              {profile &&
+                (profile.hasiOSSession == true ||
+                profile.hasAndroidSession == true ? (
+                  <Flex
+                    align="center"
+                    mb="20px"
+                    border={"1px"}
+                    borderColor={"#b3b3b3"}
+                    borderRadius={15}
+                    paddingTop={10}
+                    paddingBottom={10}
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems={"center"}
+                  >
+                    <Text fontSize="lg" color={textColor} fontWeight="bold">
+                      CURRENT DEVICES
+                    </Text>
+                    <TablesDevice
+                      deviceOSName={profile.deviceOSName}
+                      deviceModelName={profile.deviceModelName}
+                      deviceName={profile.deviceName}
+                      deviceBrand={profile.deviceBrand}
+                      activeDate={profile.activeDate}
+                      deleteDevice={() => deleteDevice()}
+                    />
+                  </Flex>
+                ) : null)}
 
               {/* <Text
                 fontSize='sm'
@@ -460,158 +484,202 @@ function Profile() {
             </Flex>
           </CardBody>
         </Card>
-        <Card p='16px' my={{ sm: "24px", xl: "0px" }}>
-          <CardHeader p='12px 5px' mb='12px'>
-            <Text fontSize='lg' color={textColor} fontWeight='bold'>
+        <Card p="16px" my={{ sm: "24px", xl: "0px" }}>
+          <CardHeader p="12px 5px" mb="12px">
+            <Text fontSize="lg" color={textColor} fontWeight="bold">
               PROFILE INFORMATION
             </Text>
           </CardHeader>
-          <CardBody px='5px'>
-            <Flex direction='column'>
+          <CardBody px="5px">
+            <Flex direction="column">
               {/* <Text fontSize='md' color='gray.400' fontWeight='400' mb='30px'>
                 Hi, I’m Esthera Jackson, Decisions: If you can’t decide, the
                 answer is no. If two equally difficult paths, choose the one
                 more painful in the short term (pain avoidance is creating an
                 illusion of equality).
               </Text> */}
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   Complete Name:{" "}
                 </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400'>
+                <Text fontSize="md" color="gray.400" fontWeight="400">
                   {user && user.attributes.name}
                 </Text>
               </Flex>
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   Phone Number:{" "}
                 </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400'>
+                <Text fontSize="md" color="gray.400" fontWeight="400">
                   {user && user.attributes.phone_number}
                 </Text>
               </Flex>
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   Email:{" "}
                 </Text>
-                <Text fontSize='md' color='gray.400' fontWeight='400'>
+                <Text fontSize="md" color="gray.400" fontWeight="400">
                   {user && user.attributes.email.toLowerCase()}
                 </Text>
               </Flex>
 
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   OHMIO Box Status:{" "}
                 </Text>
                 <Badge
-                  bg={(profile && profile.forexSubscription) == true ? "green.400" : "gray.400"}
+                  bg={
+                    (profile && profile.forexSubscription) == true
+                      ? "green.400"
+                      : "gray.400"
+                  }
                   color={"white"}
                   fontSize="16px"
                   p="3px 10px"
                   borderRadius="8px"
                 >
-                  {profile && (profile.forexSubscription ? "Active" : "Inactive")}
+                  {profile &&
+                    (profile.forexSubscription ? "Active" : "Inactive")}
                 </Badge>
               </Flex>
-              {profile && (profile.forexSubscription ?
-                (<Flex align='center' mb='18px'>
-                  <Text
-                    fontSize='md'
-                    color={textColor}
-                    fontWeight='bold'
-                    me='10px'>
-                    Currently Plan:{" "}
-                  </Text>
-                  <Badge
-                    bg={(profile && profile.forexSubscription) == true ? "green.400" : "gray.400"}
-                    color={"white"}
-                    fontSize="16px"
-                    p="3px 10px"
-                    borderRadius="8px"
-                  >
-                    {profile && (profile.forexSubscription ? profile.currentlyPlan : "Inactive")}
-                  </Badge>
-                </Flex>) : null)
-              }
+              {profile &&
+                (profile.forexSubscription ? (
+                  <Flex align="center" mb="18px">
+                    <Text
+                      fontSize="md"
+                      color={textColor}
+                      fontWeight="bold"
+                      me="10px"
+                    >
+                      Currently Plan:{" "}
+                    </Text>
+                    <Badge
+                      bg={
+                        (profile && profile.forexSubscription) == true
+                          ? "green.400"
+                          : "gray.400"
+                      }
+                      color={"white"}
+                      fontSize="16px"
+                      p="3px 10px"
+                      borderRadius="8px"
+                    >
+                      {profile &&
+                        (profile.forexSubscription
+                          ? profile.currentlyPlan
+                          : "Inactive")}
+                    </Badge>
+                  </Flex>
+                ) : null)}
 
-
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   Certificate Disclaimer:{" "}
                 </Text>
-                {profile &&
-                  <Tooltip title="You have to sign the Certificates to enable all OHMIO Features" placement="bottom">
+                {profile && (
+                  <Tooltip
+                    title="You have to sign the Certificates to enable all OHMIO Features"
+                    placement="bottom"
+                  >
                     <Badge
                       bg={profile.hasSigned == true ? "green.400" : "gray.400"}
                       color={"white"}
                       fontSize="16px"
                       p="3px 10px"
                       borderRadius="8px"
-                    >{profile &&
-                      <>
-                        {profile.hasSigned == true ? "Signed" : "Unsigned"}
-                      </>}
+                    >
+                      {profile && (
+                        <>{profile.hasSigned == true ? "Signed" : "Unsigned"}</>
+                      )}
                     </Badge>
                   </Tooltip>
-                }
+                )}
 
-
-
-                {profile && (!profile.isCompletedKYC ?
-                  <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
-                    <BsFillShieldLockFill size={22} color={profile.hasSigned == true ? "#48bb79" : "#a0aec0"} style={{ marginLeft: 10 }} /></Tooltip> :
-                  null)}
-
+                {profile &&
+                  (!profile.isCompletedKYC ? (
+                    <Tooltip
+                      title="You have to complete the KYC process to enable all OHMIO Features"
+                      placement="bottom"
+                    >
+                      <BsFillShieldLockFill
+                        size={22}
+                        color={
+                          profile.hasSigned == true ? "#48bb79" : "#a0aec0"
+                        }
+                        style={{ marginLeft: 10 }}
+                      />
+                    </Tooltip>
+                  ) : null)}
               </Flex>
 
-              <Flex align='center' mb='18px'>
+              <Flex align="center" mb="18px">
                 <Text
-                  fontSize='md'
+                  fontSize="md"
                   color={textColor}
-                  fontWeight='bold'
-                  me='10px'>
+                  fontWeight="bold"
+                  me="10px"
+                >
                   KYC Verification:{" "}
                 </Text>
-                <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
+                <Tooltip
+                  title="You have to complete the KYC process to enable all OHMIO Features"
+                  placement="bottom"
+                >
                   <Badge
-                    bg={(profile && profile.isCompletedKYC) == true ? "green.400" : "red.400"}
+                    bg={
+                      (profile && profile.isCompletedKYC) == true
+                        ? "green.400"
+                        : "red.400"
+                    }
                     color={"white"}
                     fontSize="16px"
                     p="3px 10px"
                     borderRadius="8px"
                   >
-                    {profile && (profile.isCompletedKYC ? "Complete" : "Incomplete")}
+                    {profile &&
+                      (profile.isCompletedKYC ? "Complete" : "Incomplete")}
                   </Badge>
                 </Tooltip>
 
-                {profile && (!profile.isCompletedKYC ?
-                  <Tooltip title="You have to complete the KYC process to enable all OHMIO Features" placement="bottom">
-                    <HiBellAlert size={22} color={"#f56565"} style={{ marginLeft: 10 }} /></Tooltip> :
-                  null)}
-
+                {profile &&
+                  (!profile.isCompletedKYC ? (
+                    <Tooltip
+                      title="You have to complete the KYC process to enable all OHMIO Features"
+                      placement="bottom"
+                    >
+                      <HiBellAlert
+                        size={22}
+                        color={"#f56565"}
+                        style={{ marginLeft: 10 }}
+                      />
+                    </Tooltip>
+                  ) : null)}
               </Flex>
-
-
             </Flex>
           </CardBody>
         </Card>

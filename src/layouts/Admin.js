@@ -29,8 +29,8 @@ import PanelContainer from "../components/Layout/PanelContainer";
 import PanelContent from "../components/Layout/PanelContent";
 import bgAdmin from "../assets/img/admin-background-violeta.png";
 
-import LogoDark from '../assets/img/LogoTIPSparaDark.png';
-import LogoLight from '../assets/img/LogoTIPSparaLight.png';
+import LogoDark from "../assets/img/LogoTIPSparaDark.png";
+import LogoLight from "../assets/img/LogoTIPSparaLight.png";
 
 import BackgroundDashboard from "components/Animations/Background/BackgroundDashboard";
 import { API, graphqlOperation, Auth } from "aws-amplify";
@@ -43,58 +43,62 @@ export default function Dashboard(props) {
   const [fixed, setFixed] = useState(false);
   const { colorMode } = useColorMode();
 
-
   const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
-  const [currentUserCompleteObject, setCurrentUserCompleteObject] = useState({});
+  const [currentUserCompleteObject, setCurrentUserCompleteObject] = useState(
+    {},
+  );
 
   async function createUser(usuario) {
-    console.log("insumos para crear usuario:", usuario)
+    console.log("insumos para crear usuario:", usuario);
 
     if (usuario != null && usuario.attributes != null) {
       const userDetails = {
-        "id": usuario.attributes.sub,
-        "username": usuario.username,
-        "name": usuario.attributes.name,
-        "phone": usuario.attributes.phone_number,
-        "email": usuario.attributes.email,
-        "isCommercial": false,
-      }
-      console.log("Detalles de usuario a crear:", userDetails)
+        id: usuario.attributes.sub,
+        username: usuario.username,
+        name: usuario.attributes.name,
+        phone: usuario.attributes.phone_number,
+        email: usuario.attributes.email,
+        isCommercial: false,
+      };
+      console.log("Detalles de usuario a crear:", userDetails);
 
       const result = await API.graphql(
         graphqlOperation(mutations.createUser, { input: userDetails }),
-      ).then(data => {
-        console.log('responde created user', data)
-        window.location.reload();
-      }).catch(err => {
-        console.log('error creating user', err)
-      })
+      )
+        .then((data) => {
+          console.log("responde created user", data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log("error creating user", err);
+        });
     }
-
   }
 
   async function getUserProfile(sub) {
-    console.log("obteniendo perfil de ", sub)
+    console.log("obteniendo perfil de ", sub);
     try {
       const result = await API.graphql(
-        graphqlOperation(queries.getUser, { id: sub })
+        graphqlOperation(queries.getUser, { id: sub }),
       )
-        .then(result => {
-          console.log("Resultado de la consulta del usuario", result.data.getUser)
+        .then((result) => {
+          console.log(
+            "Resultado de la consulta del usuario",
+            result.data.getUser,
+          );
           if (result != null) {
-            setProfile(result.data.getUser)
+            setProfile(result.data.getUser);
             return result.data.getUser;
           }
         })
-        .catch(err => {
-          console.log(err)
+        .catch((err) => {
+          console.log(err);
         });
       return result;
-
     } catch (error) {
-      console.log("catch getuser")
-      const result = error
+      console.log("catch getuser");
+      const result = error;
       return result;
     }
   }
@@ -102,37 +106,31 @@ export default function Dashboard(props) {
   async function componenteMontado() {
     //se obtiene ID usuario actual
     const userObjectID = await Auth.currentAuthenticatedUser()
-      .then(data => {
+      .then((data) => {
         console.log("DATA current", data);
         if (data) {
-          setCurrentUserCompleteObject(data)
+          setCurrentUserCompleteObject(data);
           return data.attributes.sub;
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
 
-    const userObjectComplete = await Auth.currentAuthenticatedUser()
-
+    const userObjectComplete = await Auth.currentAuthenticatedUser();
 
     //VERIFICAMOS SI EXISTE USUARIO EN LA BASE DE DATOS
     const profileResponse = await getUserProfile(userObjectID);
     if (profileResponse == null) {
-      console.log("Usuario no creado en la BD, creando...")
-      createUser(userObjectComplete)
+      console.log("Usuario no creado en la BD, creando...");
+      createUser(userObjectComplete);
     } else {
-      console.log("El usuario en BD es =>", profile)
-      setProfile(profile)
+      console.log("El usuario en BD es =>", profile);
+      setProfile(profile);
     }
   }
 
   useEffect(async () => {
-    componenteMontado()
-  }, [])
-
-
-
-
-
+    componenteMontado();
+  }, []);
 
   const getRoute = () => {
     return window.location.pathname !== "/full-screen-maps";
@@ -151,9 +149,7 @@ export default function Dashboard(props) {
           return categoryActiveRoute;
         }
       } else {
-        if (
-          window.location.href.indexOf(routes[i].path) !== -1
-        ) {
+        if (window.location.href.indexOf(routes[i].path) !== -1) {
           return routes[i].name;
         }
       }
@@ -170,9 +166,7 @@ export default function Dashboard(props) {
           return categoryActiveNavbar;
         }
       } else {
-        if (
-          window.location.href.indexOf(routes[i].path) !== -1
-        ) {
+        if (window.location.href.indexOf(routes[i].path) !== -1) {
           if (routes[i].secondaryNavbar) {
             return routes[i].secondaryNavbar;
           }
@@ -192,9 +186,15 @@ export default function Dashboard(props) {
       if (prop.category === "robots") {
         return getRoutes(prop.views);
       }
-      if ((profile && profile.isCommercial == false && prop.category === "commercial") ||
-        (profile && profile.isCommercial == null && prop.category === "commercial") ||
-        (!profile && prop.category === "commercial")) {
+      if (
+        (profile &&
+          profile.isCommercial == false &&
+          prop.category === "commercial") ||
+        (profile &&
+          profile.isCommercial == null &&
+          prop.category === "commercial") ||
+        (!profile && prop.category === "commercial")
+      ) {
         return getRoutes(prop.views);
       }
       if (prop.category === "payments") {
@@ -207,13 +207,7 @@ export default function Dashboard(props) {
         return getRoutes(prop.views);
       }
       if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
+        return <Route path={prop.path} component={prop.component} key={key} />;
       } else {
         return null;
       }
@@ -223,51 +217,52 @@ export default function Dashboard(props) {
   document.documentElement.dir = "ltr";
   // Chakra Color Mode
 
-
-
-
   return (
     <Box>
-      <Box
-        style={{ height: '100px' }}
-        w='100%'
-        position='absolute'
-        top='0'
-      >
+      <Box style={{ height: "100px" }} w="100%" position="absolute" top="0">
         <BackgroundDashboard />
       </Box>
       <Sidebar
         routes={routes}
         logo={
-          <Stack direction='row' spacing='10px' align='center' justify='center'>
+          <Stack direction="row" spacing="10px" align="center" justify="center">
             {colorMode === "dark" ? (
-              <Image src={LogoDark} style={{ width: '10rem', height: 'auto' }} />
+              <Image
+                src={LogoDark}
+                style={{ width: "10rem", height: "auto" }}
+              />
             ) : (
-              <Image src={LogoLight} style={{ width: '10rem', height: 'auto' }} />
+              <Image
+                src={LogoLight}
+                style={{ width: "10rem", height: "auto" }}
+              />
             )}
-
           </Stack>
         }
-        display='none'
+        display="none"
         {...rest}
       />
       <MainPanel
         w={{
           base: "100%",
           xl: "calc(100% - 275px)",
-        }}>
+        }}
+      >
         <Portal>
-          {currentUserCompleteObject &&
+          {currentUserCompleteObject && (
             <AdminNavbar
               onOpen={onOpen}
               brandText={getActiveRoute(routes)}
               secondary={getActiveNavbar(routes)}
               fixed={fixed}
-              money={currentUserCompleteObject.attributes ? currentUserCompleteObject.attributes.totalReward : 0}
+              money={
+                currentUserCompleteObject.attributes
+                  ? currentUserCompleteObject.attributes.totalReward
+                  : 0
+              }
               {...rest}
             />
-          }
-
+          )}
         </Portal>
 
         {getRoute() ? (
@@ -275,7 +270,7 @@ export default function Dashboard(props) {
             <PanelContainer>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from='/' to='/dashboard' />
+                <Redirect from="/" to="/dashboard" />
               </Switch>
             </PanelContainer>
           </PanelContent>
@@ -302,7 +297,4 @@ export default function Dashboard(props) {
       </MainPanel>
     </Box>
   );
-
-
-
 }

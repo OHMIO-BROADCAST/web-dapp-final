@@ -1,11 +1,12 @@
 // import
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Dashboard from "views/Dashboard/Dashboard.js";
+import Explorer from "views/Dashboard/Explorer/Explorer.js";
+
 import Tables from "views/Dashboard/Tables.js";
 import Billing from "views/Dashboard/Billing.js";
 import RTLPage from "views/RTL/RTLPage.js";
 import Profile from "views/Dashboard/Profile.js";
-
 
 import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
@@ -27,49 +28,54 @@ import {
   BuyIcon,
   ExchangeIcon,
   BalanceIcon,
-  BillIcon
+  BillIcon,
 } from "components/Icons/Icons";
-import Distributor from 'components/Distributor/Distributor';
-import Signals from 'components/Signals/Signals';
-import TablesSignals from 'views/Dashboard/TablesSignals';
-import Manual from 'views/Dashboard/Manual';
+import Distributor from "components/Distributor/Distributor";
+import Signals from "components/Signals/Signals";
+import TablesSignals from "views/Dashboard/TablesSignals";
+import Manual from "views/Dashboard/Manual";
 
-import { HiUsers } from 'react-icons/hi';
-import { AiTwotoneNotification } from 'react-icons/ai';
-import { AiOutlineDotChart } from 'react-icons/ai';
-import { SiArtstation, SiMapbox, SiMarketo, SiOpencollective } from 'react-icons/si';
-import { TbReportMoney } from 'react-icons/tb';
-import { GiStairsGoal } from 'react-icons/gi';
-import { HiDocumentAdd } from 'react-icons/hi';
-import { GoLaw } from 'react-icons/go';
+import { HiUsers } from "react-icons/hi";
+import { AiTwotoneNotification } from "react-icons/ai";
+import { AiOutlineDotChart } from "react-icons/ai";
+import {
+  SiArtstation,
+  SiMapbox,
+  SiMarketo,
+  SiOpencollective,
+} from "react-icons/si";
+import { TbReportMoney } from "react-icons/tb";
+import { GiStairsGoal } from "react-icons/gi";
+import { HiDocumentAdd } from "react-icons/hi";
+import { GoLaw } from "react-icons/go";
 
-import { FaTools } from 'react-icons/fa'
-import Comissions from 'views/Dashboard/Comissions';
-import Refers from 'views/Dashboard/Refeers';
-import Comercials from 'views/Dashboard/Comercials';
-import Goal from 'views/Dashboard/Goal';
-import Certificates from 'views/Dashboard/Certificates';
-import KYC from 'views/Dashboard/KYC';
-import PurchaseSuccess from 'views/Dashboard/PurchaseSuccess';
-import CertificatesTest from 'views/Dashboard/CertificatesTest';
-import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
-import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
-import Invite from 'views/Dashboard/Invite';
-import { MdAccountBalanceWallet, MdOutlineTravelExplore } from 'react-icons/md';
+import { FaTools } from "react-icons/fa";
+import Comissions from "views/Dashboard/Comissions";
+import Refers from "views/Dashboard/Refeers";
+import Comercials from "views/Dashboard/Comercials";
+import Goal from "views/Dashboard/Goal";
+import Certificates from "views/Dashboard/Certificates";
+import KYC from "views/Dashboard/KYC";
+import PurchaseSuccess from "views/Dashboard/PurchaseSuccess";
+import CertificatesTest from "views/Dashboard/CertificatesTest";
+import PurchaseSuccessTrimestral from "views/Dashboard/PurchaseSuccessTrimestral";
+import PurchaseSuccessFivemestral from "views/Dashboard/PurchaseSuccessFivemestral";
+import Invite from "views/Dashboard/Invite";
+import { MdAccountBalanceWallet, MdOutlineTravelExplore } from "react-icons/md";
 
 var dashRoutes = [
   {
     path: "/dashboard",
     name: "Home",
-    icon: <HomeIcon color='inherit' size={22} />,
+    icon: <HomeIcon color="inherit" size={22} />,
     component: Dashboard,
     layout: "/admin",
   },
-    {
+  {
     path: "/explorer",
     name: "Explorer",
-    icon: <MdOutlineTravelExplore color='inherit' size={22} />,
-    component: Dashboard,
+    icon: <MdOutlineTravelExplore color="inherit" size={22} />,
+    component: Explorer,
     layout: "/admin",
   },
   /* {
@@ -94,25 +100,25 @@ var dashRoutes = [
       {
         path: "/wallets",
         name: "Wallets",
-        icon: <MdAccountBalanceWallet color='inherit' size={22} />,
+        icon: <MdAccountBalanceWallet color="inherit" size={22} />,
         component: Signals,
         layout: "/admin",
       },
       {
         path: "/tokens",
         name: "Tokens",
-        icon: <SiMarketo color='inherit' size={22} />,
+        icon: <SiMarketo color="inherit" size={22} />,
         component: Signals,
         layout: "/admin",
       },
       {
         path: "/nfts",
         name: "NFTs",
-        icon: <SiArtstation color='inherit' size={22} />,
+        icon: <SiArtstation color="inherit" size={22} />,
         component: Signals,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
     name: "OHMIO Box",
@@ -122,18 +128,18 @@ var dashRoutes = [
       {
         path: "/my-refeers",
         name: "Stats",
-        icon: <StatsIcon color='inherit' size={22} />,
+        icon: <StatsIcon color="inherit" size={22} />,
         component: Refers,
         layout: "/admin",
       },
       {
         path: "/my-comissions",
         name: "Rewards",
-        icon: <TbReportMoney color='inherit' size={22} />,
+        icon: <TbReportMoney color="inherit" size={22} />,
         component: Comissions,
         layout: "/admin",
       },
-    ]
+    ],
   },
   {
     name: "COMMERCIAL",
@@ -143,18 +149,18 @@ var dashRoutes = [
       {
         path: "/my-clients",
         name: "Clients",
-        icon: <StarIcon color='inherit' size={22} />,
+        icon: <StarIcon color="inherit" size={22} />,
         component: Comercials,
         layout: "/admin",
       },
       {
         path: "/monthly-goal",
         name: "Monthly Goal",
-        icon: <GiStairsGoal color='inherit' size={22} />,
+        icon: <GiStairsGoal color="inherit" size={22} />,
         component: Goal,
         layout: "/admin",
       },
-    ]
+    ],
   },
   {
     name: "PAYMENTS",
@@ -164,25 +170,25 @@ var dashRoutes = [
       {
         path: "/success-purchase",
         name: "Success Purchase Month",
-        icon: <StarIcon color='inherit' size={22} />,
+        icon: <StarIcon color="inherit" size={22} />,
         component: PurchaseSuccess,
         layout: "/admin",
       },
       {
         path: "/success-purchase-trimestral",
         name: "Success Purchase Trimestral",
-        icon: <StarIcon color='inherit' size={22} />,
+        icon: <StarIcon color="inherit" size={22} />,
         component: PurchaseSuccessTrimestral,
         layout: "/admin",
       },
       {
         path: "/success-purchase-5month",
         name: "Success Purchase 5 Months",
-        icon: <StarIcon color='inherit' size={22} />,
+        icon: <StarIcon color="inherit" size={22} />,
         component: PurchaseSuccessFivemestral,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
     name: "INVITE USER",
@@ -192,11 +198,11 @@ var dashRoutes = [
       {
         path: "/invite",
         name: "Invite User",
-        icon: <StarIcon color='inherit' size={22} />,
+        icon: <StarIcon color="inherit" size={22} />,
         component: Invite,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
     name: "TERMS & CONDITIONS",
@@ -206,18 +212,18 @@ var dashRoutes = [
       {
         path: "/all-certificates",
         name: "All Certificates",
-        icon: <HiDocumentAdd color='inherit' size={22} />,
+        icon: <HiDocumentAdd color="inherit" size={22} />,
         component: CertificatesTest,
         layout: "/admin",
       },
       {
         path: "/kyc",
         name: "KYC & AML",
-        icon: <GoLaw color='inherit' size={22} />,
+        icon: <GoLaw color="inherit" size={22} />,
         component: KYC,
         layout: "/admin",
-      }
-    ]
+      },
+    ],
   },
   {
     name: "ACCOUNT",
@@ -227,13 +233,12 @@ var dashRoutes = [
       {
         path: "/profile",
         name: "Profile",
-        icon: <PersonIcon color='inherit' size={22} />,
+        icon: <PersonIcon color="inherit" size={22} />,
         secondaryNavbar: true,
         component: Profile,
         layout: "/admin",
-      }
+      },
     ],
   },
-
 ];
 export default dashRoutes;

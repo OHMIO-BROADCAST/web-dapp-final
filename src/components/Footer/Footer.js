@@ -28,7 +28,7 @@ export default function Footer(props) {
         <Text as='span'>
           {document.documentElement.dir === "rtl"
             ? " مصنوع من ❤️ بواسطة"
-            : "Best Market Signals | "}
+            : "OHMIO for Broadcast industry | "}
         </Text>
         <Link
           color='navy.400'
@@ -37,7 +37,7 @@ export default function Footer(props) {
           style={{ textDecoration: 'underline' }}>
           {document.documentElement.dir === "rtl"
             ? " توقيت الإبداعية"
-            : "We help you to get financial freedom"}
+            : "We help you to control stations"}
         </Link>.
 
       </Text>

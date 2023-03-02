@@ -102,9 +102,9 @@ export default function HeaderLinks(props) {
 
         {money != null ?
           (<Text color={"white"} fontWeight={"bold"}>
-            Total Accumulated by Refeer: ${money} USD
+            Total Accumulated by rewards: {money} OHMIO
           </Text>) : (<Text color={"white"} fontWeight={"bold"}>
-            Total Accumulated by Reefer: $0 USD
+            Total Accumulated by rewards: 0 OHMIO
           </Text>)
         }
 
@@ -124,14 +124,14 @@ export default function HeaderLinks(props) {
         visibility={{ xs: 'hidden' }}
 
       >
-        <Text color={'orange'} fontWeight={"bold"} >
-          Reefer and earn
+        <Text color={'#f9ae40'} fontWeight={"bold"} >
+          How to earn
         </Text>
         <ExternalLinkIcon
           cursor='pointer'
           ms={{ base: "0.5rem", xl: "0.5rem" }}
           onClick={props.onOpen}
-          color={"orange"}
+          color={"#f9ae40"}
           w='18px'
           h='18px'
         />

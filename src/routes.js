@@ -37,7 +37,7 @@ import Manual from 'views/Dashboard/Manual';
 import { HiUsers } from 'react-icons/hi';
 import { AiTwotoneNotification } from 'react-icons/ai';
 import { AiOutlineDotChart } from 'react-icons/ai';
-import { SiMarketo } from 'react-icons/si';
+import { SiArtstation, SiMapbox, SiMarketo, SiOpencollective } from 'react-icons/si';
 import { TbReportMoney } from 'react-icons/tb';
 import { GiStairsGoal } from 'react-icons/gi';
 import { HiDocumentAdd } from 'react-icons/hi';
@@ -55,12 +55,20 @@ import CertificatesTest from 'views/Dashboard/CertificatesTest';
 import PurchaseSuccessTrimestral from 'views/Dashboard/PurchaseSuccessTrimestral';
 import PurchaseSuccessFivemestral from 'views/Dashboard/PurchaseSuccessFivemestral';
 import Invite from 'views/Dashboard/Invite';
+import { MdOutlineTravelExplore } from 'react-icons/md';
 
 var dashRoutes = [
   {
     path: "/dashboard",
     name: "Home",
     icon: <HomeIcon color='inherit' size={22} />,
+    component: Dashboard,
+    layout: "/admin",
+  },
+    {
+    path: "/explorer",
+    name: "Explorer",
+    icon: <MdOutlineTravelExplore color='inherit' size={22} />,
     component: Dashboard,
     layout: "/admin",
   },
@@ -79,34 +87,41 @@ var dashRoutes = [
     ]
   }, */
   {
-    name: "SUBSCRIPTIONS",
+    name: "BALANCE",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/forex",
-        name: "Forex",
+        name: "Tokens",
         icon: <SiMarketo color='inherit' size={22} />,
+        component: Signals,
+        layout: "/admin",
+      },
+      {
+        path: "/forex",
+        name: "NFTs",
+        icon: <SiArtstation color='inherit' size={22} />,
         component: Signals,
         layout: "/admin",
       }
     ]
   },
   {
-    name: "REFEERS",
+    name: "OHMIO Box",
     category: "robots",
     state: "pageCollapse",
     views: [
       {
         path: "/my-refeers",
-        name: "My Refeers",
+        name: "Stats",
         icon: <StatsIcon color='inherit' size={22} />,
         component: Refers,
         layout: "/admin",
       },
       {
         path: "/my-comissions",
-        name: "Comissions",
+        name: "Rewards",
         icon: <TbReportMoney color='inherit' size={22} />,
         component: Comissions,
         layout: "/admin",

@@ -336,7 +336,7 @@ function Profile() {
               </Text>
             </Flex>
           </Button> */}
-          <Button p='0px' bg='transparent' variant='no-effects' my={"1rem"}>
+         {/*  <Button p='0px' bg='transparent' variant='no-effects' my={"1rem"}>
             <Flex
               align='center'
               w={{ sm: "100%", lg: "auto" }}
@@ -353,7 +353,7 @@ function Profile() {
                 TUTORIALS
               </Text>
             </Flex>
-          </Button>
+          </Button> */}
         </Flex>
       </Flex>
 
@@ -517,7 +517,7 @@ function Profile() {
                   color={textColor}
                   fontWeight='bold'
                   me='10px'>
-                  Subscription Status:{" "}
+                  OHMIO Box Status:{" "}
                 </Text>
                 <Badge
                   bg={(profile && profile.forexSubscription) == true ? "green.400" : "gray.400"}

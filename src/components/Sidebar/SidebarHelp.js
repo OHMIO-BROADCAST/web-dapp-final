@@ -27,18 +27,18 @@ export function SidebarHelp(props) {
       mb="22px"
       mt="auto"
       mx='20px'>
-      <Image src={SidebarHelpImage} w='250px' h="auto" />
+      <Image src={SidebarHelpImage} w='250px' h="auto" style={{borderRadius:45}} />
       <Flex direction='column' textAlign='center'>
         <Text fontSize='14px' color={textColor} fontWeight='bold'>
-          OHMIO Signals App
+          OHMIO App
         </Text>
         <Text fontSize='12px' color='gray.500'>
-          Tu nueva herramienta.
+          Unlock the power of Blockchain.
         </Text>
       </Flex>
       <Link href='https://play.google.com/store/apps/details?id=com.ohmio.app' target={"_blank"} minW='100%'>
         <Button variant='primary' minW='100%'>
-          Descargar Android
+          Download Android
         </Button>
       </Link>
       <Link onClick={() => {
@@ -54,7 +54,7 @@ export function SidebarHelp(props) {
           variant={colorMode === "light" ? 'dark' : "navy"}
           minW='100%'
           mb={window.innerWidth <= 1024 && "12px"}>
-          Descargar iOS
+          Download iOS
         </Button>
 
       </Link>

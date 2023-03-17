@@ -1,7 +1,7 @@
 export const barChartData = [
   {
-    name: "Sales",
-    data: [15, 25, 28, 10, 25, 20],
+    name: "Score",
+    data: [0.15, 0.25, 0.28, 0.1, 0.25, 0.2],
   },
 ];
 
@@ -69,12 +69,12 @@ export const barChartOptions = {
 
 export const lineChartData = [
   {
-    name: "Mobile apps",
-    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+    name: "Transmitted",
+    data: [5, 4, 30, 22, 50, 25, 40, 23, 50],
   },
   {
-    name: "Websites",
-    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+    name: "Reflected",
+    data: [3, 9, 4, 14, 29, 29, 34, 23, 40],
   },
 ];
 

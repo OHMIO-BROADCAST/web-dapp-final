@@ -179,7 +179,7 @@ export default function Explorer() {
           onClick={flyToRandom}
           rightIcon={<HiArrowCircleRight size={22} />}
         >
-          Siguiente estación
+          Next station
         </Button>
       </Flex>
     </div>

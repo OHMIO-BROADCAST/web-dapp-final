@@ -351,30 +351,35 @@ export const pageVisits = [
     visitors: "4,569",
     uniqueUsers: 340,
     bounceRate: "46,53%",
+    timestamp: "17/03/2023 - 6:00 PM",
   },
   {
     pageName: "/argon/index.html",
     visitors: "3,985",
     uniqueUsers: 319,
     bounceRate: "46,53%",
+    timestamp: "17/03/2023 - 6:00 PM",
   },
   {
     pageName: "/argon/charts.html",
     visitors: "3,513",
     uniqueUsers: 294,
     bounceRate: "36,49%",
+    timestamp: "17/03/2023 - 6:00 PM",
   },
   {
     pageName: "/argon/tables.html",
     visitors: "2,050",
     uniqueUsers: 147,
     bounceRate: "50,87%",
+    timestamp: "17/03/2023 - 6:00 PM",
   },
   {
     pageName: "/argon/profile.html",
     visitors: "1,795",
     uniqueUsers: 190,
     bounceRate: "46,53%",
+    timestamp: "17/03/2023 - 6:00 PM",
   },
 ];
 

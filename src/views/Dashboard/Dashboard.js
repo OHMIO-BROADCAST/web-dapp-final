@@ -41,7 +41,7 @@ import {
   lineChartOptions,
 } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
-import { MdSettingsInputAntenna } from "react-icons/md";
+import { MdRefresh, MdSettingsInputAntenna } from "react-icons/md";
 import { GiFactory } from "react-icons/gi";
 import { FaWaveSquare } from "react-icons/fa";
 
@@ -153,10 +153,10 @@ export default function Dashboard() {
               </IconBox>
             </Flex>
             <Text color="gray.400" fontSize="sm">
-              <Text as="span" color="green.400" fontWeight="bold">
-                +3.48%{" "}
+              <Text as="span" color="grey.500" fontWeight="bold">
+                See{" "}
               </Text>
-              Since last month
+              All
             </Text>
           </Flex>
         </Card>
@@ -237,14 +237,20 @@ export default function Dashboard() {
               </IconBox>
             </Flex>
             <Text color="gray.400" fontSize="sm">
-              <Text as="span" color="red.500" fontWeight="bold">
-                -2.82%{" "}
+              <Text as="span" color="gray.500" fontWeight="bold">
+                Switch{" "}
               </Text>
-              Since last month
+              frequency
+              <MdRefresh />
             </Text>
           </Flex>
         </Card>
-        <Card minH="125px">
+        <Card
+          minH="125px"
+          style={{
+            background: "linear-gradient(70deg, #f9ae40 0%, #49bfad 100%)",
+          }}
+        >
           <Flex direction="column">
             <Flex
               flexDirection="row"
@@ -256,33 +262,51 @@ export default function Dashboard() {
               <Stat me="auto">
                 <StatLabel
                   fontSize="xs"
-                  color="gray.400"
+                  color="white"
                   fontWeight="bold"
                   textTransform="uppercase"
                 >
-                  NOMBRE EMPRESA
+                  COMPANY
                 </StatLabel>
                 <Flex>
-                  <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
+                  <StatNumber
+                    fontSize="lg"
+                    color={textColor}
+                    fontWeight="bold"
+                    color="white"
+                    style={{ textDecoration: "underline" }}
+                  >
                     ALVAVISION
                   </StatNumber>
                 </Flex>
               </Stat>
-              <IconBox
+              <Box
                 borderRadius="50%"
                 as="box"
                 h={"45px"}
                 w={"45px"}
-                bg={iconBlue}
+                style={{ backgroundColor: "#ffffff", display: "flex" }}
+                boxShadow="lg"
+                justifyContent={"center"}
+                alignItems={"center"}
               >
-                <GiFactory h={"40px"} w={"40px"} color={iconBoxInside} />
-              </IconBox>
+                <img
+                  alt="logocompany"
+                  src={require("../../assets/img/logoalbavision.png")}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    objectFit: "contain",
+                  }}
+                />
+                {/*                 <GiFactory h={"40px"} w={"40px"} color={"#4BBEAB"} />
+                 */}{" "}
+              </Box>
             </Flex>
             <Text color="gray.400" fontSize="sm">
-              <Text as="span" color="green.400" fontWeight="bold">
-                +8.12%{" "}
+              <Text as="span" color="white" fontWeight="bold">
+                See info{" "}
               </Text>
-              Since last month
             </Text>
           </Flex>
         </Card>

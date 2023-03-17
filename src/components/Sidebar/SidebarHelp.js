@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import SidebarHelpImage from "assets/img/SidebarHelpImage.png";
 import React from "react";
+import { FaApple } from "react-icons/fa";
+import { MdOutlineAndroid } from "react-icons/md";
 import Swal from "sweetalert2";
 
 export function SidebarHelp(props) {
@@ -46,7 +48,12 @@ export function SidebarHelp(props) {
         target={"_blank"}
         minW="100%"
       >
-        <Button variant="primary" minW="100%">
+        <Button
+          variant="primary"
+          minW="100%"
+          rightIcon={<MdOutlineAndroid size={22} color="white" />}
+          fontWeight="black"
+        >
           Download Android
         </Button>
       </Link>
@@ -64,6 +71,8 @@ export function SidebarHelp(props) {
           variant={colorMode === "light" ? "dark" : "navy"}
           minW="100%"
           mb={window.innerWidth <= 1024 && "12px"}
+          rightIcon={<FaApple size={22} color="white" />}
+          fontWeight="black"
         >
           Download iOS
         </Button>

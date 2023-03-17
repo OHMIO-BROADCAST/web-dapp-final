@@ -236,10 +236,10 @@ export function AuthStyle() {
       colors: {
         brand: {
           primary: {
-            10: tokens.colors.orange["200"],
-            80: "#f4733a",
-            90: tokens.colors.orange["20"],
-            100: tokens.colors.orange["10"],
+            10: tokens.colors.teal["200"],
+            80: "#49bfad",
+            90: tokens.colors.teal["20"],
+            100: tokens.colors.teal["10"],
           },
         },
       },
@@ -248,7 +248,7 @@ export function AuthStyle() {
           item: {
             _hover: {
               color: {
-                value: tokens.colors.orange["80"].value,
+                value: tokens.colors.teal["80"].value,
               },
             },
           },

@@ -62,6 +62,7 @@ import PurchaseSuccessTrimestral from "views/Dashboard/PurchaseSuccessTrimestral
 import PurchaseSuccessFivemestral from "views/Dashboard/PurchaseSuccessFivemestral";
 import Invite from "views/Dashboard/Invite";
 import { MdAccountBalanceWallet, MdOutlineTravelExplore } from "react-icons/md";
+import WalletsView from "views/Dashboard/WalletsView";
 
 var dashRoutes = [
   {
@@ -101,7 +102,7 @@ var dashRoutes = [
         path: "/wallets",
         name: "Wallets",
         icon: <MdAccountBalanceWallet color="inherit" size={22} />,
-        component: Signals,
+        component: WalletsView,
         layout: "/admin",
       },
       {
@@ -126,14 +127,14 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/my-refeers",
+        path: "/ohmiobox",
         name: "Stats",
         icon: <StatsIcon color="inherit" size={22} />,
         component: Refers,
         layout: "/admin",
       },
       {
-        path: "/my-comissions",
+        path: "/rewards",
         name: "Rewards",
         icon: <TbReportMoney color="inherit" size={22} />,
         component: Comissions,

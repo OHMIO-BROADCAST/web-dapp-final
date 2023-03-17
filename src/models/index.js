@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { Notification, NoticiaPrincipal, Noticia, CuotaComercial, Modo, Certificate, User, Purchase } = initSchema(schema);
+const { Notification, NoticiaPrincipal, Noticia, CuotaComercial, Modo, Wallet, Certificate, User, Purchase } = initSchema(schema);
 
 export {
   Notification,
@@ -12,6 +12,7 @@ export {
   Noticia,
   CuotaComercial,
   Modo,
+  Wallet,
   Certificate,
   User,
   Purchase

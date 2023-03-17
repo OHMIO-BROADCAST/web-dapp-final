@@ -7,15 +7,20 @@ import "./index.css";
 
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
+import { MoralisProvider } from "react-moralis";
 
 import { Authenticator } from "@aws-amplify/ui-react";
 import SelectorApp from "SelectorApp";
 
 Amplify.configure(awsExports);
+const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
+const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
 ReactDOM.render(
   <Authenticator.Provider>
-    <SelectorApp />
+    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+      <SelectorApp />
+    </MoralisProvider>
   </Authenticator.Provider>,
   document.getElementById("root"),
 );

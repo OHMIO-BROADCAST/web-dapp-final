@@ -5,13 +5,9 @@
     "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "ohmiocfc8bb6b",
     "userPoolName": "OHMIO",
-    "autoVerifiedAttributes": [
-      "email"
-    ],
+    "autoVerifiedAttributes": ["email"],
     "mfaConfiguration": "OFF",
-    "mfaTypes": [
-      "SMS Text Message"
-    ],
+    "mfaTypes": ["SMS Text Message"],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "OHMIO Broadcast | Verification code: {####}",
@@ -24,11 +20,7 @@
       "Requires Symbols",
       "Requires Uppercase"
     ],
-    "requiredAttributes": [
-      "email",
-      "name",
-      "phone_number"
-    ],
+    "requiredAttributes": ["email", "name", "phone_number"],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,

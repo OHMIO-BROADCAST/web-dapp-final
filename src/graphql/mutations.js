@@ -271,6 +271,54 @@ export const deleteModo = /* GraphQL */ `
     }
   }
 `;
+export const createWallet = /* GraphQL */ `
+  mutation CreateWallet(
+    $input: CreateWalletInput!
+    $condition: ModelWalletConditionInput
+  ) {
+    createWallet(input: $input, condition: $condition) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateWallet = /* GraphQL */ `
+  mutation UpdateWallet(
+    $input: UpdateWalletInput!
+    $condition: ModelWalletConditionInput
+  ) {
+    updateWallet(input: $input, condition: $condition) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteWallet = /* GraphQL */ `
+  mutation DeleteWallet(
+    $input: DeleteWalletInput!
+    $condition: ModelWalletConditionInput
+  ) {
+    deleteWallet(input: $input, condition: $condition) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createCertificate = /* GraphQL */ `
   mutation CreateCertificate(
     $input: CreateCertificateInput!
@@ -326,6 +374,16 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone
@@ -383,6 +441,16 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone
@@ -440,6 +508,16 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone

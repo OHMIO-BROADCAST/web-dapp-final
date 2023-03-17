@@ -51,6 +51,13 @@ type Modo @model {
   lastUpdate: String!
 }
 
+type Wallet @model {
+  wallet: String!
+  network: String!
+  dateAdded: String!
+  idOHMIOBOX: String
+}
+
 type Certificate @model {
   id: ID!
   name: String!
@@ -70,6 +77,8 @@ type Purchase {
 
 type User @model @searchable {
   id: ID!
+  idMoralis: String
+  wallets: [Wallet]
   name: String!
   username: String!
   phone: String!

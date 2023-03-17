@@ -390,6 +390,70 @@ export const schema = {
                 }
             ]
         },
+        "Wallet": {
+            "name": "Wallet",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "wallet": {
+                    "name": "wallet",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "network": {
+                    "name": "network",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "dateAdded": {
+                    "name": "dateAdded",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "idOHMIOBOX": {
+                    "name": "idOHMIOBOX",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Wallets",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "Certificate": {
             "name": "Certificate",
             "fields": {
@@ -462,6 +526,13 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "idMoralis": {
+                    "name": "idMoralis",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "name": {
@@ -827,5 +898,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.3.2",
-    "version": "a920dae061282fcb3cbe79e4ff50e925"
+    "version": "d38d88341184177924169b9d83207358"
 };

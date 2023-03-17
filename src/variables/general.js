@@ -26,6 +26,7 @@ import {
   FaFilePdf,
   FaHtml5,
   FaShoppingCart,
+  FaWallet,
 } from "react-icons/fa";
 import { SiDropbox } from "react-icons/si";
 
@@ -281,6 +282,15 @@ export const invoicesData = [
     price: "Last Update: 06/01/2023",
     logo: FaFilePdf,
     format: "PDF",
+  },
+];
+
+export const walletsData = [
+  {
+    name: "Principal",
+    network: "Polygon",
+    address: "0xasdnj2343298jio",
+    logo: FaWallet,
   },
 ];
 

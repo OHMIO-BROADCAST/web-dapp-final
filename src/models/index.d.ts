@@ -216,6 +216,40 @@ export declare const Modo: (new (init: ModelInit<Modo>) => Modo) & {
   copyOf(source: Modo, mutator: (draft: MutableModel<Modo>) => MutableModel<Modo> | void): Modo;
 }
 
+type EagerWallet = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Wallet, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly wallet: string;
+  readonly network: string;
+  readonly dateAdded: string;
+  readonly idOHMIOBOX?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyWallet = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Wallet, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly wallet: string;
+  readonly network: string;
+  readonly dateAdded: string;
+  readonly idOHMIOBOX?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Wallet = LazyLoading extends LazyLoadingDisabled ? EagerWallet : LazyWallet
+
+export declare const Wallet: (new (init: ModelInit<Wallet>) => Wallet) & {
+  copyOf(source: Wallet, mutator: (draft: MutableModel<Wallet>) => MutableModel<Wallet> | void): Wallet;
+}
+
 type EagerCertificate = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Certificate, 'id'>;
@@ -256,6 +290,7 @@ type EagerUser = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly idMoralis?: string | null;
   readonly name: string;
   readonly username: string;
   readonly phone: string;
@@ -304,6 +339,7 @@ type LazyUser = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly idMoralis?: string | null;
   readonly name: string;
   readonly username: string;
   readonly phone: string;

@@ -36,7 +36,7 @@ function InvoicesRow(props) {
             fontSize="md"
             color={textColor}
             fontWeight="bold"
-            href="https://docdro.id/TOtCXlt"
+            href="https://www.docdroid.net/8Sf1lf9/disclaimer-for-radio-advice-pdf"
             target={"_blank"}
             rel="noreferrer"
           >

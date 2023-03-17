@@ -244,6 +244,45 @@ export const onDeleteModo = /* GraphQL */ `
     }
   }
 `;
+export const onCreateWallet = /* GraphQL */ `
+  subscription OnCreateWallet($filter: ModelSubscriptionWalletFilterInput) {
+    onCreateWallet(filter: $filter) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateWallet = /* GraphQL */ `
+  subscription OnUpdateWallet($filter: ModelSubscriptionWalletFilterInput) {
+    onUpdateWallet(filter: $filter) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteWallet = /* GraphQL */ `
+  subscription OnDeleteWallet($filter: ModelSubscriptionWalletFilterInput) {
+    onDeleteWallet(filter: $filter) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateCertificate = /* GraphQL */ `
   subscription OnCreateCertificate(
     $filter: ModelSubscriptionCertificateFilterInput
@@ -293,6 +332,16 @@ export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
     onCreateUser(filter: $filter) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone
@@ -347,6 +396,16 @@ export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
     onUpdateUser(filter: $filter) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone
@@ -401,6 +460,16 @@ export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
     onDeleteUser(filter: $filter) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone

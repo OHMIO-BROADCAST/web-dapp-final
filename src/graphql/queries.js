@@ -20,6 +20,16 @@ export const searchUsers = /* GraphQL */ `
     ) {
       items {
         id
+        idMoralis
+        wallets {
+          wallet
+          network
+          dateAdded
+          idOHMIOBOX
+          id
+          createdAt
+          updatedAt
+        }
         name
         username
         phone
@@ -276,6 +286,39 @@ export const listModos = /* GraphQL */ `
     }
   }
 `;
+export const getWallet = /* GraphQL */ `
+  query GetWallet($id: ID!) {
+    getWallet(id: $id) {
+      wallet
+      network
+      dateAdded
+      idOHMIOBOX
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listWallets = /* GraphQL */ `
+  query ListWallets(
+    $filter: ModelWalletFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listWallets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getCertificate = /* GraphQL */ `
   query GetCertificate($id: ID!) {
     getCertificate(id: $id) {
@@ -313,6 +356,16 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
+      idMoralis
+      wallets {
+        wallet
+        network
+        dateAdded
+        idOHMIOBOX
+        id
+        createdAt
+        updatedAt
+      }
       name
       username
       phone
@@ -372,6 +425,16 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        idMoralis
+        wallets {
+          wallet
+          network
+          dateAdded
+          idOHMIOBOX
+          id
+          createdAt
+          updatedAt
+        }
         name
         username
         phone
@@ -443,6 +506,16 @@ export const usersByEmailAndUsername = /* GraphQL */ `
     ) {
       items {
         id
+        idMoralis
+        wallets {
+          wallet
+          network
+          dateAdded
+          idOHMIOBOX
+          id
+          createdAt
+          updatedAt
+        }
         name
         username
         phone

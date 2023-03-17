@@ -54,6 +54,7 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import * as queries from "../../graphql/queries.js";
 import * as mutations from "../../graphql/mutations";
 import { Loader } from "@aws-amplify/ui-react";
+import { fontWeight } from "@mui/system";
 
 export default function Signals() {
   const [isLoading, setIsLoading] = useState(false);
@@ -280,10 +281,10 @@ export default function Signals() {
           <CardHeader p="12px 5px" mb="12px">
             <Flex direction="column">
               <Text fontSize="lg" color={textColor} fontWeight="bold">
-                REAL TIME NOTIFICATIONS PACKAGES
+                ALL OHMIO BOXES
               </Text>
               <Text fontSize="sm" color="gray.400" fontWeight="bold">
-                Please take a look of our premium services
+                Please take a look of your devices
               </Text>
               {/* <FormControl display='flex' alignItems='center' width={"100%"} justifyContent="center">
                 <FormLabel htmlFor='monthly-anually' mb='0' fontWeight={"bold"}>
@@ -344,7 +345,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        ***PRUEBA***
+                        TORRE PAJARITO
                       </Text>
                       <Text
                         fontSize="xl"
@@ -353,7 +354,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        1 MONTH / $10 USD
+                        Medellín / Colombia
                       </Text>
 
                       <Text
@@ -362,8 +363,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        This package comprehends current supporte pairs on Forex
-                        Market
+                        <Text style={{ fontWeight: "bold" }}>Type: </Text>
+                        Gubernamental OHMIO Box
                       </Text>
                       <Text
                         fontSize="md"
@@ -371,7 +372,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Push Notifications in Real-Time
+                        <Text style={{ fontWeight: "bold" }}>Address: </Text>
+                        Calle 23 # 75-37
                       </Text>
                       <Text
                         fontSize="md"
@@ -379,7 +381,10 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Support Assitance
+                        <Text style={{ fontWeight: "bold" }}>
+                          Frequency Channel:{" "}
+                        </Text>
+                        102.9 MHz
                       </Text>
                       <Text
                         fontSize="md"
@@ -387,10 +392,11 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        1 Month Duration
+                        <Text style={{ fontWeight: "bold" }}>ID: </Text>
+                        nk9021u3idjnska
                       </Text>
                       <Flex justifyContent="center">
-                        <CoinpaymentsButton1 userID={userID} />
+                        <Button>SEE MORE</Button>
                       </Flex>
                     </Flex>
                   </Flex>
@@ -422,7 +428,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        PROFESSIONAL
+                        EDIFICIO CARACOL RADIO
                       </Text>
                       <Text
                         fontSize="xl"
@@ -431,7 +437,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        1 MONTH / $150 USD
+                        Medellín / Colombia
                       </Text>
 
                       <Text
@@ -440,8 +446,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        This package comprehends current supporte pairs on Forex
-                        Market
+                        <Text style={{ fontWeight: "bold" }}>Type: </Text>
+                        Gubernamental OHMIO Box
                       </Text>
                       <Text
                         fontSize="md"
@@ -449,7 +455,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Push Notifications in Real-Time
+                        <Text style={{ fontWeight: "bold" }}>Address: </Text>
+                        Calle 23 # 75-37
                       </Text>
                       <Text
                         fontSize="md"
@@ -457,7 +464,10 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Support Assitance
+                        <Text style={{ fontWeight: "bold" }}>
+                          Frequency Channel:{" "}
+                        </Text>
+                        102.9 MHz
                       </Text>
                       <Text
                         fontSize="md"
@@ -465,88 +475,11 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        1 Month Duration
+                        <Text style={{ fontWeight: "bold" }}>ID: </Text>
+                        nk9021u3idjnska
                       </Text>
                       <Flex justifyContent="center">
-                        <CoinpaymentsButton150 userID={userID} />
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Flex
-                    direction="column"
-                    style={{
-                      width: "20rem",
-                      borderWidth: "3px",
-                      padding: "1rem",
-                      borderRadius: 20,
-                      borderColor: anually === true ? "green" : "orange",
-                    }}
-                  >
-                    <Box mb="20px" position="relative" borderRadius="15px">
-                      <Box
-                        w="100%"
-                        h="100%"
-                        position="absolute"
-                        top="0"
-                        borderRadius="15px"
-                        bg="linear-gradient(360deg, rgba(49, 56, 96, 0.16) 0%, rgba(21, 25, 40, 0.88) 200%)"
-                      ></Box>
-                    </Box>
-                    <Flex direction="column">
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="bold"
-                        mb="10px"
-                        textAlign="center"
-                      >
-                        PREMIUM
-                      </Text>
-                      <Text
-                        fontSize="xl"
-                        color={textColor}
-                        fontWeight="bold"
-                        mb="10px"
-                        textAlign="center"
-                      >
-                        3 MONTH / $430 USD
-                      </Text>
-
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="400"
-                        mb="20px"
-                      >
-                        This package comprehends current supporte pairs on Forex
-                        Market
-                      </Text>
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="400"
-                        mb="20px"
-                      >
-                        Push Notifications in Real-Time
-                      </Text>
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="400"
-                        mb="20px"
-                      >
-                        Support Assitance
-                      </Text>
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="400"
-                        mb="20px"
-                      >
-                        3 Month Duration
-                      </Text>
-                      <Flex justifyContent="center">
-                        <CoinpaymentsButton430 userID={userID} />
+                        <Button>SEE MORE</Button>
                       </Flex>
                     </Flex>
                   </Flex>
@@ -578,7 +511,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        PLATINUM
+                        MONSERRATE
                       </Text>
                       <Text
                         fontSize="xl"
@@ -587,7 +520,7 @@ export default function Signals() {
                         mb="10px"
                         textAlign="center"
                       >
-                        5 MONTH / $730 USD
+                        Bógota / Colombia
                       </Text>
                       <Text
                         fontSize="md"
@@ -595,8 +528,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        This package comprehends current supporte pairs on Forex
-                        Market
+                        <Text style={{ fontWeight: "bold" }}>Type: </Text>
+                        Gubernamental OHMIO Box
                       </Text>
                       <Text
                         fontSize="md"
@@ -604,7 +537,8 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Push Notifications in Real-Time
+                        <Text style={{ fontWeight: "bold" }}>Address: </Text>
+                        Calle 23 # 75-37
                       </Text>
                       <Text
                         fontSize="md"
@@ -612,7 +546,10 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        Support Assitance
+                        <Text style={{ fontWeight: "bold" }}>
+                          Frequency Channel:{" "}
+                        </Text>
+                        102.9 MHz
                       </Text>
                       <Text
                         fontSize="md"
@@ -620,11 +557,12 @@ export default function Signals() {
                         fontWeight="400"
                         mb="20px"
                       >
-                        5 Month Duration
+                        <Text style={{ fontWeight: "bold" }}>ID: </Text>
+                        nk9021u3idjnska
                       </Text>
 
                       <Flex justifyContent="center">
-                        <CoinpaymentsButton700 userID={userID} />
+                        <Button>SEE MORE</Button>
                       </Flex>
                     </Flex>
                   </Flex>
@@ -690,14 +628,7 @@ export default function Signals() {
                         This package comprehends current supporte pairs on Forex
                         Market
                       </Text>
-                      <Text
-                        fontSize="md"
-                        color="gray.400"
-                        fontWeight="400"
-                        mb="20px"
-                      >
-                        Push Notifications in Real-Time
-                      </Text>
+
                       <Text
                         fontSize="md"
                         color="gray.400"

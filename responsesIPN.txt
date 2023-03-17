@@ -7,7 +7,7 @@ HEADERS
   "content-type": "application/x-www-form-urlencoded; charset=utf-8",
   "hmac": "ce4ffc15af4f1aa48259a540c2983b93eae25ef6b3de4c18c13159d83acde79f67a55d8fcf0e1351334109c5955a3634d22906e7e1f2db1c904d22e7ff3f20c2",
   "x-forwarded-for": "206.71.159.57",
-  "x-forwarded-host": "ipnbmaker.free.beeceptor.com",
+  "x-forwarded-host": "ipnohmio.free.beeceptor.com",
   "x-forwarded-proto": "https",
   "accept-encoding": "gzip"
 }

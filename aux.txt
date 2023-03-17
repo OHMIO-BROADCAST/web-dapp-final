@@ -119,23 +119,3 @@ type User @model @searchable {
   solicitoEliminarCuenta: Boolean
 }
 
-type Mutation {
-  addReferredUser(userId: ID!, referredUserId: String!): User
-  addReferredUserAsCommercial(
-    userId: ID!
-    referredUserIdAsCommercial: String!
-  ): User
-  pinpoint(input: pinpointInput): pinpointResult
-    @function(name: "pinpoint-${env}")
-}
-type pinpointResult {
-  statusCode: Int
-  body: String
-}
-input pinpointInput {
-  token: String!
-  name: String!
-  email: String!
-  message: String!
-  id: String!
-}

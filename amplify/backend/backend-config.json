@@ -1,37 +1,39 @@
 {
   "auth": {
-    "bmaker": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+    "OHMIO": {
       "customAuth": false,
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "signupAttributes": ["EMAIL", "NAME", "PHONE_NUMBER"],
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
             "REQUIRES_NUMBERS",
             "REQUIRES_SYMBOLS",
             "REQUIRES_UPPERCASE"
-          ]
+          ],
+          "passwordPolicyMinLength": 8
         },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": ["SMS"],
-        "verificationMechanisms": ["EMAIL"]
-      }
-    }
-  },
-  "analytics": {
-    "bmakeranalytics": {
-      "service": "Pinpoint",
-      "providerPlugin": "awscloudformation"
+        "signupAttributes": [
+          "EMAIL",
+          "NAME",
+          "PHONE_NUMBER"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
     }
   },
   "api": {
-    "bmaker": {
+    "ohmio": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -40,59 +42,12 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 200,
-              "apiKeyExpirationDate": "2023-06-21T02:24:22.709Z",
-              "description": ""
+              "apiKeyExpirationDays": 7
             }
           },
           "additionalAuthenticationProviders": []
         }
       }
-    }
-  },
-  "function": {
-    "pushNotification": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "api",
-          "resourceName": "bmaker",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput",
-            "GraphQLAPIKeyOutput"
-          ]
-        }
-      ]
-    },
-    "pinpoint": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "analytics",
-          "resourceName": "bmakeranalytics",
-          "attributes": ["Id", "Region"]
-        },
-        {
-          "category": "api",
-          "resourceName": "bmaker",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput",
-            "GraphQLAPIKeyOutput"
-          ]
-        }
-      ]
-    }
-  },
-  "notifications": {
-    "bmakeranalytics": {
-      "service": "Pinpoint",
-      "channels": ["FCM", "Email"]
     }
   }
 }

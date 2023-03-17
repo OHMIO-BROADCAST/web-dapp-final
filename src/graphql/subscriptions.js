@@ -19,9 +19,6 @@ export const onCreateNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -43,9 +40,6 @@ export const onUpdateNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -67,9 +61,6 @@ export const onDeleteNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -88,9 +79,6 @@ export const onCreateNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -109,9 +97,6 @@ export const onUpdateNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -130,9 +115,6 @@ export const onDeleteNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -150,9 +132,6 @@ export const onCreateNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -170,9 +149,6 @@ export const onUpdateNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -190,9 +166,6 @@ export const onDeleteNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -207,9 +180,6 @@ export const onCreateCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -224,9 +194,6 @@ export const onUpdateCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -241,9 +208,6 @@ export const onDeleteCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -255,9 +219,6 @@ export const onCreateModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -269,9 +230,6 @@ export const onUpdateModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -283,9 +241,6 @@ export const onDeleteModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -301,9 +256,6 @@ export const onCreateCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -319,9 +271,6 @@ export const onUpdateCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -337,9 +286,6 @@ export const onDeleteCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -394,9 +340,6 @@ export const onCreateUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -451,9 +394,6 @@ export const onUpdateUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -508,9 +448,6 @@ export const onDeleteUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

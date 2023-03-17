@@ -1,27 +1,18 @@
 // @ts-check
-import { initSchema } from "@aws-amplify/datastore";
-import { schema } from "./schema";
+import { initSchema } from '@aws-amplify/datastore';
+import { schema } from './schema';
 
-const {
-  User,
-  Notification,
-  NoticiaPrincipal,
-  Noticia,
-  CuotaComercial,
-  Modo,
-  Certificate,
-  Purchase,
-  pinpointResult,
-} = initSchema(schema);
+
+
+const { Notification, NoticiaPrincipal, Noticia, CuotaComercial, Modo, Certificate, User, Purchase } = initSchema(schema);
 
 export {
-  User,
   Notification,
   NoticiaPrincipal,
   Noticia,
   CuotaComercial,
   Modo,
   Certificate,
-  Purchase,
-  pinpointResult,
+  User,
+  Purchase
 };

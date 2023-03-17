@@ -29,6 +29,14 @@ export const searchUsers = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        listPurchases {
+          id
+          username
+          date
+          plan
+          expirationDate
+          paymentMethod
+        }
         isPaymentProcessing
         payWithApplePay
         totalReward
@@ -59,9 +67,6 @@ export const searchUsers = /* GraphQL */ `
         solicitoEliminarCuenta
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
       total
@@ -98,9 +103,6 @@ export const getNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -125,48 +127,8 @@ export const listNotifications = /* GraphQL */ `
         pair
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncNotifications = /* GraphQL */ `
-  query SyncNotifications(
-    $filter: ModelNotificationFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncNotifications(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        description
-        timestamp
-        type
-        price
-        time12h
-        date
-        position
-        isManual
-        pair
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -183,9 +145,6 @@ export const getNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -211,45 +170,8 @@ export const listNoticiaPrincipals = /* GraphQL */ `
         portada
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncNoticiaPrincipals = /* GraphQL */ `
-  query SyncNoticiaPrincipals(
-    $filter: ModelNoticiaPrincipalFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncNoticiaPrincipals(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        subtitle
-        publishedDate
-        source
-        timestamp
-        externalUrl
-        portada
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -267,9 +189,6 @@ export const getNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -292,46 +211,8 @@ export const listNoticias = /* GraphQL */ `
         optionalImage
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncNoticias = /* GraphQL */ `
-  query SyncNoticias(
-    $filter: ModelNoticiaFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncNoticias(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        subtitle
-        publishedDate
-        timestamp
-        time12h
-        type
-        externalUrl
-        optionalImage
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -344,9 +225,6 @@ export const getCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -364,41 +242,8 @@ export const listCuotaComercials = /* GraphQL */ `
         id
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncCuotaComercials = /* GraphQL */ `
-  query SyncCuotaComercials(
-    $filter: ModelCuotaComercialFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncCuotaComercials(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        cantidadReferidos
-        lastUpdate
-        fechaCierre
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -410,9 +255,6 @@ export const getModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -429,40 +271,8 @@ export const listModos = /* GraphQL */ `
         id
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncModos = /* GraphQL */ `
-  query SyncModos(
-    $filter: ModelModoFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncModos(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        automatic
-        lastUpdate
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -476,9 +286,6 @@ export const getCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -497,42 +304,8 @@ export const listCertificates = /* GraphQL */ `
         isSigned
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncCertificates = /* GraphQL */ `
-  query SyncCertificates(
-    $filter: ModelCertificateFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncCertificates(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        documentUnsigned
-        documentSigned
-        isSigned
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -587,9 +360,6 @@ export const getUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -611,6 +381,14 @@ export const listUsers = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        listPurchases {
+          id
+          username
+          date
+          plan
+          expirationDate
+          paymentMethod
+        }
         isPaymentProcessing
         payWithApplePay
         totalReward
@@ -641,75 +419,8 @@ export const listUsers = /* GraphQL */ `
         solicitoEliminarCuenta
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUsers = /* GraphQL */ `
-  query SyncUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUsers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        username
-        phone
-        email
-        expoToken
-        forexSubscription
-        currentlyPlan
-        hasPurchasedSomething
-        expirationDate
-        isPaymentProcessing
-        payWithApplePay
-        totalReward
-        totalReferred
-        isReferred
-        hasReferred
-        referredBy
-        listUserReferred
-        isCommercial
-        cumplidoCuota
-        totalEarnCommercial
-        totalReferredCommercial
-        dateStartCommercial
-        listUserReferredAsCommercial
-        isCompletedKYC
-        currentStateKYC
-        externalURLKYC
-        hasSigned
-        dateSigned
-        hasiOSSession
-        hasAndroidSession
-        deviceOSName
-        deviceModelName
-        deviceName
-        deviceBrand
-        activeDate
-        registerDate
-        solicitoEliminarCuenta
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -741,6 +452,14 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         currentlyPlan
         hasPurchasedSomething
         expirationDate
+        listPurchases {
+          id
+          username
+          date
+          plan
+          expirationDate
+          paymentMethod
+        }
         isPaymentProcessing
         payWithApplePay
         totalReward
@@ -771,12 +490,8 @@ export const usersByEmailAndUsername = /* GraphQL */ `
         solicitoEliminarCuenta
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;

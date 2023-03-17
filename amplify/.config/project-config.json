@@ -1,6 +1,8 @@
 {
-  "providers": ["awscloudformation"],
-  "projectName": "bmaker",
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "OHMIO",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {

@@ -1,39 +1,22 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplify6aa927b6a0554-staging-230417-authRole",
-      "UnauthRoleArn": "arn:aws:iam::383333479832:role/amplify-amplify6aa927b6a0554-staging-230417-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::383333479832:role/amplify-amplify6aa927b6a0554-staging-230417-authRole",
+      "AuthRoleName": "amplify-ohmio-staging-30546-authRole",
+      "UnauthRoleArn": "arn:aws:iam::488261931852:role/amplify-ohmio-staging-30546-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::488261931852:role/amplify-ohmio-staging-30546-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-      "UnauthRoleName": "amplify-amplify6aa927b6a0554-staging-230417-unauthRole",
-      "StackName": "amplify-amplify6aa927b6a0554-staging-230417",
-      "StackId": "arn:aws:cloudformation:us-east-1:383333479832:stack/amplify-amplify6aa927b6a0554-staging-230417/7cf93100-6d15-11ed-b438-12ec3985c7d9",
-      "AmplifyAppId": "d2896ulzpwie50"
+      "DeploymentBucketName": "amplify-ohmio-staging-30546-deployment",
+      "UnauthRoleName": "amplify-ohmio-staging-30546-unauthRole",
+      "StackName": "amplify-ohmio-staging-30546",
+      "StackId": "arn:aws:cloudformation:us-east-1:488261931852:stack/amplify-ohmio-staging-30546/cc28d390-b714-11ed-aaaa-0ae1e81ad34b",
+      "AmplifyAppId": "d3qqo6uzh84qj9"
     },
     "categories": {
       "auth": {
-        "bmaker": {}
-      },
-      "analytics": {
-        "Pinpoint": {
-          "Name": "bmakeranalytics-staging",
-          "Id": "b33e320e21424478b52f46bfadb18492"
-        },
-        "bmakeranalytics": {}
-      },
-      "function": {
-        "pushNotification": {
-          "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-          "s3Key": "amplify-builds/pushNotification-526847346d594b653958-build.zip"
-        },
-        "pinpoint": {
-          "deploymentBucketName": "amplify-amplify6aa927b6a0554-staging-230417-deployment",
-          "s3Key": "amplify-builds/pinpoint-55326e432f44612f3877-build.zip"
-        }
+        "OHMIO": {}
       },
       "api": {
-        "bmaker": {}
+        "ohmio": {}
       }
     }
   }

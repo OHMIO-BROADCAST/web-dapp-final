@@ -1,134 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const addReferredUser = /* GraphQL */ `
-  mutation AddReferredUser($userId: ID!, $referredUserId: String!) {
-    addReferredUser(userId: $userId, referredUserId: $referredUserId) {
-      id
-      name
-      username
-      phone
-      email
-      expoToken
-      forexSubscription
-      currentlyPlan
-      hasPurchasedSomething
-      expirationDate
-      listPurchases {
-        id
-        username
-        date
-        plan
-        expirationDate
-        paymentMethod
-      }
-      isPaymentProcessing
-      payWithApplePay
-      totalReward
-      totalReferred
-      isReferred
-      hasReferred
-      referredBy
-      listUserReferred
-      isCommercial
-      cumplidoCuota
-      totalEarnCommercial
-      totalReferredCommercial
-      dateStartCommercial
-      listUserReferredAsCommercial
-      isCompletedKYC
-      currentStateKYC
-      externalURLKYC
-      hasSigned
-      dateSigned
-      hasiOSSession
-      hasAndroidSession
-      deviceOSName
-      deviceModelName
-      deviceName
-      deviceBrand
-      activeDate
-      registerDate
-      solicitoEliminarCuenta
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const addReferredUserAsCommercial = /* GraphQL */ `
-  mutation AddReferredUserAsCommercial(
-    $userId: ID!
-    $referredUserIdAsCommercial: String!
-  ) {
-    addReferredUserAsCommercial(
-      userId: $userId
-      referredUserIdAsCommercial: $referredUserIdAsCommercial
-    ) {
-      id
-      name
-      username
-      phone
-      email
-      expoToken
-      forexSubscription
-      currentlyPlan
-      hasPurchasedSomething
-      expirationDate
-      listPurchases {
-        id
-        username
-        date
-        plan
-        expirationDate
-        paymentMethod
-      }
-      isPaymentProcessing
-      payWithApplePay
-      totalReward
-      totalReferred
-      isReferred
-      hasReferred
-      referredBy
-      listUserReferred
-      isCommercial
-      cumplidoCuota
-      totalEarnCommercial
-      totalReferredCommercial
-      dateStartCommercial
-      listUserReferredAsCommercial
-      isCompletedKYC
-      currentStateKYC
-      externalURLKYC
-      hasSigned
-      dateSigned
-      hasiOSSession
-      hasAndroidSession
-      deviceOSName
-      deviceModelName
-      deviceName
-      deviceBrand
-      activeDate
-      registerDate
-      solicitoEliminarCuenta
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const pinpoint = /* GraphQL */ `
-  mutation Pinpoint($input: pinpointInput) {
-    pinpoint(input: $input) {
-      statusCode
-      body
-    }
-  }
-`;
 export const createNotification = /* GraphQL */ `
   mutation CreateNotification(
     $input: CreateNotificationInput!
@@ -148,9 +20,6 @@ export const createNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -173,9 +42,6 @@ export const updateNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -198,9 +64,6 @@ export const deleteNotification = /* GraphQL */ `
       pair
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -220,9 +83,6 @@ export const createNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -242,9 +102,6 @@ export const updateNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -264,9 +121,6 @@ export const deleteNoticiaPrincipal = /* GraphQL */ `
       portada
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -287,9 +141,6 @@ export const createNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -310,9 +161,6 @@ export const updateNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -333,9 +181,6 @@ export const deleteNoticia = /* GraphQL */ `
       optionalImage
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -351,9 +196,6 @@ export const createCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -369,9 +211,6 @@ export const updateCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -387,9 +226,6 @@ export const deleteCuotaComercial = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -404,9 +240,6 @@ export const createModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -421,9 +254,6 @@ export const updateModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -438,9 +268,6 @@ export const deleteModo = /* GraphQL */ `
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -457,9 +284,6 @@ export const createCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -476,9 +300,6 @@ export const updateCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -495,9 +316,6 @@ export const deleteCertificate = /* GraphQL */ `
       isSigned
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -555,9 +373,6 @@ export const createUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -615,9 +430,6 @@ export const updateUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -675,9 +487,6 @@ export const deleteUser = /* GraphQL */ `
       solicitoEliminarCuenta
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

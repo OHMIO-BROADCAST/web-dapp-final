@@ -1,0 +1,120 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Notification @model {
+  id: ID!
+  title: String!
+  description: String!
+  timestamp: String!
+  type: String!
+  price: Float!
+  time12h: String!
+  date: String!
+  position: String!
+  isManual: Boolean!
+  pair: String!
+}
+
+type NoticiaPrincipal @model {
+  id: ID!
+  title: String!
+  subtitle: String!
+  publishedDate: String!
+  source: String!
+  timestamp: String!
+  externalUrl: String!
+  portada: String!
+}
+
+type Noticia @model {
+  id: ID!
+  title: String!
+  subtitle: String!
+  publishedDate: String!
+  timestamp: String!
+  time12h: String!
+  type: String!
+  externalUrl: String
+  optionalImage: String
+}
+
+type CuotaComercial @model {
+  cantidadReferidos: Int!
+  lastUpdate: String!
+  fechaCierre: String
+}
+
+type Modo @model {
+  automatic: Boolean!
+  lastUpdate: String!
+}
+
+type Certificate @model {
+  id: ID!
+  name: String!
+  documentUnsigned: String!
+  documentSigned: String
+  isSigned: Boolean!
+}
+
+type Purchase {
+  id: ID!
+  username: String!
+  date: String!
+  plan: String!
+  expirationDate: String!
+  paymentMethod: String!
+}
+
+type User @model @searchable {
+  id: ID!
+  name: String!
+  username: String!
+  phone: String!
+  email: String! @index(name: "byEmail", sortKeyFields: ["username"])
+
+  expoToken: String
+
+  forexSubscription: Boolean
+  currentlyPlan: String
+  hasPurchasedSomething: Boolean
+  expirationDate: String
+  listPurchases: [Purchase!]
+
+  isPaymentProcessing: Boolean
+  payWithApplePay: Boolean
+
+  totalReward: Float
+  totalReferred: Int
+  isReferred: Boolean
+  hasReferred: Boolean
+  referredBy: String
+  listUserReferred: [String!]
+
+  isCommercial: Boolean
+  cumplidoCuota: Boolean
+  totalEarnCommercial: Float
+  totalReferredCommercial: Int
+  dateStartCommercial: String
+  listUserReferredAsCommercial: [String!]
+
+  isCompletedKYC: Boolean
+  currentStateKYC: String
+  externalURLKYC: String
+
+  hasSigned: Boolean
+  dateSigned: String
+
+  hasiOSSession: Boolean
+  hasAndroidSession: Boolean
+  deviceOSName: String
+  deviceModelName: String
+  deviceName: String
+  deviceBrand: String
+  activeDate: String
+
+  registerDate: String
+  solicitoEliminarCuenta: Boolean
+}

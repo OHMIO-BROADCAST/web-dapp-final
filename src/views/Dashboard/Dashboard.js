@@ -276,7 +276,7 @@ export default function Dashboard() {
                     color="white"
                     style={{ textDecoration: "underline" }}
                   >
-                    ALVAVISION
+                    ALBAVISION
                   </StatNumber>
                 </Flex>
               </Stat>

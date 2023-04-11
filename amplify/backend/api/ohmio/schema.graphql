@@ -82,7 +82,7 @@ type User @model @searchable {
   name: String!
   username: String!
   phone: String!
-  email: String! @index(name: "byEmail", sortKeyFields: ["username"])
+  email: String!
 
   expoToken: String
 

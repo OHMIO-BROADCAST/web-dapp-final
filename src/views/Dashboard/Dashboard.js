@@ -34,11 +34,7 @@ import {
   WalletIcon,
 } from "components/Icons/Icons.js";
 // Variables
-import {
-  barChartData,
-  barChartOptions,
-  lineChartOptions,
-} from "variables/charts";
+import { barChartData, barChartOptions } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
 import { MdRefresh, MdSettingsInputAntenna } from "react-icons/md";
 import { GiFactory } from "react-icons/gi";
@@ -90,25 +86,93 @@ export default function Dashboard() {
 
   const [numberOHMIOBoxes, setnumberOHMIOBoxes] = useState(0);
   const [isActive, setisActive] = useState(false);
+  const [rawMeasures, setRawMeasures] = useState([]);
+
   const [currentMER, setCurrentMER] = useState(0);
   const [currentBER, setCurrentBER] = useState(0);
   const [currentCHANNEL, setCurrentCHANNEL] = useState(0);
   const [currentSTANDARD, setCurrentSTANDARD] = useState("");
   const [currentCOMPANY, setCurrentCOMPANY] = useState("");
+  const [currentLASTUPDATE, setCurrentLASTUPDATE] = useState("");
 
   const [currentCloudSTATUS, setCurrentCloudSTATUS] = useState("");
   const [currentOhmioSTATUS, setCurrentOhmioSTATUS] = useState("");
 
-  const [lineChartData, setLineChartData] = useState([
-    {
-      name: "MER",
-      data: [5, 4, 30, 22, 50, 25, 40, 23, 50, 10, 20, 10],
+  const [lineChartData, setLineChartData] = useState({
+    series: [
+      {
+        name: "MER",
+        data: [],
+      },
+      {
+        name: "BER",
+        data: [],
+      },
+    ],
+  });
+
+  const [lineChartOptions, setLineChartOptions] = useState({
+    options: {
+      chart: {
+        toolbar: {
+          show: true,
+        },
+      },
+      tooltip: {
+        theme: "dark",
+      },
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: "smooth",
+      },
+      xaxis: {
+        type: "datetime",
+        categories: generateCategories(),
+        axisTicks: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+        labels: {
+          style: {
+            colors: "#fff",
+            fontSize: "12px",
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: "#fff",
+            fontSize: "12px",
+          },
+        },
+      },
+      legend: {
+        show: false,
+      },
+      grid: {
+        strokeDashArray: 5,
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          inverseColors: true,
+          opacityFrom: 0.8,
+          opacityTo: 0,
+          stops: [],
+        },
+        colors: ["#fff", "#3182CE"],
+      },
+      colors: ["#fff", "#3182CE"],
     },
-    {
-      name: "BER",
-      data: [3, 9, 4, 14, 29, 29, 34, 23, 40, 10, 20, 10],
-    },
-  ]);
+  });
   /* const [lineChartData, setLineChartData] = useState([
     {
       name: "MER",
@@ -119,6 +183,25 @@ export default function Dashboard() {
       data: [0],
     },
   ]); */
+
+  function generateCategories() {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+
+    const categories = [];
+
+    for (let minute = 0; minute < 60; minute += 1) {
+      const formattedMinute = minute.toString().padStart(2, "0");
+      const category = `${currentDate.getFullYear()}-${
+        currentDate.getMonth() + 1
+      }-${currentDate.getDate()}T${currentHour
+        .toString()
+        .padStart(2, "0")}:${formattedMinute}`;
+      categories.push(category);
+    }
+
+    return categories;
+  }
 
   const testPub = async () => {
     await PubSub.publish("ohmioboxtest/pub", {
@@ -142,12 +225,15 @@ export default function Dashboard() {
     );
 
     //Subscription
-    PubSub.subscribe("$aws/events/presence/+/ohmioboxtest").subscribe({
+    const subscriptionPresence = PubSub.subscribe(
+      "$aws/events/presence/+/ohmioboxtest",
+    ).subscribe({
       next: (data) => {
-        if (data.value && data.value.evenType) {
-          if (data.value.evenType == "disconnected") {
+        const { value } = data;
+        if (value.eventType) {
+          if (value.eventType == "disconnected") {
             setCurrentOhmioSTATUS("Disconnected");
-          } else if (data.value.evenType == "connected") {
+          } else if (value.eventType == "connected") {
             setCurrentOhmioSTATUS("Connected");
           }
         }
@@ -156,9 +242,40 @@ export default function Dashboard() {
       close: () => console.log("Done"),
     });
 
-    PubSub.subscribe("ohmioboxtest/pub").subscribe({
+    const subscriptionData = PubSub.subscribe("ohmioboxtest/pub").subscribe({
       next: (data) => {
         console.log("Message received", data);
+
+        setLineChartData((prevChartData) => {
+          const updatedChartData = { ...prevChartData };
+
+          let datosPayload = data.value;
+          setRawMeasures(rawMeasures.push(datosPayload));
+
+          console.log("Datos", datosPayload);
+
+          if (datosPayload.MER !== undefined) {
+            updatedChartData.series
+              .find((series) => series.name === "MER")
+              .data.push(datosPayload.MER);
+            setCurrentMER(datosPayload.MER);
+          }
+
+          if (datosPayload.BER !== undefined) {
+            updatedChartData.series
+              .find((series) => series.name === "BER")
+              .data.push(datosPayload.BER);
+            setCurrentBER(datosPayload.BER);
+          }
+          if (datosPayload.Frequency !== undefined) {
+            setCurrentCHANNEL(datosPayload.Frequency);
+          }
+          if (datosPayload.time !== undefined) {
+            setCurrentLASTUPDATE(datosPayload.time);
+          }
+
+          return updatedChartData;
+        });
       },
       error: (error) => console.error("Error subscribiendo al topioc", error),
       complete: () => console.log("Done"),
@@ -185,6 +302,8 @@ export default function Dashboard() {
     testPub();
     return () => {
       Amplify.removePluggable("AWSIoTProvider");
+      PubSub.unsubscribe(subscriptionData);
+      PubSub.unsubscribe(subscriptionPresence);
     };
   }, []);
 
@@ -227,7 +346,7 @@ export default function Dashboard() {
               align="center"
               justify="center"
               w="100%"
-              mb="25px"
+              mb="5px"
             >
               <Stat me="auto">
                 <StatLabel
@@ -293,7 +412,7 @@ export default function Dashboard() {
                   {currentCloudSTATUS == "Connecting" && (
                     <StatNumber
                       fontSize="md"
-                      color={textColor}
+                      color={"white"}
                       bgColor={"gray.400"}
                       padding={"0.2rem"}
                       borderRadius={10}
@@ -309,7 +428,7 @@ export default function Dashboard() {
                       Connecting
                     </StatNumber>
                   )}
-                  <StatLabel
+                  {/*  <StatLabel
                     fontSize="xs"
                     color="gray.400"
                     fontWeight="bold"
@@ -375,7 +494,7 @@ export default function Dashboard() {
                       />
                       Connecting
                     </StatNumber>
-                  )}
+                  )} */}
                 </Flex>
               </Stat>
               <Flex
@@ -415,7 +534,7 @@ export default function Dashboard() {
               align="center"
               justify="center"
               w="100%"
-              mb="25px"
+              mb="5px"
             >
               <Stat me="auto">
                 <StatLabel
@@ -428,7 +547,11 @@ export default function Dashboard() {
                 </StatLabel>
                 <Flex>
                   <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
-                    0.25
+                    {currentCloudSTATUS != "Connected"
+                      ? "N/A"
+                      : currentMER != 0
+                      ? `${currentMER}`
+                      : "N/A"}
                   </StatNumber>
                 </Flex>
                 <StatLabel
@@ -441,7 +564,28 @@ export default function Dashboard() {
                 </StatLabel>
                 <Flex>
                   <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
-                    0.25
+                    {currentCloudSTATUS != "Connected"
+                      ? "N/A"
+                      : currentBER != 0
+                      ? `${currentBER}`
+                      : "N/A"}
+                  </StatNumber>
+                </Flex>
+                <StatLabel
+                  fontSize="xs"
+                  color="gray.400"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                >
+                  Last Updated
+                </StatLabel>
+                <Flex>
+                  <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
+                    {currentCloudSTATUS != "Connected"
+                      ? "N/A"
+                      : currentLASTUPDATE != ""
+                      ? `${currentLASTUPDATE}`
+                      : "N/A"}
                   </StatNumber>
                 </Flex>
               </Stat>
@@ -470,7 +614,7 @@ export default function Dashboard() {
               align="center"
               justify="center"
               w="100%"
-              mb="25px"
+              mb="5px"
             >
               <Stat me="auto">
                 <StatLabel
@@ -483,7 +627,11 @@ export default function Dashboard() {
                 </StatLabel>
                 <Flex>
                   <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
-                    102.9 MHz
+                    {currentCloudSTATUS != "Connected"
+                      ? "N/A"
+                      : currentCHANNEL != 0
+                      ? `${currentCHANNEL} MHz`
+                      : "N/A"}
                   </StatNumber>
                 </Flex>
               </Stat>
@@ -518,7 +666,7 @@ export default function Dashboard() {
               align="center"
               justify="center"
               w="100%"
-              mb="25px"
+              mb="5px"
             >
               <Stat me="auto">
                 <StatLabel
@@ -605,8 +753,8 @@ export default function Dashboard() {
           </Flex>
           <Box minH="300px">
             <LineChart
-              chartData={lineChartData}
-              chartOptions={lineChartOptions}
+              chartData={lineChartData.series}
+              chartOptions={lineChartOptions.options}
             />
           </Box>
         </Card>
@@ -647,6 +795,9 @@ export default function Dashboard() {
                       MER
                     </Th>
                     <Th color="gray.400" borderColor={borderColor}>
+                      BER
+                    </Th>
+                    <Th color="gray.400" borderColor={borderColor}>
                       Bounce rate
                     </Th>
                     <Th color="gray.400" borderColor={borderColor}>
@@ -655,53 +806,64 @@ export default function Dashboard() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {pageVisits.map((el, index, arr) => {
-                    return (
-                      <Tr key={index}>
-                        <Td
-                          color={textTableColor}
-                          fontSize="sm"
-                          fontWeight="bold"
-                          borderColor={borderColor}
-                          border={index === arr.length - 1 ? "none" : null}
-                        >
-                          {el.pageName}
-                        </Td>
-                        <Td
-                          color={textTableColor}
-                          fontSize="sm"
-                          border={index === arr.length - 1 ? "none" : null}
-                          borderColor={borderColor}
-                        >
-                          {el.visitors}
-                        </Td>
-                        <Td
-                          color={textTableColor}
-                          fontSize="sm"
-                          border={index === arr.length - 1 ? "none" : null}
-                          borderColor={borderColor}
-                        >
-                          {el.uniqueUsers}
-                        </Td>
-                        <Td
-                          color={textTableColor}
-                          fontSize="sm"
-                          border={index === arr.length - 1 ? "none" : null}
-                          borderColor={borderColor}
-                        >
-                          {el.bounceRate}
-                        </Td>
-                        <Td
-                          color={textTableColor}
-                          fontSize="sm"
-                          border={index === arr.length - 1 ? "none" : null}
-                          borderColor={borderColor}
-                        >
-                          {el.timestamp}
-                        </Td>
-                      </Tr>
-                    );
-                  })}
+                  {rawMeasures.length > 0 &&
+                    rawMeasures.map((el, index, arr) => {
+                      return (
+                        <Tr key={index}>
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            fontWeight="bold"
+                            borderColor={borderColor}
+                            border={index === arr.length - 1 ? "none" : null}
+                          >
+                            {el.topic}
+                          </Td>
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            fontWeight="bold"
+                            borderColor={borderColor}
+                            border={index === arr.length - 1 ? "none" : null}
+                          >
+                            Medellin, Colombia
+                          </Td>
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            border={index === arr.length - 1 ? "none" : null}
+                            borderColor={borderColor}
+                          >
+                            {el.MER}
+                          </Td>
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            border={index === arr.length - 1 ? "none" : null}
+                            borderColor={borderColor}
+                          >
+                            {el.BER}
+                          </Td>
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            border={index === arr.length - 1 ? "none" : null}
+                            borderColor={borderColor}
+                          >
+                            10%
+                          </Td>
+
+                          <Td
+                            color={textTableColor}
+                            fontSize="sm"
+                            border={index === arr.length - 1 ? "none" : null}
+                            borderColor={borderColor}
+                          >
+                            {el.time}
+                          </Td>
+                        </Tr>
+                      );
+                    })}
                 </Tbody>
               </Table>
             </Box>

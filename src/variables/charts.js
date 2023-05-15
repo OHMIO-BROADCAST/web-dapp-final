@@ -67,18 +67,18 @@ export const barChartOptions = {
   ],
 };
 
-export const lineChartData = [
+/* export const lineChartData = [
   {
-    name: "Transmitted",
+    name: "MER",
     data: [5, 4, 30, 22, 50, 25, 40, 23, 50],
   },
   {
-    name: "Reflected",
+    name: "BER",
     data: [3, 9, 4, 14, 29, 29, 34, 23, 40],
   },
 ];
-
-export const lineChartOptions = {
+ */
+/* export const lineChartOptions = {
   chart: {
     toolbar: {
       show: true,
@@ -150,4 +150,4 @@ export const lineChartOptions = {
     colors: ["#fff", "#3182CE"],
   },
   colors: ["#fff", "#3182CE"],
-};
+}; */

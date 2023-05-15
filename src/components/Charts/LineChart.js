@@ -1,25 +1,28 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { lineChartData, lineChartOptions } from "variables/charts";
 
 class LineChart extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      chartData: [],
-      chartOptions: {},
+      chartData: props.chartData,
+      chartOptions: props.chartOptions,
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      chartData: lineChartData,
-      chartOptions: lineChartOptions,
-    });
+  componentDidUpdate(prevProps) {
+    if (prevProps.chartData != this.props.chartData) {
+      this.setState({
+        chartData: this.props.chartData,
+        chartOptions: this.props.chartOptions,
+      });
+    }
   }
 
   render() {
+    console.log(this.props.chartData, this.props.chartOptions);
+
     return (
       <ReactApexChart
         options={this.state.chartOptions}

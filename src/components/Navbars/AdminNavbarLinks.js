@@ -120,7 +120,7 @@ export default function HeaderLinks(props) {
 
         <FaCoins size={14} color="#fff" style={{ marginLeft: "0.5rem" }} />
       </Flex>
-      <Flex
+      {/*   <Flex
         flexDirection={"row"}
         justify="center"
         justifyContent={"center"}
@@ -143,7 +143,7 @@ export default function HeaderLinks(props) {
           w="18px"
           h="18px"
         />
-      </Flex>
+      </Flex> */}
       {/* <Menu>
         <MenuButton marginLeft={'1rem'}>
           <BellIcon color={navbarIcon} w='18px' h='18px' />

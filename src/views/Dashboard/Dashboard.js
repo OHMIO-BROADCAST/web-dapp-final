@@ -44,6 +44,8 @@ import { pageVisits, socialTraffic } from "variables/general";
 import { MdRefresh, MdSettingsInputAntenna } from "react-icons/md";
 import { GiFactory } from "react-icons/gi";
 import { FaWaveSquare } from "react-icons/fa";
+import { Amplify, Auth, Hub, PubSub } from "aws-amplify";
+import { AWSIoTProvider, CONNECTION_STATE_CHANGE } from "@aws-amplify/pubsub";
 
 const styles = {
   title: {
@@ -81,6 +83,69 @@ export default function Dashboard() {
   const textTableColor = useColorModeValue("gray.500", "white");
 
   const { colorMode } = useColorMode();
+
+  const [numberOHMIOBoxes, setnumberOHMIOBoxes] = useState(0);
+  const [isActive, setisActive] = useState(false);
+  const [currentMER, setCurrentMER] = useState(0);
+  const [currentBER, setCurrentBER] = useState(0);
+  const [currentCHANNEL, setCurrentCHANNEL] = useState(0);
+  const [currentSTANDARD, setCurrentSTANDARD] = useState("");
+  const [currentCOMPANY, setCurrentCOMPANY] = useState("");
+
+  const [currentSTATUS, setCurrentSTATUS] = useState("");
+
+  const testPub = async () => {
+    await PubSub.publish("ohmioboxtest/pub", {
+      msg: "Hello motherfuckers!",
+    }).then((data) => {
+      console.log("un exito", data);
+    });
+  };
+
+  useEffect(() => {
+    Auth.currentCredentials().then((creds) =>
+      console.log("CREDENCIALES", creds),
+    );
+    //esta funcion sirve para verificar pagos y suscripciones
+    Amplify.addPluggable(
+      new AWSIoTProvider({
+        aws_pubsub_region: "us-east-1",
+        aws_pubsub_endpoint:
+          "wss://a10pxpt61w2oef-ats.iot.us-east-1.amazonaws.com/mqtt",
+      }),
+    );
+
+    //Subscription
+    PubSub.subscribe("$aws/events/presence/+/ohmioboxtest").subscribe({
+      next: (data) => {
+        console.log("estado presencia:", data);
+      },
+      error: (error) => console.error(error),
+      close: () => console.log("Done"),
+    });
+
+    PubSub.subscribe("ohmioboxtest/pub").subscribe({
+      next: (data) => {
+        console.log("Message received", data);
+      },
+      error: (error) => console.error("Error subscribiendo al topioc", error),
+      complete: () => console.log("Done"),
+    });
+
+    Hub.listen("pubsub", (data) => {
+      const { payload } = data;
+
+      if (payload.event == CONNECTION_STATE_CHANGE) {
+        const connectionState = payload.data.connectionState;
+        console.log("conexion", connectionState);
+        setCurrentSTATUS(connectionState);
+      }
+    });
+    testPub();
+    return () => {
+      Amplify.removePluggable("AWSIoTProvider");
+    };
+  }, []);
 
   /* return (
     <Flex
@@ -130,12 +195,36 @@ export default function Dashboard() {
                   fontWeight="bold"
                   textTransform="uppercase"
                 >
-                  OHMIO Box active
+                  OHMIO Box Status
                 </StatLabel>
-                <Flex>
+                <Flex flexDirection={"column"}>
                   <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
-                    0
+                    0 actives
                   </StatNumber>
+
+                  {(currentSTATUS == "" || currentSTATUS == "Disconnected") && (
+                    <StatNumber fontSize="md" color={"red"} fontWeight="normal">
+                      Disconnected
+                    </StatNumber>
+                  )}
+                  {currentSTATUS == "Connected" && (
+                    <StatNumber
+                      fontSize="md"
+                      color={"green"}
+                      fontWeight="normal"
+                    >
+                      Connected
+                    </StatNumber>
+                  )}
+                  {currentSTATUS == "Connecting" && (
+                    <StatNumber
+                      fontSize="md"
+                      color={textColor}
+                      fontWeight="normal"
+                    >
+                      Connecting
+                    </StatNumber>
+                  )}
                 </Flex>
               </Stat>
               <IconBox
@@ -183,6 +272,19 @@ export default function Dashboard() {
                     0.25
                   </StatNumber>
                 </Flex>
+                <StatLabel
+                  fontSize="xs"
+                  color="gray.400"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                >
+                  Current BER
+                </StatLabel>
+                <Flex>
+                  <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
+                    0.25
+                  </StatNumber>
+                </Flex>
               </Stat>
               <IconBox
                 borderRadius="50%"
@@ -194,12 +296,12 @@ export default function Dashboard() {
                 <GlobeIcon h={"24px"} w={"24px"} color={iconBoxInside} />
               </IconBox>
             </Flex>
-            <Text color="gray.400" fontSize="sm">
+            {/* <Text color="gray.400" fontSize="sm">
               <Text as="span" color="green.400" fontWeight="bold">
                 STABLE{" "}
               </Text>
               Since last month
-            </Text>
+            </Text> */}
           </Flex>
         </Card>
         <Card minH="125px">
@@ -327,13 +429,19 @@ export default function Dashboard() {
         >
           <Flex direction="column" mb="40px" p="28px 0px 0px 22px">
             <Text color="#fff" fontSize="lg" fontWeight="bold" mb="6px">
-              Power (kWh)
+              Real-time measures (MER) dB
             </Text>
             <Text color="#fff" fontSize="sm">
               <Text as="span" color="green.400" fontWeight="bold">
-                (+5) more{" "}
+                MER{" "}
               </Text>
-              in March
+              Select
+            </Text>
+            <Text color="#fff" fontSize="sm">
+              <Text as="span" color="green.400" fontWeight="bold">
+                BER{" "}
+              </Text>
+              Select
             </Text>
           </Flex>
           <Box minH="300px">

@@ -81,7 +81,7 @@ export const lineChartData = [
 export const lineChartOptions = {
   chart: {
     toolbar: {
-      show: false,
+      show: true,
     },
   },
   tooltip: {
@@ -96,18 +96,18 @@ export const lineChartOptions = {
   xaxis: {
     type: "datetime",
     categories: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "5",
+      "10",
+      "15",
+      "20",
+      "25",
+      "30",
+      "35",
+      "40",
+      "45",
+      "50",
+      "55",
+      "60",
     ],
     axisTicks: {
       show: false,

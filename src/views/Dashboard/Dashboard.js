@@ -37,7 +37,6 @@ import {
 import {
   barChartData,
   barChartOptions,
-  lineChartData,
   lineChartOptions,
 } from "variables/charts";
 import { pageVisits, socialTraffic } from "variables/general";
@@ -46,6 +45,11 @@ import { GiFactory } from "react-icons/gi";
 import { FaWaveSquare } from "react-icons/fa";
 import { Amplify, Auth, Hub, PubSub } from "aws-amplify";
 import { AWSIoTProvider, CONNECTION_STATE_CHANGE } from "@aws-amplify/pubsub";
+import {
+  AiFillAlert,
+  AiFillCheckCircle,
+  AiFillCloseCircle,
+} from "react-icons/ai";
 
 const styles = {
   title: {
@@ -92,7 +96,29 @@ export default function Dashboard() {
   const [currentSTANDARD, setCurrentSTANDARD] = useState("");
   const [currentCOMPANY, setCurrentCOMPANY] = useState("");
 
-  const [currentSTATUS, setCurrentSTATUS] = useState("");
+  const [currentCloudSTATUS, setCurrentCloudSTATUS] = useState("");
+  const [currentOhmioSTATUS, setCurrentOhmioSTATUS] = useState("");
+
+  const [lineChartData, setLineChartData] = useState([
+    {
+      name: "MER",
+      data: [5, 4, 30, 22, 50, 25, 40, 23, 50, 10, 20, 10],
+    },
+    {
+      name: "BER",
+      data: [3, 9, 4, 14, 29, 29, 34, 23, 40, 10, 20, 10],
+    },
+  ]);
+  /* const [lineChartData, setLineChartData] = useState([
+    {
+      name: "MER",
+      data: [0],
+    },
+    {
+      name: "BER",
+      data: [0],
+    },
+  ]); */
 
   const testPub = async () => {
     await PubSub.publish("ohmioboxtest/pub", {
@@ -118,7 +144,13 @@ export default function Dashboard() {
     //Subscription
     PubSub.subscribe("$aws/events/presence/+/ohmioboxtest").subscribe({
       next: (data) => {
-        console.log("estado presencia:", data);
+        if (data.value && data.value.evenType) {
+          if (data.value.evenType == "disconnected") {
+            setCurrentOhmioSTATUS("Disconnected");
+          } else if (data.value.evenType == "connected") {
+            setCurrentOhmioSTATUS("Connected");
+          }
+        }
       },
       error: (error) => console.error(error),
       close: () => console.log("Done"),
@@ -137,8 +169,17 @@ export default function Dashboard() {
 
       if (payload.event == CONNECTION_STATE_CHANGE) {
         const connectionState = payload.data.connectionState;
-        console.log("conexion", connectionState);
-        setCurrentSTATUS(connectionState);
+        console.log("Cloud conexion", connectionState);
+        setCurrentCloudSTATUS(connectionState);
+        if (connectionState == "Connected") {
+          if (numberOHMIOBoxes < 1) {
+            setnumberOHMIOBoxes(1);
+          }
+        } else {
+          if (numberOHMIOBoxes == 1) {
+            setnumberOHMIOBoxes(0);
+          }
+        }
       }
     });
     testPub();
@@ -199,54 +240,172 @@ export default function Dashboard() {
                 </StatLabel>
                 <Flex flexDirection={"column"}>
                   <StatNumber fontSize="lg" color={textColor} fontWeight="bold">
-                    0 actives
+                    {numberOHMIOBoxes} actives
                   </StatNumber>
-
-                  {(currentSTATUS == "" || currentSTATUS == "Disconnected") && (
-                    <StatNumber fontSize="md" color={"red"} fontWeight="normal">
+                  <StatLabel
+                    fontSize="xs"
+                    color="gray.400"
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    marginTop={"0.5rem"}
+                  >
+                    Web App Cloud
+                  </StatLabel>
+                  {(currentCloudSTATUS == "" ||
+                    currentCloudSTATUS == "Disconnected") && (
+                    <StatNumber
+                      fontSize="md"
+                      color={"white"}
+                      bgColor={"red.400"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
+                      fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
+                    >
+                      <AiFillCloseCircle
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
                       Disconnected
                     </StatNumber>
                   )}
-                  {currentSTATUS == "Connected" && (
+                  {currentCloudSTATUS == "Connected" && (
                     <StatNumber
                       fontSize="md"
-                      color={"green"}
+                      color={"white"}
+                      bgColor={"#4abeac"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
                       fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
                     >
+                      <AiFillCheckCircle
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
                       Connected
                     </StatNumber>
                   )}
-                  {currentSTATUS == "Connecting" && (
+                  {currentCloudSTATUS == "Connecting" && (
                     <StatNumber
                       fontSize="md"
                       color={textColor}
+                      bgColor={"gray.400"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
                       fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
                     >
+                      <AiFillAlert
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
+                      Connecting
+                    </StatNumber>
+                  )}
+                  <StatLabel
+                    fontSize="xs"
+                    color="gray.400"
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    marginTop={"0.5rem"}
+                  >
+                    OHMIO Cloud Presence
+                  </StatLabel>
+                  {(currentOhmioSTATUS == "" ||
+                    currentOhmioSTATUS == "Disconnected") && (
+                    <StatNumber
+                      fontSize="md"
+                      color={"white"}
+                      bgColor={"red.400"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
+                      fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
+                    >
+                      <AiFillCloseCircle
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
+                      Disconnected
+                    </StatNumber>
+                  )}
+                  {currentOhmioSTATUS == "Connected" && (
+                    <StatNumber
+                      fontSize="md"
+                      color={"white"}
+                      bgColor={"#4abeac"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
+                      fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
+                    >
+                      <AiFillCheckCircle
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
+                      Connected
+                    </StatNumber>
+                  )}
+                  {currentOhmioSTATUS == "Connecting" && (
+                    <StatNumber
+                      fontSize="md"
+                      color={textColor}
+                      bgColor={"gray.400"}
+                      padding={"0.2rem"}
+                      borderRadius={10}
+                      fontWeight="normal"
+                      flexDirection={"row"}
+                      display={"flex"}
+                      alignItems={"center"}
+                    >
+                      <AiFillAlert
+                        color="white"
+                        style={{ marginRight: "0.5rem" }}
+                      />
                       Connecting
                     </StatNumber>
                   )}
                 </Flex>
               </Stat>
-              <IconBox
-                borderRadius="50%"
-                as="box"
-                h={"45px"}
-                w={"45px"}
-                bg={iconBlue}
+              <Flex
+                height={"100%"}
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                marginLeft={"0.1rem"}
               >
-                <MdSettingsInputAntenna
-                  h={"24px"}
-                  w={"24px"}
-                  color={iconBoxInside}
-                />
-              </IconBox>
+                <IconBox
+                  borderRadius="50%"
+                  as="box"
+                  h={"45px"}
+                  w={"45px"}
+                  bg={iconBlue}
+                >
+                  <MdSettingsInputAntenna
+                    h={"24px"}
+                    w={"24px"}
+                    color={iconBoxInside}
+                  />
+                </IconBox>
+              </Flex>
             </Flex>
-            <Text color="gray.400" fontSize="sm">
+            {/*  <Text color="gray.400" fontSize="sm">
               <Text as="span" color="grey.500" fontWeight="bold">
                 See{" "}
               </Text>
               All
-            </Text>
+            </Text> */}
           </Flex>
         </Card>
         <Card minH="125px">
@@ -429,7 +588,7 @@ export default function Dashboard() {
         >
           <Flex direction="column" mb="40px" p="28px 0px 0px 22px">
             <Text color="#fff" fontSize="lg" fontWeight="bold" mb="6px">
-              Real-time measures (MER) dB
+              Real-time measures (MER) dB | Last Hour
             </Text>
             <Text color="#fff" fontSize="sm">
               <Text as="span" color="green.400" fontWeight="bold">

@@ -22,7 +22,6 @@ import {
 // Custom components
 import Card from "components/Card/Card.js";
 import BarChart from "components/Charts/BarChart";
-import LineChart from "components/Charts/LineChart";
 import IconBox from "components/Icons/IconBox";
 // Custom icons
 import {
@@ -250,10 +249,10 @@ export default function Dashboard() {
             </Text>
           </Flex>
           <Box minH="300px">
-            <LineChart
+            {/* <LineChart
               chartData={lineChartData}
               chartOptions={lineChartOptions}
-            />
+            /> */}
           </Box>
         </Card>
         <Card p="0px" maxW={{ sm: "320px", md: "100%" }}>

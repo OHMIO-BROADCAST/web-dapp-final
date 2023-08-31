@@ -75,7 +75,7 @@ type Purchase {
   paymentMethod: String!
 }
 
-type User @model @searchable {
+type User @model {
   id: ID!
   idMoralis: String
   wallets: [Wallet]
